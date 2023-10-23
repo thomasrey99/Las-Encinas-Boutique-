@@ -1,4 +1,4 @@
-const { productoQuery, productoId, allProductos} = require("../controllers/productosControllers");
+const { productoQuery, productoId, allProductos} = require("../contollers/productosControllers");
 
 const getProductoQuery = async (req, res) => {
     
@@ -14,7 +14,7 @@ const getProductoQuery = async (req, res) => {
     }
 }
 
-const getProductoId = async ( req, res ) => {
+const getProductoId  = async ( req, res ) => {
 
    const { id } = req.params
    
@@ -37,7 +37,7 @@ const getAllProductos = async ( req, res ) => {
 
 }
 
-module.export = {
+module.exports = {
     getProductoQuery,
     getProductoId,
     getAllProductos

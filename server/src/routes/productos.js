@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const router = Router()
 
 const { getProductoQuery, getProductoId, getAllProductos } = require("../handlers/productosHandlers");
@@ -6,5 +7,3 @@ const { getProductoQuery, getProductoId, getAllProductos } = require("../handler
 router.get("/?name", getProductoQuery)
 router.get("/:id", getProductoId)
 router.get("/", getAllProductos)
-
-module.exports = router;

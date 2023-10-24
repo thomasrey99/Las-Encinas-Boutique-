@@ -13,6 +13,6 @@ const getUsuarioId = async ( req, res) => {
 
 }
 
-module.export = {
+module.exports = {
     getUsuarioId
 }

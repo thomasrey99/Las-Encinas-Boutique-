@@ -7,3 +7,5 @@ const { getProductoQuery, getProductoId, getAllProductos } = require("../handler
 router.get("/?name", getProductoQuery)
 router.get("/:id", getProductoId)
 router.get("/", getAllProductos)
+
+module.exports = router;

@@ -1,13 +1,16 @@
+import React from 'react';
 
-import './App.css'
+import FormProdruct from "./views/FormProduct/FormProducts"
+import Cards from './components/cards/Cards';
 
 function App() {
-
   return (
     <main>
-      <h1>hola mundo!!</h1>
+      <h1>Las Encinas Boutique</h1>
+      <FormProdruct/>
+      <Cards/>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

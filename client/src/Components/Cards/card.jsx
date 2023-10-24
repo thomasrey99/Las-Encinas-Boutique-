@@ -1,4 +1,4 @@
 
-const Card = () => {};
+const Cards = () => {};
 
-export default Card;
+export default Cards;

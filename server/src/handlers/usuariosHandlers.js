@@ -13,6 +13,4 @@ const getUsuarioId = async ( req, res) => {
 
 }
 
-module.exports = {
-    getUsuarioId
-}
+module.exports = { getUsuarioId }

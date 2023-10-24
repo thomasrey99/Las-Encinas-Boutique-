@@ -6,10 +6,10 @@ function App() {
   console.log(products)  
 
 
-  return(
-    <div>
-      <h1>hola mundo</h1>
-    </div>
+  return (
+    <main>
+      <h1>hola mundo!!</h1>
+    </main>
   )
 }
 

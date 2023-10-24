@@ -1,4 +1,4 @@
-const { usuarioId } = require("../controllers/postUserController");
+const { usuarioId } = require("../controllers/usuariosControllers");
 
 const getUsuarioId = async ( req, res) => {
 

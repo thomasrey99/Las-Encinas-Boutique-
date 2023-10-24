@@ -1,11 +1,11 @@
-const { usuarioId } = require("../controllers/usuariosControllers");
+const { userId } = require("../controllers/userControllers");
 
-const getUsuarioId = async ( req, res) => {
+const getUserId = async ( req, res) => {
 
    const { id } = req.params
    
    try {
-        const result = await usuarioId(id)
+        const result = await userId(id)
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -13,4 +13,4 @@ const getUsuarioId = async ( req, res) => {
 
 }
 
-module.exports = { getUsuarioId }
+module.exports = { getUserId }

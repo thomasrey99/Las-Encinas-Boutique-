@@ -1,7 +1,7 @@
 const { Usuarios } = require("../db");
 const axios = require("axios");
 
-const usuarioId = async (id) => {
+const userId = async (id) => {
     const usuario = Usuarios.findAll();
     const resultado = usuario.find((p) => p.id === id);
 
@@ -9,5 +9,5 @@ const usuarioId = async (id) => {
 }
 
 module.exports = {
-    usuarioId
+    userId
 };

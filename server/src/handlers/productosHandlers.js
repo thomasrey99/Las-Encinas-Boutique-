@@ -1,25 +1,25 @@
-const { productoQuery, productoId, allProductos} = require("../controllers/productosControllers");
+const { getByName, getById, getAllInfo} = require("../controllers/productosControllers");
 
-const getProductoQuery = async (req, res) => {
+const searchName = async (req, res) => {
     
     let { nombre } = req.query
 
     nombre = nombre.toLowerCase()
 
     try {
-        const result = await productoQuery(nombre)
+        const result = await getByName(nombre)
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
 }
 
-const getProductoId  = async ( req, res ) => {
+const searchID  = async ( req, res ) => {
 
    const { id } = req.params
    
    try {
-        const result = await productoId(id)
+        const result = await getById(id)
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -27,9 +27,9 @@ const getProductoId  = async ( req, res ) => {
 
 }
 
-const getAllProductos = async ( req, res ) => {
+const searchAll = async ( req, res ) => {
     try {
-        const result = await allProductos()
+        const result = await getAllInfo()
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -38,7 +38,7 @@ const getAllProductos = async ( req, res ) => {
 }
 
 module.exports = {
-    getProductoQuery,
-    getProductoId,
-    getAllProductos
+    searchName,
+    searchID,
+    searchAll
 }

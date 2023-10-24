@@ -25,7 +25,7 @@ const allProductos = async () => {
 
 }
 
-const postProduct = async (nombre)=>{
+const postProductHandler = async (nombre)=>{
     const resultado = await Productos.create({nombre});
     return resultado
 }
@@ -34,5 +34,5 @@ module.exports = {
     productoQuery,
     productoId,
     allProductos,
-    postProduct
+    postProductHandler
 };

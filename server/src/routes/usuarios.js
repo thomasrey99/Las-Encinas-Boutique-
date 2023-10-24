@@ -1,7 +1,10 @@
 const { Router } = require("express")
-
-const router = Router()
-
 const { getUsuarioId } = require("../handlers/usuariosHandlers")
+const postNewUser = require("../handlers/postUserHandler")
 
-router.get("/", getUsuarioId)
+const routerUsuario = Router()
+
+routerUsuario.get("/users", getUsuarioId)
+routerUsuario.post("/create", postNewUser);
+
+module.exports = routerUsuario;

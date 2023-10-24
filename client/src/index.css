@@ -2,4 +2,7 @@
 
 *{
     font-family: "Rowton Sans FY W03 Regular";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

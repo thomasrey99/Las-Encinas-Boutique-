@@ -1,9 +1,11 @@
 const { Router } = require("express");
 
-const router = Router()
+const routerProductos = Router()
 
 const { getProductoQuery, getProductoId, getAllProductos } = require("../handlers/productosHandlers");
 
-router.get("/?name", getProductoQuery)
-router.get("/:id", getProductoId)
-router.get("/", getAllProductos)
+routerProductos.get("/", getAllProductos)
+routerProductos.get("/:id", getProductoId)
+routerProductos.get("/search", getProductoQuery)
+
+module.exports = routerProductos;

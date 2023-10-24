@@ -35,10 +35,11 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Corrige la relación "belongsToMany"
-const { Productos, Categoria } = sequelize.models;
+const { Productos, Categoria, Users } = sequelize.models;
 
-Productos.belongsToMany(Categoria, { through: 'ProductosCategoria' });
-Categoria.belongsToMany(Productos, { through: 'ProductosCategoria' });
+Users.belongsToMany(Productos, { through: 'Users_Productos' });
+Productos.belongsToMany(Categoria, { through: 'Productos_Categoria'});
+Categoria.belongsToMany(Productos, { through: 'Productos_Categoria' });
 
 module.exports = {
   ...sequelize.models,

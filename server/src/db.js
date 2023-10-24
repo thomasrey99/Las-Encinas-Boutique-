@@ -17,10 +17,15 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 const basename = path.basename(__filename);
 const modelDefiners = [];
 
-fs.readdirSync(path.join(__dirname, 'models'))
+// Cambia la ruta a tu directorio de modelos
+const modelsDir = path.join(__dirname, 'models');
+
+fs.readdirSync(modelsDir)
   .filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, 'models', file))(sequelize));
+    // Importa los modelos desde la carpeta de modelos
+    const model = require(path.join(modelsDir, file));
+    modelDefiners.push(model);
   });
 
 modelDefiners.forEach(model => model(sequelize));
@@ -29,8 +34,8 @@ const entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// Corregir la relación "belongsToMany"
-const { Productos, Categoria} = sequelize.models;
+// Corrige la relación "belongsToMany"
+const { Productos, Categoria } = sequelize.models;
 
 Productos.belongsToMany(Categoria, { through: 'ProductosCategoria' });
 Categoria.belongsToMany(Productos, { through: 'ProductosCategoria' });

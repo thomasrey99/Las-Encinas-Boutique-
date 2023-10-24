@@ -1,4 +1,4 @@
-const { usuarioId } = require("../controllers/usuariosControllers");
+const { usuarioId } = require("../controllers/postUserController");
 
 const getUsuarioId = async ( req, res) => {
 
@@ -13,6 +13,6 @@ const getUsuarioId = async ( req, res) => {
 
 }
 
-module.export = {
+module.exports = {
     getUsuarioId
 }

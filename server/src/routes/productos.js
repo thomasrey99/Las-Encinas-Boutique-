@@ -1,9 +1,13 @@
 const { Router } = require("express");
 
-const router = Router()
+const router = Router();
 
 const { getProductoQuery, getProductoId, getAllProductos } = require("../handlers/productosHandlers");
 
-router.get("/?name", getProductoQuery)
-router.get("/:id", getProductoId)
-router.get("/", getAllProductos)
+// Definir rutas separadas para diferentes acciones
+
+router.get("/:id", getProductoId); // Obtener un producto por ID
+router.get("/query/:name", getProductoQuery);
+router.get("/", getAllProductos); // Obtener todos los productos
+
+module.exports = router;

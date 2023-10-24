@@ -19,4 +19,6 @@ const createNewUser = async (
     }
 };
 
-module.exports = createNewUser;
+module.exports = {
+    createNewUser
+};

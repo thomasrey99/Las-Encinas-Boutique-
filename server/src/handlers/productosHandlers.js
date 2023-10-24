@@ -1,4 +1,4 @@
-const { productoQuery, productoId, allProductos} = require("../contollers/productosControllers");
+const { productoQuery, productoId, allProductos} = require("../controllers/productosControllers");
 
 const getProductoQuery = async (req, res) => {
     

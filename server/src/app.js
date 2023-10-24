@@ -1,34 +1,24 @@
-const express = require("express")
-const morgan = require("morgan")
-const cors = require("cors")
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const router = require("./routes");
 
-const router = require("./routes")
+const server = express();
 
-//!instanciando el server
+// Middlewares
+server.use(cors());
+server.use(morgan("dev"));
+server.use(express.json());
 
-const server=express()
-
-//!middlewares
-
-server.use(cors())
-
-server.use(morgan("dev"))
-
-server.use(express.json())
-
-//!configuracion de la cabecera
-
+// Configuración de las cabeceras CORS
 server.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    next();
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
 
-server.use(router)
+server.use(router);
 
-module.exports=server
+module.exports = server;

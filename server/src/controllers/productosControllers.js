@@ -15,7 +15,7 @@ const productoId = async (id) => {
     const productos = Productos.findAll();
     const resultado = productos.find((p) => p.id === id);
 
-    return resultado;
+    return resultado; 
 }
 
 const allProductos = async () => {
@@ -25,8 +25,14 @@ const allProductos = async () => {
 
 }
 
+const postProduct = async (nombre)=>{
+    const resultado = await Productos.create({nombre});
+    return resultado
+}
+
 module.exports = {
     productoQuery,
     productoId,
-    allProductos
+    allProductos,
+    postProduct
 };

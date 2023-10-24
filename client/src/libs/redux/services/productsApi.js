@@ -6,18 +6,20 @@ export const productsApi=createApi({
     }),
     reducerPath:"productsApi",
     endpoints:(builder)=>({
+        getAllProducts:builder.query({
+            query:() => '/productos',
+            providesTags:["products"]
+        }),
         createProduct:builder.mutation({
             query:(newProduct)=>({
                 url:"/productos",
                 method:"POST",
                 body:newProduct
-            })
+            }),
+            invalidatesTags:["products"]
         }),
         getProductByName:builder.query({
             query:(name)=>`/productos?name=${name}`
-        }),
-        getAllProducts:builder.query({
-            query:() => '/productos'
         })
     })
 })

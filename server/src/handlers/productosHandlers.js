@@ -1,13 +1,17 @@
-const { productoQuery, productoId, allProductos, postProductHandler} = require("../controllers/productosControllers");
+const { productoQuery,
+        productoId,
+        allProductos,
+        postProductController
+        } = require("../controllers/productosControllers");
 
 const getProductoQuery = async (req, res) => {
     
-    let { nombre } = req.query
+    let { name } = req.query
 
-    nombre = nombre.toLowerCase()
+    name = name.toLowerCase()
 
     try {
-        const result = await productoQuery(nombre)
+        const result = await productoQuery(name)
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -39,9 +43,9 @@ const getAllProductos = async ( req, res ) => {
 }
 
 const postProduct = async(req, res) =>{
-    const {nombre} = req.body;
+    const {image, name, price, description, raiting, category} = req.body;
     try {
-        const result = await postProductHandler(nombre)
+        const result = await postProductController(image, name, price, description, raiting, category)
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({ error: error.message });

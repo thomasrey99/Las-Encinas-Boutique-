@@ -1,40 +1,42 @@
 
-const { Productos } = require("../db");
+const { Product } = require("../db");
 const axios = require("axios");
 
-const productoQuery = async (nombre) => {
-
-    const productos = Productos.findAll();
-    const resultado = productos.filter((p) =>
-        p.nombre.toLowerCase().includes(nombre.toLowerCase())
+const productoQuery = async (name) => {
+    
+    let productos = await Product.findAll();
+    console.log("Este es el resultado:",productos)
+    let resultado = productos.filter((p) =>
+        p.name.toLowerCase().includes(name.toLowerCase())
     );
 
     return resultado;
 }
 
 const productoId = async (id) => {
-    const productos = Productos.findAll();
-    const resultado = productos.find((p) => p.id === id);
+    let productos = await Product.findAll();
+    console.log("Este es el resultado:",productos);
+    let resultado = productos.find((p) => p.id === id);
 
     return resultado; 
 }
 
 const allProductos = async () => {
     
-    const resultado = Productos.findAll();
+    const resultado = await Product.findAll();
     return resultado
 
 }
 
-const postProductHandler = async (nombre)=>{
-    const resultado = await Productos.create({nombre});
+const postProductController = async (image, name, price, description, raiting, category)=>{
+    const resultado = await Product.create({image, name, price, description, raiting, category});
     return resultado
 }
 
-module.exports = {
+module.exports = { 
     productoQuery,
     productoId,
     allProductos,
-    postProductHandler
+    postProductController
 };
 

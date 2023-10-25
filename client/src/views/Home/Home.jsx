@@ -1,19 +1,16 @@
-import { useEffect } from 'react';
 import { Cards } from '../../Components/cards/Cards.jsx';
 import { useGetAllProductsQuery } from '../../libs//redux/services/productsApi.js';
 
 const Home = () =>{
 
-    const [allProducts] = useGetAllProductsQuery();
+    const { data: products, isError, isLoading, error } = useGetAllProductsQuery();
 
-    useEffect(() =>
-    {
-        allProducts();
-    },[allProducts]);
+    if ( isLoading ) return <div>Loading...</div>
+    else if ( isError ) return <div>Error {error.message} ..Please Try Again Later...</div>
 
     return(
         <div>
-            <Cards products = {allProducts}/>
+            <Cards products = {products}/>
         </div>
     );
 }

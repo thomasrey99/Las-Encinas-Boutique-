@@ -1,30 +1,21 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 
 const Detail = () => {
 
     const { id } = useParams();
     console.log(id);
-    const [productDetail] = useGetProductByIdQuery();
+    const { data: productDetail, isError, isLoading, error } = useGetProductByIdQuery();
 
-    useEffect(() => {
-        productDetail();
-    },[productDetail]);
-
-    const detailProduct = { 
-        name: "Chocolate blanco", 
-        id: 1, 
-        precio: 2.99, 
-        imagen: 'https://www.eltiempo.com/uploads/2023/03/13/640fb61bb084a.jpeg'
-    };
+    if ( isLoading ) return <div>Loading...</div>
+    else if ( isError ) return <div>Error {error.message} ..Please Try Again Later...</div>
 
     return(
         <div>
-            <h1>{detailProduct.name}</h1>
-            <span>{detailProduct.id}</span>
-            <span>{detailProduct.precio}</span>
-            <img src={detailProduct.imagen} alt="chocolate" />
+            <h1>{productDetail.name}</h1>
+            <span>{productDetail.id}</span>
+            <span>{productDetail.precio}</span>
+            <img src={productDetail.imagen} alt="chocolate" />
         </div>
     );
 };

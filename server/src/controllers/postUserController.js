@@ -1,17 +1,13 @@
 const { User } = require("../db");
 
-const createNewUser = async (
-    name,
-    lastName,
-    email,
-    password,
-) => {
+//!el usuario se crea si el email no existe en la db
+const createNewUser = async (data) => {
     try {
-        const newUser = await User.create({
-            name,
-            lastName,
-            email,
-            password,
+        const newUser = await User.findOrCreate({
+            where:{
+                email:data.email
+            },
+            defaults:data
         });
         return newUser;
     } catch(error){

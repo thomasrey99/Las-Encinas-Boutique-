@@ -11,7 +11,8 @@ const App = () => {
       <Routes> 
         <Route path='/' element={<Landing/>} />
         <Route path='home' element={<Home/>} />
-        <Route path='detail/:id' element={<Detail/>} />        
+        <Route path='detail/:id' element={<Detail/>} />  
+        {/* agregar un about con descripcion del negocio, y presentacion del equipo (about Us)        */}
       </Routes>
     </main>
   )

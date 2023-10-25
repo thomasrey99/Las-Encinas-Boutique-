@@ -1,4 +1,4 @@
-import { Cards } from '../../Components/cards/Cards.jsx';
+// import { Cards } from '../../Components/cards/Cards.jsx';
 import { useGetAllProductsQuery } from '../../libs//redux/services/productsApi.js';
 
 const Home = () =>{
@@ -10,7 +10,8 @@ const Home = () =>{
 
     return(
         <div>
-            <Cards products = {products}/>
+            <span>Componente Home</span>
+            {/* <Cards products = {products}/> */}
         </div>
     );
 }

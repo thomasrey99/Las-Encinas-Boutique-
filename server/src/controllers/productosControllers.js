@@ -1,10 +1,9 @@
+const Product = require("../models/Product");
 
-const { Productos } = require("../db");
-const axios = require("axios");
 
 const productoQuery = async (nombre) => {
 
-    const productos = Productos.findAll();
+    const productos = await Product.findAll();
     const resultado = productos.filter((p) =>
         p.nombre.toLowerCase().includes(nombre.toLowerCase())
     );
@@ -13,21 +12,20 @@ const productoQuery = async (nombre) => {
 }
 
 const productoId = async (id) => {
-    const productos = Productos.findAll();
+    const productos = await Product.findAll();
     const resultado = productos.find((p) => p.id === id);
 
     return resultado; 
 }
 
 const allProductos = async () => {
-    
-    const resultado = Productos.findAll();
+    const resultado = await Product.findAll();
     return resultado
 
 }
 
-const postProductHandler = async (nombre)=>{
-    const resultado = await Productos.create({nombre});
+const postProductHandler = async (data)=>{
+    const resultado = await Product.create(data)
     return resultado
 }
 

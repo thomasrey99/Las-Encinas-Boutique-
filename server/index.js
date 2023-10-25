@@ -1,14 +1,12 @@
 const server = require("./src/app")
-const { conn } = require('./src/db.js');
-require("dotenv").config()
+const { dataBase} = require('./src/db.js');
 
-const {PORT}=process.env
+const PORT=3001
 
 
 //!inicializando el servidor y sincronizando la base de datos
 
-conn.sync({ alter: true }).then(() => {
-    server.listen(PORT, () => {
-      console.log(`Servidor de las Encinas boutique escuchando en el puerto ${PORT}!💥`);
-    })
-    }).catch(error => console.error(error))
+server.listen(PORT, ()=>{
+  dataBase.sync({alter:true})
+  console.log(`server listen in port ${PORT}`)
+})

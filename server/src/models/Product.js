@@ -1,7 +1,9 @@
 const { DataTypes } = require('sequelize');
-module.exports = (sequelize) => {
 
-  sequelize.define('Product', {
+
+module.exports = (dataBase) => {
+
+  dataBase.define('Product', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -31,5 +33,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     }
+  },
+  {
+      freezeTableName: true,
+      timestamps: false,
+      createdAt:false,
+      updatedAt:false
   });
 };

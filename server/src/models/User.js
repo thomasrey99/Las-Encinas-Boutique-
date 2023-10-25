@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) => {
-    sequelize.define(
+module.exports = (dataBase) => {
+    dataBase.define(
         'User', {
         id: {
             type: DataTypes.UUID,
@@ -27,6 +27,15 @@ module.exports = (sequelize) => {
         is_admin: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+        },
+        password:{
+            type:DataTypes.STRING
         }
+    },
+    {
+        freezeTableName: true,
+        timestamps: false,
+        createdAt:false,
+        updatedAt:false
     })
 }

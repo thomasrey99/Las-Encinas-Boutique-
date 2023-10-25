@@ -2,12 +2,12 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const productsApi=createApi({
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:3000"
+        baseUrl:"https://rickandmortyapi.com/api"
     }),
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
-            query:() => '/productos',
+            query:() => '/character',
             providesTags:["products"]
         }),
         createProduct:builder.mutation({

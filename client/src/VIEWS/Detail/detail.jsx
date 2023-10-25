@@ -6,10 +6,11 @@ const Detail = () => {
 
     const dispatch = useDispatch();
     const { id } = useParams();
+    console.log(id);
     //const detailProduct = useSelector(state => state);
 
     useEffect(() => {
-        dispatch((id));
+        //dispatch((id));
     },[dispatch]);
 
     const detailProduct = { 

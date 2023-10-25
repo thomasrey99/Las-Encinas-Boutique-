@@ -6,9 +6,7 @@ import './App.css'
 function App() {
   return (
     <main>
-      <h1>Las Encinas Boutique</h1>
-      <FormProduct/>
-      <Cards/>
+      <h1>hola mundo!!</h1>
     </main>
   );
 }

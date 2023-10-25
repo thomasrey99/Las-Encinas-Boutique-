@@ -1,11 +1,6 @@
 const { User } = require("../db");
 
-const createNewUser = async (
-    name,
-    lastName,
-    email,
-    password,
-) => {
+const createNewUser = async (name, lastName, email, password) => {
     try {
         const newUser = await User.create({
             name,
@@ -14,7 +9,7 @@ const createNewUser = async (
             password,
         });
         return newUser;
-    } catch(error){
+    } catch (error) {
         throw error;
     }
 };

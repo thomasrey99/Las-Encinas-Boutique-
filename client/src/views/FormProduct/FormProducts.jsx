@@ -1,69 +1,51 @@
-import React, { useState} from 'react'
-// import { useDispatch } from "react-redux"
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Style from './FormProduct.module.css';
 
-import Style from "./FormProduct.module.css"
+import { 
+    addProducts 
+} from '../../libs/redux/features/productsSlice';
 
 const FormProducts = () => {
-    
-    // Falta funcion que postee los productos
-    // Falta conocer el modelo para añadir propiedades al state
-    // falta un InitialState de los productos
-
-    //const products = useSelector(state => state.productsBackUp) futura funcion que traiga la informacion de los
-    //productos para hacer una barra desplegable de categorias, sabores, ect
-
-    const [state, setState ] = useState({
-        name: "",
-        image: "",
-        price: "",
-        description: "",
-        raiting: "",
+    const dispatch = useDispatch();
+    const [state, setState] = useState({
+        name: '',
+        image: '',
+        price: '',
+        description: '',
+        rating: '',
         category: []
     });
 
-    const buttonDisabled = () => {
-        let disabled = false
-        for (let s in state) {
-            if (state[s] === "") {
-                disabled = true;
-                break;
-            }
-        }
-        return disabled;
-    }
-
     const resetState = () => {
         setState({
-            name: "",
-            image: "",
-            price: "",
-            description: "",
-            raiting: "",
+            name: '',
+            image: '',
+            price: '',
+            description: '',
+            rating: '', 
             category: []
-        })
+        });
     }
 
     const handleChange = (e) => {
-        
         let updatedValue = e.target.value;
-
         setState({
             ...state,
             [e.target.name]: updatedValue
         });
-
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        //dispatch(postProduct(state))
-        resetState()
-    } 
+        e.preventDefault();
+        dispatch(addProducts(state));
+        // resetState();
+    }
 
   return (
     <>
         <div>FormProducts</div>
-        <form onSubmit={handleSubmit} className={Style.Form}>
+        <form className={Style.Form}>
 
             <label>Nombre: </label>
             <input placeholder='Elegir nombre...' name='name' type="text" value={state.name} onChange={handleChange} />
@@ -83,7 +65,7 @@ const FormProducts = () => {
             <label>Categoria: </label>
             <input placeholder='Elegir categoria...' name='category' type="text" value={state.category} onChange={handleChange} />
         
-            <button disabled={buttonDisabled()}>Crear producto</button>
+            <button onClick={handleSubmit}>Crear producto</button>
         </form>
     </>
   )

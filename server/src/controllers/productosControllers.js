@@ -25,8 +25,28 @@ const allProductos = async () => {
 
 }
 
+const createProduct = async (name, category, description, image, price, rating) => {
+
+    try {
+        const newProduct = await Productos.create({
+            name, 
+            category, 
+            description, 
+            image, 
+            price, 
+            rating
+        });
+
+        return newProduct;
+    
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     productoQuery,
     productoId,
-    allProductos
+    allProductos,
+    createProduct
 };

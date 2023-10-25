@@ -1,17 +1,16 @@
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 
 const Detail = () => {
 
-    const dispatch = useDispatch();
     const { id } = useParams();
     console.log(id);
-    //const detailProduct = useSelector(state => state);
+    const [productDetail] = useGetProductByIdQuery();
 
     useEffect(() => {
-        //dispatch((id));
-    },[dispatch]);
+        productDetail();
+    },[productDetail]);
 
     const detailProduct = { 
         name: "Chocolate Blanco", 

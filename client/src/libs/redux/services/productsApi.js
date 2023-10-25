@@ -20,8 +20,11 @@ export const productsApi=createApi({
         }),
         getProductByName:builder.query({
             query:(name)=>`/productos?name=${name}`
+        }),
+        getProductById:builder.query({
+            query:(id) => `/productos/${id}`
         })
     })
 })
 
-export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery}=productsApi
+export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery, useGetProductByIdQuery}=productsApi

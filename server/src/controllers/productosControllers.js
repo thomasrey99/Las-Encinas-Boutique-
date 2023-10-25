@@ -1,3 +1,4 @@
+
 const { Productos } = require("../db");
 const axios = require("axios");
 
@@ -36,3 +37,4 @@ module.exports = {
     allProductos,
     postProductHandler
 };
+

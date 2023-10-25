@@ -1,11 +1,9 @@
+const productsRouter=require("./products")
+const usersRouter=require("./users")
 const { Router } = require("express");
+const mainRouter = Router()
 
-import productsRouter from "./products";
-import usersRouter from "./users";
-
-const router = Router()
-
-router.use("/products", productsRouter);
-router.use("/users", usersRouter);
+mainRouter.use("/products", productsRouter);
+mainRouter.use("/users", usersRouter);
 
 module.exports = mainRouter;

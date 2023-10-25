@@ -28,6 +28,7 @@ const getProductoId  = async ( req, res ) => {
 }
 
 const getAllProductos = async ( req, res ) => {
+    
     try {
         const result = await allProductos()
         res.status(200).json(result)

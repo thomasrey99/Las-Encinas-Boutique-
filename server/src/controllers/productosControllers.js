@@ -15,7 +15,7 @@ const productoId = async (id) => {
     const productos = Productos.findAll();
     const resultado = productos.find((p) => p.id === id);
 
-    return resultado;
+    return resultado; 
 }
 
 const allProductos = async () => {

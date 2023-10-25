@@ -7,7 +7,6 @@ const { getProductoQuery, getProductoId, getAllProductos, postProduct } = requir
 routerProductos.get("/", getAllProductos)
 routerProductos.get("/:id", getProductoId)
 routerProductos.get("/search", getProductoQuery)
-
-routerProductos.post("/create", postProduct)
+routerProductos.post("/", postProduct )
 
 module.exports = routerProductos;

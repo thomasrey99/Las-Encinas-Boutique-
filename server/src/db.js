@@ -37,7 +37,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Corrige la relación "belongsToMany"
 const { Productos, Categoria, Users } = sequelize.models;
 
-Users.belongsToMany(Productos, { through: 'Users_Productos' });
+// Users.belongsToMany(Productos, { through: 'Users_Productos' });
 Productos.belongsToMany(Categoria, { through: 'Productos_Categoria'});
 Categoria.belongsToMany(Productos, { through: 'Productos_Categoria' });
 

@@ -12,7 +12,7 @@ const Home = () =>{
     },[allProducts]);
 
     return(
-        <div>Componente Home
+        <div>
             <Cards products = {allProducts}/>
         </div>
     );

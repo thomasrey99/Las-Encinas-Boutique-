@@ -23,7 +23,7 @@ export const productsApi=createApi({
         }),
         getProductById:builder.query({
             query:(id) => `/productos/${id}`
-        })
+        }),
     })
 })
 

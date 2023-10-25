@@ -13,7 +13,7 @@ const Detail = () => {
     },[productDetail]);
 
     const detailProduct = { 
-        name: "Chocolate Blanco", 
+        name: "Chocolate blanco", 
         id: 1, 
         precio: 2.99, 
         imagen: 'https://www.eltiempo.com/uploads/2023/03/13/640fb61bb084a.jpeg'

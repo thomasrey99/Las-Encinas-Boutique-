@@ -1,12 +1,10 @@
 const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) => {
-    sequelize.define('Request', {
+module.exports = (dataBase) => {
+    dataBase.define('Request', {
         id: {
             type: DataTypes.UUID,
-
             defaultValue: DataTypes.UUIDV4,
-
             primaryKey: true,
         },
         user_id: {
@@ -34,6 +32,12 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
+    },
+    {
+        freezeTableName: true,
+        timestamps: false,
+        createdAt:false,
+        updatedAt:false
     }
 
     )

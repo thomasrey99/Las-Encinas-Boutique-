@@ -1,3 +1,4 @@
+
 const { Productos } = require("../db");
 const axios = require("axios");
 
@@ -15,7 +16,7 @@ const getById = async (id) => {
     const productos = Productos.findAll();
     const resultado = productos.find((p) => p.id === id);
 
-    return resultado;
+    return resultado; 
 }
 
 const getAllInfo = async () => {
@@ -25,8 +26,15 @@ const getAllInfo = async () => {
 
 }
 
+const postProductHandler = async (nombre)=>{
+    const resultado = await Productos.create({nombre});
+    return resultado
+}
+
 module.exports = {
-    getByName,
-    getById,
-    getAllInfo
+    productoQuery,
+    productoId,
+    allProductos,
+    postProductHandler
 };
+

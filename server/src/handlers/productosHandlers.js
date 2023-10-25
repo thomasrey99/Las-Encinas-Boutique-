@@ -1,4 +1,4 @@
-const { getByName, getById, getAllInfo} = require("../controllers/productosControllers");
+const { productoQuery, productoId, allProductos, postProductHandler} = require("../controllers/productosControllers");
 
 const searchName = async (req, res) => {
     
@@ -27,7 +27,8 @@ const searchID  = async ( req, res ) => {
 
 }
 
-const searchAll = async ( req, res ) => {
+const getAllProductos = async ( req, res ) => {
+    
     try {
         const result = await getAllInfo()
         res.status(200).json(result)
@@ -37,8 +38,19 @@ const searchAll = async ( req, res ) => {
 
 }
 
+const postProduct = async(req, res) =>{
+    const {nombre} = req.body;
+    try {
+        const result = await postProductHandler(nombre)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
+
 module.exports = {
-    searchName,
-    searchID,
-    searchAll
+    getProductoQuery,
+    getProductoId,
+    getAllProductos,
+    postProduct
 }

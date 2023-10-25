@@ -13,4 +13,4 @@ const getUserId = async ( req, res) => {
 
 }
 
-module.exports = { getUserId }
+module.exports = { getUsuarioId }

@@ -5,11 +5,11 @@ const path = require('path');
 
 const {
   DB_USER,
-  DB_PASSWORD,
+  DB_PASSWORD, 
   DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/productos`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/Productos`, {
   logging: false,
   native: false,
 });
@@ -35,11 +35,20 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Corrige la relación "belongsToMany"
-const { Productos, Categoria, Users } = sequelize.models;
+const { User, Product, Request } = sequelize.models;
 
-// Users.belongsToMany(Productos, { through: 'Users_Productos' });
-Productos.belongsToMany(Categoria, { through: 'Productos_Categoria'});
-Categoria.belongsToMany(Productos, { through: 'Productos_Categoria' });
+User.belongsToMany( Request, {through:'user_request'})
+Product.belongsToMany(Request , { through: 'product_request' });
+Request.belongsToMany(Product, { through: 'request_product' });
+
+module.exports = {
+  ...sequelize.models,
+  conn: sequelize,
+};
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
   ...sequelize.models,

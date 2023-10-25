@@ -1,3 +1,6 @@
+import Cards from './Components/Cards/Cards';
+import FormProduct from './views/FormProduct/FormProducts'
+
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Home from './VIEWS/Home/home';
@@ -15,7 +18,7 @@ const App = () => {
         {/* agregar un about con descripcion del negocio, y presentacion del equipo (about Us)        */}
       </Routes>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

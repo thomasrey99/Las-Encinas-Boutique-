@@ -15,7 +15,7 @@ const App = () => {
         {/* agregar un about con descripcion del negocio, y presentacion del equipo (about Us)        */}
       </Routes>
     </main>
-  );
+  )
 }
 
-export default App;
+export default App

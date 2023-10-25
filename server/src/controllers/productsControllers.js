@@ -1,24 +1,21 @@
 const { Op } = require("sequelize");
 const {Product}=require("../db")
 
+//!TRAE UN PRODUCTO MEDIANTE UN ID ESPECIFICO
 
-const productoQuery = async (nombre) => {
+const productId = async (id) => {
 
-    const productos = await Product.findAll();
-    const resultado = productos.filter((p) =>
-        p.nombre.toLowerCase().includes(nombre.toLowerCase())
-    );
+    const product = await Product.findByPk(id)
+    
+    if(product){
+        return product
+    }else{
+        return{message:"there are no products with that id"}
+    }
 
-    return resultado;
 }
 
-const productoId = async (id) => {
-    const productos = await Product.findAll();
-    const resultado = productos.find((p) => p.id === id);
-
-    return resultado; 
-}
-
+//!REIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
 const allProducts = async (name) => {
     
     const response=await Product.findAll()
@@ -41,14 +38,19 @@ const allProducts = async (name) => {
     return response
 }
 
+//!CONTROLLER QUE CREA UN PRODUCTO
 const postProductContoller = async (data)=>{
-    const result= await Product.create(data)
+    const result= await Product.findOrCreate({
+        where:{
+            name:data.name
+        },
+        defaults:data
+    })
     return result
 }
 
 module.exports = {
-    productoQuery,
-    productoId,
+    productId,
     allProducts,
     postProductContoller
 };

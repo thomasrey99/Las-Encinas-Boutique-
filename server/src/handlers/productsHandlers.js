@@ -1,25 +1,12 @@
-const { productoQuery, productoId, allProducts, postProductContoller} = require("../controllers/productsControllers");
+const { productId, allProducts, postProductContoller} = require("../controllers/productsControllers");
 
-const getProductoQuery = async (req, res) => {
-    
-    let { nombre } = req.query
-
-    nombre = nombre.toLowerCase()
-
-    try {
-        const result = await productoQuery(nombre)
-        res.status(200).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
-const getProductoId  = async ( req, res ) => {
+//!HANDLER QUE MANEJA LA PETICION GET POR ID DE /USERS/:ID
+const getProductById  = async ( req, res ) => {
 
    const { id } = req.params
    
    try {
-        const result = await productoId(id)
+        const result = await productId(id)
         res.status(200).json(result)
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -27,6 +14,7 @@ const getProductoId  = async ( req, res ) => {
 
 }
 
+//!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME POR PARAMS PARA POSIBLES BUSQUEDAS
 const getAllProducts = async ( req, res ) => {
     const {name}=req.query
     try {
@@ -38,6 +26,7 @@ const getAllProducts = async ( req, res ) => {
 
 }
 
+//!HANDLER QUE MANEJA LA PETICION POST A /PRODUCTS
 const postProduct = async(req, res) =>{
     const {image, name, price, description, raiting, category} = req.body;
     try {
@@ -50,15 +39,14 @@ const postProduct = async(req, res) =>{
             category:category
         }
         const result = await postProductContoller(data)
-        res.status(200).json(result)
+        res.status(201).json(result)
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
 
 module.exports = {
-    getProductoQuery,
-    getProductoId,
+    getProductById,
     getAllProducts,
     postProduct
 }

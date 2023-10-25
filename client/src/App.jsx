@@ -1,4 +1,4 @@
-import Cards from './components/cards/Cards';
+import Cards from './Components/Cards/Cards';
 import FormProduct from './views/FormProduct/FormProducts'
 
 import './App.css'

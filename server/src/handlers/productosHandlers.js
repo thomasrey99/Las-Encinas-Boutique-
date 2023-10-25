@@ -1,4 +1,4 @@
-const { productoQuery, productoId, allProductos} = require("../controllers/productosControllers");
+const { productoQuery, productoId, allProductos, postProductHandler} = require("../controllers/productosControllers");
 
 const getProductoQuery = async (req, res) => {
     
@@ -28,6 +28,7 @@ const getProductoId  = async ( req, res ) => {
 }
 
 const getAllProductos = async ( req, res ) => {
+    
     try {
         const result = await allProductos()
         res.status(200).json(result)
@@ -37,8 +38,19 @@ const getAllProductos = async ( req, res ) => {
 
 }
 
+const postProduct = async(req, res) =>{
+    const {nombre} = req.body;
+    try {
+        const result = await postProductHandler(nombre)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getProductoQuery,
     getProductoId,
-    getAllProductos
+    getAllProductos,
+    postProduct
 }

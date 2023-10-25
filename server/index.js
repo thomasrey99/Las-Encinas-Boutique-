@@ -2,10 +2,11 @@ const server = require("./src/app")
 const { conn } = require('./src/db.js');
 require("dotenv").config()
 
+
 const {PORT}=process.env
 
 
-//!inicializando el servidor
+//!inicializando el servidor y sincronizando la base de datos
 
 conn.sync({ alter: true }).then(() => {
     server.listen(PORT, () => {

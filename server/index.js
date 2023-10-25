@@ -1,7 +1,7 @@
 const server=require("./src/app")
 require("dotenv").config()
 
-const {PORT}=process.env
+const PORT=3001
 
 
 //!inicializando el servidor

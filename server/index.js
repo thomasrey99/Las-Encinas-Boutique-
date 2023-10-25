@@ -1,6 +1,7 @@
-const server=require("./src/app")
-require("dotenv").config()
+const server = require("./src/app")
 const { conn } = require('./src/db.js');
+require("dotenv").config()
+
 
 const {PORT}=process.env
 
@@ -8,8 +9,7 @@ const {PORT}=process.env
 //!inicializando el servidor y sincronizando la base de datos
 
 conn.sync({ alter: true }).then(() => {
-    server.listen(PORT, ()=>{
-        console.log(`Servidor de las Encinas boutique escuchando en el puerto ${PORT}!💥`)
+    server.listen(PORT, () => {
+      console.log(`Servidor de las Encinas boutique escuchando en el puerto ${PORT}!💥`);
     })
-}).catch(error => console.log(error.message)) 
- 
+    }).catch(error => console.error(error))

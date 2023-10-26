@@ -1,36 +1,28 @@
 import './App.css'
-import {useSelector, useDispatch} from "react-redux"
-import { useGetAllProductsQuery } from './libs/redux/services/productsApi'
-import { useEffect } from 'react'
-import { addProducts } from './libs/redux/features/productsSlice'
+
 import { Routes, Route } from 'react-router-dom';
-import Home from './VIEWS/Home/home';
+import Home from './VIEWS/Home/Home';
 import Landing from './VIEWS/Landind/landig';
 import Detail from './VIEWS/Detail/detail';
+import NavBar from './Components/Navbar/NavBar';
+import FormProducts from './VIEWS/FormProduct/FormProducts';
+import FormUser from './VIEWS/Forms/FormsUser/user';
+import AboutUs from './VIEWS/AboutUs/aboutUs';
 
-function App() {
-  
-  const dispatch=useDispatch()
+const App = () => {
 
-  const {data}=useGetAllProductsQuery()
-
-  const products=useSelector((state)=>state.items.allProducts)
-  
-  
-
-  useEffect(()=>{
-    dispatch(addProducts(data))
-  },[data])
-
-  console.log("productos en el estado",products)
   return (
     <main>
+      <NavBar/>
       <Routes> 
-        <Route path='/' element={<Landing/>} />
-        <Route path='home' element={<Home/>} />
+        <Route path='/' element={<Landing/>}/>
+        <Route path='home' element={<Home/>}/>
         <Route path='detail/:id' element={<Detail/>} />  
-        {/* agregar un about con descripcion del negocio, y presentacion del equipo (about Us)        */}
+        <Route path='productregister' element={<FormProducts/>} />
+        <Route path='registeruser' element={<FormUser/>} />
+        <Route path='about' element={<AboutUs/>} />
       </Routes>
+
     </main>
   )
 }

@@ -2,7 +2,7 @@
 const { Productos } = require("../db");
 const axios = require("axios");
 
-const getByName = async (nombre) => {
+const productoQuery = async (nombre) => {
 
     const productos = Productos.findAll();
     const resultado = productos.filter((p) =>
@@ -12,14 +12,14 @@ const getByName = async (nombre) => {
     return resultado;
 }
 
-const getById = async (id) => {
+const productoId = async (id) => {
     const productos = Productos.findAll();
     const resultado = productos.find((p) => p.id === id);
 
     return resultado; 
 }
 
-const getAllInfo = async () => {
+const allProductos = async () => {
     
     const resultado = Productos.findAll();
     return resultado

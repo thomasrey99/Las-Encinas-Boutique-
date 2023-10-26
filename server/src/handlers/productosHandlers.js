@@ -1,6 +1,6 @@
 const { productoQuery, productoId, allProductos, postProductHandler} = require("../controllers/productosControllers");
 
-const searchName = async (req, res) => {
+const getProductoQuery = async (req, res) => {
     
     let { nombre } = req.query
 
@@ -14,7 +14,7 @@ const searchName = async (req, res) => {
     }
 }
 
-const searchID  = async ( req, res ) => {
+const getProductoId  = async ( req, res ) => {
 
    const { id } = req.params
    

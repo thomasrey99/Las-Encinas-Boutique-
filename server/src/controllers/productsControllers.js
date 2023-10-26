@@ -15,7 +15,7 @@ const productId = async (id) => {
 
 }
 
-//!REIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
+//!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
 const allProducts = async (name) => {
     
     const response=await Product.findAll()
@@ -49,9 +49,28 @@ const postProductContoller = async (data)=>{
     return result
 }
 
+//CONTROLLER QUE MODIFICA O ACTUALIZA UN PRODUCTO
+const putProductContoller = async (id, data) => {
+
+    const findProductById = await Product.findByPk(id);
+    const updatedProduct = await findProductById.update(data);
+
+    return updatedProduct;
+}
+
+const deleteProductContoller = async(id) =>{
+    const findProductById = await Product.findByPk(id);
+    await findProductById.destroy();
+
+    return findProductById;
+
+}
+
 module.exports = {
     productId,
     allProducts,
-    postProductContoller
+    postProductContoller,
+    putProductContoller,
+    deleteProductContoller
 };
 

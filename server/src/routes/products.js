@@ -1,6 +1,11 @@
 const { Router } = require("express");
 
-const { getProductoQuery, getProductById, getAllProducts, postProduct } = require("../handlers/productsHandlers");
+const { putProduct,
+        getProductById, 
+        getAllProducts, 
+        postProduct,
+        deleteProduct
+      } = require("../handlers/productsHandlers");
 
 const productsRouter = Router()
 
@@ -8,5 +13,7 @@ const productsRouter = Router()
 productsRouter.get("/", getAllProducts)
               .get("/:id", getProductById)
               .post("/", postProduct )
+              .put("/:id", putProduct)
+              .delete("/:id", deleteProduct)
 
 module.exports= productsRouter;

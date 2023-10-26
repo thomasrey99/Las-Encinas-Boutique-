@@ -1,13 +1,10 @@
 import './App.css'
-import {useSelector} from "react-redux"
-
+import NavBar from './Components/Navbar/NavBar'
 function App() {
-  const products=useSelector((state)=>state.items.products)
-  console.log(products)  
-
 
   return (
     <main>
+      <NavBar/>
       <h1>hola mundo!!</h1>
     </main>
   )

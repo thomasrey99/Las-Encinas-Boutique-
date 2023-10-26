@@ -3,16 +3,19 @@ const FormUser = () => {
         <div>
             <h1>Registro de Usuario</h1>
             <form>
-                <label htmlFor="name"></label>
+                <label htmlFor="name">Nombre: </label>
                 <input type="text" />
                 <hr />
-                <label htmlFor="last_name"></label>
+                <label htmlFor="last_name">Apellido: </label>
                 <input type="text" />
                 <hr />
-                <label htmlFor="address"></label>
+                <label htmlFor="address">Dirección: </label>
                 <input type="text" />
                 <hr />
-                <label htmlFor="email"></label>
+                <label htmlFor="email">E-Mail: </label>
+                <input type="text" />
+                <hr />
+                <label htmlFor="phone">Teléfono: </label>
                 <input type="text" />
                 <hr />
             </form>

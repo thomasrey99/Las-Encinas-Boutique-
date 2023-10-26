@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
-import { Spin, Space, Alert, Card, Col, Row, Rate, Button } from 'antd';
+import { Spin, Space, Alert, Card, Col, Row, Rate, Button, Anchor, Tabs } from 'antd';
 const { Meta } = Card;
-import { ShoppingCartOutlined } from '@ant-design/icons';
+const { TabPane } = Tabs;
+import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
+import { useState } from 'react';
 
 const Detail = () => {
 
@@ -22,7 +24,7 @@ const Detail = () => {
     }
 
     return(
-        <Space className={styles.detailContainer}>
+        <div className={styles.detailContainer}>
             { isLoading&&       
                 <Spin tip="Cargando" size="large">
                     <div className="content" />
@@ -42,22 +44,38 @@ const Detail = () => {
                         <img alt={product.name} src={product.image} className={styles.image} />
                     </Col>
                     <Col span={8} className={styles.span2}>
-                        <h1>{product.name}</h1> <br /> <br />
-                        <h2>${product.price}</h2> <br />
-                        <Rate defaultValue={product.rating}/> <br /> <br />
-                        <p>{product.category}</p> <br /> <br /> <br /> <br />
-                        <Button type="default" block><ShoppingCartOutlined size="large"/></Button> <br /> <br />
-                        <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
+                        <div className={styles.productInfo}>
+                            <HeartOutlined size="large"/>
+                            <h1>{product.name}</h1> 
+                            <h2>${product.price}</h2> 
+                            <Rate defaultValue={product.rating}/> 
+                            <p>{product.category}</p> <br /> 
+                            <Meta description={<p>id: {product.id}</p>}/> 
+                            <div className={styles.productButtons}>
+                                <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
+                                <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
+                            </div>
+                        </div>
                     </Col>
                     <Col span={24}>
                         <Card >
-                            {product.description}
-                            <Meta description={<p>id: {product.id}</p>} />
+                        <Tabs defaultActiveKey="1">
+                                <TabPane tab="Descripción" key="1">
+                                    <div style={{ maxHeight: '400px', overflow: 'auto', textAlign: 'center' }}>
+                                        <p>{product.description}</p>
+                                    </div>
+                                </TabPane>
+                                <TabPane tab="Comentarios" key="2">
+                                    <div style={{ maxHeight: '400px', overflow: 'auto', textAlign: 'center' }}>
+                                        <p>No hay Comentarios</p>
+                                    </div>
+                                </TabPane>
+                            </Tabs>
                         </Card>
                     </Col>
                 </Row>
             </Card>
-        </Space>
+        </div>
     );
 };
 

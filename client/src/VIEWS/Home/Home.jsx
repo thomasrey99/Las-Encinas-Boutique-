@@ -29,13 +29,13 @@ const Home = () =>{
                         <img src="https://lalicorera.com/img/banners/Banner-chocolates.jpg" alt="imagen1" className={styles.images}/>
                     </div>                    
                     <div className={styles.sliceContainer}>
-                        <img src="https://images.ecestaticos.com/l5CHYyiQo9cvHpB-f26l6GJAWa4=/147x52:1960x1413/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Ff62%2F2d0%2F7af%2Ff622d07af6329223b76f0bf4dacfc760.jpg" alt="imagen1" className={styles.images}/>
+                        <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2023/02/27/63fd2da25213c.jpeg" alt="imagen1" className={styles.images}/>
                     </div>
                     <div className={styles.sliceContainer}>
                         <img src="https://www.eltiempo.com/uploads/2023/03/13/640fb61bb084a.jpeg" alt="imagen1" className={styles.images}/>
                     </div>
                     <div className={styles.sliceContainer}>
-                        <img src="https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/chocolate-tableta.jpg.webp?itok=ctVzStkD" alt="imagen1" className={styles.images}/>
+                        <img src="https://estaticos-cdn.epe.es/clip/996ddfce-c301-46d3-8776-aba599bba010_alta-libre-aspect-ratio_default_0.jpg" alt="imagen1" className={styles.images}/>
                     </div>
                 </Carousel>
             </div>

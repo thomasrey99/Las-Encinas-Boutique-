@@ -36,26 +36,27 @@ const Detail = () => {
                 showIcon
                 />
             } */}
-            <Row>
-                <Col span={16} className={styles.span}>
-                    <img alt={product.name} src={product.image} style={{ width: '100%', height: 'auto' }} />
-                </Col>
-                <Col span={8} className={styles.span2}>
-                    <h1>{product.name}</h1> <br /> <br />
-                    <h2>${product.price}</h2> <br />
-                    <Rate defaultValue={product.rating}/> <br /> <br />
-                    <p>{product.category}</p> <br />
-                    <ShoppingCartOutlined size="large"/>
-                    <p>{product.property3}</p>
-                    <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
-                </Col>
-                <Col span={24}>
-                    <Card >
-                        {product.description}
-                        <Meta description={<p>id: {product.id}</p>} />
-                    </Card>
-                </Col>
-            </Row>
+            <Card>
+                <Row>
+                    <Col span={16} className={styles.span}>
+                        <img alt={product.name} src={product.image} className={styles.image} />
+                    </Col>
+                    <Col span={8} className={styles.span2}>
+                        <h1>{product.name}</h1> <br /> <br />
+                        <h2>${product.price}</h2> <br />
+                        <Rate defaultValue={product.rating}/> <br /> <br />
+                        <p>{product.category}</p> <br /> <br /> <br /> <br />
+                        <Button type="default" block><ShoppingCartOutlined size="large"/></Button> <br /> <br />
+                        <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
+                    </Col>
+                    <Col span={24}>
+                        <Card >
+                            {product.description}
+                            <Meta description={<p>id: {product.id}</p>} />
+                        </Card>
+                    </Col>
+                </Row>
+            </Card>
         </Space>
     );
 };

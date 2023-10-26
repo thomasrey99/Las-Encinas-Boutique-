@@ -7,7 +7,6 @@ const Card = ({name, price}) => {
         <h2>{name}</h2>
         <h2>${price}</h2>
     </div>
-
   )
 }
 

@@ -7,13 +7,15 @@ function App() {
   
   const dispatch=useDispatch()
 
+  const {data}=useGetAllProductsQuery()
+
   const products=useSelector((state)=>state.items.allProducts)
   
-  const {data}=useGetAllProductsQuery()
+  
 
   useEffect(()=>{
     dispatch(addProducts(data))
-  },[])
+  },[data])
 
   console.log("productos en el estado",products)
   return (

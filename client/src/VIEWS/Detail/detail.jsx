@@ -23,12 +23,12 @@ const Detail = () => {
 
     return(
         <Space className={styles.detailContainer}>
-            {/* { isLoading&&       
+            { isLoading&&       
                 <Spin tip="Cargando" size="large">
                     <div className="content" />
                 </Spin> 
             }
-            { isError&&     
+            {/* { isError&&     
                 <Alert
                 message="Error"
                 description="Por favor, intente de nuevo más tarde."

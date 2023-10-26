@@ -1,22 +1,65 @@
 import { useParams } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
+import { Spin, Space, Alert, Card, Col, Row, Rate, Button } from 'antd';
+const { Meta } = Card;
 
 const Detail = () => {
 
     const { id } = useParams();
-    console.log(id);
-    const { data: productDetail, isError, isLoading, error } = useGetProductByIdQuery();
+    const { data: productDetail, isError, isLoading } = useGetProductByIdQuery();
+    console.log(productDetail);
 
-    if ( isLoading ) return <div>Loading...</div>
-    else if ( isError ) return <div>Error {error.message} ..Please Try Again Later...</div>
+    const product = {
+        id: id,
+        name: 'Chocolate blanco',
+        price: '2,50',
+        image: 'https://www.eltiempo.com/uploads/2023/03/13/640fb61bb084a.jpeg',
+        description: 'El mejor chocolate de Argentina',
+        rating: 4,
+        category: 'hocolate Artesanal'
+    }
 
     return(
-        <div>
-            <h1>{productDetail.name}</h1>
-            <span>{productDetail.id}</span>
-            <span>{productDetail.precio}</span>
-            <img src={productDetail.imagen} alt="chocolate" />
-        </div>
+        <Space>
+            {/* { isLoading&&       
+                <Spin tip="Cargando" size="large">
+                    <div className="content" />
+                </Spin> 
+            }
+            { isError&&     
+                <Alert
+                message="Error"
+                description="Por favor, intente de nuevo más tarde."
+                type="error"
+                showIcon
+                />
+            } */}
+            <Row>
+                <Col span={12}>
+                    <img alt={product.name} src={product.image} style={{ width: '100%', height: 'auto' }} />
+                </Col>
+                <Col span={12}>
+                    <h1>{product.name}</h1> <br /> <br />
+                    <h2>${product.price}</h2> <br />
+                    <Rate defaultValue={product.rating}/> <br /> <br />
+                    <p>{product.category}</p> <br />
+                    <p>{product.property3}</p>
+                    <Button type="primary" block>Comprar</Button>
+                </Col>
+                <Col span={24}>
+                    <Card >
+                        {product.description}
+                        
+                        <Meta 
+                            description={
+                            <>
+                                <p>id: {product.id}</p>
+                            </>} 
+                        />
+                    </Card>
+                </Col>
+            </Row>
+        </Space>
     );
 };
 

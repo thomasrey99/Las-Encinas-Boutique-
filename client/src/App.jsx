@@ -1,7 +1,7 @@
 import './App.css'
 
 import { Routes, Route } from 'react-router-dom';
-import Home from './VIEWS/Home/home';
+import Home from './VIEWS/Home/Home';
 import Landing from './VIEWS/Landind/landig';
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
@@ -13,10 +13,10 @@ const App = () => {
 
   return (
     <main>
+      <NavBar/>
       <Routes> 
-        <NavBar/>
-        <Route path='/' element={<Landing/>} />
-        <Route path='home' element={<Home/>} />
+        <Route path='/' element={<Landing/>}/>
+        <Route path='home' element={<Home/>}/>
         <Route path='detail/:id' element={<Detail/>} />  
         <Route path='productregister' element={<FormProducts/>} />
         <Route path='registeruser' element={<FormUser/>} />

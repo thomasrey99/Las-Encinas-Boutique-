@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 
 const Card = ({name, price}) => {
@@ -9,5 +10,9 @@ const Card = ({name, price}) => {
     </div>
   )
 }
+=======
+
+const Card = () => {};
+>>>>>>> 336ca4ab8be1f9ff2c0f857ed347f4a38fe680b9
 
 export default Card

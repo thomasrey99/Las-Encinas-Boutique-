@@ -1,21 +1,19 @@
-import "./Navbar.css";
-import { Link } from "react-router-dom";
-
+import style from "./NavBar.module.css";
+import { Searchbar } from "../searchBar/Searchbar";
+import { NavLink } from "react-router-dom"
+import cart from "../../assets/carrito.png"
+import logo from "../../assets/muffin.png"
 const NavBar = () => {
   return (
-    <div className="navContainer">
-        <div className="titleContainer">Navbar</div>
-        <div className="buttonContainer">
-            <Link to={"/home"}>
-                <button>Home</button>
-            </ Link>
-            <Link to={"/about"}>
-                <button>about</button>
-            </ Link>
+    <nav className={style.navCont}>
+        <div className={style.logCont}>
+          <img src={logo} className={style.img}/>
+        </div>
+        <Searchbar/>
+        <div className={style.navLinks}>
 
         </div>
-
-    </div>
+    </nav>
   )
 }
 

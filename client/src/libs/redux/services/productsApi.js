@@ -7,7 +7,7 @@ export const productsApi=createApi({
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
-            query:(name) => `/products`,
+            query:() => '/products',
             providesTags:["products"]
         }),
         createProduct:builder.mutation({
@@ -19,10 +19,12 @@ export const productsApi=createApi({
             invalidatesTags:["products"]
         }),
         getProductByName:builder.query({
-            query:(name) => `/products?name=${name}`,
-            providesTags:["products"]
+            query:(name)=>`/productos?name=${name}`
+        }),
+        getProductById:builder.query({
+            query:(id) => `/productos/${id}`
         }),
     })
 })
 
-export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery}=productsApi
+export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery, useGetProductByIdQuery}=productsApi

@@ -1,5 +1,5 @@
 import Card from "../Card/Card"
-
+import {useSelector} from "react-redux"
 const chocolates = [
     { nombre: "Chocolate Blanco", precio: 2.99 },
     { nombre: "Chocolate con Leche", precio: 3.49 },
@@ -24,6 +24,10 @@ const chocolates = [
   ];
 
 const Cards = () => {
+
+  const products=useSelector((state)=>state.items.allProducts)
+  console.log("productos desde cards", products)
+
   return (
     <div>
         {chocolates.map(c => (

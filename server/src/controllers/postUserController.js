@@ -15,3 +15,4 @@ const createNewUser = async (name, lastName, email, password) => {
 };
 
 module.exports = createNewUser;
+

@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { Spin, Space, Alert, Card, Col, Row, Rate, Button } from 'antd';
 const { Meta } = Card;
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import styles from './detail.module.css';
 
 const Detail = () => {
 
@@ -16,11 +18,11 @@ const Detail = () => {
         image: 'https://www.eltiempo.com/uploads/2023/03/13/640fb61bb084a.jpeg',
         description: 'El mejor chocolate de Argentina',
         rating: 4,
-        category: 'hocolate Artesanal'
+        category: 'Chocolate Artesanal'
     }
 
     return(
-        <Space>
+        <Space className={styles.detailContainer}>
             {/* { isLoading&&       
                 <Spin tip="Cargando" size="large">
                     <div className="content" />
@@ -35,27 +37,22 @@ const Detail = () => {
                 />
             } */}
             <Row>
-                <Col span={12}>
+                <Col span={16} className={styles.span}>
                     <img alt={product.name} src={product.image} style={{ width: '100%', height: 'auto' }} />
                 </Col>
-                <Col span={12}>
+                <Col span={8} className={styles.span2}>
                     <h1>{product.name}</h1> <br /> <br />
                     <h2>${product.price}</h2> <br />
                     <Rate defaultValue={product.rating}/> <br /> <br />
                     <p>{product.category}</p> <br />
+                    <ShoppingCartOutlined size="large"/>
                     <p>{product.property3}</p>
-                    <Button type="primary" block>Comprar</Button>
+                    <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
                 </Col>
                 <Col span={24}>
                     <Card >
                         {product.description}
-                        
-                        <Meta 
-                            description={
-                            <>
-                                <p>id: {product.id}</p>
-                            </>} 
-                        />
+                        <Meta description={<p>id: {product.id}</p>} />
                     </Card>
                 </Col>
             </Row>

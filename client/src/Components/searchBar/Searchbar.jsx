@@ -25,6 +25,7 @@ export const Searchbar = () => {
 
   const handleSearch=()=>{
     setSearch(name)
+    setName("")
   }
 
   useEffect(()=>{

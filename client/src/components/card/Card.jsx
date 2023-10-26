@@ -9,4 +9,4 @@ const Card = ({name, price}) => {
   )
 }
 
-export default Card
+export default Card;

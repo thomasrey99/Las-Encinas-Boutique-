@@ -14,7 +14,44 @@ const getUserIdController = async (id) => {
     return user;
 }
 
+//!el usuario se crea si el email no existe en la db
+const createNewUserController = async (data) => {
+    try {
+        const newUser = await User.findOrCreate({
+            where:{
+                email:data.email
+            },
+            defaults:data
+        });
+        return newUser;
+    } catch(error){
+        throw error;
+    }
+};
+
+//CONTROLLER QUE MODIFICA O ACTUALIZA UN USER
+const putUserController = async (id, data) => {
+
+    const findUserById = await User.findByPk(id);
+    const updatedUser = await findUserById.update(data);
+
+    return updatedUser;
+}
+
+const deleteUserController = async(id) =>{
+    const findUserById = await User.findByPk(id);
+    await findUserById.destroy();
+
+    return findUserById;
+
+}
+
+
+
 module.exports = {
     getUserIdController,
-    getAllUsersController
+    getAllUsersController,
+    createNewUserController,
+    putUserController,
+    deleteUserController
 };

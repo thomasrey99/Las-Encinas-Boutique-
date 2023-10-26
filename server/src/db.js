@@ -5,11 +5,20 @@ const requestModel=require("./models/Request")
 
 require("dotenv").config();
 
+const userModel=require("./models/User")
+const productModel=require("./models/Product")
+const requestModel=require("./models/Request")
+
+require("dotenv").config();
+
 
 const {
   DB_USER,
   DB_PASSWORD, 
   DB_HOST,
+  DB_NAME,
+  DB_DIALECT,
+  DB_PORT
   DB_NAME,
   DB_DIALECT,
   DB_PORT

@@ -21,7 +21,7 @@ const dataBase=new Sequelize(
 )
 userModel(dataBase)
 productModel(dataBase)
-requestModel(dataBase)
+requestModel(dataBase) 
 
 //!RELACIONES
 
@@ -31,7 +31,7 @@ User.belongsToMany(Product, {through: 'user_product'})
 Product.belongsToMany(User, {through: 'user_product'})
 
 Product.belongsToMany(Request , { through: 'product_request' });
-Request.belongsToMany(Product , { through: 'product_request' });
+Request.belongsToMany(Product , { through: 'product_request' }); 
 
 
 module.exports={

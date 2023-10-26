@@ -16,7 +16,7 @@ module.exports = (dataBase) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        last_name: {
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
         },

@@ -14,7 +14,7 @@ module.exports = (dataBase) => {
       allowNull: false,
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, 
       allowNull: false,
     },
     price: {

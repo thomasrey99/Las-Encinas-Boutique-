@@ -8,6 +8,7 @@ import NavBar from './Components/Navbar/NavBar';
 import FormProducts from './VIEWS/FormProduct/FormProducts';
 import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
+import ErrorPage from './Components/ErrorPage/errorPage';
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='productregister' element={<FormProducts/>} />
         <Route path='registeruser' element={<FormUser/>} />
         <Route path='about' element={<AboutUs/>} />
+        <Route path='*' element={<ErrorPage/>} />
       </Routes>
 
     </main>

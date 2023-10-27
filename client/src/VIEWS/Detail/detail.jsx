@@ -42,7 +42,7 @@ const Detail = () => {
                                 </Col>
                                 <Col span={8}>
                                     <div className={styles.productInfo}>
-                                        {isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handleFav}/>
+                                        {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handleFav}/>
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handleFav} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 

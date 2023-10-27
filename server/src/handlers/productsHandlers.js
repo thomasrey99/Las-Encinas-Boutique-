@@ -19,7 +19,7 @@ const getProductById  = async ( req, res ) => {
 
 }
 
-//!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME POR PARAMS PARA POSIBLES BUSQUEDAS
+//!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME, CATEGORY, MINPRICE Y MAXPRICE POR QUERY PARA POSIBLES FILTROS
 const getAllProducts = async ( req, res ) => {
     const {name, minPrice, maxPrice, category}=req.query
     try {

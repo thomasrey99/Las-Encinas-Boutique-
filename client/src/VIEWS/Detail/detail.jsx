@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
-import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal } from 'antd';
+import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, Form } from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
@@ -65,6 +65,7 @@ const Detail = () => {
                                             </Item>
                                             <Item tab="Comentarios" key="2">
                                                 <div style={{ maxHeight: '50%', overflow: 'auto', textAlign: 'center' }}>
+                                                    
                                                     <p>No hay comentarios disponibles</p>
                                                 </div>
                                             </Item>
@@ -79,9 +80,7 @@ const Detail = () => {
                         </div>
                         :
                         <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles}/>
-
             }
-
         </div>
     );
 };

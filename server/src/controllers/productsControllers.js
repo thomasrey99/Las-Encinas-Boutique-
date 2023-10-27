@@ -17,6 +17,12 @@ const productId = async (id) => {
 
 //!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
 const allProducts = async (name, minPrice, maxPrice, category) => {
+const allProducts = async (name, minPrice, maxPrice, category) => {
+    
+    //?coincidencias de busqueda
+    const whereClause={}
+
+    //?verifica si llega por query name, category, minPrice y maxPrice y va agregando clausulas al whereClause
     
     //?coincidencias de busqueda
     const whereClause={}
@@ -24,6 +30,40 @@ const allProducts = async (name, minPrice, maxPrice, category) => {
     //?verifica si llega por query name, category, minPrice y maxPrice y va agregando clausulas al whereClause
     
     if(name){
+        whereClause.name={
+            [Op.iLike]:`%${name}%`
+        }
+    }
+
+    if(category){
+        whereClause.category=category
+    }
+
+    if(minPrice && maxPrice){
+        whereClause.price={
+            [Op.between]:[minPrice, maxPrice]
+        }
+    }else if(minPrice){
+        whereClause.price={
+            [Op.gte]:minPrice
+        }
+    }else if(maxPrice){
+        whereClause.price={
+            [Op.lte]:maxPrice
+        }
+    }
+
+    //?verifica si hay parametros de filtrado, de lo contrario devuelve todos los productos
+    if(Object.keys(whereClause).length===0){
+        const response= await Product.findAll()
+        return response
+    }else{
+        const response=await Product.findAll({
+            where:whereClause
+        })
+        return response
+    }
+    
         whereClause.name={
             [Op.iLike]:`%${name}%`
         }

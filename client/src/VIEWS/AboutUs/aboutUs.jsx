@@ -1,3 +1,9 @@
-const AboutUs = () => {};
+import React from 'react'
 
-export default AboutUs;
+const aboutUs = () => {
+  return (
+    <div>aboutUs</div>
+  )
+}
+
+export default aboutUs

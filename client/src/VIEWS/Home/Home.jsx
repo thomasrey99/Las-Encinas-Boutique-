@@ -1,4 +1,4 @@
-// import { Cards } from '../../Components/cards/Cards.jsx';
+import  Cards  from '../../Components/Cards/Cards.jsx';
 import Carousel from '../../Components/carousel/Carousel';
 import Searchbar from '../../Components/searchBar/Searchbar';
 import styles from './home.module.css'
@@ -10,7 +10,7 @@ const Home = () =>{
         <div className ={styles.homeContainer}>
             <Carousel/>
             <Searchbar/>
-            {/* <Cards products = {products}/> */}
+            <Cards/>
         </div>
     );
 }

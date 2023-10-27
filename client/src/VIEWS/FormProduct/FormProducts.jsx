@@ -1,92 +1,118 @@
-import React, { useState} from 'react'
-// import { useDispatch } from "react-redux"
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import Style from "./FormProduct.module.css"
+import { Button, Form, Rate, Select, Upload, Input, InputNumber } from 'antd';
+
+import { useCreateProductMutation } from '../../libs/redux/services/productsApi';
+
+const { Option } = Select;
+const { TextArea } = Input;
 
 const FormProducts = () => {
-    
-    // Falta funcion que postee los productos
-    // Falta conocer el modelo para añadir propiedades al state
-    // falta un InitialState de los productos
+  const dispatch = useDispatch();
 
-    //const products = useSelector(state => state.productsBackUp) futura funcion que traiga la informacion de los
-    //productos para hacer una barra desplegable de categorias, sabores, ect
+  const [state, setState] = useState({
+    name: '',
+    image: 'image',
+    price: 0,
+    description: '',
+    rating: 0,
+    category: [],
+  });
 
-    const [state, setState ] = useState({
-        name: "",
-        image: "",
-        price: "",
-        description: "",
-        raiting: "",
-        category: []
+  const resetState = () => {
+    setState({
+      name: '',
+      image: '',
+      price: 0,
+      description: '',
+      rating: 0,
+      category: [],
     });
+  };
 
-    const buttonDisabled = () => {
-        let disabled = false
-        for (let s in state) {
-            if (state[s] === "") {
-                disabled = true;
-                break;
-            }
-        }
-        return disabled;
-    }
+  const handleChange = (name, value) => {
+    console.log(state);
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
 
-    const resetState = () => {
-        setState({
-            name: "",
-            image: "",
-            price: "",
-            description: "",
-            raiting: "",
-            category: []
-        })
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(useCreateProductMutation(state));
+    // resetState();
+  };
 
-    const handleChange = (e) => {
-        
-        let updatedValue = e.target.value;
-
-        setState({
-            ...state,
-            [e.target.name]: updatedValue
-        });
-
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        //dispatch(postProduct(state))
-        resetState()
-    } 
+  const sa = ["a", "b", "c"];
 
   return (
     <>
-        <div>FormProducts</div>
-        <form onSubmit={handleSubmit} className={Style.Form}>
+      <div>FormProducts</div>
+      <form className={Style.Form}>
+        <Form.Item label="Nombre">
+          <Input
+            name="name"
+            value={state.name}
+            onChange={(e) => handleChange('name', e.target.value)}
+          />
+        </Form.Item>
 
-            <label>Nombre: </label>
-            <input placeholder='Elegir nombre...' name='name' type="text" value={state.name} onChange={handleChange} />
+        <Form.Item label="Descripcion">
+          <TextArea
+            rows={4}
+            name='description'
+            value={state.description}
+            onChange={(e) => handleChange('description', e.target.value)}
+          />
+        </Form.Item>
 
-            <label>Imagen: </label>
-            <input placeholder='Elegir imagen...' name='image' type="file" value={state.image} onChange={handleChange} />
-        
-            <label>Precio: </label>
-            <input placeholder='Elegir precio...' name='price' type="number" value={state.price} onChange={handleChange} />
-        
-            <label>Descripcion: </label>
-            <input placeholder='Elegir descripcion...' name='description' type="text" value={state.description} onChange={handleChange} />
-        
-            <label>Raiting: </label>
-            <input placeholder='Elegir raiting...' name='raiting' type="number" value={state.raiting} onChange={handleChange} />
-        
-            <label>Categoria: </label>
-            <input placeholder='Elegir categoria...' name='category' type="text" value={state.category} onChange={handleChange} />
-        
-            <button disabled={buttonDisabled()}>Crear producto</button>
-        </form>
+        <Form.Item label="Precio">
+          <InputNumber
+            min={1}
+            name="price"
+            value={state.price}
+            onChange={(value) => handleChange('price', value)}
+          />
+        </Form.Item>
+
+        <Form.Item name='rating' label="Rate">
+          <Rate
+            value={state.rating}
+            onChange={(value) => handleChange('rating', value)}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="category"
+          label="Categorias"
+          rules={[
+            {
+              required: true,
+              message: 'Elije al menos una categoría',
+              type: 'array',
+            },
+          ]}
+        >
+          <Select
+            mode="multiple"
+            placeholder="Elije una categoría"
+            value={state.category}
+            onChange={(value) => handleChange('category', value)}
+          >
+            {sa.map((c) => (
+              <Option value={c} key={c}>
+                {c}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <button onClick={handleSubmit}>Crear producto</button>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default FormProducts
+export default FormProducts;

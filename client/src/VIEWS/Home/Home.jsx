@@ -54,7 +54,7 @@ const Home = () => {
             <Card key={c.nombre} name={c.nombre} price={c.precio}
             />))}
     </div>
-            {/* Renderizar tus productos en la página actual */}
+            
             {/* <Cards products={products} /> */}
         </div>
     );

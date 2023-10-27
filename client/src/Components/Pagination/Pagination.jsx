@@ -14,7 +14,8 @@ const Pagination = ({ currentPage, productsPerPage, products, paginate}) => {
             <div className={styles.pagButtons}>
                 <button
                 onClick={() => paginate(currentPage -1)}
-                className={currentPage === 1 ? styles.disabled : ''}
+                // className={currentPage === 1 ? styles.disabled : ''}
+                disabled={currentPage === 1}
                 >
                     Prev
                 </button>
@@ -29,7 +30,7 @@ const Pagination = ({ currentPage, productsPerPage, products, paginate}) => {
                 ))}
                 <button
                 onClick={() => paginate(currentPage + 1)}
-                className={currentPage === totalPages ? styles.disabled : ''}
+                disabled={currentPage === totalPages}
                 >
                     Next
                 </button>

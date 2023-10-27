@@ -1,0 +1,48 @@
+.navCont{
+    width: 100vw;
+    height: 12vh;
+    background: var(--brown);
+    color:white;
+    font-family: var(--primary-font);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.logCont{
+    width: 4vw;
+    height: 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.img{
+    width: 3vw;
+    height: 3vw;
+}
+.navItems{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 10px;
+}
+.cartIcon{
+    width: 24px;
+    height: 24px;
+}
+.navLinks{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+}
+.item{
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+}

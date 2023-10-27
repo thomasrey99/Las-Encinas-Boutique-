@@ -1,7 +1,13 @@
 @import url(https://db.onlinewebfonts.com/c/1ab505423f08a9065e37837a6f98f96c?family=Rowton+Sans+FY+W03+Regular);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&display=swap');
 
-*{
-    font-family: "Rowton Sans FY W03 Regular";
+:root {
+    --primary-font: "Rowton Sans FY W03 Regular";
+    --secondary-font: 'Montserrat', sans-serif;
+    --brown: #FC8E28;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;

@@ -3,6 +3,9 @@
     margin: auto;
     margin-top: 2%;
 }
+.loading{
+    margin-top: 10%;
+}
 .image{
     width: 100%;
     height: auto;

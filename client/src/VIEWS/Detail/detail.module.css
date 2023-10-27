@@ -1,18 +1,44 @@
 .detailContainer{
     width: 80%;
-    margin: 2%;
+    margin: auto;
+    margin-top: 2%;
+}
+.loading{
+    margin-top: 10%;
 }
 .image{
     width: 100%;
     height: auto;
-    border-radius: 2%;
+    border-radius: 25px;
 }
-.buttonComprar{
+.noLikedButton, .likedButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px; 
+    transition: color 0.3s ease; 
+}
+.likedButton{
+    color: red;
+}
 
-}
 .span{
     padding: 1%;
 }
-.span2{
+.productInfo{
     padding: 3%;
+}
+.productInfo > * {
+    margin-bottom: 10%;
+}  
+  
+.productButtons{
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+}
+.productButtons * {
+    margin: 0.5%;
 }

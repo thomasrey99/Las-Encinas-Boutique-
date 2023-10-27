@@ -3,6 +3,7 @@ import style from "./Searchbar.module.css"
 import { useEffect, useState } from "react"
 import { addProducts } from "../../libs/redux/features/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
 
 const Searchbar = () => {
 
@@ -19,11 +20,11 @@ const Searchbar = () => {
   const [search, setSearch]=useState("")
 
 
-  const {data, isLoading}=useGetProductByNameQuery(search)
+  const {data, isLoading}=useGetAllProductsQuery(search)
 
 
-  const handleChange = (event) => {
-    const {value} = event.target
+  const handleChange=(event)=>{
+    const {value}=event.target
     setName(value)
   }
 
@@ -44,7 +45,6 @@ const Searchbar = () => {
   console.log("esto trae data: ",data)
 
   return (
-    <>
     <div className={style.searchCont} id="products">
         {/*<div className={style.inputCont}>
           <input type="text" value={name} className={style.input} onChange={handleChange}/>
@@ -57,7 +57,6 @@ const Searchbar = () => {
             </div>
         </div>
     </div>
-    </>
   )
 }
 export default Searchbar

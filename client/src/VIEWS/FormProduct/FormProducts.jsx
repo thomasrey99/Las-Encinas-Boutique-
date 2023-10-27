@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Style from './FormProduct.module.css';
 
 import { Button, Form, Rate, Select, Upload, Input, InputNumber } from 'antd';
 

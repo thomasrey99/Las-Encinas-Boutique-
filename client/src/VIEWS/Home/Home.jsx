@@ -1,9 +1,10 @@
-// import { Cards } from '../../Components/cards/Cards.jsx';
+import Cards from '../../Components/Cards/Cards.jsx';
 import { useGetAllProductsQuery } from '../../libs/redux/services/productsApi.js';
 import { Spin, Alert, Carousel } from 'antd';
 import styles from './home.module.css'
 
 const Home = () =>{
+
 
     const { data: products, isError, isLoading } = useGetAllProductsQuery();
     console.log(products);
@@ -39,7 +40,7 @@ const Home = () =>{
                     </div>
                 </Carousel>
             </div>
-            {/* <Cards products = {products}/> */}
+            <Cards products = {products}/>
         </div>
     );
 }

@@ -7,7 +7,7 @@ export const productsApi=createApi({
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
-            query:(name) => `/products?name=${name}`,
+            query:(name, minPrice, maxPrice, category) => `/products?name=${name}&minPrice=${""}&maxPrice=${""}&category=${""}`,
             providesTags:["products"]
         }),
         createProduct:builder.mutation({

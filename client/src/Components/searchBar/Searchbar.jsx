@@ -7,13 +7,18 @@ import { useDispatch, useSelector } from "react-redux"
 
 export const Searchbar = () => {
 
+
   const dispatch=useDispatch()
+
 
   const products=useSelector((state)=>state.items.allProducts)
 
+
   const [name, setName]=useState("")
 
+
   const [search, setSearch]=useState("")
+
 
   const {data, isLoading}=useGetAllProductsQuery(search)
 
@@ -23,17 +28,22 @@ export const Searchbar = () => {
     setName(value)
   }
 
+
   const handleSearch=()=>{
     setSearch(name)
     setName("")
   }
 
+
   useEffect(()=>{
     dispatch(addProducts(data))
   }, [search, data])
 
+
   console.log(products)
   console.log(isLoading)
+
+
   return (
     <div className={style.searchCont}>
         <div className={style.inputCont}>

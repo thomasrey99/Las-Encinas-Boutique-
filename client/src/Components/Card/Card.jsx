@@ -4,6 +4,8 @@ import Style from './Card.module.css'
 
 import { Link } from 'react-router-dom';
 
+// CARDS TERMINADAS
+
 const Card = ({name, price, image, raiting, id}) => {
 
   const roundedRating = Math.round(raiting);

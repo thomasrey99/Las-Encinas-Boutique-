@@ -43,14 +43,14 @@ const Detail = () => {
                     <Col span={16} className={styles.span}>
                         <img alt={product.name} src={product.image} className={styles.image} />
                     </Col>
-                    <Col span={8} className={styles.span2}>
+                    <Col span={8}>
                         <div className={styles.productInfo}>
-                            <HeartOutlined size="large"/>
+                            <HeartOutlined size="large" className={styles.likeButton}/>
                             <h1>{product.name}</h1> 
                             <h2>${product.price}</h2> 
                             <Rate defaultValue={product.rating}/> 
-                            <p>{product.category}</p> <br /> 
-                            <Meta description={<p>id: {product.id}</p>}/> 
+                            <p>{product.category}</p> 
+                            <Meta description={<p>id: {product.id}</p>}/> <br /> 
                             <div className={styles.productButtons}>
                                 <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
                                 <Button type="primary" block className={styles.buttonComprar}>Comprar</Button>
@@ -67,7 +67,7 @@ const Detail = () => {
                                 </TabPane>
                                 <TabPane tab="Comentarios" key="2">
                                     <div style={{ maxHeight: '400px', overflow: 'auto', textAlign: 'center' }}>
-                                        <p>No hay Comentarios</p>
+                                        <p>No hay comentarios disponibles</p>
                                     </div>
                                 </TabPane>
                             </Tabs>

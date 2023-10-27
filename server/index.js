@@ -7,6 +7,6 @@ const PORT=3001
 //!inicializando el servidor y sincronizando la base de datos
 
 server.listen(PORT, ()=>{
-  dataBase.sync({force:true})
+  dataBase.sync({alter:true})
   console.log(`server listen in port ${PORT}`)
 })

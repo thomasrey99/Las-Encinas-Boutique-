@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 4; 
 
     const products = [
         { nombre: "Chocolate Blanco", precio: 2.99 },
@@ -32,7 +33,6 @@ const Home = () => {
         { nombre: "Chocolate de Melocotón", precio: 3.09 }
     ];
 
-    const productsPerPage = 4; 
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);

@@ -17,7 +17,7 @@ const Pagination = ({ currentPage, productsPerPage, products, paginate}) => {
                 // className={currentPage === 1 ? styles.disabled : ''}
                 disabled={currentPage === 1}
                 >
-                    Prev
+                    &#8592;
                 </button>
                 {pages.map((page) => (
                     <button
@@ -32,7 +32,7 @@ const Pagination = ({ currentPage, productsPerPage, products, paginate}) => {
                 onClick={() => paginate(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 >
-                    Next
+                    &#8594;
                 </button>
             </div>
         </nav>

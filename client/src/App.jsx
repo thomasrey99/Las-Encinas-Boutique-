@@ -1,6 +1,5 @@
-import style from './App.module.css'
-
-import { Routes, Route } from 'react-router-dom';
+import style from './App.module.css';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
 import Landing from './VIEWS/Landind/landig';
 import Detail from './VIEWS/Detail/detail';
@@ -12,9 +11,12 @@ import ErrorPage from './Components/ErrorPage/errorPage';
 
 const App = () => {
 
+  const location = useLocation();
+
+  
   return (
     <main className={style.mainCont}>
-      <NavBar/>
+      {location.pathname !== '/' && <NavBar/>}
       <Routes> 
         <Route path='/' element={<Landing/>}/>
         <Route path='home' element={<Home/>}/>

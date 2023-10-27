@@ -7,8 +7,6 @@ import {useSelector} from "react-redux"
 const Cards = () => {
 
   const products=useSelector((state)=>state.items.allProducts)
-
-  //CARDS
   
   return (
     <div className={Style.Container}>

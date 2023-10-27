@@ -16,7 +16,11 @@ module.exports = (dataBase) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastName: {
+        last_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone_number: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -26,7 +30,12 @@ module.exports = (dataBase) => {
         },
         password:{
             type:DataTypes.STRING
-        }
+        },
+        is_admin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false,
+        },
     },
     {
         freezeTableName: true,

@@ -1,13 +1,18 @@
 import React from 'react'
 
-const Card = ({name, price, image}) => {
+import { Card } from 'antd';
+const { Meta } = Card;
+
+const CustomCard = ({name, price, image}) => {
   return (
-    <div>
-        <img src={image} alt={name} />
-        <h1>{name}</h1>
-        <h2>${price}</h2>
-    </div>
+    <Card
+    hoverable
+    style={{ width: 240 }}
+    cover={<img alt={name} src={image} />}
+    >
+    <Meta title={name} description={"$" + price} />
+    </Card>
   )
 }
 
-export default Card
+export default CustomCard

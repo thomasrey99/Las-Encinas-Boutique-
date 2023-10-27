@@ -1,7 +1,4 @@
-
-import Cards from './components/Cards/Cards';
-
-import './App.css'
+import style from './App.module.css'
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
@@ -15,7 +12,7 @@ import AboutUs from './VIEWS/AboutUs/aboutUs';
 const App = () => {
 
   return (
-    <main>
+    <main className={style.mainCont}>
       <NavBar/>
       <Routes> 
         <Route path='/' element={<Landing/>}/>

@@ -1,0 +1,45 @@
+.pagCont {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+    position: fixed;
+    bottom: 0;
+  }
+  
+  .pagButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .pagButtons button {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10%;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    border: 1px solid white;
+    width: 50px;
+    text-align: center;
+  }
+  
+  .pagButtons button:hover {
+    background-color: rgba(255, 0, 0, 0.308);
+    color: whitesmoke;
+    border-color: grey;
+  }
+  
+  .pagButtons button:active {
+    transform: scale(0.9);
+  }
+  
+  .pagButtons button.active {
+    background-color: rgba(255, 0, 0, 0.308);
+    color: whitesmoke;
+    border-color: grey;
+  }
+  
+  .direction-buttons {
+    text-align: center;
+  }

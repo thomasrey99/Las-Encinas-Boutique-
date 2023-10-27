@@ -1,12 +1,32 @@
-// import { Cards } from '../../Components/cards/Cards.jsx';
 import { useGetAllProductsQuery } from '../../libs/redux/services/productsApi.js';
-import { Spin, Alert, Carousel } from 'antd';
+import { Spin, Alert, Carousel} from 'antd';
 import styles from './home.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Cards from '../../Components/Cards/Cards.jsx';
+import Pagination from '../../Components/Pagination/Pagination.jsx';
+
 
 const Home = () =>{
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.products);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(4);
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    const { data: products, isError, isLoading } = useGetAllProductsQuery();
-    console.log(products);
+    useEffect(() => {
+        dispatch(useGetAllProductsQuery());
+    }, [dispatch])
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    };
+
+
+    const { data: productsData, isError, isLoading } = useGetAllProductsQuery();
+    console.log(productsData);
 
     return(
         <div className ={styles.homeContainer}>
@@ -38,9 +58,27 @@ const Home = () =>{
                         <img src="https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/chocolate-tableta.jpg.webp?itok=ctVzStkD" alt="imagen1" className={styles.images}/>
                     </div>
                 </Carousel>
+                
             </div>
+            <div className={styles.paginationCont}>
+                <Pagination
+                currentPage={currentPage}
+                productsPerPage={productsPerPage}
+                products={products}
+                paginate={paginate}
+                />
+            </div>
+            <div className={styles.pagContCards}>
+  {currentProducts.map((products, index) => (
+    <Cards key={index} name={products.nombre} price={products.precio} />
+  ))}
+</div>
+
             {/* <Cards products = {products}/> */}
+           
         </div>
+        
+        
     );
 }
 

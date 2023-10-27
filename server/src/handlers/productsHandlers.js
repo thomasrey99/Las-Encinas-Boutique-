@@ -21,9 +21,9 @@ const getProductById  = async ( req, res ) => {
 
 //!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME POR PARAMS PARA POSIBLES BUSQUEDAS
 const getAllProducts = async ( req, res ) => {
-    const {name}=req.query
+    const {name, minPrice, maxPrice, category}=req.query
     try {
-        const result = await allProducts(name)
+        const result = await allProducts(name, minPrice, maxPrice, category)
         return res.status(200).json(result)
     } catch (error) {
         return res.status(400).json({ error: error.message });

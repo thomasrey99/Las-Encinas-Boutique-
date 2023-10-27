@@ -40,6 +40,8 @@ const FormUser = () => {
             newErrors,
             setErrors
             );
+            const hasErrors = Object.values(newErrors).some((error) => error !== '');
+            setIsFormValid(!hasErrors);
     }
     
     const handlerSubmit = (event) => {
@@ -58,29 +60,37 @@ const FormUser = () => {
         }
         //agregar dispatch
     }
-
+console.log(form);
     return (
         <div>
             <h1>Registro de Usuario</h1>
-            <form>
+            <form onSubmit={handlerSubmit}>
                 <label htmlFor="name">Nombre: </label>
                 <input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
+                {errors.name !== '' ? <span>{errors.name}</span> : ''}
                 <hr />
                 <label htmlFor="last_name">Apellido: </label>
                 <input type="text" name= 'last_name'  placeholder='Ingresar apellido...' onChange={handlerCange} />
+                {errors.last_name !== '' ? <span>{errors.last_name}</span> : ''}
                 <hr />
                 <label htmlFor="address">Dirección: </label>
                 <input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
+                {errors.address !== '' ? <span>{errors.address}</span> : ''}
                 <hr />
                 <label htmlFor="email">E-Mail: </label>
                 <input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
+                {errors.email !== '' ? <span>{errors.email}</span> : ''}
                 <hr />
                 <label htmlFor="phone">Teléfono: </label>
                 <input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
+                {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
                 <hr />
                 <label htmlFor="password">Contraseña: </label>
                 <input type="text" name= 'password'  placeholder='Debe ser secreta...' onChange={handlerCange} />
+                {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 <hr />
+
+                <button type='submit' disabled={!isFormValid} >REGISTRAR</button>
             </form>
         </div>
     )

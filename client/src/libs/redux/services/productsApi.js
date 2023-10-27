@@ -19,9 +19,9 @@ export const productsApi=createApi({
             invalidatesTags:["products"]
         }),
         getProductById:builder.query({
-            query: (id) => `/products/${id}`
+            query:(id) => `/products/${id}`
         }),
     })
 })
 
-export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery, useGetProductByIdQuery }=productsApi
+export const {useCreateProductMutation, useGetProductByNameQuery, useGetAllProductsQuery, useGetProductByIdQuery}=productsApi

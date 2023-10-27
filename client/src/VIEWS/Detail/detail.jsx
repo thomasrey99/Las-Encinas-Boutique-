@@ -36,9 +36,9 @@ const Detail = () => {
                     <div className="content" />
                 </Spin> 
             }
-            {/* { isError&&     
+            { isError || productDetail === undefined &&
                 <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles}/>
-            } */}
+            }
             <Card>
                 <Row>
                     <Col span={16} className={styles.span}>

@@ -19,7 +19,7 @@ export const productsApi=createApi({
             invalidatesTags:["products"]
         }),
         getProductById:builder.query({
-            query:(id) => `/productos/${id}`
+            query:(id) => `/products/${id}`
         }),
     })
 })

@@ -10,7 +10,7 @@ export const productsSlice=createSlice({
     reducers:{
         addProducts (state, {payload}){
             state.allProducts=payload
-        }
+        },
     }
 })
 

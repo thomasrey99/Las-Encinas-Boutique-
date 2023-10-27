@@ -8,11 +8,17 @@
     height: auto;
     border-radius: 25px;
 }
-.likeButton{
+.noLikedButton, .likedButton {
     position: absolute;
     top: 0;
     right: 0;
+    font-size: 25px; 
+    transition: color 0.3s ease; 
 }
+.likedButton{
+    color: red;
+}
+
 .span{
     padding: 1%;
 }

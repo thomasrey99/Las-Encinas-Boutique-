@@ -1,8 +1,7 @@
 .pagCont {
     display: flex;
     justify-content: center;
-    margin-top: 4px;
-    position: fixed;
+    margin-top: -25px;  
     bottom: 0;
   }
   
@@ -18,15 +17,15 @@
     border-radius: 10%;
     cursor: pointer;
     color: white;
-    background-color: red;
+    background-color: #765827;
     border: 1px solid white;
     width: 50px;
     text-align: center;
   }
   
   .pagButtons button:hover {
-    background-color: rgba(255, 0, 0, 0.308);
-    color: whitesmoke;
+    background-color: #EAC696;
+    color: black;
     border-color: grey;
   }
   
@@ -35,8 +34,8 @@
   }
   
   .pagButtons button.active {
-    background-color: rgba(255, 0, 0, 0.308);
-    color: whitesmoke;
+    background-color: #EAC696;
+    color: black ;
     border-color: grey;
   }
   

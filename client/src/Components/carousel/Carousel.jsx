@@ -19,7 +19,7 @@ const CarouselImg = () => {
             </div>
             </Carousel>
             <div className={styles.landingCont}>
-                <h1 className={styles.title}>Explora nuestros productos</h1>
+                <h1 className={styles.title}>Explora nuestras ofertas</h1>
                 <a href="#" className={styles.enter}>Comenzar</a>
             </div>
         </div>

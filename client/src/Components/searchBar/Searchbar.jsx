@@ -1,11 +1,11 @@
 import searchIcon from "../../assets/search.png"
 import style from "./Searchbar.module.css"
 import { useEffect, useState } from "react"
-import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
 import { addProducts } from "../../libs/redux/features/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
 
-export const Searchbar = () => {
+const Searchbar = () => {
 
 
   const dispatch=useDispatch()
@@ -40,16 +40,23 @@ export const Searchbar = () => {
   }, [search, data])
 
 
-  console.log(products)
+  console.log("productos en la searchbar", products)
   console.log(isLoading)
-
+  console.log("esto trae data: ",data)
 
   return (
-    <div className={style.searchCont}>
-        <div className={style.inputCont}>
+    <div className={style.searchCont} id="products">
+        {/*<div className={style.inputCont}>
           <input type="text" value={name} className={style.input} onChange={handleChange}/>
           <button className={style.button} onClick={handleSearch}><img src={searchIcon} className={style.img}/></button>
+        </div>*/}
+        <div className={style.searchbarCont}>
+            <div className={style.searchBar}>
+                <input type='text' placeholder='Buscar por nombre' name="search" value={name} onChange={handleChange}/>
+                <button onClick={handleSearch}><img src={searchIcon}/></button>
+            </div>
         </div>
     </div>
   )
 }
+export default Searchbar

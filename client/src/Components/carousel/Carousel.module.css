@@ -1,0 +1,42 @@
+.carouselContainer{
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background-color: orange;
+}
+.sliceContainer{
+    display: "flex";
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    background-size: cover; 
+    background-position: center; 
+    overflow: hidden; 
+}
+.images{
+    width: 100%;
+    object-fit: cover;
+}
+.landingCont{
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0 , 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.title{
+    font-family: var(--primary-font);
+    color: white;
+}
+.enter{
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    background: white;
+    font-family: var(--primary-font);
+}

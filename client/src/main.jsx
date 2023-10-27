@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './libs/redux/store.js';
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -13,6 +14,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
       </React.StrictMode>
     </BrowserRouter>
-  </Provider>,
-  )
-  
+  </Provider>
+)

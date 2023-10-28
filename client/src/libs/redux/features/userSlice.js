@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = ["1", "2", "3", "4", "5", "6"]
+const initialState = []
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        item: console.log(initialState),
+        addUsers (state, {payload}){
+            state.allUsers = payload
+        }
     },
 })
 

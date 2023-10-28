@@ -1,5 +1,5 @@
 import { FaShoppingCart, FaRegBookmark, FaStar, FaFireAlt } from 'react-icons/fa';
-
+import PropTypes from "prop-types";
 import Style from './Card.module.css'
 
 import { Link } from 'react-router-dom';
@@ -39,5 +39,12 @@ const Card = ({name, price, image, raiting, id}) => {
     </>
   )
 }
+Card.propTypes ={
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  raiting: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  }
 
 export default Card;

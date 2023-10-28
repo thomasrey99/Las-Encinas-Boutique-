@@ -49,6 +49,7 @@ const Home = () => {
         ))}
       </div>
       <IniciarMap />
+      <hr />
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
         <WhatsAppOutlined className={styles['whatsapp-icon']} />
       </a>

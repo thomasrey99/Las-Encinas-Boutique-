@@ -1,0 +1,15 @@
+.filterCont{
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+}
+.selectCont{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--primary-font);
+}

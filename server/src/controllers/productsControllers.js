@@ -16,13 +16,14 @@ const productId = async (id) => {
 }
 
 //!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
-const allProducts = async (name, minPrice, maxPrice, category) => {
-    
+const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
+    console.log(order)
     //?coincidencias de busqueda
     const whereClause={}
 
     //?verifica si llega por query name, category, minPrice y maxPrice y va agregando clausulas al whereClause
     
+
     if(name){
         whereClause.name={
             [Op.iLike]:`%${name}%`
@@ -32,7 +33,9 @@ const allProducts = async (name, minPrice, maxPrice, category) => {
     if(category){
         whereClause.category=category
     }
-
+    if(type){
+        whereClause.type=type
+    }
     if(minPrice && maxPrice){
         whereClause.price={
             [Op.between]:[minPrice, maxPrice]
@@ -46,19 +49,39 @@ const allProducts = async (name, minPrice, maxPrice, category) => {
             [Op.lte]:maxPrice
         }
     }
+    let orderBy=[]
 
+    if(order==='name_asc'){
+
+        orderBy=[['name', 'ASC']]
+
+    }else if(order==='name_desc'){
+
+        orderBy=[['name', 'DESC']]
+
+    }else if(order==='price_asc'){
+
+        orderBy=[['price', 'ASC']]
+
+    }else if(order==='price_desc'){
+
+        orderBy=[['price', 'DESC']]
+
+    }
     //?verifica si hay parametros de filtrado, de lo contrario devuelve todos los productos
     if(Object.keys(whereClause).length===0){
-        const response= await Product.findAll()
+        const response= await Product.findAll({
+            order:orderBy.length>0?orderBy:undefined
+        })
         return response
     }else{
         const response=await Product.findAll({
-            where:whereClause
+            where:whereClause,
+            order:orderBy.length>0?orderBy:undefined
         })
         return response
     }
-    
-}
+}   
 
 //!CONTROLLER QUE CREA UN PRODUCTO
 const postProductContoller = async (data)=>{

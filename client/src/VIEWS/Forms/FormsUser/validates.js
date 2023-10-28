@@ -9,6 +9,7 @@ const Validates = (form, errors, setErrors) => {
         }        
 }; 
 
+
     if (form.lastName) {
     
         if (/^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/.test(form.lastName)) {
@@ -62,6 +63,7 @@ if (form.password) {
         setErrors((prev) => ({...prev, password: '*Dirección inválida'}))
     };   
 };
+
 };
 
 export default Validates;

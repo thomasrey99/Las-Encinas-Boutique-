@@ -99,7 +99,7 @@ console.log(form);
                 <hr />
 
                 <button type='submit' disabled={!isFormValid} >REGISTRAR</button>
-                
+
             </form>
         </div>
     )

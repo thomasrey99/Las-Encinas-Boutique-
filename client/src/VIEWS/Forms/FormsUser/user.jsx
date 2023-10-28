@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates  from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi'
 
 
 const FormUser = () => {
-    // const dispatch = useDispatch()
+    
     const userForm = useSelector(state => state.user)
     const [mutate] = useCreateUsersMutation();
     const [form, setForm] = useState({
@@ -99,6 +99,7 @@ console.log(form);
                 <hr />
 
                 <button type='submit' disabled={!isFormValid} >REGISTRAR</button>
+
             </form>
         </div>
     )

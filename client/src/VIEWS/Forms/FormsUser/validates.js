@@ -1,5 +1,4 @@
 const Validates = (form, errors, setErrors) => {
-    /^381\d{7}$/
 
     if (form.name) {
         
@@ -9,6 +8,7 @@ const Validates = (form, errors, setErrors) => {
             setErrors((prev) => ({...prev, name: '*Nombre inválido'}))
         }        
 }; 
+
 
     if (form.lastName) {
     
@@ -63,6 +63,7 @@ if (form.password) {
         setErrors((prev) => ({...prev, password: '*Dirección inválida'}))
     };   
 };
+
 };
 
 export default Validates;

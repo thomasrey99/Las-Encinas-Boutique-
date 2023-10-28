@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Form, Rate, Select, Upload, Input, InputNumber } from 'antd';
 
@@ -9,6 +9,9 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 const FormProducts = () => {
+
+  const products=useSelector((state)=>state.items.allProducts)
+
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -19,6 +22,8 @@ const FormProducts = () => {
     rating: 0,
     category: [],
   });
+
+  const [data] = useCreateProductMutation(state)
 
   const resetState = () => {
     setState({
@@ -45,12 +50,18 @@ const FormProducts = () => {
     // resetState();
   };
 
-  const sa = ["a", "b", "c"];
+  const categorys = []
+  for (let i = 0; i < products.length; i++) {
+    categorys.push(i.category);
+    console.log(i.category);
+  }
+
+  console.log(categorys);
 
   return (
     <>
       <div>FormProducts</div>
-      <form className={Style.Form}>
+      <form>
         <Form.Item label="Nombre">
           <Input
             name="name"
@@ -101,9 +112,9 @@ const FormProducts = () => {
             value={state.category}
             onChange={(value) => handleChange('category', value)}
           >
-            {sa.map((c) => (
-              <Option value={c} key={c}>
-                {c}
+            {products?.map((c) => (
+              <Option value={c.name} key={c.id}>
+                {categorys}
               </Option>
             ))}
           </Select>

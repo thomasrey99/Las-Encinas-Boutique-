@@ -1,5 +1,4 @@
 const Validates = (form, errors, setErrors) => {
-    /^381\d{7}$/
 
     if (form.name) {
         

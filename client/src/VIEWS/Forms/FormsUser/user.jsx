@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import Validates  from './validates';
+import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi'
 
 

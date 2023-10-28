@@ -3,6 +3,11 @@
   height: auto;
 }
 
+.cardCont{
+  display: flex;
+  flex-direction: row;
+}
+
 .bannCont {
   width: 100%;
   height: 500px;
@@ -13,4 +18,15 @@
 #map {
   height: 500px;
   width: 100%;
+}
+
+.pagCont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#components-pagination-demo-mini .ant-pagination:not(:last-child) {
+  margin-bottom: 24px;
+  
 }

@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
-import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, Form } from 'antd';
+import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal} from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
-import { ShoppingCartOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
 
 const Detail = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
-    console.log(`id: ${id}`);
     const { data: productDetail, isLoading, isError } = useGetProductByIdQuery(id)
-    console.log(productDetail);
 
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isFav, setIsFav ] = useState(false);
@@ -35,9 +33,11 @@ const Detail = () => {
 
                 : productDetail !== undefined ?
                 <div>
-                        <Card>
+                        <Card>    
                             <Row>
+                    
                                 <Col span={16} className={styles.span}>
+                                    <ArrowLeftOutlined className = {styles.back} onClick={()=>navigate('/home')}/>
                                     <img alt={productDetail.name} src={productDetail.image} className={styles.image} />
                                 </Col>
                                 <Col span={8}>
@@ -67,6 +67,7 @@ const Detail = () => {
                                                 <div style={{ maxHeight: '50%', overflow: 'auto', textAlign: 'center' }}>
                                                     
                                                     <p>No hay comentarios disponibles</p>
+                                                    
                                                 </div>
                                             </Item>
                                         </Tabs>
@@ -78,7 +79,7 @@ const Detail = () => {
                                 <p>¿Estás seguro de que quieres comprar este producto?</p>
                             </Modal>
                         </div>
-                        :
+                        : isError &&
                         <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles}/>
             }
         </div>

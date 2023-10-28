@@ -1,15 +1,15 @@
 import { Pagination } from "antd";
 import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
-import Carousel from "../../Components/carousel/Carousel";
-import Searchbar from "../../Components/searchBar/Searchbar";
+import Carousel from "../../Components/carousel/Carousel.jsx";
+import Searchbar from "../../Components/searchBar/Searchbar.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from '@ant-design/icons'
 
 const Home = () => {
-  const whatsappLink = `https://wa.me/+5493816771213`;
+  const whatsappLink = `https://wa.me/+5493816771213`;  
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);

@@ -10,12 +10,12 @@ const Validates = (form, errors, setErrors) => {
         }        
 }; 
 
-    if (form.last_name) {
+    if (form.lastName) {
     
-        if (/^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/.test(form.last_name)) {
-            setErrors((prev) =>({...prev, last_name: ''}))
+        if (/^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/.test(form.lastName)) {
+            setErrors((prev) =>({...prev, lastName: ''}))
         } else {
-            setErrors((prev) => ({...prev, last_name: '*Apellido inválido'}))
+            setErrors((prev) => ({...prev, lastName: '*Apellido inválido'}))
         };   
 };
 
@@ -46,14 +46,14 @@ if (form.email) {
     };   
 };
 
-if (form.phone) {
+// if (form.phone) {
     
-    if (/^381\d{7}$/.test(form.phone)) {
-        setErrors((prev) =>({...prev, phone: ''}))
-    } else {
-        setErrors((prev) => ({...prev, phone: '*Dirección inválida'}))
-    };   
-};
+//     if (/^381\d{7}$/.test(form.phone)) {
+//         setErrors((prev) =>({...prev, phone: ''}))
+//     } else {
+//         setErrors((prev) => ({...prev, phone: '*Dirección inválida'}))
+//     };   
+// };
 
 if (form.password) {
     

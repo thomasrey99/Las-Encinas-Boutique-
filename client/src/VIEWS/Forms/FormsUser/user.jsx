@@ -1,26 +1,28 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import Validates  from './validates';
+import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi'
 
 
 const FormUser = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const userForm = useSelector(state => state.user)
+    const [mutate] = useCreateUsersMutation();
     const [form, setForm] = useState({
         name: '',
-        last_name: '',
+        lastName: '',
         address: '',
         email: '',
-        phone: '',
+        // phone: '',
         password: ''
     })
 
     let [errors, setErrors] = useState({
         name: '',
-        last_name: '',
+        lastName: '',
         address: '',
         email: '',
-        phone: '',
+        // phone: '',
         password: ''
     })
 
@@ -44,21 +46,27 @@ const FormUser = () => {
             setIsFormValid(!hasErrors);
     }
     
-    const handlerSubmit = (event) => {
+    const handlerSubmit = async (event) => {
         event.preventDefault();
-
+        
         if (
             !form.name ||
-            !form.last_name ||
+            !form.lastName ||
             !form.address ||
             !form.email ||
-            !form.phone ||
+            // !form.phone ||
             !form.password 
         ) {
             alert('Por favor complete todos los campos')
             return;
         }
         //agregar dispatch
+        try {
+           await mutate(form);
+           console.log();
+        } catch (error) {
+            return error
+        }
     }
 console.log(form);
     return (
@@ -69,9 +77,9 @@ console.log(form);
                 <input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
                 {errors.name !== '' ? <span>{errors.name}</span> : ''}
                 <hr />
-                <label htmlFor="last_name">Apellido: </label>
-                <input type="text" name= 'last_name'  placeholder='Ingresar apellido...' onChange={handlerCange} />
-                {errors.last_name !== '' ? <span>{errors.last_name}</span> : ''}
+                <label htmlFor="lastName">Apellido: </label>
+                <input type="text" name= 'lastName'  placeholder='Ingresar apellido...' onChange={handlerCange} />
+                {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
                 <hr />
                 <label htmlFor="address">Dirección: </label>
                 <input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
@@ -81,10 +89,10 @@ console.log(form);
                 <input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
                 {errors.email !== '' ? <span>{errors.email}</span> : ''}
                 <hr />
-                <label htmlFor="phone">Teléfono: </label>
+                {/* <label htmlFor="phone">Teléfono: </label>
                 <input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
-                <hr />
+                <hr /> */}
                 <label htmlFor="password">Contraseña: </label>
                 <input type="text" name= 'password'  placeholder='Debe ser secreta...' onChange={handlerCange} />
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}

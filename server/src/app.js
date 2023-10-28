@@ -3,6 +3,9 @@ const morgan = require("morgan")
 const cors = require("cors")
 const router = require("./routes/mainRouter")
 
+//!instancia de cloudinary
+// const cloudinary = require('../cloudinary/cloudinary.js')
+
 //!instanciando el server
 
 const server=express()

@@ -1,0 +1,21 @@
+.footer{
+    width: 100%;
+    color: #f5f5f5; 
+    background: #333; 
+    bottom: 0;
+    position:static;
+}
+.titles{
+    font-size: 130%;
+    margin-bottom: 2%;
+}
+.icons{
+    font-size: 210%; 
+    color: white;
+} 
+.titleContact{
+    margin: 1%
+}
+.contact{
+    color: white;
+}

@@ -11,9 +11,7 @@ const Detail = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
-    console.log(`id: ${id}`);
     const { data: productDetail, isLoading, isError } = useGetProductByIdQuery(id)
-    console.log(productDetail);
 
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isFav, setIsFav ] = useState(false);
@@ -78,7 +76,7 @@ const Detail = () => {
                                 <p>¿Estás seguro de que quieres comprar este producto?</p>
                             </Modal>
                         </div>
-                        :
+                        : isError &&
                         <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles}/>
             }
         </div>

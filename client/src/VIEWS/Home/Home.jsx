@@ -6,10 +6,8 @@ import Searchbar from "../../Components/searchBar/Searchbar";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { WhatsAppOutlined } from '@ant-design/icons'
 
 const Home = () => {
-  const whatsappLink = `https://wa.me/+5493816771213`;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
@@ -49,9 +47,6 @@ const Home = () => {
         ))}
       </div>
       <IniciarMap />
-      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-        <WhatsAppOutlined className={styles['whatsapp-icon']} />
-      </a>
     </div>
   );
 };

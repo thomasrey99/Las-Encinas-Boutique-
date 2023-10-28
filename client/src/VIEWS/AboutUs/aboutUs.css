@@ -1,0 +1,26 @@
+.cards__container {
+    margin: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: 'center';
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    width: 25%;
+}
+
+.card__image {
+    border-radius: 16px;
+    
+}
+
+.card__text {
+    font-size: medium;
+}

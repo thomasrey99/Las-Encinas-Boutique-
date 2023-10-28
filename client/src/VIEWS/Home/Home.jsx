@@ -3,6 +3,7 @@ import Card from '../../Components/Card/Card';
 import Pagination from '../../Components/Pagination/Pagination';
 import Carousel from '../../Components/carousel/Carousel';
 import Searchbar from '../../Components/searchBar/Searchbar';
+import IniciarMap from '../../Components/Maps/Maps';
 import styles from './home.module.css'
 import { useState } from 'react'; 
 
@@ -54,6 +55,9 @@ const Home = () => {
             <Card key={c.nombre} name={c.nombre} price={c.precio}
             />))}
     </div>
+    <div className={styles.bannCont}>
+        <IniciarMap />   
+    </div>
             
             {/* <Cards products={products} /> */}
         </div>
@@ -61,4 +65,6 @@ const Home = () => {
 }
 
 export default Home;
+
+
 

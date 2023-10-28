@@ -1,39 +1,40 @@
 
 import { Select, Space } from 'antd';
-
+import style from "../Filters.module.css"
 const SelectCategory = () => {
 
-    const options = [];
-    for (let i = 10; i < 36; i++) {
-    options.push({
-        label: i.toString(36) + i,
-        value: i.toString(36) + i,
-    });
-    }
-    const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    const categories = [
+        "todas",
+        "Alfajores",
+        "Chocolate en rama",
+        "Bocaditos",
+        "Chocolate en barra", 
+        "Volcáncito",
+        "Marroc",
+        "Huevos de pascua",
+        "Oreo",
+        "Brownie"
+    ];
+
+    const handleProvinceChange = (value) => {
+      console.log(value)
     };
-  return (
-    <div>
-        <Space
-        style={{
-        width: '50%',
-        }}
-        direction="vertical"
-        >
-            <Select
-            mode="multiple"
-            allowClear
-            style={{
-                width: '20%',
-            }}
-            placeholder="categoria"
-            defaultValue={['a10', 'c12']}
-            onChange={handleChange}
-            options={options}
-            />
-        </Space>
-    </div>
+    return (
+      <Space wrap className={style.selectCont}>
+        <label htmlFor='category'>categorias</label>
+        <Select
+          name="category"
+          defaultValue={"Todas"}
+          style={{
+            width: "15vw",
+          }}
+          onChange={handleProvinceChange}
+          options={categories.map((category) => ({
+            label: category,
+            value: category==="Todas"?"":category,
+          }))}
+        />
+      </Space>
   )
 }
 export default SelectCategory

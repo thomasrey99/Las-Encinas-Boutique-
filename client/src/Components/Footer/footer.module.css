@@ -14,6 +14,9 @@
     font-size: 210%; 
     color: white;
 } 
+.icons:hover, .contact:hover{
+    color: #FC8E28;
+}
 .titleContact{
     margin: 1%
 }

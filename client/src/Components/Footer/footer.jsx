@@ -1,6 +1,6 @@
 import { Layout, Row, Col } from 'antd';
 const { Footer: AntFooter } = Layout;
-import { FacebookOutlined, WhatsAppOutlined, InstagramOutlined, PhoneOutlined } from '@ant-design/icons';
+import { FacebookOutlined, WhatsAppOutlined, InstagramOutlined, PhoneOutlined, PushpinOutlined } from '@ant-design/icons';
 import styles from './footer.module.css';
 
 const Footer = () => {
@@ -10,7 +10,8 @@ const Footer = () => {
             <Row gutter={16}>
                 <Col span={8}>
                     <h3 className={styles.titles}>Ubicación </h3>
-                    <p>Tucumán</p>
+                    <p>San Miguel</p>
+                    <p>de Tucumán <PushpinOutlined /></p>
                 </Col>
                 <Col span={8}>
                     <h3 className={styles.titles}>Redes Sociales</h3>

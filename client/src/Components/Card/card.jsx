@@ -13,9 +13,7 @@ const Card = ({name, price, image, raiting, id}) => {
     <div className={Style.productList}>
       <div key={id} className={Style.productCard}>
 
-
         <Link to={`/detail/${id}`}>
-
             <img src={image} alt={name} className={Style.img} />
         </Link>
 

@@ -13,7 +13,7 @@ const Cards = () => {
         {products?.map(c => (
         <Card key={c.id} id={c.id} name={c.name} price={c.price} image={c.image} raiting={c.raiting}
         />))}
-    </div>
+    </div> 
   )
 }
 

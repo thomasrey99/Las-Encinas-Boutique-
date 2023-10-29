@@ -62,10 +62,10 @@ const Home = () => {
             <Title className={styles.h1} level={1}>Disfrute de las mejores delicias de la región.</Title>
             <Title className={styles.h3} level={3}>Ideales para agasajar con un regalo para alguien especial.</Title>
             <Space direction='vertical'>
-                <Text className={styles.text} type='secondary' >Pedidos personalizados</Text>
-                <Text className={styles.text} type='secondary' >Tarjetas que expresan nuestros mejores deseos.</Text>
-                <Text className={styles.text} type='secondary' >Elaboración con materia prima de la más alta calidad.</Text> 
-                <Text className={styles.text} type='secondary' >Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+                <Text className={styles.text} type='secondary' >* Pedidos personalizados</Text>
+                <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
+                <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
+                <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
             </Space>
         </div>
 

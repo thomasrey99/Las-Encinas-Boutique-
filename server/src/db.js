@@ -12,10 +12,10 @@ const {
   DB_HOST,
   DB_NAME,
   DB_DIALECT,
-  DB_PORT
-} = process.env;
+  DB_PORT 
+} = process.env; 
 
-const dataBase=new Sequelize(
+const dataBase=new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}
 )

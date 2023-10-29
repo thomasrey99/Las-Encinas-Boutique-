@@ -21,7 +21,7 @@ const SelectCategory = () => {
     };
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='category'>categorias</label>
+        <label htmlFor='category'>Categorias</label>
         <Select
           name="category"
           defaultValue={"Todas"}

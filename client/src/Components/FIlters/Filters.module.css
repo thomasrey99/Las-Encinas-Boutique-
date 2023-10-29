@@ -1,11 +1,12 @@
 .filterCont{
     width: 100vw;
-    height: 10vh;
+    height: 100px;
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: center;
     justify-content: center;
     gap: 20px;
+    background-color: #EAC696;
 }
 .selectCont{
     display:flex;

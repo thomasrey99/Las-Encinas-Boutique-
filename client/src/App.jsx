@@ -9,6 +9,7 @@ import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
+import Prueba from './Components/Prueba/Prueba';
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='registeruser' element={<FormUser/>} />
         <Route path='about' element={<AboutUs/>} />
         <Route path='*' element={<ErrorPage/>} />
+        <Route path='/prueba' element={<Prueba/>} />
       </Routes>
       {location.pathname !== '/' && <Footer/>}
     </main>

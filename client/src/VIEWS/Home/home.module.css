@@ -6,14 +6,10 @@
 .cardCont{
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  
 }
 
-.bannCont {
-  width: 100%;
-  height: 500px;
-  border: 1px solid #765827;
-  background-color: #eac696;
-}
 
 #map {
   height: 500px;
@@ -24,9 +20,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 }
 
-#components-pagination-demo-mini .ant-pagination:not(:last-child) {
+/* #components-pagination-demo-mini .ant-pagination:not(:last-child) {
   margin-bottom: 24px;
   
-}
+} */

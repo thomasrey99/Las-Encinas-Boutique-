@@ -2,6 +2,7 @@ import { Pagination } from "antd";
 import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel";
+import Filters from "../../Components/FIlters/Filters.jsx";
 import Searchbar from "../../Components/searchBar/Searchbar";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
@@ -25,6 +26,7 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <Carousel />
       <Searchbar />
+      <Filters />
       <div className={styles.pagCont}>
       <Pagination
         current={currentPage}
@@ -43,6 +45,7 @@ const Home = () => {
             price={product.price}
             image={product.image}
             raiting={product.raiting}
+            
           />
         ))}
       </div>

@@ -1,14 +1,18 @@
-import { Pagination } from "antd";
+import { Pagination, Typography, Space } from "antd";
 import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
-import Carousel from "../../Components/carousel/Carousel";
-import Filters from "../../Components/FIlters/Filters.jsx";
-import Searchbar from "../../Components/searchBar/Searchbar";
+import Carousel from "../../Components/carousel/Carousel.jsx";
+import Searchbar from "../../Components/searchBar/Searchbar.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { WhatsAppOutlined } from '@ant-design/icons';
+import cajonera1 from "./image/cajonera1.jpg";
+import cajonerra2 from "./image/cajonerra2.jpg";
 
 const Home = () => {
+  const whatsappLink = `https://wa.me/+5493816771213`;  
+  const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
@@ -16,6 +20,8 @@ const Home = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
+
+
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -25,7 +31,6 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <Carousel />
       <Searchbar />
-      <Filters />
       <div className={styles.pagCont}>
       <Pagination
         current={currentPage}
@@ -44,11 +49,33 @@ const Home = () => {
             price={product.price}
             image={product.image}
             raiting={product.raiting}
-            
           />
         ))}
       </div>
+      <div className={styles.content}>
+
+            <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
+
+        <div className={styles.contentBanner}>
+            <Title className={styles.h1} level={2}>Disfrute de las mejores delicias de la región.</Title>
+            <Title level={4}>Ideales para agasajar con un regalo para alguien especial.</Title>
+            <Space direction='vertical'>
+                <Text className={styles.text} type='secondary' >• Pedidos personalizados</Text>
+                <Text className={styles.text} type='secondary' >• Tarjetas que expresan nuestros mejores deseos.</Text>
+                <Text className={styles.text} type='secondary' >• Elaboración con materia prima de la más alta calidad.</Text> 
+                <Text className={styles.text} type='secondary' >• Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+            </Space>
+        </div>
+
+            <img className={styles.contentImg} src={cajonerra2} alt="ChocoImagen" />
+
+      </div>
+      <hr />
       <IniciarMap />
+      <hr />
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+        <WhatsAppOutlined className={styles['whatsapp-icon']} />
+      </a>
     </div>
   );
 };

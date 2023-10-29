@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { Button, Form, Rate, Select, Upload, Input, InputNumber } from 'antd';
-
+import  { useState } from 'react';
+// import { Upload} from 'antd';
+import { Form, Rate, Select, Input, InputNumber, } from 'antd';
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';
-
 const { Option } = Select;
 const { TextArea } = Input;
+import styles from './FormProduct.module.css';
 
 const FormProducts = () => {
-  const dispatch = useDispatch();
+
+  const [mutate] = useCreateProductMutation();
 
   const [state, setState] = useState({
     name: '',
-    image: 'image',
-    price: 0,
+    image: '',
+    price: '',
     description: '',
-    rating: 0,
+    raiting: 0,
     category: [],
   });
 
-  const resetState = () => {
-    setState({
-      name: '',
-      image: '',
-      price: 0,
-      description: '',
-      rating: 0,
-      category: [],
-    });
-  };
+  // const resetState = () => {
+  //   setState({
+  //     name: '',
+  //     image: '',
+  //     price: 0,
+  //     description: '',
+  //     rating: 0,
+  //     category: [],
+  //   });
+  // };
 
   const handleChange = (name, value) => {
     console.log(state);
@@ -39,9 +38,13 @@ const FormProducts = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(useCreateProductMutation(state));
+    try {
+      await mutate(state);
+   } catch (error) {
+      console.log(error);
+   }
     // resetState();
   };
 
@@ -50,12 +53,20 @@ const FormProducts = () => {
   return (
     <>
       <div>FormProducts</div>
-      <form className={Style.Form}>
+      <form className={styles.Form} onSubmit={handleSubmit}>
         <Form.Item label="Nombre">
           <Input
             name="name"
             value={state.name}
             onChange={(e) => handleChange('name', e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item label="Imagen">
+          <Input
+            name="image"
+            value={state.image}
+            onChange={(e) => handleChange('image', e.target.value)}
           />
         </Form.Item>
 
@@ -77,10 +88,10 @@ const FormProducts = () => {
           />
         </Form.Item>
 
-        <Form.Item name='rating' label="Rate">
+        <Form.Item name='raiting' label="Rate">
           <Rate
-            value={state.rating}
-            onChange={(value) => handleChange('rating', value)}
+            value={state.raiting}
+            onChange={(value) => handleChange('raiting', value)}
           />
         </Form.Item>
 
@@ -109,7 +120,7 @@ const FormProducts = () => {
           </Select>
         </Form.Item>
 
-        <button onClick={handleSubmit}>Crear producto</button>
+        <button type='submit'>Crear producto</button>
       </form>
     </>
   );

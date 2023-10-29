@@ -2,6 +2,7 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 const router = require("./routes/mainRouter")
+const mercadoPagoRouter = require("./mercadoPago/routes/index")
 
 //!instanciando el server
 
@@ -29,5 +30,6 @@ server.use((req, res, next) => {
 });
 
 server.use(router)
+server.use("/purchase", mercadoPagoRouter) //Enrutador de mercado pago.
 
 module.exports=server

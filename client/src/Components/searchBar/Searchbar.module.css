@@ -1,6 +1,6 @@
 .searchCont{
     width: 100vw;
-    height: 20vh;
+    height: 12vh;
     background: white;
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@
     width: 100%;
     max-width: 400px;
     background: white;
-    border:  1px solid #dedede;
+    border:  2px solid #dedede;
     display: flex;
     align-items: center;
     border-radius: 60px;

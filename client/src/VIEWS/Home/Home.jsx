@@ -3,8 +3,6 @@ import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
 import Searchbar from "../../Components/searchBar/Searchbar.jsx";
-import Carousel from "../../Components/carousel/Carousel.jsx";
-import Searchbar from "../../Components/searchBar/Searchbar.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";

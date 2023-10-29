@@ -18,10 +18,11 @@
 .pagCont{
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   
 }
 .whatsapp-icon {
@@ -71,7 +72,7 @@
 
 .h1 {
   font-weight: bold !important;
-  color: chocolate !important;
+  color: rgb(179, 80, 9) !important;
   text-align: center;
 }
 

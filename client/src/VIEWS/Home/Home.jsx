@@ -3,13 +3,14 @@ import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
 import Searchbar from "../../Components/searchBar/Searchbar.jsx";
+import Carousel from "../../Components/carousel/Carousel.jsx";
+import Searchbar from "../../Components/searchBar/Searchbar.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from '@ant-design/icons';
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
-
 
 const Home = () => {
   const whatsappLink = `https://wa.me/+5493816771213`;  
@@ -18,10 +19,11 @@ const Home = () => {
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
+
+
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));

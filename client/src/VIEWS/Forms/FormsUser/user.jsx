@@ -6,7 +6,7 @@ import { Form, Input, Button } from 'antd'
 
 
 const FormUser = () => {
-    
+    const { Password } = Input;
     const userForm = useSelector(state => state.user)
     const [mutate] = useCreateUsersMutation();
     const [form, setForm] = useState({
@@ -75,19 +75,19 @@ console.log(form);
             <h1>Registro de Usuario</h1>
             <form onSubmit={handlerSubmit}>
                 <label htmlFor="name">Nombre: </label>
-                <input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
+                <Input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
                 {errors.name !== '' ? <span>{errors.name}</span> : ''}
                 <hr />
                 <label htmlFor="lastName">Apellido: </label>
-                <input type="text" name= 'lastName'  placeholder='Ingresar apellido...' onChange={handlerCange} />
+                <Input type="text" name= 'lastName'  placeholder='Ingresar apellido...' onChange={handlerCange} />
                 {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
                 <hr />
                 <label htmlFor="address">Dirección: </label>
-                <input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
+                <Input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
                 {errors.address !== '' ? <span>{errors.address}</span> : ''}
                 <hr />
                 <label htmlFor="email">E-Mail: </label>
-                <input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
+                <Input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
                 {errors.email !== '' ? <span>{errors.email}</span> : ''}
                 <hr />
                 {/* <label htmlFor="phone">Teléfono: </label>
@@ -95,7 +95,7 @@ console.log(form);
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
                 <hr /> */}
                 <label htmlFor="password">Contraseña: </label>
-                <input type="text" name= 'password'  placeholder='Debe ser secreta...' onChange={handlerCange} />
+                <Password type="text" name= 'password' placeholder='Debe ser secreta...' onChange={handlerCange} />
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 <hr />
 

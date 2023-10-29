@@ -1,12 +1,11 @@
 .searchCont{
     width: 100vw;
-    height: 20vh;
-    background: white;
+    height: 100px;
+    background: #EAC696;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    border-radius: 20px;
+    justify-content: center;
     box-sizing: border-box;
     font-family: var(--primary-font);
 }
@@ -23,7 +22,7 @@
     width: 100%;
     max-width: 400px;
     background: white;
-    border:  1px solid #dedede;
+    border:  2px solid #dedede;
     display: flex;
     align-items: center;
     border-radius: 60px;

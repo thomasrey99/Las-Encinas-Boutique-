@@ -20,9 +20,9 @@
     justify-content: center;
 }
 .img{
-    width: 5.5vw;
-    height: 5.5vw;
-    margin-left: 80px;
+    width: 4vw;
+    height: 4vw;
+    margin-left: 1vw;
 }
 .navItems{
     display: flex;

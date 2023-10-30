@@ -18,9 +18,11 @@ const Home = () => {
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
+  const {name}=useSelector((state)=>state.filters)
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
+  
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -66,26 +68,14 @@ const Home = () => {
         <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
 
         <div className={styles.contentBanner}>
-          <Title className={styles.h1} level={2}>
-            Disfrute de las mejores delicias de la región.
-          </Title>
-          <Title level={4}>
-            Ideales para agasajar con un regalo para alguien especial.
-          </Title>
-          <Space direction="vertical">
-            <Text className={styles.text} type="secondary">
-              • Pedidos personalizados
-            </Text>
-            <Text className={styles.text} type="secondary">
-              • Tarjetas que expresan nuestros mejores deseos.
-            </Text>
-            <Text className={styles.text} type="secondary">
-              • Elaboración con materia prima de la más alta calidad.
-            </Text>
-            <Text className={styles.text} type="secondary">
-              • Atención en horario comercial de 9 a 13hs y de 16 a 21hs.
-            </Text>
-          </Space>
+            <Title className={styles.h1} level={1}>Disfrute de las mejores delicias de la región.</Title>
+            <Title className={styles.h3} level={3}>Ideales para agasajar con un regalo para alguien especial.</Title>
+            <Space direction='vertical'>
+                <Text className={styles.text} type='secondary' >* Pedidos personalizados</Text>
+                <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
+                <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
+                <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+            </Space>
         </div>
 
         <img className={styles.contentImg} src={cajonerra2} alt="ChocoImagen" />

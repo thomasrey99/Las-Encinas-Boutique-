@@ -1,34 +1,50 @@
 .homeContainer {
   width: 100vw;
   height: auto;
+  background-color: #EDE0D4;
 }
 
 .cardCont{
   display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 80vh;
+  width: 100vw;
+}
+.cardLayout{
+  display: flex;
+  justify-content: space-evenly;
   flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90vw;
 }
-
-.bannCont {
-  width: 100%;
-  height: 500px;
-  border: 1px solid #765827;
-  background-color: #eac696;
-}
-
 #map {
   height: 500px;
-  width: 100%;
+  width: 100vw;
 }
 
 .pagCont{
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 40px;
 }
 
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   
+}
+
+.searchResult{
+  font-family: var(--primary-font);
+  font-size: 16px;
+  margin: 40px 0 40px 0;
+}
+.errorSearch{
+  font-family: var(--primary-font);
+  font-size: 24px;
+  margin: 60px 0 40px 0;
 }
 .whatsapp-icon {
     position: fixed;
@@ -51,4 +67,42 @@
 .whatsapp-icon:hover {
     transform: scale(1.2);
     transition: 0.9s;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  background-color: #EAC696;
+  justify-content: space-around;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  align-items: center;
+}
+
+.contentBanner {
+  font-family: var(--primary-font) !important;
+}
+
+.contentImg {
+  width: 20% !important;
+  height: 0% !important;
+  object-fit: cover !important;
+  padding: 15px !important;
+  border-radius: 50%;
+}
+
+.h1 {
+  font-weight: bold !important;
+  color: rgb(179, 80, 9) !important;
+  text-align: center;
+}
+
+.h3 {
+  color: chocolate !important;
+}
+
+
+.text {
+  font-size: 20px !important;
+  color: chocolate !important;
 }

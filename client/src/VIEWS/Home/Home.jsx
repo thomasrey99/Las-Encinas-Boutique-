@@ -3,6 +3,7 @@ import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
 import Searchbar from "../../Components/searchBar/Searchbar.jsx";
+import Filters from "../../Components/FIlters/Filters.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,11 +18,11 @@ const Home = () => {
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
+  const {name}=useSelector((state)=>state.filters)
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
-
-
+  
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -31,6 +32,7 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <Carousel />
       <Searchbar />
+      <Filters />
       <div className={styles.pagCont}>
       <Pagination
         current={currentPage}
@@ -41,29 +43,35 @@ const Home = () => {
       </div>
 
       <div className={styles.cardCont}>
-        {productsToDisplay?.map((product) => (
-          <Card
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            price={product.price}
-            image={product.image}
-            raiting={product.raiting}
-          />
-        ))}
+        {
+          name && <p className={styles.searchResult}>Resultados de la busqueda: {`"${name}"`}</p>
+        }
+        <div className={styles.cardLayout}>
+          {productsToDisplay?.map((product) => (
+            <Card
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              raiting={product.raiting}
+            />
+          ))}
+        </div>
+        {productsToDisplay.length===0 && <p className={styles.errorSearch}>No se encontraron productos</p>}
       </div>
       <div className={styles.content}>
 
             <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
 
         <div className={styles.contentBanner}>
-            <Title className={styles.h1} level={2}>Disfrute de las mejores delicias de la región.</Title>
-            <Title level={4}>Ideales para agasajar con un regalo para alguien especial.</Title>
+            <Title className={styles.h1} level={1}>Disfrute de las mejores delicias de la región.</Title>
+            <Title className={styles.h3} level={3}>Ideales para agasajar con un regalo para alguien especial.</Title>
             <Space direction='vertical'>
-                <Text className={styles.text} type='secondary' >• Pedidos personalizados</Text>
-                <Text className={styles.text} type='secondary' >• Tarjetas que expresan nuestros mejores deseos.</Text>
-                <Text className={styles.text} type='secondary' >• Elaboración con materia prima de la más alta calidad.</Text> 
-                <Text className={styles.text} type='secondary' >• Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+                <Text className={styles.text} type='secondary' >* Pedidos personalizados</Text>
+                <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
+                <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
+                <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
             </Space>
         </div>
 

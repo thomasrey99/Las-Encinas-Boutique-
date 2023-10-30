@@ -1,10 +1,10 @@
 
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css"
-const SelectCategory = () => {
+const SelectCategory = ({change}) => {
 
     const categories = [
-        "todas",
+        "Todas",
         "Alfajores",
         "Chocolate en rama",
         "Bocaditos",
@@ -16,19 +16,17 @@ const SelectCategory = () => {
         "Brownie"
     ];
 
-    const handleProvinceChange = (value) => {
-      console.log(value)
-    };
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='category'>categorias</label>
+        <label htmlFor='category'>Categorias</label>
         <Select
+          onChange={change}
           name="category"
           defaultValue={"Todas"}
           style={{
             width: "15vw",
           }}
-          onChange={handleProvinceChange}
+          
           options={categories.map((category) => ({
             label: category,
             value: category==="Todas"?"":category,

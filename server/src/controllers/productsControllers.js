@@ -18,8 +18,6 @@ const productId = async (id) => {
 //!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
 const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
     console.log(order)
-const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
-    console.log(order)
     //?coincidencias de busqueda
     const whereClause={}
 
@@ -80,21 +78,17 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
         const response= await Product.findAll({
             order:orderBy.length>0?orderBy:undefined
         })
-        const response= await Product.findAll({
-            order:orderBy.length>0?orderBy:undefined
-        })
         return response
     }else{
         const response=await Product.findAll({
             where:whereClause,
             order:orderBy.length>0?orderBy:undefined
-            where:whereClause,
-            order:orderBy.length>0?orderBy:undefined
+            
         })
         return response
     }
 }   
-}   
+
 
 //!CONTROLLER QUE CREA UN PRODUCTO
 const postProductContoller = async (data)=>{

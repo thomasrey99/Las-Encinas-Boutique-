@@ -1,6 +1,3 @@
-// FALTA SOLO COUDY
-
-import React from 'react';
 import Style from './FormProduct.module.css';
 
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';

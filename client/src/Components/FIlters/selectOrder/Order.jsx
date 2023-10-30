@@ -10,11 +10,11 @@ const order=[
         value:"name_desc"
     },
     {
-        label:"menor precio",
+        label:"Menor precio",
         value:"price_asc"
     },
     {
-        label:"mayor precio",
+        label:"Mayor precio",
         value:"price_desc"
     }
 ]

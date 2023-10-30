@@ -13,7 +13,7 @@ const productId = async (id) => {
         return{message:"there are no products with that id"}
     }
 
-}
+} 
 
 //!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
 const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
@@ -65,7 +65,7 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
 
     }else if(order==='price_desc'){
 
-        orderBy=[['price', 'DESC']]
+        orderBy=[['price', 'DESC']] 
 
     }
     //?verifica si hay parametros de filtrado, de lo contrario devuelve todos los productos
@@ -118,4 +118,3 @@ module.exports = {
     putProductContoller,
     deleteProductContoller
 };
-

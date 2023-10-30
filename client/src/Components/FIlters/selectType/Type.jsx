@@ -2,8 +2,8 @@ import { Select, Space } from 'antd';
 import style from "../Filters.module.css"
 const types=[
     "Todos",
-    "chocolate blanco",
-    "chocolate con leche",
+    "Chocolate blanco",
+    "Chocolate con leche",
     "Chocolate semi- amargo",
     
 ]
@@ -16,7 +16,7 @@ const Type = () => {
   };
   return (
     <Space wrap className={style.selectCont}>
-        <label htmlFor='type'>tipo de chocolate</label>
+        <label htmlFor='type'>Tipo de Chocolate</label>
         <Select
           name="type"
           defaultValue={"Todos"}

@@ -1,4 +1,87 @@
-.homeContainer{
-    width: 100vw;
-    height: auto;
+.homeContainer {
+  width: 100vw;
+  height: auto;
+  background-color: #EDE0D4;
+}
+
+.cardCont{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+.pagCont{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+#components-pagination-demo-mini .ant-pagination:not(:last-child) {
+  margin-bottom: 20px;
+  
+}
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px; /* Ajusta la distancia desde la parte inferior de la pantalla */
+    right: 20px; /* Ajusta la distancia desde el lado derecho de la pantalla */
+    font-size: 50px;
+    background-color: #25D366; 
+    color: #fff; /* Color del ícono */
+    border-radius: 50%; /* Para hacerlo circular */
+    width: 70px; /* Ajusta el tamaño según tus preferencias */
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 1.2);
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.2);
+    transition: 0.9s;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  background-color: #EAC696;
+  justify-content: space-around;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  align-items: center;
+}
+
+.contentBanner {
+  font-family: var(--primary-font) !important;
+}
+
+.contentImg {
+  width: 20% !important;
+  height: 0% !important;
+  object-fit: cover !important;
+  padding: 15px !important;
+  border-radius: 50%;
+}
+
+.h1 {
+  font-weight: bold !important;
+  color: rgb(179, 80, 9) !important;
+  text-align: center;
+}
+
+.h3 {
+  color: chocolate !important;
+}
+
+
+.text {
+  font-size: 20px !important;
+  color: chocolate !important;
 }

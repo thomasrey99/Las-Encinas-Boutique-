@@ -1,0 +1,25 @@
+/* STYLES TERMINADOS */
+
+.Container {
+  display: flex;
+  justify-content: center;
+}
+
+.Container Form {
+  background-color: #f0ead2;
+  border: solid black 1px;
+  min-width: 50%;
+  margin: 1%;
+  box-shadow: 2px 2px 20px black;
+}
+
+.Container Form button {
+  justify-content: center;
+  width: 100%;
+  height: 5%;
+}
+
+.Container Form h1 {
+  color: #6c584c;
+  margin: 0 0 0 10px;
+}

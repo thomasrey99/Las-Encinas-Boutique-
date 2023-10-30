@@ -1,11 +1,21 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
+<<<<<<< HEAD
+import { Form, Input, Button, message } from 'antd';
+import style from './user.module.css';
+
+
+const FormUser = () => {
+    const { Item } = Form
+=======
 import { Form, Input, Button } from 'antd'
 
 
 const FormUser = () => {
+>>>>>>> develop
     const { Password } = Input;
     const userForm = useSelector(state => state.user)
     const [mutate] = useCreateUsersMutation();
@@ -71,6 +81,23 @@ const FormUser = () => {
     }
 console.log(form);
     return (
+<<<<<<< HEAD
+        <div className={style.div}>
+            <div className={style.containerPrincipal}>
+                <div className={style.containerSegundario}>
+                    <Form name= 'form' onSubmit={handlerSubmit}>
+                        <Item label='Nombre:'
+                        name='name'
+                        rules={[{
+                            required: true,
+                            message: 'Ingresa tu nombre'
+                        }]}>
+                            <Input name='name' onChange={handlerCange}/>
+                            {errors.name !== '' ? <span>{errors.name}</span> : ''}
+                        </Item>
+ 
+                        <Item label='Apellido:'
+=======
         <div>
             <h1>Registro de Usuario</h1>
             <form onSubmit={handlerSubmit}>
@@ -98,10 +125,52 @@ console.log(form);
                 <Password type="text" name= 'password' placeholder='Debe ser secreta...' onChange={handlerCange} />
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 <hr />
+>>>>>>> develop
 
-                <button type='submit' disabled={!isFormValid} >REGISTRAR</button>
+                        name='lastName'
+                     rules={[{
+                         required: true,
+                          message: 'Ingresa tu apellido'
+                      }]}>
+                          <Input name='lastName' onChange={handlerCange}/>
+                          {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
+                     </Item>
 
-            </form>
+                      <Item label='E-mail:'
+                      name='email'
+                      rules={[{
+                         required: true,
+                         message: 'Ingresa tu e-mail'
+                     }]}>
+                         <Input name='email' onChange={handlerCange}/>
+                         {errors.email !== '' ? <span>{errors.email}</span> : ''}
+                      </Item>
+
+                     <Item label='Contraseña'
+                        name='password'
+                     rules={[{
+                            required: true,
+                            message: 'Ingresa una contraseña'
+                     }]}>
+                          <Password name='password' onChange={handlerCange}/>
+                          {errors.password !== '' ? <span>{errors.password}</span> : ''}
+                     </Item>
+
+                     <Item label='Dirección:'
+                      name='address'
+                      rules={[{
+                            required: true,
+                            message: 'Ingresa tu dirección'
+                     }]}>
+                            <Input name='address' onChange={handlerCange}/>
+                           {errors.address !== '' ? <span>{errors.address}</span> : ''}
+                      </Item>
+                    
+                     <Button type='primary' htmlType='submit'>Registrar</Button>
+
+                    </Form>
+                </div>
+            </div>
         </div>
     )
 };

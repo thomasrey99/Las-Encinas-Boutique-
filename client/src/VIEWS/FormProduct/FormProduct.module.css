@@ -1,8 +1,9 @@
 .Container {
     margin: auto;
-    width: 35%;
+    width: 40vw;
   }
   .form {
+    width: 100%;
     border: 1px solid #f0ead2;
     margin: 1%;
     border-radius: 1rem;

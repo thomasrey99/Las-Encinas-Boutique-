@@ -4,12 +4,15 @@ import { useEffect, useState } from "react"
 import { addProducts } from "../../libs/redux/features/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
+import { addFilter } from "../../libs/redux/features/filterSelice"
 
 const Searchbar = () => {
 
 
+
   const dispatch=useDispatch()
 
+  const filter=useSelector((state)=>state.filters)
 
   const products=useSelector((state)=>state.items.allProducts)
 
@@ -20,7 +23,7 @@ const Searchbar = () => {
   const [search, setSearch]=useState("")
 
 
-  const {data, isLoading}=useGetAllProductsQuery(search)
+  const {data, isLoading}=useGetAllProductsQuery(filter)
 
 
   const handleChange=(event)=>{
@@ -30,6 +33,10 @@ const Searchbar = () => {
 
 
   const handleSearch=()=>{
+    dispatch(addFilter({
+      name:"name",
+      value:name
+    }))
     setSearch(name)
     setName("")
   }

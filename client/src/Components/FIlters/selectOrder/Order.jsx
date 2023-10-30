@@ -8,33 +8,23 @@ const order=[
     {
         label:"z-a",
         value:"name_desc"
-    },
-    {
-        label:"Menor precio",
-        value:"price_asc"
-    },
-    {
-        label:"Mayor precio",
-        value:"price_desc"
     }
 ]
 
-const Order = () => {
+const Order = ({change}) => {
     
-    const handleProvinceChange = (value) => {
 
-
-    };
     return (
       <Space wrap className={style.selectCont}>
         <label htmlFor='order'>Ordenar</label>
         <Select
+          onChange={change}
           name="order"
           defaultValue={"a-z"}
           style={{
             width: "15vw",
           }}
-          onChange={handleProvinceChange}
+          
           options={order.map((o) => ({
             label: o.label,
             value: o.value

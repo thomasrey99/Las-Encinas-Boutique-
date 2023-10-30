@@ -5,7 +5,7 @@ import styles from './footer.module.css';
 
 const Footer = () => {
     return(
-        <Layout >
+        <Layout>
         <AntFooter className={styles.footer} style={{ textAlign: 'center'}}>
             <Row gutter={16}>
                 <Col span={8}>

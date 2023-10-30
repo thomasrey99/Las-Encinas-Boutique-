@@ -15,9 +15,6 @@ const Detail = () => {
 
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isFav, setIsFav ] = useState(false);
-    // const [ rating, setRating ] = useState(0);
-    // const [ comment, setComment ] = useState(''); 
-    // const comments = ['Este es mi producto favorito', 'Está aceptable'];
 
     const handleFav = () => setIsFav(!isFav)
 
@@ -36,17 +33,17 @@ const Detail = () => {
                         <Card>    
                             <Row>
                     
-                                <Col span={16} className={styles.span}>
+                                <Col span={15} className={styles.span}>
                                     <ArrowLeftOutlined className = {styles.back} onClick={()=>navigate('/home')}/>
                                     <img alt={productDetail.name} src={productDetail.image} className={styles.image} />
                                 </Col>
-                                <Col span={8}>
+                                <Col span={9}>
                                     <div className={styles.productInfo}>
                                         {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handleFav}/>
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handleFav} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
-                                        <Rate value={productDetail.rating}/> 
+                                        <Rate disabled value={productDetail.raiting}/> 
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id}</p>}/> <br /> 
                                         <div className={styles.productButtons}>

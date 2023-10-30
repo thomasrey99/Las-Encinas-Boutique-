@@ -77,7 +77,7 @@ console.log(form);
         <div className={style.div}>
             <div className={style.containerPrincipal}>
                 <div className={style.containerSegundario}>
-                    <Form name= 'form' onSubmit={handlerSubmit}>
+                    <form name= 'form' onSubmit={handlerSubmit}>
                         <Item label='Nombre:'
                         name='name'
                         rules={[{
@@ -129,9 +129,9 @@ console.log(form);
                            {errors.address !== '' ? <span>{errors.address}</span> : ''}
                       </Item>
                     
-                     <Button type='primary' htmlType='submit'>Registrar</Button>
+                     <button type='submit'>Registrar</button>
 
-                    </Form>
+                    </form>
                 </div>
             </div>
         </div>

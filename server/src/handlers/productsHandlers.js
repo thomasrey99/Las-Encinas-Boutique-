@@ -36,7 +36,7 @@ const postProduct = async(req, res) =>{
     const {image, name, price, description, raiting, category} = req.body;
     try {
         const data={
-            image:image,
+            image:"https://i.postimg.cc/mk4Kn716/logp-Lasencinas.jpg",
             name:name,
             price:price,
             description:description,

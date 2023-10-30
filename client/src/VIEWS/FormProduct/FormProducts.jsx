@@ -94,7 +94,7 @@ const FormProducts = () => {
 
   return (
     <div className={styles.Container}>
-      <Form className={styles.form} 
+      <form className={styles.form} 
         onSubmit={handleSubmit} >
 
         <h1 className={styles.title}>Crear Producto</h1>
@@ -138,8 +138,8 @@ const FormProducts = () => {
           </Select>
         </Form.Item>
 
-        <Button type='primary' htmlType='submit'>Crear producto</Button>
-      </Form>
+        <button type='submit' >Crear producto</button>
+      </form>
     </div>
   );
 };

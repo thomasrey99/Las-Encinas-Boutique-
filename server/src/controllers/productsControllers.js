@@ -24,6 +24,8 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
     //?verifica si llega por query name, category, minPrice y maxPrice y va agregando clausulas al whereClause
     
 
+    
+
     if(name){
         whereClause.name={
             [Op.iLike]:`%${name}%`
@@ -32,6 +34,9 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
 
     if(category){
         whereClause.category=category
+    }
+    if(type){
+        whereClause.type=type
     }
     if(type){
         whereClause.type=type
@@ -65,7 +70,7 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
 
     }else if(order==='price_desc'){
 
-        orderBy=[['price', 'DESC']] 
+        orderBy=[['price', 'DESC']]
 
     }
     //?verifica si hay parametros de filtrado, de lo contrario devuelve todos los productos
@@ -78,10 +83,12 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
         const response=await Product.findAll({
             where:whereClause,
             order:orderBy.length>0?orderBy:undefined
+            
         })
         return response
     }
 }   
+
 
 //!CONTROLLER QUE CREA UN PRODUCTO
 const postProductContoller = async (data)=>{

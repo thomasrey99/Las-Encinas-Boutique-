@@ -6,13 +6,23 @@
 
 .cardCont{
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 80vh;
+  width: 100vw;
 }
-
+.cardLayout{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90vw;
+}
 #map {
   height: 500px;
-  width: 100%;
+  width: 100vw;
 }
 
 .pagCont{
@@ -24,6 +34,16 @@
 #components-pagination-demo-mini .ant-pagination:not(:last-child) {
   margin-bottom: 20px;
   
+}
+.searchResult{
+  font-family: var(--primary-font);
+  font-size: 16px;
+  margin: 40px 0 40px 0;
+}
+.errorSearch{
+  font-family: var(--primary-font);
+  font-size: 24px;
+  margin: 60px 0 40px 0;
 }
 .whatsapp-icon {
     position: fixed;
@@ -51,11 +71,17 @@
 .content {
   display: flex;
   flex-direction: row;
+<<<<<<< HEAD
+  background-color: beige;
+  justify-content: space-around;
+  
+=======
   background-color: #EAC696;
   justify-content: space-around;
   margin-bottom: 3%;
   margin-top: 3%;
   align-items: center;
+>>>>>>> develop
 }
 
 .contentBanner {
@@ -64,14 +90,28 @@
 
 .contentImg {
   width: 20% !important;
+<<<<<<< HEAD
+  height: 20% !important;
+  object-fit: cover !important;
+  padding: 15px !important;
+=======
   height: 0% !important;
   object-fit: cover !important;
   padding: 15px !important;
   border-radius: 50%;
+>>>>>>> develop
 }
 
 .h1 {
   font-weight: bold !important;
+<<<<<<< HEAD
+}
+
+.text {
+  font-size: 16px !important;
+  color: chocolate !important;
+}
+=======
   color: rgb(179, 80, 9) !important;
   text-align: center;
 }
@@ -85,3 +125,4 @@
   font-size: 20px !important;
   color: chocolate !important;
 }
+>>>>>>> develop

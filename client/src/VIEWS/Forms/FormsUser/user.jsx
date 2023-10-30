@@ -77,6 +77,7 @@ console.log(form);
         <div className={style.div}>
             <div className={style.containerPrincipal}>
                 <div className={style.containerSegundario}>
+                <h1 className={style.title}>Registrarse</h1>
                     <Form name= 'form' onSubmit={handlerSubmit}>
                         <Item label='Nombre:'
                         name='name'

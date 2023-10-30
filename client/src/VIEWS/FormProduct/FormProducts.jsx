@@ -93,39 +93,38 @@ const FormProducts = () => {
 ];
 
   return (
-    <div>
-      <Form className={styles.Container} 
-        onSubmit={handleSubmit} 
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
-        layout="horizontal">
+    <div className={styles.Container}>
+      <Form className={styles.form} 
+        onSubmit={handleSubmit} >
 
-        <h1>CREAR PRODUCTO:</h1>
+        <h1 className={styles.title}>Crear Producto</h1>
         <Form.Item label="Nombre" name="name" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
-          <Input name="name" value={state.name} onChange={(e) => handleChange('name', e.target.value)} />
+          <Input name="name" value={state.name} className={styles.input} 
+          onChange={(e) => handleChange('name', e.target.value)} />
         </Form.Item>
 
         <Form.Item label="Precio" name="price" rules={[{ required: true, message: 'Ingrese el precio' }]}>
-          <InputNumber min={1} name="price" placeholder='Ingrese el precio...' style={{ width: "100%" }} 
+          <InputNumber min={1} name="price" placeholder='Ingrese el precio...' className={styles.input} 
           value={state.price} onChange={(value) => handleChange('price', value)} />
         </Form.Item>
 
         <Form.Item label="Descripcion" name="description" rules={[{ required: true, message: 'Seleccione una descripcion' }]} >
-          <TextArea rows={4} name='description' placeholder='Ingrese la descripción' value={state.description}
+          <TextArea rows={4} name='description' placeholder='Ingrese la descripción' value={state.description} className={styles.input}
             onChange={(e) => handleChange('description', e.target.value)} />
         </Form.Item>
 
         <Form.Item name='raiting' label="Rate" rules={[{ required: true, message: 'Seleccione el raiting' }]}>
-          <Rate allowHalf placeholder='Ingrese el rate...' value={state.raiting} 
+          <Rate placeholder='Ingrese el rate...' value={state.raiting} 
           onChange={(value) => handleChange('raiting', value)}/>
         </Form.Item>
 
-        <Form.Item label="Imagen (URL) o Cargar Imagen">
-          <Input name="image" value={state.image} onChange={(e) => handleChange('image', e.target.value)}/>
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        <Form.Item label="Imagen">
+          <Input name="image" value={state.image} className={styles.input}
+          onChange={(e) => handleChange('image', e.target.value)}/>
+          <Input type="file" accept="image/*" onChange={handleImageUpload}  className={styles.input}/>
         </Form.Item>
 
-        {imageToCloud && <img src={imageToCloud} alt="" />}
+        {/* {imageToCloud && <img src={imageToCloud} alt="" />} */}
 
         <Form.Item name="category" label="Categorias"
           rules={[{ required: true, message: 'Elije al menos una categoría', type: 'array',},]}>
@@ -139,7 +138,7 @@ const FormProducts = () => {
           </Select>
         </Form.Item>
 
-        <Button type='submit'>Crear producto</Button>
+        <Button type='primary' htmlType='submit'>Crear producto</Button>
       </Form>
     </div>
   );

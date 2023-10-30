@@ -1,20 +1,23 @@
 .Container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    flex-direction: column;
-    max-width: 30%;
+    margin: auto;
+    width: 35%;
   }
-  
-  .Container Form {
-    background-color: #f0ead2;
-    border: solid black 1px;
-    min-width: 50%;
+  .form {
+    border: 1px solid #f0ead2;
     margin: 1%;
-    box-shadow: 2px 2px 20px black;
+    border-radius: 1rem;
+    padding: 5%;
+    justify-content: center !important;
+    text-align: center;
+  }
+  .title{
+    margin-bottom: 5%;
+  }
+  .input{
+    width: 20rem;
   }
   
-  .Container Form button {
+  /* .Container Form button {
     justify-content: center;
     width: 100%;
     height: 5%;
@@ -23,4 +26,4 @@
   .Container Form h1 {
     color: #6c584c;
     margin: 0 0 0 10px;
-  }
+  } */

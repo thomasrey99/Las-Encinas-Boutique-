@@ -1,5 +1,4 @@
 import { Pagination, Typography, Space } from "antd";
-import { Pagination, Typography, Space } from "antd";
 import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
@@ -11,13 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from '@ant-design/icons';
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
-import { WhatsAppOutlined } from '@ant-design/icons';
-import cajonera1 from "./image/cajonera1.jpg";
-import cajonerra2 from "./image/cajonerra2.jpg";
 
 const Home = () => {
   const whatsappLink = `https://wa.me/+5493816771213`;  
-  const {Title, Text} = Typography;
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
@@ -26,10 +21,6 @@ const Home = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
-
-
-
-
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));

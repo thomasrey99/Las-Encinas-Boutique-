@@ -1,35 +1,29 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { Button, Form, Rate, Select, Upload, Input, InputNumber } from 'antd';
-
+import  { useState } from 'react';
+import axios from "axios"
+import { Form, Rate, Select, Input, InputNumber, Button } from 'antd';
+// import { Upload } from 'antd';
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';
-
+// import { PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const { TextArea } = Input;
+import styles from './FormProduct.module.css';
+
 
 const FormProducts = () => {
-  const dispatch = useDispatch();
 
+  const [mutate] = useCreateProductMutation();
+
+  const [imageToCloud, setImageToCloud] = useState('');
   const [state, setState] = useState({
     name: '',
-    image: 'image',
-    price: 0,
+    image: '',
+    price: '',
     description: '',
-    rating: 0,
+    raiting: 0,
     category: [],
   });
 
-  const resetState = () => {
-    setState({
-      name: '',
-      image: '',
-      price: 0,
-      description: '',
-      rating: 0,
-      category: [],
-    });
-  };
+  const resetState = () => { setState({ name: '', image: '', price: 0, description: '', rating: 0, category: [], });};
 
   const handleChange = (name, value) => {
     console.log(state);
@@ -39,69 +33,104 @@ const FormProducts = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(useCreateProductMutation(state));
-    // resetState();
+  // Vista previa de imagen
+  const previewFiles = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => setImageToCloud(reader.result);
+  }
+  
+  // Actualiza estado con la imagen subbida
+  const handleImageUpload = async (e) =>  {
+
+    const file = e.target.files[0];
+
+    if (file) {
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'Las Encinas Boutique'); 
+    
+        const response = await axios.post('https://api.cloudinary.com/v1_1/dkgeccpz4/image/upload', formData);
+        const imageUrl = response.data.secure_url;
+    
+        setState({
+          ...state,
+          image: imageUrl,
+        });
+      } catch (error) {
+        console.error('Error al cargar la imagen', error);
+      }
+      previewFiles(file);
+    }
   };
 
-  const sa = ["a", "b", "c"];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const categoryString = state.category.join(',');
+      const dataToSend = {...state, category: categoryString};
+      await mutate(dataToSend);
+      resetState();
+
+   } catch (error) {
+      console.log({ error: error.message, details: error.details });
+      alert("Error al crear producto: " + error);
+   }
+  };
+
+  const categories = [
+  "todas",
+  "Alfajores",
+  "Chocolate en rama",
+  "Bocaditos",
+  "Chocolate en barra", 
+  "Volcáncito",
+  "Marroc",
+  "Huevos de pascua",
+  "Oreo",
+  "Brownie"
+];
 
   return (
-    <>
-      <div>FormProducts</div>
-      <form className={Style.Form}>
-        <Form.Item label="Nombre">
-          <Input
-            name="name"
-            value={state.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-          />
+    <div className={styles.Container}>
+      <form className={styles.form} 
+        onSubmit={handleSubmit} >
+
+        <h1 className={styles.title}>Crear Producto</h1>
+        <Form.Item label="Nombre" name="name" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
+          <Input name="name" value={state.name} className={styles.input} 
+          onChange={(e) => handleChange('name', e.target.value)} />
         </Form.Item>
 
-        <Form.Item label="Descripcion">
-          <TextArea
-            rows={4}
-            name='description'
-            value={state.description}
-            onChange={(e) => handleChange('description', e.target.value)}
-          />
+        <Form.Item label="Precio" name="price" rules={[{ required: true, message: 'Ingrese el precio' }]}>
+          <InputNumber min={1} name="price" placeholder='Ingrese el precio...' className={styles.input} 
+          value={state.price} onChange={(value) => handleChange('price', value)} />
         </Form.Item>
 
-        <Form.Item label="Precio">
-          <InputNumber
-            min={1}
-            name="price"
-            value={state.price}
-            onChange={(value) => handleChange('price', value)}
-          />
+        <Form.Item label="Descripcion" name="description" rules={[{ required: true, message: 'Seleccione una descripcion' }]} >
+          <TextArea rows={4} name='description' placeholder='Ingrese la descripción' value={state.description} className={styles.input}
+            onChange={(e) => handleChange('description', e.target.value)} />
         </Form.Item>
 
-        <Form.Item name='rating' label="Rate">
-          <Rate
-            value={state.rating}
-            onChange={(value) => handleChange('rating', value)}
-          />
+        <Form.Item name='raiting' label="Rate" rules={[{ required: true, message: 'Seleccione el raiting' }]}>
+          <Rate placeholder='Ingrese el rate...' value={state.raiting} 
+          onChange={(value) => handleChange('raiting', value)}/>
         </Form.Item>
 
-        <Form.Item
-          name="category"
-          label="Categorias"
-          rules={[
-            {
-              required: true,
-              message: 'Elije al menos una categoría',
-              type: 'array',
-            },
-          ]}
-        >
-          <Select
-            mode="multiple"
-            placeholder="Elije una categoría"
-            value={state.category}
-            onChange={(value) => handleChange('category', value)}
-          >
-            {sa.map((c) => (
+        <Form.Item label="Imagen">
+          <Input name="image" value={state.image} className={styles.input}
+          onChange={(e) => handleChange('image', e.target.value)}/>
+          <Input type="file" accept="image/*" onChange={handleImageUpload}  className={styles.input}/>
+        </Form.Item>
+
+        {/* {imageToCloud && <img src={imageToCloud} alt="" />} */}
+
+        <Form.Item name="category" label="Categorias"
+          rules={[{ required: true, message: 'Elije al menos una categoría', type: 'array',},]}>
+          <Select mode="multiple" placeholder="Elije una categoría" value={state.category} 
+            onChange={(value) => handleChange('category', value)}>
+            {categories.map((c) => (
               <Option value={c} key={c}>
                 {c}
               </Option>
@@ -109,9 +138,9 @@ const FormProducts = () => {
           </Select>
         </Form.Item>
 
-        <button onClick={handleSubmit}>Crear producto</button>
+        <button type='submit' >Crear producto</button>
       </form>
-    </>
+    </div>
   );
 };
 

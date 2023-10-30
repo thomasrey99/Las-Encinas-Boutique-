@@ -11,7 +11,7 @@
     
 }
 
-.logCont{
+.logCont{   
     width: 4vw;
     height: 4vw;
     display: flex;
@@ -20,8 +20,9 @@
     justify-content: center;
 }
 .img{
-    width: 3vw;
-    height: 3vw;
+    width: 4vw;
+    height: 4vw;
+    margin-left: 1vw;
 }
 .navItems{
     display: flex;

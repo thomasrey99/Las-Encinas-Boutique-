@@ -1,7 +1,7 @@
 import style from "./NavBar.module.css";
 import { NavLink } from "react-router-dom"
 import cart from "../../assets/carrito.png"
-import logo from "../../assets/muffin.png"
+import logo from "../../assets/Las_encinas_Logo.png"
 
 const NavBar = () => {
   return (

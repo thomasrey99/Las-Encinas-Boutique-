@@ -1,8 +1,9 @@
 import  { useState } from 'react';
 import axios from "axios"
-import { Form, Rate, Select, Input, InputNumber, Upload, Button } from 'antd';
+import { Form, Rate, Select, Input, InputNumber, Button } from 'antd';
+// import { Upload } from 'antd';
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';
-import { PlusOutlined } from '@ant-design/icons';
+// import { PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const { TextArea } = Input;
 import styles from './FormProduct.module.css';

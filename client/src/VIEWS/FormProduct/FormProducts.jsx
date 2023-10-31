@@ -1,5 +1,4 @@
 import  { useState } from 'react';
-import axios from "axios"
 import { Form, Rate, Select, Input, InputNumber, Button } from 'antd';
 // import { Upload } from 'antd';
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';

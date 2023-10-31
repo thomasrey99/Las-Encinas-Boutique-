@@ -1,17 +1,25 @@
 .div {
-    display: flex;  
-    
-  }
-  .containerPrincipal {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border: 0.5px solid blue;
-      padding: 40px 40px 10px 40px;
-      background-color: white;
-  }
-  
-  .containerSegundario {
-      text-align: center;
-  }
+  margin-top: 2%;
+  width: 100vw;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.containerPrincipal {
+    margin: auto;
+    width: 35vw;
+    height: 50%;
+    border: 0.5px solid  #f0ead2;
+    border-radius: 1rem;
+    padding: 40px 40px 10px 40px;
+    background-color: #EAC696;
+}
+
+.containerSegundario {
+    text-align: center;
+}
+.title{
+  margin-bottom: 5%;
+}

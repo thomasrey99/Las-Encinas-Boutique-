@@ -18,11 +18,11 @@ const Home = () => {
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
+  const {name}=useSelector((state)=>state.filters)
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
-
-
+  
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -43,16 +43,22 @@ const Home = () => {
       </div>
 
       <div className={styles.cardCont}>
-        {productsToDisplay?.map((product) => (
-          <Card
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            price={product.price}
-            image={product.image}
-            raiting={product.raiting}
-          />
-        ))}
+        {
+          name && <p className={styles.searchResult}>Resultados de la busqueda: {`"${name}"`}</p>
+        }
+        <div className={styles.cardLayout}>
+          {productsToDisplay?.map((product) => (
+            <Card
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              raiting={product.raiting}
+            />
+          ))}
+        </div>
+        {productsToDisplay.length===0 && <p className={styles.errorSearch}>No se encontraron productos</p>}
       </div>
       <div className={styles.content}>
 

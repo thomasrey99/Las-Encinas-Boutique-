@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (dataBase) => {
     dataBase.define(
         'User', {
-        id: {
+        id_user: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
@@ -26,6 +26,10 @@ module.exports = (dataBase) => {
         },
         password:{
             type:DataTypes.STRING
+        },
+        is_Admin:{
+            type:DataTypes.BOOLEAN,
+            default: false
         }
     },
     {

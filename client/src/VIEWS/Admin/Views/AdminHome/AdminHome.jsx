@@ -1,13 +1,12 @@
 import React from 'react'
 import NavBar from '../../Components/NavBar/NavBar'
 
-
-const ControlPanel = () => {
+const AdminHome = () => {
   return (
-    <div>ControlPanel
+    <div>
         <NavBar/>
     </div>
   )
 }
 
-export default ControlPanel
+export default AdminHome

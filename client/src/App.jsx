@@ -10,6 +10,7 @@ import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Prueba from './Components/Prueba/Prueba';
+import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 
 const App = () => {
 
@@ -18,7 +19,7 @@ const App = () => {
   
   return (
     <main className={style.mainCont}>
-      {location.pathname !== '/' && <NavBar/>}
+      {location.pathname !== '/' || "/admin" && <NavBar/>}
       <Routes> 
         <Route path='/' element={<Landing/>}/>
         <Route path='home' element={<Home/>}/>
@@ -28,8 +29,9 @@ const App = () => {
         <Route path='about' element={<AboutUs/>} />
         <Route path='*' element={<ErrorPage/>} />
         <Route path='/prueba' element={<Prueba/>} />
+        <Route path='/admin' element={<ControlPanel/>} />
       </Routes>
-      {location.pathname !== '/' && <Footer/>}
+      {location.pathname !== '/' || "/admin" && <Footer/>}
     </main>
   )
 }

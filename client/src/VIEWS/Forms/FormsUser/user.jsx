@@ -1,10 +1,10 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
+
 
 
 const FormUser = () => {
@@ -91,9 +91,9 @@ console.log(form);
                         <Item label='Apellido:'
 
                         name='lastName'
-                     rules={[{
-                         required: true,
-                          message: 'Ingresa tu apellido'
+                        rules={[{
+                            required: true,
+                            message: 'Ingresa tu apellido'
                       }]}>
                           <Input name='lastName' onChange={handlerCange}/>
                           {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
@@ -139,3 +139,4 @@ console.log(form);
 };
 
 export default FormUser;
+

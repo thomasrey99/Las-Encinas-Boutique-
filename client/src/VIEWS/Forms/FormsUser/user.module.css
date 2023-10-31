@@ -10,11 +10,14 @@
     border: 0.5px solid  #f0ead2;
     border-radius: 1rem;
     padding: 40px 40px 10px 40px;
-    background-color: white;
+    background-color: #EAC696;
 }
 
 .containerSegundario {
     text-align: center;
+}
+.title{
+  margin-bottom: 5%;
 }
 .title{
   margin-bottom: 5%;

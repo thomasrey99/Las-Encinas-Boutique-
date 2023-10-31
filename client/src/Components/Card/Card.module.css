@@ -12,7 +12,9 @@
     display: flex;
     justify-content: space-between;
     margin: 4vh;
+    margin: 4vh;
   }
+  .card{
   .card{
     background-color: var(--color-grey-primary);
   }
@@ -35,8 +37,15 @@
   .price{
     font-size: 1.4rem;
     bottom: 0;
+  .raiting{
+
+  }
+  .price{
+    font-size: 1.4rem;
+    bottom: 0;
     position: absolute;
     left: 0;
+    margin: 5%;
     margin: 5%;
   }
   .buttons{
@@ -48,4 +57,14 @@
   .button{
     border: 1px solid var(--color-orange-primary) !important;
     color: var(--color-orange-primary) !important;
+  .buttons{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 5%;
   }
+  .button{
+    border: 1px solid var(--color-orange-primary) !important;
+    color: var(--color-orange-primary) !important;
+  }
+

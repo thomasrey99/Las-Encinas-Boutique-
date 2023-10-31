@@ -59,11 +59,13 @@ const Detail = () => {
                                     <img alt={productDetail.name} src={productDetail.image} className={styles.image} />
                                 </Col>
                                 <Col span={9}>
+                                <Col span={9}>
                                     <div className={styles.productInfo}>
                                         {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handlefavClick}/>
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handlefavClick} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
+                                        <Rate disabled value={productDetail.raiting}/> 
                                         <Rate disabled value={productDetail.raiting}/> 
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id}</p>}/> <br /> 

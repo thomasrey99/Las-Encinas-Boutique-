@@ -72,11 +72,17 @@
 .content {
   display: flex;
   flex-direction: row;
+
+  background-color: beige;
+  justify-content: space-around;
+  
+
   background-color: #EAC696;
   justify-content: space-around;
   margin-bottom: 3%;
   margin-top: 3%;
   align-items: center;
+
 }
 
 .contentBanner {
@@ -85,17 +91,29 @@
 
 .contentImg {
   width: 20% !important;
+
+  height: 20% !important;
+  object-fit: cover !important;
+  padding: 15px !important;
+
   height: 0% !important;
   object-fit: cover !important;
   padding: 15px !important;
   border-radius: 50%;
+
 }
 
 .h1 {
   font-weight: bold !important;
-  color: rgb(179, 80, 9) !important;
-  text-align: center;
+
 }
+
+.text {
+  font-size: 16px !important;
+  color: chocolate !important;
+}
+
+  
 
 .h3 {
   color: chocolate !important;

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../../libs/redux/features/favoritesSlice";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal} from 'antd';
@@ -13,10 +15,29 @@ const Detail = () => {
     const { id } = useParams();
     const { data: productDetail, isLoading, isError } = useGetProductByIdQuery(id)
 
+    const favorites = useSelector(state => state.favorites.favoriteProducts)
+    const dispatch = useDispatch();
     const [ isModalVisible, setIsModalVisible ] = useState(false);
-    const [ isFav, setIsFav ] = useState(false);
+    const [ isFav, setIsFav ] = useState();
 
-    const handleFav = () => setIsFav(!isFav)
+    useEffect(() => {
+        if (favorites.length > 0 ){
+          const isFavorite = favorites.some(fav => fav.id === id);
+          setIsFav(isFavorite);
+        }
+      }, [favorites, id]);
+
+    const handlefavClick = () => {
+        const isFavorite = favorites.some(prod => prod.id === id);
+        if (isFavorite) {
+          setIsFav(false);
+          dispatch(removeFavorite(productDetail));
+        } else {
+          setIsFav(true);
+          dispatch(addFavorite(productDetail));
+        }
+      }
+
 
     const showModal = () => setIsModalVisible(true);
 
@@ -34,13 +55,13 @@ const Detail = () => {
                             <Row>
                     
                                 <Col span={15} className={styles.span}>
-                                    <ArrowLeftOutlined className = {styles.back} onClick={()=>navigate('/home')}/>
+                                    <ArrowLeftOutlined className = {styles.back} onClick={()=>navigate(-1)}/>
                                     <img alt={productDetail.name} src={productDetail.image} className={styles.image} />
                                 </Col>
                                 <Col span={9}>
                                     <div className={styles.productInfo}>
-                                        {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handleFav}/>
-                                        : <HeartFilled size="large" className={styles.likedButton} onClick={handleFav} />}
+                                        {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handlefavClick}/>
+                                        : <HeartFilled size="large" className={styles.likedButton} onClick={handlefavClick} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
                                         <Rate disabled value={productDetail.raiting}/> 

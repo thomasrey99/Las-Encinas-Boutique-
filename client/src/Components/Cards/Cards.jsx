@@ -12,8 +12,8 @@ const Cards = () => {
   console.log("estoy en cards", isSearch)
   return (
     <div className={Style.Container}>
-        {products?.map(c => (
-        <Card key={c.id} id={c.id} name={c.name} price={c.price} image={c.image} raiting={c.raiting}
+        {products?.map(props => (
+        <Card key={props.id} props={props}
         />))}
     </div> 
   )

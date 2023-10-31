@@ -3,6 +3,7 @@ import { productsApi } from "./services/productsApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { productsSlice } from "./features/productsSlice";
 import { filterSlice } from "./features/filterSelice";
+import  favoritesReducer   from "./features/favoritesSlice";
 import { usersApi } from "./services/usersApi";
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
       items: productsSlice.reducer,
       filters:filterSlice.reducer,
       [productsApi.reducerPath]: productsApi.reducer,
-      [usersApi.reducerPath]: usersApi.reducer
+      [usersApi.reducerPath]: usersApi.reducer,
+      favorites: favoritesReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(productsApi.middleware, usersApi.middleware),

@@ -1,5 +1,6 @@
 import style from "./NavBar.module.css";
 import { NavLink } from "react-router-dom"
+import HamburguerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png"
 import logo from "../../assets/Las_encinas_Logo.png"
 
@@ -16,6 +17,7 @@ const NavBar = () => {
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
               <NavLink to={"/createProduct"} className={style.item}>Crear producto</NavLink>
               <NavLink to={"/registeruser"} className={style.item}>Registrarse aquí</NavLink>
+              <HamburguerMenu/>
           </div>
         </div>
     </nav>

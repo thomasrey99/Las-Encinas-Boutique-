@@ -9,6 +9,7 @@ import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
+import Favorites from './Components/Favorites/favorites'
 import Prueba from './Components/Prueba/Prueba';
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='home' element={<Home/>}/>
         <Route path='detail/:id' element={<Detail/>} />  
         <Route path='createProduct' element={<FormProducts/>} />
+        <Route path='favorites' element={<Favorites/>} />
         <Route path='registeruser' element={<FormUser/>} />
         <Route path='about' element={<AboutUs/>} />
         <Route path='*' element={<ErrorPage/>} />

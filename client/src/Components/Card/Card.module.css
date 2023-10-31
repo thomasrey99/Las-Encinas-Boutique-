@@ -17,8 +17,8 @@
     background-color: var(--color-grey-primary);
   }
   .card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+    transform: translateY(-0.3rem);
+    box-shadow: 0.2rem 0.2rem 0.2rem #bbbbbb;
   }
 .link{text-decoration: none;}
   
@@ -26,7 +26,7 @@
     max-width: 100%;
   }
   .name{
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-bottom: 15%;
   }
   .raiting{

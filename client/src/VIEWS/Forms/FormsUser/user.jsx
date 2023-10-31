@@ -6,6 +6,10 @@ import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
 
+import { Form, Input, Button, message } from 'antd';
+import style from './user.module.css';
+
+
 
 const FormUser = () => {
     const { Item } = Form
@@ -77,7 +81,7 @@ console.log(form);
         <div className={style.div}>
             <div className={style.containerPrincipal}>
                 <div className={style.containerSegundario}>
-                    <Form name= 'form' onSubmit={handlerSubmit}>
+                    <form name= 'form' onSubmit={handlerSubmit}>
                         <Item label='Nombre:'
                         name='name'
                         rules={[{
@@ -91,9 +95,9 @@ console.log(form);
                         <Item label='Apellido:'
 
                         name='lastName'
-                     rules={[{
-                         required: true,
-                          message: 'Ingresa tu apellido'
+                        rules={[{
+                            required: true,
+                            message: 'Ingresa tu apellido'
                       }]}>
                           <Input name='lastName' onChange={handlerCange}/>
                           {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
@@ -129,9 +133,9 @@ console.log(form);
                            {errors.address !== '' ? <span>{errors.address}</span> : ''}
                       </Item>
                     
-                     <Button type='primary' htmlType='submit'>Registrar</Button>
+                     <button type='submit'>Registrar</button>
 
-                    </Form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -139,3 +143,4 @@ console.log(form);
 };
 
 export default FormUser;
+

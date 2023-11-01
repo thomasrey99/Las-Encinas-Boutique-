@@ -33,6 +33,9 @@ Product.belongsToMany(User, {through: 'user_product'})
 Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });
 
+User.belongsToMany(Product, { through: 'Favorites' });
+Product.belongsToMany(User, { through: 'Favorites' });
+
 
 module.exports={
   ...dataBase.models,

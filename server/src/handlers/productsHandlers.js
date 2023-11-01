@@ -2,7 +2,10 @@ const { productId,
         allProducts, 
         postProductContoller, 
         putProductContoller,
-        deleteProductContoller
+        deleteProductContoller,
+        addFavController,
+        removeFavController,
+        getFavsController
       } = require("../controllers/productsControllers");
 
 //!HANDLER QUE MANEJA LA PETICION GET POR ID DE /USERS/:ID
@@ -82,10 +85,51 @@ const deleteProduct = async(req, res) =>{
     }
 }
 
+//Handler que maneja la petición POST a /products/favorites
+const addFavProduct = async(req, res) =>{
+    const { userId } = req.body;
+    const { productId } = req.params;
+
+    try {
+        const result = await addFavController(userId, productId)
+        res.status(201).json(result)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+//Handler que maneja la petición DELETE a /products/favorites
+const removeFavProduct = async(req, res) =>{
+    const { userId } = req.body;
+    const { productId } = req.params;
+
+    try {
+        const result = await removeFavController(userId, productId)
+        res.status(201).json(result)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+const getFavProducts = async () => {
+    const { userId } = req.body;
+    const { productId } = req.params;
+
+    try {
+        const result = await getFavsController(userId, productId)
+        res.status(201).json(result)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getProductById,
     getAllProducts,
     postProduct,
     putProduct,
-    deleteProduct
+    deleteProduct,
+    addFavProduct,
+    removeFavProduct,
+    getFavProducts
 }

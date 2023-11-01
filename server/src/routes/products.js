@@ -4,7 +4,10 @@ const { putProduct,
         getProductById, 
         getAllProducts, 
         postProduct,
-        deleteProduct
+        deleteProduct,
+        addFavProduct,
+        removeFavProduct,
+        getFavProducts
       } = require("../handlers/productsHandlers");
 
 const productsRouter = Router()
@@ -15,5 +18,8 @@ productsRouter.get("/", getAllProducts)
               .post("/", postProduct )
               .put("/:id", putProduct)
               .delete("/:id", deleteProduct)
+              .get("/favorites", getFavProducts)
+              .post("/favorites/:productId" , addFavProduct)
+              .delete("/favorites/:productId" , removeFavProduct)
 
 module.exports= productsRouter;

@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const {Product}=require("../db")
+const {Product, User}=require("../db")
 
 //!TRAE UN PRODUCTO MEDIANTE UN ID ESPECIFICO
 
@@ -118,10 +118,45 @@ const deleteProductContoller = async(id) =>{
 
 }
 
+//CONTROLER QUE AGREGA UN PRODUCTO A FAVORITOS
+const addFavController = async (userId, productId) => {
+    const user = await User.findByPk(userId);
+    const product = await Product.findByPk(productId);
+
+    if (user && product) {
+        await user.addProduct(product);
+        return { message: 'Producto agregado a favoritos', product: product };
+    }
+}
+
+//CONTROLER QUE ELIMINA UN PRODUCTO DE FAVORITOS
+const removeFavController = async (userId, productId) => {
+    const user = await User.findByPk(userId);
+    const product = await Product.findByPk(productId);
+
+    if (user && product) {
+        await user.removeProduct(product);
+        return { message: 'Producto removido de favoritos', product: product };
+    }
+}
+
+//CONTROLER QUE TRAE PRODUCTOS FAVORITOS
+const getFavsController = async (userId) => {
+    const user = await User.findByPk(userId);
+
+    if (user) {
+        const favorites = await user.getProducts();
+        return favorites;
+    }
+}
+
 module.exports = {
     productId,
     allProducts,
     postProductContoller,
     putProductContoller,
-    deleteProductContoller
+    deleteProductContoller,
+    addFavController,
+    removeFavController,
+    getFavsController
 };

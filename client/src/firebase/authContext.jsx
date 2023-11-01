@@ -14,7 +14,7 @@ export const useAuth = ()=>{
 }
 
 export function AuthProvider({children}){
-    let [currentUser, setCurrentUser] = useState(null)
+    let [user, setUser] = useState(null)
 
     const signup = async(email, password)=>{
         try {
@@ -38,7 +38,7 @@ export function AuthProvider({children}){
 
     useEffect(()=>{
         onAuthStateChanged(auth, currentUser =>{
-            setCurrentUser(currentUser)
+            setUser(currentUser)
             console.log("current user:",currentUser)
         })
 
@@ -49,7 +49,7 @@ export function AuthProvider({children}){
 
 
     return(
-        <authContext.Provider value={{signup, login, currentUser, logout }}>
+        <authContext.Provider value={{signup, login, user, logout }}>
             {children}
         </authContext.Provider>  
     )

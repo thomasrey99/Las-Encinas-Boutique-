@@ -32,7 +32,7 @@ const Register = ()=>{
 
             try {
                 await signup(user.email, user.password);
-                navigate('/protectedroute1')
+                navigate('/home')
             } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-email'){

@@ -9,11 +9,9 @@ import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
-import Prueba from './Components/Prueba/Prueba';
 import Login from './VIEWS/Forms/Login/login';
 import Register from './VIEWS/Forms/Register/Register';
 import { AuthProvider } from './firebase/authContext';
-import ProtectedView from './VIEWS/ProtectedView/ProtectedView';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 const App = () => {
 
@@ -22,35 +20,24 @@ const App = () => {
   
   return (
     <main className={style.mainCont}>
+      
+      
+      {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
+      <AuthProvider> 
       {location.pathname !== '/' && <NavBar/>}
-      <Routes> 
-        <Route path='/' element={<Landing/>}/>
-        <Route path='home' element={<Home/>}/>
-        <Route path='detail/:id' element={<Detail/>} />  
-        <Route path='createProduct' element={<FormProducts/>} />
-        <Route path='registeruser' element={<FormUser/>} />
-        <Route path='about' element={<AboutUs/>} />
-        
-        <Route path='/prueba' element={<Prueba/>} />
-        
-       
-
-        
-      </Routes>
-
-
-      <AuthProvider>
-          <Routes>
-          <Route path='/protectedroute1' element={<ProtectedView/>} />
-          <Route path='/registerfirebase' element={<Register/>} /> 
-          <Route path='/loginfirebase' element={<LoginFirebase/>} />
-          </Routes>
-          
-        
-
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='home' element={<Home />} />
+          <Route path='detail/:id' element={<Detail />} />
+          <Route path='createProduct' element={<FormProducts />} />
+          <Route path='registeruser' element={<Register />} />
+          <Route path='about' element={<AboutUs />} />
+          <Route path='login' element={<LoginFirebase />} />
+        </Routes>
+        {location.pathname !== '/' && <Footer/>} 
       </AuthProvider>
      
-      {location.pathname !== '/' && <Footer/>} 
+       
     </main>
   )
 }

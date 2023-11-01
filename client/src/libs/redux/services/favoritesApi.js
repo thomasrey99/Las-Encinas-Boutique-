@@ -1,16 +1,22 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
-export const productsApi=createApi({
+export const favoritesApi=createApi({
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:3001/products"
+        baseUrl:"http://localhost:3001"
     }),
     reducerPath:"favoritesApi",
     endpoints:(builder)=>({
-        getFavProducts:builder.query({
+        getAllFavProducts:builder.query({
             query:(userId) => ({
                 url: "/favorites",
                 body: userId,
                 providesTags:["favs"]
+            })
+        }),
+        getFavProduct:builder.query({
+            query:(userId, productId) => ({
+                url: `/favorites/${productId}`,
+                body: userId,
             })
         }),
         addFavProduct:builder.mutation({
@@ -18,7 +24,6 @@ export const productsApi=createApi({
                 url: `/favorites/${productId}`,
                 method:"POST",
                 body: userId, 
-                params: productId
             }),
             invalidatesTags:["favs"]
         }),
@@ -27,11 +32,10 @@ export const productsApi=createApi({
                 url: `/favorites/${productId}`,
                 method:"DELETE",
                 body: userId, 
-                params: productId
             }),
             invalidatesTags:["favs"]
         }),
     })
 })
 
-export const {useGetFavProductsQuery ,useAddFavProductMutation, useRemoveFavProductMutation}=productsApi
+export const {useGetFavProductsQuery ,useAddFavProductMutation, useRemoveFavProductMutation}=favoritesApi

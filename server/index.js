@@ -7,9 +7,17 @@ const PORT=3001
 
 //!inicializando el servidor y sincronizando la base de datos
 
-server.listen(PORT, ()=>{
-  dataBase.sync({alter:true})
-  fetchCategories()
-  fetchTypes()
-  console.log(`server listen in port ${PORT}`)
-})
+const startServer=async()=>{
+  try {
+    await dataBase.sync({ alter: true });
+    await fetchCategories();
+    await fetchTypes();
+    server.listen(PORT, () => {
+      console.log(`Server of las encinas boutique listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error starting server:', error);
+  }
+}
+
+startServer();

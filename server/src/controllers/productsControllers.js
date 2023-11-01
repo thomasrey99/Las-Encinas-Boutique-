@@ -36,7 +36,7 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
     if(category){
         whereClause.category=category
     }
-    
+
     if(type){
         whereClause.type=type
     }
@@ -101,7 +101,7 @@ const postProductContoller = async (data)=>{
     return result
 }
 
-//CONTROLLER QUE MODIFICA O ACTUALIZA UN PRODUCTO
+//!CONTROLLER QUE MODIFICA O ACTUALIZA UN PRODUCTO
 const putProductContoller = async (id, data) => {
 
     const findProductById = await Product.findByPk(id);

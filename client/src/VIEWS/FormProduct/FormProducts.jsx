@@ -33,6 +33,8 @@ const FormProducts = () => {
 
   const handleChange = (name, value) => {
     console.log(state);
+    console.log("nombre: ",name)
+    console.log("valor: ", value)
     setState({
       ...state,
       [name]: value,
@@ -75,8 +77,9 @@ const FormProducts = () => {
     e.preventDefault();
     try {
       const categoryString = state.category.join(',');
-      const dataToSend = {...state, category: categoryString};
-      console.log(dataToSend)
+      const typeString=state.type.join(',')
+      const dataToSend = {...state, category: categoryString, type:typeString};
+      console.log("datos de posteo",dataToSend)
       await mutate(dataToSend);
       resetState();
 

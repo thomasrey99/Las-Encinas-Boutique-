@@ -34,15 +34,16 @@ const getAllProducts = async ( req, res ) => {
 
 //!HANDLER QUE MANEJA LA PETICION POST A /PRODUCTS
 const postProduct = async(req, res) =>{
-    const {image, name, price, description, raiting, category} = req.body;
+    const {image, name, price, description, raiting, category, type} = req.body;
     try {
         const data={
             image:image,
             name:name,
-            price:price,
+            price:Number(price),
             description:description,
             raiting:raiting,
-            category:category
+            category:category,
+            type:type
         }
         const result = await postProductContoller(data)
         res.status(201).json(result)

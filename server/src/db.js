@@ -25,7 +25,7 @@ requestModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request } = dataBase.models;
+const { User, Product, Request, Comment } = dataBase.models;
 
 User.belongsToMany(Product, {through: 'user_product'})
 Product.belongsToMany(User, {through: 'user_product'})
@@ -35,6 +35,9 @@ Request.belongsToMany(Product , { through: 'product_request' });
 
 User.belongsToMany(Product, { through: 'Favorites' });
 Product.belongsToMany(User, { through: 'Favorites' });
+
+User.belongsToMany(Product, { through: Comment });
+Product.belongsToMany(User, { through: Comment });
 
 
 module.exports={

@@ -1,135 +1,91 @@
 const { productId, 
-        allProducts, 
-        postProductContoller, 
-        putProductContoller,
-        deleteProductContoller,
-        addFavController,
-        removeFavController,
-        getFavsController
-      } = require("../controllers/productsControllers");
+    allProducts, 
+    postProductContoller, 
+    putProductContoller,
+    deleteProductContoller
+  } = require("../controllers/productsControllers");
 
 //!HANDLER QUE MANEJA LA PETICION GET POR ID DE /USERS/:ID
 const getProductById  = async ( req, res ) => {
 
-   const { id } = req.params
-   
-   try {
-        const result = await productId(id)
-        res.status(200).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+const { id } = req.params
+
+try {
+    const result = await productId(id)
+    res.status(200).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
 
 }
 
 //!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME, CATEGORY, MINPRICE Y MAXPRICE POR QUERY PARA POSIBLES FILTROS
 const getAllProducts = async ( req, res ) => {
-    const {name, minPrice, maxPrice, category,type, order}=req.query
-    try {
-        const result = await allProducts(name, minPrice, maxPrice, category,type, order)
-        return res.status(200).json(result)
-    } catch (error) {
-        return res.status(400).json({ error: error.message });
-    }
+const {name, minPrice, maxPrice, category,type, order}=req.query
+try {
+    const result = await allProducts(name, minPrice, maxPrice, category,type, order)
+    return res.status(200).json(result)
+} catch (error) {
+    return res.status(400).json({ error: error.message });
+}
 
 }
 
 //!HANDLER QUE MANEJA LA PETICION POST A /PRODUCTS
 const postProduct = async(req, res) =>{
-    const {image, name, price, description, raiting, category} = req.body;
-    try {
-        const data={
-            image:image,
-            name:name,
-            price:price,
-            description:description,
-            raiting:raiting,
-            category:category
-        }
-        const result = await postProductContoller(data)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+const {image, name, price, description, raiting, category} = req.body;
+try {
+    const data={
+        image:image,
+        name:name,
+        price:price,
+        description:description,
+        raiting:raiting,
+        category:category
     }
+    const result = await postProductContoller(data)
+    res.status(201).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
 }
 
 //HANDLER QUE MANEJA LA PETICIÓN PUT A /Products
 const putProduct = async(req, res) =>{
-    const { id } = req.params;
-    const {image, name, price, description, raiting, category} = req.body;
-    try {
-        const data={
-            image:image,
-            name:name,
-            price:price,
-            description:description,
-            raiting:raiting,
-            category:category
-        }
-        const result = await putProductContoller(id, data)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+const { id } = req.params;
+const {image, name, price, description, raiting, category} = req.body;
+try {
+    const data={
+        image:image,
+        name:name,
+        price:price,
+        description:description,
+        raiting:raiting,
+        category:category
     }
+    const result = await putProductContoller(id, data)
+    res.status(201).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
 }
 
 //Handler que maneja la petición delete a /Products
 const deleteProduct = async(req, res) =>{
-    const { id } = req.params;
-   
-    try {
-        const result = await deleteProductContoller(id)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+const { id } = req.params;
+
+try {
+    const result = await deleteProductContoller(id)
+    res.status(201).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
 }
-
-//Handler que maneja la petición POST a /products/favorites
-const addFavProduct = async(req, res) =>{
-    const { userId } = req.body;
-    const { productId } = req.params;
-
-    try {
-        const result = await addFavController(userId, productId)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
-//Handler que maneja la petición DELETE a /products/favorites
-const removeFavProduct = async(req, res) =>{
-    const { userId } = req.body;
-    const { productId } = req.params;
-
-    try {
-        const result = await removeFavController(userId, productId)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
-
-const getFavProducts = async () => {
-    const { userId } = req.body;
-    const { productId } = req.params;
-
-    try {
-        const result = await getFavsController(userId, productId)
-        res.status(201).json(result)
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
 }
 
 module.exports = {
-    getProductById,
-    getAllProducts,
-    postProduct,
-    putProduct,
-    deleteProduct,
-    addFavProduct,
-    removeFavProduct,
-    getFavProducts
+getProductById,
+getAllProducts,
+postProduct,
+putProduct,
+deleteProduct
 }

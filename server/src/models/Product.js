@@ -9,6 +9,10 @@ module.exports = (dataBase) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     image: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -18,7 +22,7 @@ module.exports = (dataBase) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.NUMERIC,
       allowNull: false,
     },
     description: {

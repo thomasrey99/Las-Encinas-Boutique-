@@ -23,13 +23,13 @@ const dataBase=new Sequelize(
 )
 userModel(dataBase)
 productModel(dataBase)
-requestModel(dataBase)
 categoryModel(dataBase)
 typeModel(dataBase)
+requestModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request, Category, Type } = dataBase.models;
+const { User, Product, Request } = dataBase.models;
 
 //!un usuario puede comprar varios producots y un producto puede ser comprado por varios usuarios
 User.belongsToMany(Product, {through: 'user_product'})
@@ -43,5 +43,4 @@ Request.belongsToMany(Product , { through: 'product_request' });
 module.exports={
   ...dataBase.models,
   dataBase
-
 }

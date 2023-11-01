@@ -10,10 +10,7 @@ const types=[
 
 const Type = () => {
 
-  const handleProvinceChange = (value) => {
 
-
-  };
   return (
     <Space wrap className={style.selectCont}>
         <label htmlFor='type'>Tipo de Chocolate</label>

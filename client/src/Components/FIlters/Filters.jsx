@@ -5,10 +5,12 @@ import Order from "./selectOrder/Order";
 import Type from "./selectType/Type";
 import { addFilter } from "../../libs/redux/features/filterSelice";
 import { useSelector, useDispatch} from "react-redux";
+
+
 const Filters = () => {
 
   const dispatch=useDispatch()
-
+  
   const filters=useSelector((state)=>state.filters)
 
   const handleChangeCategory=(event)=>{
@@ -30,7 +32,7 @@ const Filters = () => {
         <div className={style.filterCont}>
           <SelectCategory change={handleChangeCategory}/>
           <Order change={handleChangeOrder}/>
-          {/*<Type/>*/}
+          <Type/>
           <ClearButton/>
         </div>
   )

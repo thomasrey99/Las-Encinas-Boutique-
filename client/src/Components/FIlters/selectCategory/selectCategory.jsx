@@ -1,20 +1,23 @@
-
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css"
-const SelectCategory = ({change}) => {
+import { useSelector, useDispatch} from "react-redux";
+import { useGetAllCategoriesQuery } from "../../../libs/redux/services/categoriesApi";
+import { addCategories } from "../../../libs/redux/features/categoriesSlice";
+import { useEffect } from 'react';
 
-    const categories = [
-        "Todas",
-        "Alfajores",
-        "Chocolate en rama",
-        "Bocaditos",
-        "Chocolate en barra", 
-        "Volcáncito",
-        "Marroc",
-        "Huevos de pascua",
-        "Oreo",
-        "Brownie"
-    ];
+const SelectCategory = ({change}) => {
+  
+  const dispatch=useDispatch()
+
+  const categories=useSelector((state)=>state.categories.allCategories)
+
+  const {data}=useGetAllCategoriesQuery()
+
+  useEffect(()=>{
+    if(data && data.length>0){
+      dispatch(addCategories(data))
+    }
+  }, [data])
 
     return (
       <Space wrap className={style.selectCont}>
@@ -26,11 +29,11 @@ const SelectCategory = ({change}) => {
           style={{
             width: "15vw",
           }}
-          
           options={categories.map((category) => ({
-            label: category,
-            value: category==="Todas"?"":category,
+            label: category.name,
+            value: category.name==="Todas"?"":category.name,
           }))}
+          
         />
       </Space>
   )

@@ -12,5 +12,11 @@ module.exports = (dataBase) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+    },
+    {
+        freezeTableName: true,
+        timestamps: false,
+        createdAt:false,
+        updatedAt:false
     })
 }

@@ -25,6 +25,12 @@ const Filters = () => {
       value:event
     }))
   }
+  const handleChangeType=(event)=>{
+    dispatch(addFilter({
+      name:"type",
+      value:event
+    }))
+  }
 
   console.log(filters)
 
@@ -32,7 +38,7 @@ const Filters = () => {
         <div className={style.filterCont}>
           <SelectCategory change={handleChangeCategory}/>
           <Order change={handleChangeOrder}/>
-          <Type/>
+          <Type change={handleChangeType}/>
           <ClearButton/>
         </div>
   )

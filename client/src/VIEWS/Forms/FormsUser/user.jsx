@@ -5,7 +5,7 @@ import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button } from 'antd'
 import style from './user.module.css';
-
+import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 
 const FormUser = () => {
     const { Item } = Form
@@ -94,16 +94,22 @@ console.log(form);
                 <Input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
                 {errors.email !== '' ? <span>{errors.email}</span> : ''}
                 <hr />
-                {/* <label htmlFor="phone">Teléfono: </label>
-                <input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
+                <label htmlFor="phone">Teléfono: </label>
+                <Input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
-                <hr /> */}
+                <hr />
                 <label htmlFor="password">Contraseña: </label>
                 <Password type="text" name= 'password' placeholder='Debe ser secreta...' onChange={handlerCange} />
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 <hr />
-
                 <button type='submit'>Registrar</button>
+                <div className={style.divButtons}>
+                    <Button>Registratse con Google <GoogleOutlined /></Button>
+                
+                    <Button>Registratse con Instagram <InstagramOutlined /></Button>
+                
+                    <Button>Registratse con Facebook <FacebookOutlined /></Button>
+                </div>
 
             </form>
         </div>

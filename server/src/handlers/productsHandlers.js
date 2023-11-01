@@ -21,33 +21,35 @@ try {
 
 //!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME, CATEGORY, MINPRICE Y MAXPRICE POR QUERY PARA POSIBLES FILTROS
 const getAllProducts = async ( req, res ) => {
-const {name, minPrice, maxPrice, category,type, order}=req.query
-try {
-    const result = await allProducts(name, minPrice, maxPrice, category,type, order)
-    return res.status(200).json(result)
-} catch (error) {
-    return res.status(400).json({ error: error.message });
-}
+    const {name, minPrice, maxPrice, category, type, order}=req.query
+    try {
+        
+        const result = await allProducts(name, minPrice, maxPrice, category,type, order)
+        return res.status(200).json(result)
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
 
 }
 
 //!HANDLER QUE MANEJA LA PETICION POST A /PRODUCTS
 const postProduct = async(req, res) =>{
-const {image, name, price, description, raiting, category} = req.body;
-try {
-    const data={
-        image:image,
-        name:name,
-        price:price,
-        description:description,
-        raiting:raiting,
-        category:category
+    const {image, name, price, description, raiting, category, type} = req.body;
+    try {
+        const data={
+            image:image,
+            name:name,
+            price:Number(price),
+            description:description,
+            raiting:raiting,
+            category:category,
+            type:type
+        }
+        const result = await postProductContoller(data)
+        res.status(201).json(result)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-    const result = await postProductContoller(data)
-    res.status(201).json(result)
-} catch (error) {
-    res.status(400).json({ error: error.message });
-}
 }
 
 //HANDLER QUE MANEJA LA PETICIÓN PUT A /Products

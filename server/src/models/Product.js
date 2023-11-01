@@ -22,7 +22,7 @@ module.exports = (dataBase) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.NUMERIC,
       allowNull: false,
     },
     description: {

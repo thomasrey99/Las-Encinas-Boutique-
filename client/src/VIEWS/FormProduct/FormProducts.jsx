@@ -1,6 +1,7 @@
 import  { useState } from 'react';
 import axios from "axios"
 import { Form, Rate, Select, Input, InputNumber, Button } from 'antd';
+import { useSelector } from 'react-redux';
 // import { Upload } from 'antd';
 import { useCreateProductMutation } from '../../libs/redux/services/productsApi';
 // import { PlusOutlined } from '@ant-design/icons';
@@ -10,6 +11,10 @@ import styles from './FormProduct.module.css';
 
 
 const FormProducts = () => {
+
+  const types=useSelector((state)=>state.types.allTypes)
+
+  const categories=useSelector((state)=>state.categories.allCategories)
 
   const [mutate] = useCreateProductMutation();
 
@@ -21,9 +26,10 @@ const FormProducts = () => {
     description: '',
     raiting: 0,
     category: [],
+    type:""
   });
 
-  const resetState = () => { setState({ name: '', image: '', price: 0, description: '', rating: 0, category: [], });};
+  const resetState = () => { setState({ name: '', image: '', price: 0, description: '', rating: 0, category: [], type:"" });};
 
   const handleChange = (name, value) => {
     console.log(state);
@@ -70,6 +76,7 @@ const FormProducts = () => {
     try {
       const categoryString = state.category.join(',');
       const dataToSend = {...state, category: categoryString};
+      console.log(dataToSend)
       await mutate(dataToSend);
       resetState();
 
@@ -78,19 +85,6 @@ const FormProducts = () => {
       alert("Error al crear producto: " + error);
    }
   };
-
-  const categories = [
-  "todas",
-  "Alfajores",
-  "Chocolate en rama",
-  "Bocaditos",
-  "Chocolate en barra", 
-  "Volcáncito",
-  "Marroc",
-  "Huevos de pascua",
-  "Oreo",
-  "Brownie"
-];
 
   return (
     <div className={styles.Container}>
@@ -130,9 +124,20 @@ const FormProducts = () => {
           rules={[{ required: true, message: 'Elije al menos una categoría', type: 'array',},]}>
           <Select mode="multiple" placeholder="Elije una categoría" value={state.category} 
             onChange={(value) => handleChange('category', value)}>
-            {categories.map((c) => (
-              <Option value={c} key={c}>
-                {c}
+            {categories?.map((c, i) => (
+              <Option value={c.name} key={i}>
+                {c.name}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item name="type" label="Tipo"
+          rules={[{ required: true, message: 'Elije un tipo'},]}>
+          <Select mode="multiple" placeholder="Elije un tipo de chocolate" value={state.type} 
+            onChange={(value) => handleChange('type', value)}>
+            {types?.map((t, i) => (
+              <Option value={t.name} key={i}>
+                {t.name}
               </Option>
             ))}
           </Select>

@@ -21,8 +21,9 @@ const getProductById  = async ( req, res ) => {
 
 //!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME, CATEGORY, MINPRICE Y MAXPRICE POR QUERY PARA POSIBLES FILTROS
 const getAllProducts = async ( req, res ) => {
-    const {name, minPrice, maxPrice, category,type, order}=req.query
+    const {name, minPrice, maxPrice, category, type, order}=req.query
     try {
+        
         const result = await allProducts(name, minPrice, maxPrice, category,type, order)
         return res.status(200).json(result)
     } catch (error) {

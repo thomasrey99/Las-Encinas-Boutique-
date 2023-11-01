@@ -15,7 +15,6 @@
     margin: 4vh;
   }
   .card{
-  .card{
     background-color: var(--color-grey-primary);
   }
   .card:hover {
@@ -34,12 +33,7 @@
   .raiting{
 
   }
-  .price{
-    font-size: 1.4rem;
-    bottom: 0;
-  .raiting{
 
-  }
   .price{
     font-size: 1.4rem;
     bottom: 0;
@@ -57,14 +51,6 @@
   .button{
     border: 1px solid var(--color-orange-primary) !important;
     color: var(--color-orange-primary) !important;
-  .buttons{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 5%;
   }
-  .button{
-    border: 1px solid var(--color-orange-primary) !important;
-    color: var(--color-orange-primary) !important;
-  }
+
 

@@ -59,7 +59,6 @@ const Detail = () => {
                                     <img alt={productDetail.name} src={productDetail.image} className={styles.image} />
                                 </Col>
                                 <Col span={9}>
-                                <Col span={9}>
                                     <div className={styles.productInfo}>
                                         {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handlefavClick}/>
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handlefavClick} />}

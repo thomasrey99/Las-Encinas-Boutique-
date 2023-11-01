@@ -72,6 +72,7 @@ const Register = ()=>{
                 <br></br>
 
                 <button>Register</button>
+                
             </form>
         </div>
         

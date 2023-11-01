@@ -13,6 +13,8 @@ import Login from './VIEWS/Forms/Login/login';
 import Register from './VIEWS/Forms/Register/Register';
 import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
+import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
+import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 const App = () => {
 
   const location = useLocation();
@@ -31,8 +33,9 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<Register />} />
-          <Route path='about' element={<AboutUs />} />
+          <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
           <Route path='login' element={<LoginFirebase />} />
+          <Route path='resetpassword' element={<FormResetPassword/>} />
         </Routes>
         {location.pathname !== '/' && <Footer/>} 
       </AuthProvider>

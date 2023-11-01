@@ -9,6 +9,7 @@ const getFavsController = async (userId) => {
         const favorites = await user.getProducts();
         return favorites;
     }
+    else return 'No hay Productos Favoritos'
 }
 
 //CONTROLER QUE TRAE PRODUCTO FAVORITO POR ID
@@ -18,7 +19,8 @@ const getFavByIdController = async (userId, productId) => {
         
         if (user) {
         const favorites = await user.getProducts();
-        const product = favorites.find(favorite => favorite.id === productId);
+        const product = favorites.find(favorite => favorite.dataValues.id_product === (productId));
+        console.log(favorites);
         return product ? product : 'Producto no encontrado';
         } 
         else return 'Usuario no encontrado';

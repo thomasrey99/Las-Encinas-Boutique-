@@ -8,7 +8,7 @@ const {
 
 //-----------------------------------
 // Handler GET /favortes
-const getFavProducts = async () => {
+const getFavProducts = async (req, res) => {
 const { userId } = req.body;
 
 try {
@@ -33,7 +33,7 @@ try {
 }
 
 
-//Handler que maneja la petición POST a /products/favorites
+//Handler que maneja la petición POST a /favorites
 const addFavProduct = async(req, res) =>{
 const { userId } = req.body;
 const { productId } = req.params;
@@ -47,7 +47,7 @@ try {
 }
 
 
-//Handler que maneja la petición DELETE a /products/favorites
+//Handler que maneja la petición DELETE a /favorites
 const removeFavProduct = async(req, res) =>{
 const { userId } = req.body;
 const { productId } = req.params;

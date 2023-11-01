@@ -4,6 +4,7 @@ const productModel=require("./models/Product")
 const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
+const commentModel=require("./models/Comment")
 
 require("dotenv").config();
 
@@ -26,6 +27,7 @@ productModel(dataBase)
 categoryModel(dataBase)
 typeModel(dataBase)
 requestModel(dataBase)
+// commentModel(dataBase)
 
 //!RELACIONES
 
@@ -42,8 +44,8 @@ Request.belongsToMany(Product , { through: 'product_request' });
 User.belongsToMany(Product, { through: 'Favorites' });
 Product.belongsToMany(User, { through: 'Favorites' });
 
-User.belongsToMany(Product, { through: Comment });
-Product.belongsToMany(User, { through: Comment });
+// User.belongsToMany(Product, { through: Comment });
+// Product.belongsToMany(User, { through: Comment });
 
 
 module.exports={

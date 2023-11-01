@@ -8,6 +8,14 @@ const order=[
     {
         label:"z-a",
         value:"name_desc"
+    },
+    {
+      label:"Mayor precio",
+      value:"price_desc"
+    },
+    {
+      label:"Menor precio",
+      value:"price_asc"
     }
 ]
 

@@ -2,31 +2,67 @@ import React from 'react';
 import { useState } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import Password from 'antd/es/input/Password';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../../firebase/authContext";
 
 const Login = () => {
-    const { Item } = Form
-    const navigate = useNavigate()
-    const [login, setLogin] = useState({
-        name: 'login',
+    const navigate = useNavigate();
+
+    const {login, loginWithGoogle}= useAuth();
+    const { Item } = Form;
+    
+    const [user, setUser] = useState({
+        name: '',
         password: ''
     });
+    const [error, setError] = useState();
 
     const handlerCange = (e) => {
         setLogin({
             ...login,
             [e.target.name]: e.target.value
         })
-
+         try {
+            
+         } catch (error) {
+            
+         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         e.preventDefault();
+        try {
+            await login(login.email, login.password);
+            navigate('/home')
+        } catch (error) {
+            console.log(error.code)
+            if(error.code === 'auth/invalid-login-credentials'){
+                setError("Contraseña o correo electrónico incorrecto.")
 
+            }if(error.code === 'auth/too-many-requests'){
+                setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+            }    
+        }
     };
+
+    const handleGoogle = async()=>{
+        try {
+            await loginWithGoogle()
+            navigate('/home')
+        } catch (error) {
+            setError("Ocurrió un error, inténtelo otra vez.")
+        }
+        
+    }
+
+    console.log("email:",login.email)
+    console.log("password", login.password)
 
     return (
         <div>
+            {error && <p>{error}</p>}
+            {console.log("Contenido del error")}
+
             <form onSubmit={handleSubmit}>
                 <h1>Ingresar</h1>
                 <Form initialValues={{recordar: true}} >

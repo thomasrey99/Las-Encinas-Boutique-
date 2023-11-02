@@ -13,6 +13,7 @@ import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 
 
+
 const Home = () => {
   const {user}= useAuth() //Esto trae la info del usuario que está logeado actualmente
   console.log("Este es el currentUser:",user)
@@ -56,12 +57,13 @@ const Home = () => {
         <div className={styles.cardLayout}>
           {productsToDisplay?.map((product) => (
             <Card
-              key={product.id}
-              id={product.id}
+              key={product.id_product}
+              id={product.id_product}
               name={product.name}
               price={product.price}
               image={product.image}
               raiting={product.raiting}
+              type={product.type}
             />
           ))}
         </div>

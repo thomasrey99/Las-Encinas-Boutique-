@@ -9,6 +9,7 @@ const Product = () => {
     initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b');
 
     const createPreference = async () => {
+        
         try {
             const response = await axios.post("http://localhost:3001/products/create_preference", {
                 description: 'air jordan',

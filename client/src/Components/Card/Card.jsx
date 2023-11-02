@@ -1,28 +1,54 @@
+// import { useState } from 'react';
 import Style from './Card.module.css'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useGetAllFavProductsQuery, useGetFavProductQuery, 
+  useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi'
 import { Card as AndCard, Rate, Button } from 'antd';
 const { Meta } = AndCard;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/icons';
 
-const Card = ({name, price, image, raiting, id}) => {
+
+const Card = (props) => {
+
+  const navigate = useNavigate();
+  const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+  const productId = props.id;
+  const [ addFavProduct ] = useAddFavProductMutation();
+  const [ removeFavProduct ] = useRemoveFavProductMutation();
+  const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
+  const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
+  console.log(productFav);
+
+  const handlefavClick = async (event) => {
+    event.stopPropagation();
+
+    if (productFav) {
+      await removeFavProduct({userId, productId});
+    } else {
+      await addFavProduct({userId, productId});
+    }
+    refetch(); 
+    refresh();
+  }
 
   return (
     <div className={Style.productList}>
-      <Link to={`/detail/${id}`} className={Style.link}>
+
         <AndCard
-          className={Style.card} 
+          className={Style.card}
           hoverable
           style={{ width: 280, height: 400}}
-          cover={<img alt={name} src={image} style={{height: 200}} className={Style.img}/>}>
-          <Meta title={<p className={Style.name}>{name}</p>} />
-          <Meta title={<div className={Style.raiting}><Rate disabled value={raiting}/></div>}
-           description={<p className={Style.price}>${price}</p>} />
+          onClick={()=>navigate(`/detail/${productId}`)}
+          cover={<img alt={props.name} src={props.image} style={{height: 200}} className={Style.img} />}>
+          <Meta title={<p className={Style.name}>{props.name}</p>} />
+          <Meta title={<div className={Style.raiting}><Rate disabled value={props.raiting}/></div>}
+           description={<p className={Style.price}>${props.price}</p>} />
            <div className={Style.buttons}>
            <Button className={Style.button}><ShoppingCartOutlined/></Button>
-           <Button className={Style.button}><HeartOutlined/></Button>
+           <Button className={Style.button} onClick={handlefavClick}>{productFav?<HeartFilled/>:<HeartOutlined/>}</Button>
            </div>
         </AndCard>
-      </Link>
+
     </div>
   )
 }

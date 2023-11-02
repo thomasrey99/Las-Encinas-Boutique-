@@ -15,10 +15,24 @@ import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
+
+//Admin
+import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
+import Products from './VIEWS/Admin/Views/Products/Products';
+import Payments from './VIEWS/Admin/Views/Payments/Payments';
+import Orders from './VIEWS/Admin/Views/Orders/Orders';
+import Clients from './VIEWS/Admin/Views/Clients/Clients';
+
 const App = () => {
 
   const location = useLocation();
 
+  const validate = location.pathname !== '/' && 
+  location.pathname !== '/controlAdmin' && 
+  location.pathname !== '/productsAdmin' &&
+  location.pathname !== '/paymentsAdmin' &&
+  location.pathname !== '/clientsAdmin' &&
+  location.pathname !== '/ordersAdmin'
   
   return (
     <main className={style.mainCont}>
@@ -26,7 +40,7 @@ const App = () => {
       
       {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
       <AuthProvider> 
-      {location.pathname !== '/' && <NavBar/>}
+      {validate && <NavBar/>}
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='home' element={<Home />} />
@@ -36,8 +50,14 @@ const App = () => {
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
           <Route path='login' element={<Login />} />
           <Route path='resetpassword' element={<FormResetPassword/>} />
+
+          <Route path='/controlAdmin' element={<ControlPanel/>} />
+          <Route path='/productsAdmin' element={<Products/>} />
+          <Route path='/paymentsAdmin' element={<Payments/>} />
+          <Route path='/ordersAdmin' element={<Orders/>} />
+        <Route path='/clientsAdmin' element={<Clients/>} />
         </Routes>
-        {location.pathname !== '/' && <Footer/>} 
+        {validate && <Footer/>} 
       </AuthProvider>
      
        

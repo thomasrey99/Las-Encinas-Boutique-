@@ -42,7 +42,7 @@ Product.belongsTo(Category, {foreignKey:"id_category"})
 Type.hasMany(Product, {foreignKey:"id_type"})
 Product.belongsTo(Type, {foreignKey:"id_type"})
 
-//*un usuario puede comprar varios producots y un producto puede ser comprado por varios usuarios
+//*un usuario puede comprar varios productos y un producto puede ser comprado por varios usuarios
 
 User.belongsToMany(Product, {through: 'user_product'})
 Product.belongsToMany(User, {through: 'user_product'})

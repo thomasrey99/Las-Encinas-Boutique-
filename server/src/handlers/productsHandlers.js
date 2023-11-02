@@ -84,10 +84,15 @@ const deleteProduct = async(req, res) =>{
     }
 }
 
+const createPreference = (req, res) => {
+    
+};
+
 module.exports = {
     getProductById,
     getAllProducts,
     postProduct,
     putProduct,
-    deleteProduct
+    deleteProduct,
+    createPreference
 }

@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "mercadopago": "^2.0.3"
+    "mercadopago": "^1.5.7"
   }
 }

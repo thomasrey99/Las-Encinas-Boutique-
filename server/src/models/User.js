@@ -5,6 +5,7 @@ module.exports = (dataBase) => {
     //ademas cambié la propiedad allowNull a true para que solo los campos uid, email
     //sean obligatorios, ya que cuando te registrar con google por ejemplo solo es obligatorio
     //el email y password, además la password se guarda en firebase.
+    
     dataBase.define(
         'User', {
         id_user: {

@@ -4,8 +4,9 @@
   }
   
   .Panel {
-    width: 75%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-left: 20%;
+    background-color: #EDE0D4;
   }

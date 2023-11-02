@@ -55,7 +55,7 @@ const App = () => {
           <Route path='/productsAdmin' element={<Products/>} />
           <Route path='/paymentsAdmin' element={<Payments/>} />
           <Route path='/ordersAdmin' element={<Orders/>} />
-          <Route path='/clientsAdmin' element={<Clients/>} />
+        <Route path='/clientsAdmin' element={<Clients/>} />
         </Routes>
         {validate && <Footer/>} 
       </AuthProvider>

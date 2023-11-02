@@ -13,7 +13,7 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        uid:{
+        id:{
             type:DataTypes.STRING,
             allowNull: false,
         },
@@ -41,7 +41,7 @@ module.exports = (dataBase) => {
             type:DataTypes.BOOLEAN,
             defaultValue: false
         },
-        payment_method_code:{
+        payment_code:{
             type:DataTypes.STRING,
             allowNull:false,
         }

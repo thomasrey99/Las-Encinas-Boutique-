@@ -38,7 +38,7 @@ Product.belongsToMany(User, {through: 'user_product'})
 
 //!un usuario puede tener un carrito y un carrito pertenece a un unico usuario
 
-User.hasOne(Cart)
+User.hasOne(Cart, {onDelete:'CASCADE'})
 Cart.belongsTo(User)
 
 //!un producto puede tener varias ordenes y una orden puede tener varios productos

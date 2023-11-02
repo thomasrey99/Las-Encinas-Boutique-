@@ -14,8 +14,7 @@
     font-size: 17px;
 }
 .image{
-    width: 650px;
-    height: 400px;
+    width: 90%;
     border-radius: 25px;
 }
 .noLikedButton, .likedButton {

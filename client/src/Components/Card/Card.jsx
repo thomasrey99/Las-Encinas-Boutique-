@@ -1,7 +1,8 @@
 // import { useState } from 'react';
 import Style from './Card.module.css'
 import { useNavigate } from 'react-router-dom';
-import { useGetFavProductQuery, useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi'
+import { useGetAllFavProductsQuery, useGetFavProductQuery, 
+  useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi'
 import { Card as AndCard, Rate, Button } from 'antd';
 const { Meta } = AndCard;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/icons';
@@ -9,26 +10,25 @@ import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/i
 
 const Card = (props) => {
 
-  const productId = props.id;
+  const navigate = useNavigate();
   const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+  const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();
-  const { data: productFav } = useGetFavProductQuery(userId, productId);
-
-  console.log(`FRONT => userId:${userId}, productId:${productId}`);
-  // const [ isFav, setIsFav ] = useState(productFav);
-
-  const navigate = useNavigate();
+  const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
+  const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
+  console.log(productFav);
 
   const handlefavClick = async (event) => {
     event.stopPropagation();
 
-    if (productFav.length>0) {
-      await removeFavProduct(userId, productId);
+    if (productFav) {
+      await removeFavProduct({userId, productId});
     } else {
-      await addFavProduct(userId, productId);
+      await addFavProduct({userId, productId});
     }
-
+    refetch(); 
+    refresh();
   }
 
   return (
@@ -45,7 +45,7 @@ const Card = (props) => {
            description={<p className={Style.price}>${props.price}</p>} />
            <div className={Style.buttons}>
            <Button className={Style.button}><ShoppingCartOutlined/></Button>
-           <Button className={Style.button} onClick={handlefavClick}><HeartFilled/> <HeartOutlined/></Button>
+           <Button className={Style.button} onClick={handlefavClick}>{productFav?<HeartFilled/>:<HeartOutlined/>}</Button>
            </div>
         </AndCard>
 

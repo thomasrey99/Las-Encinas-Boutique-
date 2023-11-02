@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-// import { addFavorite, removeFavorite } from "../../libs/redux/features/favoritesSlice";
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useGetFavProductQuery, useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal} from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
+const { TabPane } = Tabs;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
 
@@ -13,30 +13,24 @@ const Detail = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
-    const { data: productDetail, isLoading, isError } = useGetProductByIdQuery(id)
-
-    const favorites = useSelector(state => state.favorites.favoriteProducts)
-    const dispatch = useDispatch();
+    const  productId  = id;
+    const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+    const [ addFavProduct ] = useAddFavProductMutation();
+    const [ removeFavProduct ] = useRemoveFavProductMutation();
+    const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);
+    const { data: productFav, refetch } = useGetFavProductQuery({userId, productId});
     const [ isModalVisible, setIsModalVisible ] = useState(false);
-    const [ isFav, setIsFav ] = useState();
 
-    // useEffect(() => {
-    //     if (favorites.length > 0 ){
-    //       const isFavorite = favorites.some(fav => fav.id === id);
-    //       setIsFav(isFavorite);
-    //     }
-    //   }, [favorites, id]);
 
-    // const handlefavClick = () => {
-    //     const isFavorite = favorites.some(prod => prod.id === id);
-    //     if (isFavorite) {
-    //       setIsFav(false);
-    //       dispatch(removeFavorite(productDetail));
-    //     } else {
-    //       setIsFav(true);
-    //       dispatch(addFavorite(productDetail));
-    //     }
-    //   }
+    const handlefavClick = async () => {
+
+        if (productFav) {
+          await removeFavProduct({userId, productId});
+        } else {
+          await addFavProduct({userId, productId});
+        }
+        refetch(); 
+      }
 
 
     const showModal = () => setIsModalVisible(true);
@@ -44,7 +38,7 @@ const Detail = () => {
     const handleOk = () => navigate('/shopping')
 
     const handleCancel = () => setIsModalVisible(false);
-
+console.log(productDetail);
     return(
         <div className={styles.detailContainer}>
             { isLoading ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin> 
@@ -60,14 +54,14 @@ const Detail = () => {
                                 </Col>
                                 <Col span={9}>
                                     <div className={styles.productInfo}>
-                                        {!isFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handlefavClick}/>
+                                        {!productFav ? <HeartOutlined size="large" className={styles.noLikedButton} onClick={handlefavClick}/>
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handlefavClick} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
                                         <Rate disabled value={productDetail.raiting}/> 
                                         <Rate disabled value={productDetail.raiting}/> 
                                         <p>{productDetail.category}</p> 
-                                        <Meta description={<p>id: {productDetail.id}</p>}/> <br /> 
+                                        <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 
                                         <div className={styles.productButtons}>
                                             <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
                                             <Button type="primary" block className={styles.buttonComprar} onClick={showModal}>Comprar</Button>
@@ -77,18 +71,18 @@ const Detail = () => {
                                 <Col span={24}>
                                     <Card >
                                     <Tabs defaultActiveKey="1">
-                                            <Item tab="Descripción" key="1">
+                                            <TabPane tab="Descripción" key="1">
                                                 <div style={{ maxHeight: '50%', overflow: 'auto', textAlign: 'center' }}>
                                                     <p>{productDetail.description}</p>
                                                 </div>
-                                            </Item>
-                                            <Item tab="Comentarios" key="2">
+                                            </TabPane>
+                                            <TabPane tab="Comentarios" key="2">
                                                 <div style={{ maxHeight: '50%', overflow: 'auto', textAlign: 'center' }}>
                                                     
                                                     <p>No hay comentarios disponibles</p>
                                                     
                                                 </div>
-                                            </Item>
+                                            </TabPane>
                                         </Tabs>
                                     </Card>
                                 </Col>

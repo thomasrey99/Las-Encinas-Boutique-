@@ -8,7 +8,7 @@ const getFavsController = async (userId) => {
     if (user) {
         const favorites = await user.getProducts();
         if (favorites.length > 0) return favorites;
-        else return 'No hay Productos Favoritos';
+        else return [];
     }
     else return 'El usuario no está registrado';
 }

@@ -25,5 +25,6 @@ module.exports=(dataBase)=>{
         timestamps: false,
         createdAt:false,
         updatedAt:false
-    })
+    }
+    )
 }

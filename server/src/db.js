@@ -31,6 +31,7 @@ cartModel(dataBase)
 //!RELACIONES
 
 const { User, Product, Request, Cart, Category, Type } = dataBase.models;
+const { User, Product, Request, Cart, Category, Type } = dataBase.models;
 
 //*un producto puede tener una categoria y una categoria puede tener varios productos
 
@@ -62,6 +63,15 @@ Request.belongsTo(User, {foreignKey:"user_id"})
 Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });
 
+//*un producto puede estar en varios carritos y un carrito puede tener varios productos
+
+Product.belongsToMany(Cart, {through:"Product_cart"})
+Cart.belongsToMany(Product, {through:"Product_cart"})
+
+//*un producto puede ser comprado por varios usuarios y un usuario puede comprar varios productos
+
+Product.belongsToMany(User, {through:"user_product"})
+User.belongsToMany(Product, {through:"user_product"})
 //*un producto puede estar en varios carritos y un carrito puede tener varios productos
 
 Product.belongsToMany(Cart, {through:"Product_cart"})

@@ -1,0 +1,37 @@
+  .Cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+.buttons {
+    margin: 2%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Estilo del botón marrón */
+  .marron {
+    background-color: #582f0e; /* Color de fondo marrón oscuro */
+  }
+  
+  /* Cambio de color al pasar el ratón sobre el botón marrón */
+  .marron:hover {
+    background-color: #9c7652; /* Color marrón claro al pasar el ratón */
+  }
+  
+  /* Otros estilos de botones si es necesario */
+  

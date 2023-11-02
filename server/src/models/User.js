@@ -29,7 +29,11 @@ module.exports = (dataBase) => {
         },
         is_Admin:{
             type:DataTypes.BOOLEAN,
-            default: false
+            defaultValue: false
+        },
+        payment_method_code:{
+            type:DataTypes.STRING,
+            allowNull:false,
         }
     },
     {

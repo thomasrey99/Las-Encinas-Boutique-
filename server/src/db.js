@@ -3,7 +3,8 @@ const userModel=require("./models/User")
 const productModel=require("./models/Product")
 const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
-const typeModel=require("./models/Type")
+const typeModel=require("./models/Type");
+const productfeedbackModel= require("./models/Product_Feedback");
 
 require("dotenv").config();
 
@@ -26,10 +27,11 @@ productModel(dataBase)
 categoryModel(dataBase)
 typeModel(dataBase)
 requestModel(dataBase)
+productfeedbackModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request } = dataBase.models;
+const { User, Product, Request, Product_Feedback} = dataBase.models;
 
 //!un usuario puede comprar varios producots y un producto puede ser comprado por varios usuarios
 User.belongsToMany(Product, {through: 'user_product'})
@@ -39,7 +41,7 @@ Product.belongsToMany(User, {through: 'user_product'})
 Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });
 
-
+User.belongsTo(Product_Feedback , {through: 'user_productFeedback'})
 module.exports={
   ...dataBase.models,
   dataBase

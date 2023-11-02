@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.10.2",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "cloudinary": "^1.41.0",
     "cloudinary-react": "^1.8.1",
     "firebase": "^10.5.2",

@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const {Product}=require("../db")
+const {Product, Category, Type}=require("../db")
 
 //!TRAE UN PRODUCTO MEDIANTE UN ID ESPECIFICO
 
@@ -92,13 +92,34 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
 
 //!CONTROLLER QUE CREA UN PRODUCTO
 const postProductContoller = async (data)=>{
-    const result= await Product.findOrCreate({
+
+    const [product, created]= await Product.findOrCreate({
         where:{
             name:data.name
         },
         defaults:data
     })
-    return result
+
+    if(created){
+        const category= await Category.findOne({
+            where:{
+                name:product.category
+            }
+        })
+        const type= await Type.findOne({
+            where:{
+                name:product.type
+            }
+        })
+        if(category){
+            product.setCategory(category)
+        }
+        if(type){
+            product.setType(type)
+        }
+    }
+
+    return product
 }
 
 //!CONTROLLER QUE MODIFICA O ACTUALIZA UN PRODUCTO

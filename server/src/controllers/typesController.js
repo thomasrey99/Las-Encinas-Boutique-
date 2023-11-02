@@ -1,7 +1,9 @@
-const {Type}=require("../db")
+const {Type, Product}=require("../db")
 
 const getTypeController=async()=>{
-    const types=await Type.findAll()
+    const types=await Type.findAll({
+        include:Product
+    })
     return types
 }
 

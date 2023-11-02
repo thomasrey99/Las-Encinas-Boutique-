@@ -8,6 +8,7 @@ import {TypeSlice} from "./features/typesSlice"
 import { usersApi } from "./services/usersApi";
 import {typesApi} from "./services/typesApi"
 import { categoriesApi } from "./services/categoriesApi";
+import { favoritesApi } from "./services/favoritesApi";
 
 export const store = configureStore({
     reducer: {
@@ -18,10 +19,12 @@ export const store = configureStore({
       [productsApi.reducerPath]: productsApi.reducer,
       [usersApi.reducerPath]: usersApi.reducer,
       [typesApi.reducerPath]:typesApi.reducer,
-      [categoriesApi.reducerPath]:categoriesApi.reducer
+      [categoriesApi.reducerPath]:categoriesApi.reducer,
+      [favoritesApi.reducerPath]: favoritesApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(productsApi.middleware, usersApi.middleware, categoriesApi.middleware, typesApi.middleware),
+      getDefaultMiddleware().concat(productsApi.middleware, usersApi.middleware, categoriesApi.middleware, typesApi.middleware,
+        favoritesApi.middleware),
   });
   
   setupListeners(store.dispatch);

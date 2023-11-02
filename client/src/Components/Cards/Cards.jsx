@@ -1,19 +1,18 @@
 import Style from './Cards.module.css'
-
 import Card from "../Card/Card"
-
 import {useSelector} from "react-redux"
+// import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
 
 
 const Cards = () => {
 
-  const isSearch=useSelector(state=>state.filters)
+  // const { data: allProducts } = 
   const products=useSelector((state)=>state.items.allProducts)
-  console.log("estoy en cards", isSearch)
+  console.log(`-----------------------------------------------------`);
   return (
     <div className={Style.Container}>
-        {products?.map(props => (
-        <Card key={props.id} props={props}
+        {products?.map(prod => (
+        <Card key={prod.id_product} props={prod}
         />))}
     </div> 
   )

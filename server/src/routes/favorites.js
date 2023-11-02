@@ -9,9 +9,9 @@ const { getFavProducts,
 const favoritesRouter = Router()
 
 
-favoritesRouter.get("/", getFavProducts)
-              .get("/:productId", getFavProductsById)
-              .post("/:productId" , addFavProduct)
-              .delete("/:productId" , removeFavProduct)
+favoritesRouter.get("/:userId", getFavProducts)
+              .get("/:userId", getFavProductsById)
+              .post("/:userId" , addFavProduct)
+              .delete("/:userId" , removeFavProduct)
 
 module.exports= favoritesRouter;

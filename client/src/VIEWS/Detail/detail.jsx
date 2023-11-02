@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, removeFavorite } from "../../libs/redux/features/favoritesSlice";
+// import { addFavorite, removeFavorite } from "../../libs/redux/features/favoritesSlice";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal} from 'antd';
@@ -20,23 +20,23 @@ const Detail = () => {
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isFav, setIsFav ] = useState();
 
-    useEffect(() => {
-        if (favorites.length > 0 ){
-          const isFavorite = favorites.some(fav => fav.id === id);
-          setIsFav(isFavorite);
-        }
-      }, [favorites, id]);
+    // useEffect(() => {
+    //     if (favorites.length > 0 ){
+    //       const isFavorite = favorites.some(fav => fav.id === id);
+    //       setIsFav(isFavorite);
+    //     }
+    //   }, [favorites, id]);
 
-    const handlefavClick = () => {
-        const isFavorite = favorites.some(prod => prod.id === id);
-        if (isFavorite) {
-          setIsFav(false);
-          dispatch(removeFavorite(productDetail));
-        } else {
-          setIsFav(true);
-          dispatch(addFavorite(productDetail));
-        }
-      }
+    // const handlefavClick = () => {
+    //     const isFavorite = favorites.some(prod => prod.id === id);
+    //     if (isFavorite) {
+    //       setIsFav(false);
+    //       dispatch(removeFavorite(productDetail));
+    //     } else {
+    //       setIsFav(true);
+    //       dispatch(addFavorite(productDetail));
+    //     }
+    //   }
 
 
     const showModal = () => setIsModalVisible(true);

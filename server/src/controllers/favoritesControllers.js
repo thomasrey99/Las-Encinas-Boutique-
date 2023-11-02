@@ -7,23 +7,28 @@ const getFavsController = async (userId) => {
 
     if (user) {
         const favorites = await user.getProducts();
-        return favorites;
+        if (favorites.length > 0) return favorites;
+        else return 'No hay Productos Favoritos';
     }
-    else return 'No hay Productos Favoritos'
+    else return 'El usuario no está registrado';
 }
 
 //CONTROLER QUE TRAE PRODUCTO FAVORITO POR ID
 const getFavByIdController = async (userId, productId) => {
 
         const user = await User.findByPk(userId);
-        
+        console.log(`CONTROLLER => userId:${userId}, productId:${productId}`);
+
         if (user) {
         const favorites = await user.getProducts();
-        const product = favorites.find(favorite => favorite.dataValues.id_product === (productId));
-        console.log(favorites);
-        return product ? product : 'Producto no encontrado';
+        if (favorites.length > 0) {
+            const product = favorites.find(favorite => favorite.id_product === productId);
+            console.log(favorites);
+            return product ? true : false;
+        }
+        else return false;
         } 
-        else return 'Usuario no encontrado';
+        else return 'El usuario no está registrado';
 }
 
 //CONTROLER QUE AGREGA UN PRODUCTO A FAVORITOS

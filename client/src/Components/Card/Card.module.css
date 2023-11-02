@@ -12,13 +12,14 @@
     display: flex;
     justify-content: space-between;
     margin: 4vh;
+    margin: 4vh;
   }
   .card{
     background-color: var(--color-grey-primary);
   }
   .card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbb;
+    transform: translateY(-0.3rem);
+    box-shadow: 0.2rem 0.2rem 0.2rem #bbbbbb;
   }
 .link{text-decoration: none;}
   
@@ -26,17 +27,19 @@
     max-width: 100%;
   }
   .name{
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-bottom: 15%;
   }
   .raiting{
 
   }
+
   .price{
     font-size: 1.4rem;
     bottom: 0;
     position: absolute;
     left: 0;
+    margin: 5%;
     margin: 5%;
   }
   .buttons{
@@ -49,3 +52,5 @@
     border: 1px solid var(--color-orange-primary) !important;
     color: var(--color-orange-primary) !important;
   }
+
+

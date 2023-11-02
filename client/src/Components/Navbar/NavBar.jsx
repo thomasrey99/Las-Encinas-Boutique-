@@ -1,6 +1,7 @@
 import style from "./NavBar.module.css";
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom"
+import HamburguerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png"
 import logo from "../../assets/Las_encinas_Logo.png"
 
@@ -21,10 +22,10 @@ const NavBar = () => {
           <div className={style.navLinks}>
               <NavLink to={"/home"} className={style.item}>Pagina Principal</NavLink>
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
-              <NavLink to={"/createProduct"} className={style.item}>Crear producto</NavLink>
-              
+              <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>
               
               {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.item}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.item}>Inicia sesión</NavLink>}
+              <HamburguerMenu/>
           </div>
         </div>
     </nav>

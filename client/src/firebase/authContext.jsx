@@ -9,6 +9,9 @@ import {createUserWithEmailAndPassword,
        } from "firebase/auth";
 import { auth } from "./firebase";
 
+import { useCreateUsersMutation } from "../libs/redux/services/usersApi";
+
+
 export const authContext = createContext();
 
 export const useAuth = ()=>{
@@ -17,15 +20,18 @@ export const useAuth = ()=>{
 }
 
 export function AuthProvider({children}){
+    const [mutate] = useCreateUsersMutation();
     let [user, setUser] = useState(null)
 
     const signup = async(email, password)=>{
         try {
             const userCreated = await createUserWithEmailAndPassword(auth, email, password)
-            console.log("User created:",userCreated)
+            console.log("User createdeeeeeeeeeeeeeeeeee:",userCreated)
+            await mutate({uid: userCreated.user.uid, email: userCreated.user.email})
+
         } catch (error) {
             throw error
-        }
+        } 
     }
 
     const login = async(email, password)=>{

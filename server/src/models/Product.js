@@ -36,6 +36,10 @@ module.exports = (dataBase) => {
     category: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    stock_quantity: {
+      type:DataTypes.INTEGER,
+      allowNull:false
     }
   },
   {

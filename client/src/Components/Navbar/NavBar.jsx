@@ -24,8 +24,8 @@ const NavBar = () => {
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
               <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>
               
-              
               {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.item}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.item}>Inicia sesión</NavLink>}
+              <HamburguerMenu/>
           </div>
         </div>
     </nav>

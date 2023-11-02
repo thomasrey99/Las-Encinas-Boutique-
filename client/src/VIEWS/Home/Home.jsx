@@ -53,12 +53,13 @@ const Home = () => {
         <div className={styles.cardLayout}>
           {productsToDisplay?.map((product) => (
             <Card
-              key={product.id}
-              id={product.id}
+              key={product.id_product}
+              id={product.id_product}
               name={product.name}
               price={product.price}
               image={product.image}
               raiting={product.raiting}
+              type={product.type}
             />
           ))}
         </div>

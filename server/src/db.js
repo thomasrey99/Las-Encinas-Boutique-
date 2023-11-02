@@ -44,8 +44,10 @@ Product.belongsTo(Type, {foreignKey:"id_type"})
 
 //*un usuario puede comprar varios productos y un producto puede ser comprado por varios usuarios
 
+
 User.belongsToMany(Product, {through: 'user_product'})
 Product.belongsToMany(User, {through: 'user_product'})
+
 
 //*un usuario puede tener un carrito y un carrito pertenece a un unico usuario
 
@@ -58,6 +60,7 @@ User.hasMany(Request, {foreignKey:"user_id"})
 Request.belongsTo(User, {foreignKey:"user_id"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
+
 
 Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });

@@ -10,6 +10,7 @@ import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Prueba from './Components/Prueba/Prueba';
+import Login from './VIEWS/Forms/Login/login';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='about' element={<AboutUs/>} />
         <Route path='*' element={<ErrorPage/>} />
         <Route path='/prueba' element={<Prueba/>} />
+        <Route path='/login' element={<Login/>} />
       </Routes>
       {location.pathname !== '/' && <Footer/>}
     </main>

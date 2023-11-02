@@ -16,6 +16,7 @@ const NavBar = () => {
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
               <NavLink to={"/createProduct"} className={style.item}>Crear producto</NavLink>
               <NavLink to={"/registeruser"} className={style.item}>Registrarse aquí</NavLink>
+              <NavLink to={"/login"} className={style.item}>Ingresar</NavLink>
           </div>
         </div>
     </nav>

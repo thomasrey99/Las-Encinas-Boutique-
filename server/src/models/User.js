@@ -29,7 +29,7 @@ module.exports = (dataBase) => {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER
+            type: DataTypes.NUMERIC
         },
         is_Admin:{
             type:DataTypes.BOOLEAN,

@@ -17,7 +17,7 @@ const FormUser = () => {
         lastName: '',
         address: '',
         email: '',
-        // phone: '',
+        phone: '',
         password: ''
     })
 
@@ -26,7 +26,7 @@ const FormUser = () => {
         lastName: '',
         address: '',
         email: '',
-        // phone: '',
+        phone: '',
         password: ''
     })
 
@@ -72,7 +72,7 @@ const FormUser = () => {
             return error
         }
     }
-console.log(form);
+
     return (
 
         <div>

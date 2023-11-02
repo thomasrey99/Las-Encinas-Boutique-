@@ -42,6 +42,7 @@ Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });
 
 User.belongsTo(Product_Feedback , {through: 'user_productFeedback'})
+
 module.exports={
   ...dataBase.models,
   dataBase

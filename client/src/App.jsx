@@ -9,9 +9,12 @@ import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
-import Prueba from './Components/Prueba/Prueba';
 import Login from './VIEWS/Forms/Login/login';
-
+import Register from './VIEWS/Forms/Register/Register';
+import { AuthProvider } from './firebase/authContext';
+import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
+import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
+import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 const App = () => {
 
   const location = useLocation();
@@ -19,19 +22,25 @@ const App = () => {
   
   return (
     <main className={style.mainCont}>
+      
+      
+      {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
+      <AuthProvider> 
       {location.pathname !== '/' && <NavBar/>}
-      <Routes> 
-        <Route path='/' element={<Landing/>}/>
-        <Route path='home' element={<Home/>}/>
-        <Route path='detail/:id' element={<Detail/>} />  
-        <Route path='createProduct' element={<FormProducts/>} />
-        <Route path='registeruser' element={<FormUser/>} />
-        <Route path='about' element={<AboutUs/>} />
-        <Route path='*' element={<ErrorPage/>} />
-        <Route path='/prueba' element={<Prueba/>} />
-        <Route path='/login' element={<Login/>} />
-      </Routes>
-      {location.pathname !== '/' && <Footer/>}
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='home' element={<Home />} />
+          <Route path='detail/:id' element={<Detail />} />
+          <Route path='createProduct' element={<FormProducts />} />
+          <Route path='registeruser' element={<Register />} />
+          <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
+          <Route path='login' element={<Login />} />
+          <Route path='resetpassword' element={<FormResetPassword/>} />
+        </Routes>
+        {location.pathname !== '/' && <Footer/>} 
+      </AuthProvider>
+     
+       
     </main>
   )
 }

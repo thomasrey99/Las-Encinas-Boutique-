@@ -6,6 +6,7 @@ const { Meta } = Card;
 const { Item } = Tabs;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
 

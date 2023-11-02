@@ -32,19 +32,22 @@ const getUserById = async ( req, res) => {
 
 //!HANDLER QUE MANEJA LOS ERRORES Y PETICION DE POST /USER
 const postNewUser = async (req, res) => {
-    const { name, lastName, email, password, address } = req.body;
-    if(
-        !name ||
-        !lastName ||
-        !email ||
-        !password ||
-        !address
-    ) {
-        return res.status(400)
-        .json({error: "Todos los campos deben ser completados"})
-    }
+    const { uid, name, lastName, email, password, address } = req.body;
+    console.log("Esto es el body ->",req.body)
+    // if(
+    //     !uid || 
+    //     !name ||
+    //     !lastName ||
+    //     !email ||
+    //     !password ||
+    //     !address
+    // ) {
+    //     return res.status(400)
+    //     .json({error: "Todos los campos deben ser completados"})
+    // }
     try{
         const data={
+            uid: uid,
             name:name,
             lastName:lastName,
             email:email,
@@ -91,6 +94,8 @@ const deleteUser = async(req, res) =>{
         res.status(400).json({ error: error.message });
     }
 }
+
+
 
 module.exports = {
     getUserById,

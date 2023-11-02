@@ -1,4 +1,5 @@
 import { Pagination, Typography, Space } from "antd";
+import { useAuth } from "../../firebase/authContext.jsx"; //Esto sirve para la autenticación
 import Card from "../../Components/Card/Card.jsx";
 import IniciarMap from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
@@ -11,7 +12,10 @@ import { WhatsAppOutlined } from '@ant-design/icons';
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 
+
 const Home = () => {
+  const {user}= useAuth() //Esto trae la info del usuario que está logeado actualmente
+  console.log("Este es el currentUser:",user)
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
@@ -29,9 +33,10 @@ const Home = () => {
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
   };
-
+ 
   return (
     <div className={styles.homeContainer}>
+      
       <Carousel />
       <Searchbar />
       <Filters />

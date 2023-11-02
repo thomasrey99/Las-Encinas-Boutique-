@@ -34,6 +34,7 @@ const getUserById = async ( req, res) => {
 const postNewUser = async (req, res) => {
     const { uid, name, lastName, email, password, address } = req.body;
     console.log("Esto es el body ->",req.body)
+    
     // if(
     //     !uid || 
     //     !name ||

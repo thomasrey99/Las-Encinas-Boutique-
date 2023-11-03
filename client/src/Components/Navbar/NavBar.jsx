@@ -10,6 +10,8 @@ const NavBar = () => {
   const handleOnClick = async()=>{
     await logout();
   }
+
+  console.log(user&&user)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>

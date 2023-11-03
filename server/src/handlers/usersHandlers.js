@@ -32,7 +32,7 @@ const getUserById = async ( req, res) => {
 
 //!HANDLER QUE MANEJA LOS ERRORES Y PETICION DE POST /USER
 const postNewUser = async (req, res) => {
-    const { uid, name, lastName, email, password, address } = req.body;
+    const { uid, name, lastName, email, address } = req.body;
     console.log("Esto es el body ->",req.body)
     // if(
     //     !uid || 
@@ -51,7 +51,6 @@ const postNewUser = async (req, res) => {
             name:name,
             lastName:lastName,
             email:email,
-            password:password,
             address:address
         }
 

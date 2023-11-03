@@ -8,35 +8,27 @@ module.exports = (dataBase) => {
     
     dataBase.define(
         'User', {
-        id_user: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-        },
         uid:{
-            type:DataTypes.STRING,
-            allowNull: false,
+            type:DataTypes.STRING, 
+            primaryKey: true,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true, 
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: true,
         },
         lastName: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: true,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password:{
-            type:DataTypes.STRING,
-            allowNull:true,
-        },
+       
         is_Admin:{
             type:DataTypes.BOOLEAN,
             default: false

@@ -56,8 +56,8 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"user_id"})
-Request.belongsTo(User, {foreignKey:"user_id"})
+User.hasMany(Request, {foreignKey:"uid"})
+Request.belongsTo(User, {foreignKey:"uid"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
 

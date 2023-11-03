@@ -13,11 +13,14 @@
 .productsCont{
     width: 50vw;
     height: 70vh;
-    border: 1px solid #dedede;
     border-radius: 20px;
     padding: 10px;
     gap: 10px;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     
 }
 .productsCont::-webkit-scrollbar {
@@ -36,7 +39,6 @@
     width: 25vw;
     height: 50vh;
     border: 1px solid #dedede;
-    border-radius: 20px;
 }
 .resumeTitle{
     border-bottom: 1px solid #dedede;

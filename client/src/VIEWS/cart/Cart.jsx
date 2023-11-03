@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react"
 import style from "./Cart.module.css"
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import CardsCart from "../../Components/cardsCart/cardsCart"
+import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
+import { usePutCartMutation } from "../../libs/redux/services/CartApi"
+
 export const Cart = () => {
 
+    const dispatch=useDispatch()
+
     const cart=useSelector((state)=>state.cart)
+
+    const id_cart=useSelector((state)=>state.user.userCartId)
+
+    const [mutate]=usePutCartMutation()
 
     const [cartData, setCartData]=useState({
         products:cart.products,
@@ -11,10 +21,32 @@ export const Cart = () => {
         total_price:cart.total_price
     })
 
+    const handleDelete=async(data)=>{
+        dispatch(deleteProductCart(data))
+    }
+
+    const handleDecrement=(name)=>{
+        dispatch(decrementQuantity(name))
+    }
+    const handleIncrement=(name)=>{
+        dispatch(incrementQuantity(name))
+    }
+
+    useEffect(()=>{
+        setCartData(cart)
+        mutate({dataUpdate: cart, id_cart: id_cart})
+    }, [cart])
+
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>
-
+            {
+                cartData?.products.map(({name, image, price, quantity}, i)=>{
+                    return (
+                        <CardsCart key={i} name={name} image={image} price={price} quantity={quantity} onDelete={handleDelete} decrement={handleDecrement} increment={handleIncrement}/>
+                    )
+                })
+            }
         </div>
         <aside className={style.resumeCont}>
             <div className={style.resumeTitle}>

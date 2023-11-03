@@ -34,8 +34,11 @@ module.exports = (dataBase) => {
             allowNull: false,
         },
         password:{
-            type:DataTypes.STRING,
-            allowNull:true,
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone: {
+            type: DataTypes.NUMERIC
         },
         is_Admin:{
             type:DataTypes.BOOLEAN,

@@ -8,8 +8,7 @@ import style from './user.module.css';
 
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
-
-
+import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 
 const FormUser = () => {
     const { Item } = Form
@@ -21,7 +20,7 @@ const FormUser = () => {
         lastName: '',
         address: '',
         email: '',
-        // phone: '',
+        phone: '',
         password: ''
     })
 
@@ -30,7 +29,7 @@ const FormUser = () => {
         lastName: '',
         address: '',
         email: '',
-        // phone: '',
+        phone: '',
         password: ''
     })
 
@@ -76,69 +75,48 @@ const FormUser = () => {
             return error
         }
     }
-console.log(form);
+
     return (
-        <div className={style.div}>
-            <div className={style.containerPrincipal}>
-                <div className={style.containerSegundario}>
-                    <form name= 'form' onSubmit={handlerSubmit}>
-                        <Item label='Nombre:'
-                        name='name'
-                        rules={[{
-                            required: true,
-                            message: 'Ingresa tu nombre'
-                        }]}>
-                            <Input name='name' onChange={handlerCange}/>
-                            {errors.name !== '' ? <span>{errors.name}</span> : ''}
-                        </Item>
- 
-                        <Item label='Apellido:'
 
-                        name='lastName'
-                        rules={[{
-                            required: true,
-                            message: 'Ingresa tu apellido'
-                      }]}>
-                          <Input name='lastName' onChange={handlerCange}/>
-                          {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
-                     </Item>
-
-                      <Item label='E-mail:'
-                      name='email'
-                      rules={[{
-                         required: true,
-                         message: 'Ingresa tu e-mail'
-                     }]}>
-                         <Input name='email' onChange={handlerCange}/>
-                         {errors.email !== '' ? <span>{errors.email}</span> : ''}
-                      </Item>
-
-                     <Item label='Contraseña'
-                        name='password'
-                     rules={[{
-                            required: true,
-                            message: 'Ingresa una contraseña'
-                     }]}>
-                          <Password name='password' onChange={handlerCange}/>
-                          {errors.password !== '' ? <span>{errors.password}</span> : ''}
-                     </Item>
-
-                     <Item label='Dirección:'
-                      name='address'
-                      rules={[{
-                            required: true,
-                            message: 'Ingresa tu dirección'
-                     }]}>
-                            <Input name='address' onChange={handlerCange}/>
-                           {errors.address !== '' ? <span>{errors.address}</span> : ''}
-                      </Item>
-                    
-                     <button type='submit'>Registrar</button>
-
-                    </form>
+        <div>
+            <h1>Registro de Usuario</h1>
+            <form onSubmit={handlerSubmit}>
+                <label htmlFor="name">Nombre: </label>
+                <Input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
+                {errors.name !== '' ? <span>{errors.name}</span> : ''}
+                <hr />
+                <label htmlFor="lastName">Apellido: </label>
+                <Input type="text" name= 'lastName'  placeholder='Ingresar apellido...' onChange={handlerCange} />
+                {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
+                <hr />
+                <label htmlFor="address">Dirección: </label>
+                <Input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
+                {errors.address !== '' ? <span>{errors.address}</span> : ''}
+                <hr />
+                <label htmlFor="email">E-Mail: </label>
+                <Input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
+                {errors.email !== '' ? <span>{errors.email}</span> : ''}
+                <hr />
+                <label htmlFor="phone">Teléfono: </label>
+                <Input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
+                {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
+                <hr />
+                <label htmlFor="password">Contraseña: </label>
+                <Password type="text" name= 'password' placeholder='Debe ser secreta...' onChange={handlerCange} />
+                {errors.password !== '' ? <span>{errors.password}</span> : ''}
+                <hr />
+                <button type='submit'>Registrar</button>
+                <div className={style.divButtons}>
+                    <Button>Registratse con Google <GoogleOutlined /></Button>
+                
+                    <Button>Registratse con Instagram <InstagramOutlined /></Button>
+                
+                    <Button>Registratse con Facebook <FacebookOutlined /></Button>
                 </div>
-            </div>
+
+            </form>
         </div>
+        
     )
 };
 

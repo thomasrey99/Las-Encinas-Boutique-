@@ -13,7 +13,7 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        uid:{
+        id:{
             type:DataTypes.STRING,
             allowNull: false,
         },
@@ -34,12 +34,19 @@ module.exports = (dataBase) => {
             allowNull: false,
         },
         password:{
-            type:DataTypes.STRING,
-            allowNull:true,
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone: {
+            type: DataTypes.NUMERIC
         },
         is_Admin:{
             type:DataTypes.BOOLEAN,
-            default: false
+            defaultValue: false
+        },
+        payment_code:{
+            type:DataTypes.STRING,
+            allowNull:false,
         }
     },
     {

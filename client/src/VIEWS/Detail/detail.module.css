@@ -14,8 +14,7 @@
     font-size: 17px;
 }
 .image{
-    width: 650px;
-    height: 400px;
+    width: 90%;
     border-radius: 25px;
 }
 .noLikedButton, .likedButton {
@@ -26,7 +25,7 @@
     transition: color 0.3s ease; 
 }
 .likedButton{
-    color: red;
+    color: darkorange;
 }
 
 .span{

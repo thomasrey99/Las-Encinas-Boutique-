@@ -7,7 +7,7 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        user_id: {
+        uid: {
             type: DataTypes.UUID,
             allowNull: false,
         },

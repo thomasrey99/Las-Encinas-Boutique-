@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { useState } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { Form, Input, Checkbox, Button } from 'antd';
+import { useRef } from "react";
+import emailjs from '@emailjs/browser'
 
 const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
@@ -9,7 +10,9 @@ const Product = () => {
     initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b');
 
     const createPreference = async () => {
-        
+
+        const refTemplate = useRef();
+
         try {
             const response = await axios.post("http://localhost:3001/products/create_preference", {
                 description: 'air jordan',
@@ -18,18 +21,33 @@ const Product = () => {
                 currency_id: 'ARS'
             });
 
-            const {id} = response.data;
+            const { id } = response.data;
             return id;
         } catch (error) {
             console.log(error);
         }
     };
-
+    
     const handleBuy = async () => {
         const id = await createPreference();
 
+        const emails = (event) => {
+            event.preventDefault();
+
+            const serviceId = "service_zigdlws"
+            const templateAdminId = "template_8gadd5r"
+            const templateClientId = "template_gs77yab"
+
+            const apikey = "jYr3TGnr-3SdDMbpq"
+
+            emailjs.sendForm(serviceId, templateAdminId, templateClientId, "pending", apikey)
+            .then(result => console.log(result.text))
+            .catch (error => console.log(error))
+        }
+
         if (id) {
             setPreferenceId(id);
+            ()=> emails;
         };
     };
 
@@ -47,5 +65,6 @@ const Product = () => {
         </div>
     )
 };
+
 
 export default Product;

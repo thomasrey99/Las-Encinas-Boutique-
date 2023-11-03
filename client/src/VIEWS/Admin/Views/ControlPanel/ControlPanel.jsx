@@ -4,6 +4,7 @@ import Conteiner from '../Style/Conteiners.module.css'
 
 import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin'
 import CardAdmin from '../../Components/CardAdmin/CardAdmin';
+import ChartLineAdmin from '../../Components/ChartJs/ChartLineAdmin';
 
 const ControlPanel = () => {
 
@@ -111,6 +112,12 @@ const ControlPanel = () => {
     }
   ];      
 
+  const labels = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+  const data = labels.map(() => Math.floor(Math.random() * (40000 - 10000 + 1)) + 10000);
+
   const handleClick = () => {
     setShowAll(!showAll);
   }
@@ -145,8 +152,12 @@ const ControlPanel = () => {
                 <CardAdmin name={p.name} image={p.image} description={p.description} />
               ))}
           </div>
-
-          <h1>GRAFICA DE INGRESOS MES A MES</h1>
+          <div className={Style.Grafics}>
+          <ChartLineAdmin labels={labels} data={data} name={"Ventas"} />
+          </div>
+          <div className={Style.Grafics}>
+          <ChartLineAdmin labels={labels} data={data} name={"Ingresos"} />
+          </div>
 
         </div>
     </div>

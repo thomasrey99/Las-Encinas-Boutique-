@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
-import { useGetFavProductQuery, useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal} from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
-const { TabPane } = Tabs;
 const { TabPane } = Tabs;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
@@ -24,8 +22,6 @@ const Detail = () => {
     const { data: productFav, refetch } = useGetFavProductQuery({userId, productId});
     const [ isModalVisible, setIsModalVisible ] = useState(false);
 
-
-
     const handlefavClick = async () => {
 
         if (productFav) {
@@ -35,25 +31,13 @@ const Detail = () => {
         }
         refetch(); 
       }
-
-    const handlefavClick = async () => {
-
-        if (productFav) {
-          await removeFavProduct({userId, productId});
-        } else {
-          await addFavProduct({userId, productId});
-        }
-        refetch(); 
-      }
-
 
     const showModal = () => setIsModalVisible(true);
 
     const handleOk = () => navigate('/shopping')
 
     const handleCancel = () => setIsModalVisible(false);
-console.log(productDetail);
-console.log(productDetail);
+
     return(
         <div className={styles.detailContainer}>
             { isLoading ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin> 

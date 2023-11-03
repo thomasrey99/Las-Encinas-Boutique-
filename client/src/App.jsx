@@ -15,6 +15,7 @@ import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
+import Favorites from './Components/Favorites/favorites';
 
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
@@ -47,6 +48,7 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<Register />} />
+          <Route path='favorites' element={<Favorites/>}/>
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
           <Route path='login' element={<LoginFirebase />} />
           <Route path='resetpassword' element={<FormResetPassword/>} />

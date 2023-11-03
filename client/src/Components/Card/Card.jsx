@@ -11,7 +11,7 @@ import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/i
 const Card = (props) => {
 
   const navigate = useNavigate();
-  const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+  const userId = 'f350c49a-aeed-415f-a3c1-23671db11472';
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();

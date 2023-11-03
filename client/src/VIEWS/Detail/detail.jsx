@@ -14,7 +14,7 @@ const Detail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;
-    const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+    const userId = 'f350c49a-aeed-415f-a3c1-23671db11472';
     const [ addFavProduct ] = useAddFavProductMutation();
     const [ removeFavProduct ] = useRemoveFavProductMutation();
     const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);
@@ -58,7 +58,6 @@ console.log(productDetail);
                                         : <HeartFilled size="large" className={styles.likedButton} onClick={handlefavClick} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
-                                        <Rate disabled value={productDetail.raiting}/> 
                                         <Rate disabled value={productDetail.raiting}/> 
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 

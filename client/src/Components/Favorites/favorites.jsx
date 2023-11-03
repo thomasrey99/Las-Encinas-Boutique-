@@ -8,7 +8,7 @@ import { Alert, Button, Spin } from 'antd';
 const Favorites = () => {
 
     const navigate = useNavigate();
-    const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+    const userId = 'f350c49a-aeed-415f-a3c1-23671db11472';
     const { data: getAllFavProducts, isError, isLoading, refetch } = useGetAllFavProductsQuery(userId);
 
     useEffect(() => {

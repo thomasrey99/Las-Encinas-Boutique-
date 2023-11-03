@@ -49,7 +49,17 @@ const FormUser = () => {
             const hasErrors = Object.values(newErrors).some((error) => error !== '');
             setIsFormValid(!hasErrors);
     }
-    
+    const resetState = () => { 
+        setForm({ 
+            name: '',
+            lastName: '',
+            address: '',
+            email: '',
+            phone: '',
+            password: ''
+        });
+    };
+
     const handlerSubmit = async (event) => {
         event.preventDefault();
         
@@ -71,7 +81,9 @@ const FormUser = () => {
         } catch (error) {
             return error
         }
+        resetState()
     }
+    
 
     return (
 

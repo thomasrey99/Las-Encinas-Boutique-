@@ -44,12 +44,7 @@ const Register = ()=>{
                     setError("El correo electrónico ya está registrado!!!")
                 }
                 
-            }      
-            
-            
-            
-        
-
+            }
     }
 
     console.log("email:",user.email)

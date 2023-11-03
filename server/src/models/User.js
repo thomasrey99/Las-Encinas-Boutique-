@@ -8,9 +8,20 @@ module.exports = (dataBase) => {
     
     dataBase.define(
         'User', {
+<<<<<<< HEAD
         uid:{
             type:DataTypes.STRING, 
             primaryKey: true,
+=======
+        id_user: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+        },
+        id:{
+            type:DataTypes.STRING,
+            allowNull: false,
+>>>>>>> 928b776eacc410751dabfa63bfdacf26d17b7b14
         },
         name: {
             type: DataTypes.STRING,
@@ -28,10 +39,24 @@ module.exports = (dataBase) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+<<<<<<< HEAD
        
+=======
+        password:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone: {
+            type: DataTypes.NUMERIC
+        },
+>>>>>>> 928b776eacc410751dabfa63bfdacf26d17b7b14
         is_Admin:{
             type:DataTypes.BOOLEAN,
-            default: false
+            defaultValue: false
+        },
+        payment_code:{
+            type:DataTypes.STRING,
+            allowNull:false,
         }
     },
     {

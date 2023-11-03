@@ -1,5 +1,16 @@
+import { useEffect, useState } from "react"
 import style from "./Cart.module.css"
+import {useSelector} from "react-redux"
 export const Cart = () => {
+
+    const cart=useSelector((state)=>state.cart)
+
+    const [cartData, setCartData]=useState({
+        products:cart.products,
+        product_quantity:cart.product_quantity,
+        total_price:cart.total_price
+    })
+
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>
@@ -12,7 +23,7 @@ export const Cart = () => {
             <div className={style.payment}>
                 <div className={style.paymentInfo}>
                     <p className={style.total}>TOTAL:</p>
-                    <p className={style.totalPrice}>$199000</p>
+                    <p className={style.totalPrice}>${cartData.total_price}</p>
                 </div>  
                 <div className={style.paymentButton}>
 

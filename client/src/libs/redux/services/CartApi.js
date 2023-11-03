@@ -11,12 +11,11 @@ export const cartApi=createApi({
             providesTags:["cart"]
         }),
         putCart:builder.mutation({
-            query:(dataUpdate, id)=>({
-                url:`/cart/${id}`,
+            query:({dataUpdate, id_cart})=>({
+                url:`/cart/${id_cart}`,
                 method:"PUT",
                 body:dataUpdate
             }),
-            invalidatesTags:["cart"]
         })
     })
 })

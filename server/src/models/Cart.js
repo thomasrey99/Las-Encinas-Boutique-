@@ -9,6 +9,7 @@ module.exports=(dataBase)=>{
         },
         products:{
             type:DataTypes.JSON,
+            defaultValue:[],
             allowNull:true
         },
         product_quantity:{

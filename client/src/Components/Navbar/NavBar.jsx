@@ -1,6 +1,6 @@
 import style from "./NavBar.module.css";
 import { useAuth } from "../../firebase/authContext";
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import HamburguerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png"
 import logo from "../../assets/Las_encinas_Logo.png"
@@ -10,7 +10,9 @@ import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect} from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 
+
 const getUserById=async(id)=>{
+
   const responseUser=(await axios(`http://localhost:3001/users/${id}`)).data
   const {id_Cart}=responseUser.Cart
   const responseCart=(await axios(`http://localhost:3001/cart/${id_Cart}`)).data
@@ -25,11 +27,9 @@ const NavBar = () => {
 
   const dispatch = useDispatch();
 
+  const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
+
   const { user, logout } = useAuth();
-
-  const userLog=useSelector((state)=>state.user.userLog)
-
-  const cartLog=useSelector((state)=>state.cart)
 
   const handleOnClick = async () => {
     await logout();
@@ -52,8 +52,6 @@ const NavBar = () => {
     getUserData();
   }, [dispatch, user]);
 
-  console.log("usuario logueado: ", userLog)
-  console.log("carrito del usuario: ", cartLog)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
@@ -61,7 +59,12 @@ const NavBar = () => {
         </div>
         <div className={style.navItems}>
           {user && ((user.displayName? <p>Bienvenido(a):{user.displayName}</p>: <p>Bienvenido(a):{user.email}</p>)) }
-          <Link to={"/cart"}><img src={cart} className={style.cartIcon}/></Link>
+          <NavLink to={"/cart"}>
+            <div className={style.cartIconCont}>
+              <img src={cart} className={style.cartIcon}/>
+              <p className={style.TotaItems}>{totalItemsCart}</p>
+            </div>
+          </NavLink>
           <div className={style.navLinks}>
               <NavLink to={"/home"} className={style.item}>Pagina Principal</NavLink>
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>

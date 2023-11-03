@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from '@ant-design/icons';
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
+import Product from "../../Components/Product/Product.jsx";
 
 
 
@@ -37,7 +38,7 @@ const Home = () => {
  
   return (
     <div className={styles.homeContainer}>
-      
+      <Product />
       <Carousel />
       <Searchbar />
       <Filters />

@@ -13,7 +13,7 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        id:{
+        uid:{
             type:DataTypes.STRING,
             allowNull: false,
         },

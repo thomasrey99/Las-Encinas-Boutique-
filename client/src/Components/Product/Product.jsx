@@ -11,7 +11,7 @@ const Product = () => {
 
     const createPreference = async () => {
 
-        const refTemplate = useRef();
+        /*const refTemplate = useRef();*/
 
         try {
             const response = await axios.post("http://localhost:3001/products/create_preference", {
@@ -30,8 +30,11 @@ const Product = () => {
     
     const handleBuy = async () => {
         const id = await createPreference();
+        if (id) {
+            setPreferenceId(id);
+        };
 
-        const emails = (event) => {
+        /*const emails = (event) => {
             event.preventDefault();
 
             const serviceId = "service_zigdlws"
@@ -43,12 +46,8 @@ const Product = () => {
             emailjs.sendForm(serviceId, templateAdminId, templateClientId, "pending", apikey)
             .then(result => console.log(result.text))
             .catch (error => console.log(error))
-        }
+        }*/
 
-        if (id) {
-            setPreferenceId(id);
-            ()=> emails;
-        };
     };
 
     return (

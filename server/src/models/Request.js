@@ -11,6 +11,10 @@ module.exports = (dataBase) => {
             type: DataTypes.UUID,
             allowNull: false,
         },
+        id_send: {
+            type: DataTypes.UUID,
+            allowNull: false,
+        },
         date: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -27,11 +31,14 @@ module.exports = (dataBase) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        category: {
+        shipping_detail:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-
+        total_amount:{
+            type: DataTypes.NUMERIC,
+            allowNull: false,
+        }
     },
     {
         freezeTableName: true,

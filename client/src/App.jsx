@@ -50,7 +50,7 @@ const App = () => {
           <Route path='registeruser' element={<Register />} />
           <Route path='favorites' element={<Favorites/>}/>
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
-          <Route path='login' element={<LoginFirebase />} />
+          <Route path='login' element={<Login />} />
           <Route path='resetpassword' element={<FormResetPassword/>} />
 
           <Route path='/controlAdmin' element={<ControlPanel/>} />

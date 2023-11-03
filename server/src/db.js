@@ -19,8 +19,8 @@ const {
 } = process.env; 
 
 const dataBase=new Sequelize( 
-  `${DB_SERVER_DEPLOY}`,
-  {logging:false, dialectOptions:{ssl:{require:true}}}
+  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  {logging:false}
 )
 
 userModel(dataBase)
@@ -56,8 +56,8 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"user_id"})
-Request.belongsTo(User, {foreignKey:"user_id"})
+User.hasMany(Request, {foreignKey:"uid"})
+Request.belongsTo(User, {foreignKey:"uid"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
 

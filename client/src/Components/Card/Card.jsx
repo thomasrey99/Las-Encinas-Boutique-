@@ -9,11 +9,12 @@ import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/i
 import { addProductCart } from '../../libs/redux/features/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePutCartMutation } from '../../libs/redux/services/CartApi';
-
+import { useAuth } from '../../firebase/authContext';
 
 const Card = (props) => {
 
-  
+  const {user}=useAuth()
+
   const dispatch=useDispatch()
   const navigate = useNavigate();
   const cartData=useSelector((state)=>state.cart)
@@ -40,8 +41,13 @@ const Card = (props) => {
   }
 
   const handleProductCart=async (product)=>{
-    dispatch(addProductCart(product))
-    await mutate({ dataUpdate: cartData, id_cart: id_cart })
+    if(user===null){
+      alert("Tienes que registrart para agregar productos al carrito")
+      navigate("/login")
+    }else{
+      dispatch(addProductCart(product))
+      await mutate({ dataUpdate: cartData, id_cart: id_cart })
+    }
   }
 
   console.log("info del carrito",cartData)

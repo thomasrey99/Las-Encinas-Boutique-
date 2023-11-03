@@ -56,7 +56,12 @@ export function AuthProvider({children}){
     }
 
     const resetPassword = (email) =>{
-        sendPasswordResetEmail(auth, email)
+        try {
+            sendPasswordResetEmail(auth, email)
+        } catch (error) {
+            throw error
+        }
+        
     }
 
     useEffect(()=>{

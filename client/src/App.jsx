@@ -49,7 +49,7 @@ const App = () => {
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<Register />} />
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
-          <Route path='login' element={<LoginFirebase />} />
+          <Route path='login' element={<Login/>} />
           <Route path='resetpassword' element={<FormResetPassword />} />
           {/* Rutas protegidas del admin */}
           {userRole === 'admin' ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}

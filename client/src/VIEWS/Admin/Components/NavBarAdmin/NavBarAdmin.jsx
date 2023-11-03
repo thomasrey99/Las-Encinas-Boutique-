@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Style from './NavBarAdmin.module.css';
 import { NavLink } from "react-router-dom"
 
 import { ControlOutlined, ShoppingOutlined, UserOutlined, ShoppingCartOutlined, DollarOutlined } from '@ant-design/icons';
+
 import icon from '../../../../assets/Las_encinas_Logo.png';
 
+import { useGetAllProductsQuery } from '../../../../libs/redux/services/productsApi';
+import { addProducts } from '../../../../libs/redux/features/productsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 const NavBar = () => {
+
+  const dispatch = useDispatch()
+
+
+  const filter = {
+    category: "",
+    maxPrice: "",
+    minPrice: "",
+    name: "",
+    order: "",
+    type: ""
+  }
+
+  const {data}=useGetAllProductsQuery(filter)
+
+  useEffect(()=>{
+    dispatch(addProducts(data))
+  }, [data])
 
   return (
     <div className={Style.NavBar}>

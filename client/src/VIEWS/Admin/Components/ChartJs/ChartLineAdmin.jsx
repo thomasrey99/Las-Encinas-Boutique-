@@ -20,16 +20,16 @@ const ChartLineAdmin = ({ labels, data, name }) => {
       height: 350,
       type: 'area',
       zoom: {
-        enabled: false // Desactiva la función de zoom
+        enabled: false
       },
       toolbar: {
-        show: false // Oculta la barra de herramientas (guardar SVG, restablecer zoom, etc.)
+        show: false
       }
     },
     yaxis: {
         labels: {
           style: {
-            fontWeight: 'bold', // Establece el texto en negrita
+            fontWeight: 'bold',
           }
         }
     },
@@ -38,7 +38,7 @@ const ChartLineAdmin = ({ labels, data, name }) => {
       categories: labels,
       labels: {
         style: {
-          fontWeight: 'bold', // Establece el texto en negrita
+          fontWeight: 'bold',
         }
       }
     },
@@ -48,11 +48,10 @@ const ChartLineAdmin = ({ labels, data, name }) => {
     stroke: {
       curve: 'smooth',
     }
-    
   };
 
   return (
-    <div>
+    <div style={{ border: '1px solid #000', padding: '10px' }}>
       <ReactApexChart options={options} series={series} type="area" height={"200%"} width={"200%"} />
     </div>
   );

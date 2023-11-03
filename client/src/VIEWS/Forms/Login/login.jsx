@@ -6,44 +6,47 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
 
 const Login = () => {
+
     const navigate = useNavigate();
+    const [error, setError] = useState();
+
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    });
 
     const {login, loginWithGoogle}= useAuth();
     const { Item } = Form;
     
-    const [user, setUser] = useState({
-        name: '',
-        password: ''
-    });
-    const [error, setError] = useState();
 
-    const handlerCange = (e) => {
-        setLogin({
-            ...login,
-            [e.target.name]: e.target.value
+    const handleChange = ({target: {name, value}})=>{
+        setUser({
+            ...user,
+            [name]: value
+
         })
-         try {
-            
-         } catch (error) {
-            
-         }
-    };
+    }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e)=>{
         e.preventDefault();
-        try {
-            await login(login.email, login.password);
-            navigate('/home')
-        } catch (error) {
-            console.log(error.code)
-            if(error.code === 'auth/invalid-login-credentials'){
-                setError("Contraseña o correo electrónico incorrecto.")
+        setError('')
 
-            }if(error.code === 'auth/too-many-requests'){
-                setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-            }    
-        }
-    };
+            try {
+                await login(user.email, user.password);
+                navigate('/home')
+            } catch (error) {
+                console.log(error.code)
+                if(error.code === 'auth/invalid-login-credentials'){
+                    setError("Contraseña o correo electrónico incorrecto.")
+
+                }if(error.code === 'auth/too-many-requests'){
+                    setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+
+                }
+                
+            }      
+     
+    }
 
     const handleGoogle = async()=>{
         try {
@@ -55,32 +58,37 @@ const Login = () => {
         
     }
 
-    console.log("email:",login.email)
-    console.log("password", login.password)
+    console.log("email:",user.email)
+    console.log("password", user.password)
 
     return (
         <div>
+            <h1>Ingresar</h1>
             {error && <p>{error}</p>}
             {console.log("Contenido del error")}
 
             <form onSubmit={handleSubmit}>
-                <h1>Ingresar</h1>
+                
                 <Form initialValues={{recordar: true}} >
-                    <Item label= 'Usuario' name='name' rules={[{required: true, message: 'Ingrese su usuario'}]} >
-                        <Input placeholder='Ingresar e-mail...' onChange={handlerCange}/>
+                    <Item label= 'Usuario' name='email' rules={[{required: true, message: 'Ingrese un email válido', type:'email'}]} >
+                        <Input name='email' placeholder='Ingresar e-mail...' onChange={handleChange}/>
                     </Item>
             
                     <Item label= 'Contraseña' name='password' rules={[{required: true, message: 'Ingrese su contraseña'}]} >
-                        <Password placeholder='Ingrese contraseña...' onChange={handlerCange}/>
+                        <Password name='password' placeholder='Ingrese contraseña...' onChange={handleChange}/>
                     </Item>
 
                     <Item name='recordar' valuePropName='checked' >
                         <Checkbox>Recordar usuario</Checkbox>
                     </Item>
-                </Form>
+                </Form> 
 
                 <button type='submit'>Ingresar</button>
+                <Link to='/registeruser'><button>Registrate</button></Link>
+                <br></br>
+                <Link to='/resetpassword'>Olvidé mi constraseña</Link>
             </form>
+            <button onClick={handleGoogle}>Ingresa con Google</button>
         </div>
     )
 };

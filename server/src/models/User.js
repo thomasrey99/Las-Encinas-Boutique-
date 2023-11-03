@@ -8,13 +8,9 @@ module.exports = (dataBase) => {
     
     dataBase.define(
         'User', {
-        id_user: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-        },
-        id:{
+        uid:{
             type:DataTypes.STRING,
+            primaryKey: true,
             allowNull: false,
         },
         name: {
@@ -46,7 +42,7 @@ module.exports = (dataBase) => {
         },
         payment_code:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         }
     },
     {

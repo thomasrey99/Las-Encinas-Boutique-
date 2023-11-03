@@ -7,7 +7,14 @@ import { useAuth } from "../../../firebase/authContext";
 const { TextArea } = Input;
 
 const Login = () => {
+
     const navigate = useNavigate();
+    const [error, setError] = useState();
+
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    });
 
     const {login, loginWithGoogle}= useAuth();
     const { Item } = Form;
@@ -25,7 +32,7 @@ const Login = () => {
         })
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         try {
             await login(login.email, login.password);
@@ -35,11 +42,14 @@ const Login = () => {
             if(error.code === 'auth/invalid-login-credentials'){
                 setError("La contraseña o el E-mail son incorrectos.")
 
-            }if(error.code === 'auth/too-many-requests'){
-                setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-            }    
-        }
-    };
+                }if(error.code === 'auth/too-many-requests'){
+                    setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+
+                }
+                
+            }      
+     
+    }
 
     const handleGoogle = async()=>{
         try {

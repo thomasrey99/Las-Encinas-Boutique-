@@ -41,11 +41,15 @@ export const Cart = () => {
     <section className={style.CartCon}>
         <div className={style.productsCont}>
             {
+                cartData?cartData.products.length===0 ? <p>Carrito vacio</p>
+                :
                 cartData?.products.map(({name, image, price, quantity}, i)=>{
                     return (
                         <CardsCart key={i} name={name} image={image} price={price} quantity={quantity} onDelete={handleDelete} decrement={handleDecrement} increment={handleIncrement}/>
                     )
                 })
+                :
+                ""
             }
         </div>
         <aside className={style.resumeCont}>

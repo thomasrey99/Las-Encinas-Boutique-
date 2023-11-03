@@ -45,10 +45,13 @@ export function AuthProvider({children}){
 
     const logout = async() => await signOut(auth)
 
-    const loginWithGoogle = () => {
+    const loginWithGoogle = async() => {
         try {
             const googleProvider = new GoogleAuthProvider()
-            return signInWithPopup(auth, googleProvider)
+            console.log("Este es el google provider:", googleProvider)
+            const userCreated = await signInWithPopup(auth, googleProvider)
+            console.log("Este es el signInWithPopup:", userCreated )
+            await mutate({uid: userCreated.user.uid, email: userCreated.user.email})
         } catch (error) {
             throw error
         }
@@ -56,7 +59,12 @@ export function AuthProvider({children}){
     }
 
     const resetPassword = (email) =>{
-        sendPasswordResetEmail(auth, email)
+        try {
+            sendPasswordResetEmail(auth, email)
+        } catch (error) {
+            throw error
+        }
+        
     }
 
     useEffect(()=>{

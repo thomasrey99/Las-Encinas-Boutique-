@@ -15,14 +15,14 @@ module.exports = (dataBase) => {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true, 
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING,   
             allowNull: true,
         },
         lastName: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: true,
         },
         email: {
@@ -32,6 +32,7 @@ module.exports = (dataBase) => {
         phone: {
             type: DataTypes.NUMERIC
         },
+
         is_Admin:{
             type:DataTypes.BOOLEAN,
             defaultValue: false

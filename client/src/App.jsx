@@ -15,7 +15,7 @@ import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
-
+import {Cart} from "./VIEWS/cart/Cart"
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -42,20 +42,20 @@ const App = () => {
       <AuthProvider> 
       {validate && <NavBar/>}
         <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='home' element={<Home />} />
-          <Route path='detail/:id' element={<Detail />} />
-          <Route path='createProduct' element={<FormProducts />} />
-          <Route path='registeruser' element={<Register />} />
-          <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
-          <Route path='login' element={<LoginFirebase />} />
-          <Route path='resetpassword' element={<FormResetPassword/>} />
-
-          <Route path='/controlAdmin' element={<ControlPanel/>} />
-          <Route path='/productsAdmin' element={<Products/>} />
-          <Route path='/paymentsAdmin' element={<Payments/>} />
-          <Route path='/ordersAdmin' element={<Orders/>} />
-        <Route path='/clientsAdmin' element={<Clients/>} />
+          <Route path='/' element={<Landing/>}/>
+          <Route path='home' element={<Home/>}/>
+          <Route path='/cart' element={<Cart/>}/>
+          <Route path='detail/:id' element={<Detail/>}/>
+          <Route path='createProduct' element={<FormProducts/>}/>
+          <Route path='registeruser' element={<Register/>}/>
+          <Route path='about' element={<ProtectedRoute><AboutUs/></ProtectedRoute>}/>
+          <Route path='login' element={<LoginFirebase/>}/>
+          <Route path='resetpassword' element={<FormResetPassword/>}/>
+          <Route path='/controlAdmin' element={<ControlPanel/>}/>
+          <Route path='/productsAdmin' element={<Products/>}/>
+          <Route path='/paymentsAdmin' element={<Payments/>}/>
+          <Route path='/ordersAdmin' element={<Orders/>}/>
+          <Route path='/clientsAdmin' element={<Clients/>}/>
         </Routes>
         {validate && <Footer/>} 
       </AuthProvider>

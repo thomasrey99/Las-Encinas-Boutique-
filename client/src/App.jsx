@@ -25,6 +25,7 @@ import Clients from './VIEWS/Admin/Views/Clients/Clients';
 
 const App = () => {
 
+  console.log("Usuario logueado")
   const location = useLocation();
 
   const validate = location.pathname !== '/' && 

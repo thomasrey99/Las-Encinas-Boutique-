@@ -14,13 +14,15 @@ const {
   DB_HOST,
   DB_NAME,
   DB_DIALECT,
-  DB_PORT 
+  DB_PORT,
+  DB_SERVER_DEPLOY
 } = process.env; 
 
 const dataBase=new Sequelize( 
-  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-  {logging:false}
+  `${DB_SERVER_DEPLOY}`,
+  {logging:false, dialectOptions:{ssl:{require:true}}}
 )
+
 userModel(dataBase)
 productModel(dataBase)
 categoryModel(dataBase)

@@ -12,6 +12,8 @@ import { WhatsAppOutlined } from '@ant-design/icons';
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 
+
+
 const Home = () => {
   const {user}= useAuth() //Esto trae la info del usuario que está logeado actualmente
   console.log("Este es el currentUser:",user)
@@ -21,7 +23,9 @@ const Home = () => {
   const products = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
+
   const {name}=useSelector((state)=>state.filters)
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = products.slice(startIndex, endIndex);
@@ -53,12 +57,13 @@ const Home = () => {
         <div className={styles.cardLayout}>
           {productsToDisplay?.map((product) => (
             <Card
-              key={product.id}
-              id={product.id}
+              key={product.id_product}
+              id={product.id_product}
               name={product.name}
               price={product.price}
               image={product.image}
               raiting={product.raiting}
+              type={product.type}
             />
           ))}
         </div>
@@ -76,6 +81,7 @@ const Home = () => {
                 <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
                 <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
                 <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+
             </Space>
         </div>
 

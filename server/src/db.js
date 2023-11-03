@@ -17,7 +17,7 @@ const {
   DB_PORT 
 } = process.env; 
 
-const dataBase=new Sequelize( 
+const dataBase = new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}
 )
@@ -74,6 +74,10 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
+
+//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
+User.belongsToMany(Product, { through: 'Favorites' });
+Product.belongsToMany(User, { through: 'Favorites' });
 
 module.exports={
   ...dataBase.models,

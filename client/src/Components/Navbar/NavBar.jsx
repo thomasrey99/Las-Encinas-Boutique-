@@ -10,6 +10,8 @@ const NavBar = () => {
   const handleOnClick = async()=>{
     await logout();
   }
+
+  const currentUser = 'Admin';
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
@@ -22,7 +24,7 @@ const NavBar = () => {
           <div className={style.navLinks}>
               <NavLink to={"/home"} className={style.item}>Pagina Principal</NavLink>
               <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
-              <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>
+              {(currentUser === 'Admin') && <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>}
               
               {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.item}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.item}>Inicia sesión</NavLink>}
               <HamburguerMenu/>

@@ -7,10 +7,17 @@ import logo from "../../assets/Las_encinas_Logo.png"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
-import { useEffect } from "react";
+import { useEffect} from "react";
+import { addCart } from "../../libs/redux/features/CartSlice";
 
 const getUserById=async(id)=>{
-  const response=(await axios(`http://localhost:3001/users/${id}`)).data
+  const responseUser=(await axios(`http://localhost:3001/users/${id}`)).data
+  const {id_Cart}=responseUser.Cart
+  const responseCart=(await axios(`http://localhost:3001/cart/${id_Cart}`)).data
+  const response={
+    user:responseUser,
+    cart:responseCart
+  }
   return response
 }
 
@@ -20,19 +27,22 @@ const NavBar = () => {
 
   const { user, logout } = useAuth();
 
+  const userLog=useSelector((state)=>state.user.userLog)
+
+  const cartLog=useSelector((state)=>state.cart)
+
   const handleOnClick = async () => {
     await logout();
   };
 
   useEffect(() => {
-
     const getUserData = async () => {
       if (user) {
         const { uid } = user;
         try {
           const response = await getUserById(uid);
-          
-          dispatch(addUser(response))
+          dispatch(addUser(response.user));
+          dispatch(addCart(response.cart))
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }
@@ -42,11 +52,13 @@ const NavBar = () => {
     getUserData();
   }, [dispatch, user]);
 
+  console.log("usuario logueado: ", userLog)
+  console.log("carrito del usuario: ", cartLog)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
           <img src={logo} className={style.img}/>
-        </div>  
+        </div>
         <div className={style.navItems}>
           {user && ((user.displayName? <p>Bienvenido(a):{user.displayName}</p>: <p>Bienvenido(a):{user.email}</p>)) }
           <Link to={"/cart"}><img src={cart} className={style.cartIcon}/></Link>

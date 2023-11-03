@@ -6,11 +6,13 @@ import { filterSlice } from "./features/filterSelice";
 import {categoriesSlice} from "./features/categoriesSlice"
 import {TypeSlice} from "./features/typesSlice"
 import { userSlice } from "./features/userSlice";
+import { cartSlice } from "./features/CartSlice";
 import { usersApi } from "./services/usersApi";
 import {typesApi} from "./services/typesApi"
 import { categoriesApi } from "./services/categoriesApi";
 import { favoritesApi } from "./services/favoritesApi";
 import { cartApi } from "./services/CartApi";
+
 export const store = configureStore({
     reducer: {
       user:userSlice.reducer,
@@ -18,6 +20,7 @@ export const store = configureStore({
       filters:filterSlice.reducer,
       types:TypeSlice.reducer,
       categories:categoriesSlice.reducer,
+      cart:cartSlice.reducer,
       [productsApi.reducerPath]: productsApi.reducer,
       [usersApi.reducerPath]: usersApi.reducer,
       [typesApi.reducerPath]:typesApi.reducer,

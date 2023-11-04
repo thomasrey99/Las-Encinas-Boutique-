@@ -26,16 +26,16 @@ export const reviewsApi=createApi({
             invalidatesTags:["reviews"]
         }),
         editReview:builder.mutation({
-            query:({userId, productId, idReview, updateReview}) =>({
-                url: `/reviews/${productId}?userId=${userId}&idReview=${idReview}`,
+            query:({productId, idReview, updateReview}) =>({
+                url: `/reviews/${productId}?idReview=${idReview}`,
                 method:"PUT",
                 body: updateReview
             }),
             invalidatesTags:["reviews"]
         }),
         removeReview:builder.mutation({
-            query:({userId, productId, idReview}) =>({
-                url: `/reviews/${productId}?userId=${userId}&idReview=${idReview}`,
+            query:({productId, idReview}) =>({
+                url: `/reviews/${productId}?idReview=${idReview}`,
                 method:"DELETE",
             }),
             invalidatesTags:["reviews"]

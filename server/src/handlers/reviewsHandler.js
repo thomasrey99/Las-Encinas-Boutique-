@@ -11,28 +11,15 @@ const {
 // Handler GET /reviews
 const getProductReviews = async (req, res) => {
 const { productId } = req.params;
+const { idReview } = req.query;
 
 try {
-    const reviews = await getReviewsController(productId);
+    const reviews = idReview? await getReviewByIdController(productId, idReview) :  await getReviewsController(productId);
     res.status(201).json(reviews)
 } catch (error) {
     res.status(400).json({ error: error.message });
 }
 }
-
-// Handler GET /reviews/:productId?idReview=''
-const getProductReviewsById = async (req, res) => {
-const { productId } = req.params;
-const { idReview } = req.query;
-console.log(idReview);
-try {
-    const review = await getReviewByIdController(productId, idReview);
-    res.status(200).json(review);
-} catch (error) {
-    res.status(400).json({ error: error.message });
-}
-}
-
 
 //Handler que maneja la petición POST a /reviews
 const postProductReview = async(req, res) =>{
@@ -51,11 +38,11 @@ try {
 //Handler que maneja la petición PUT a /reviews
 const editProductReview = async(req, res) =>{
     const { productId } = req.params;
-    const { userId, idReview } = req.query;
+    const { idReview } = req.query;
     const { rating, comment } = req.body;
 
 try {
-    const review = await updateReviewController(productId, userId, idReview, rating, comment)
+    const review = await updateReviewController(productId, idReview, rating, comment)
     res.status(201).json(review)
 } catch (error) {
     res.status(400).json({ error: error.message });
@@ -65,10 +52,10 @@ try {
 //Handler que maneja la petición DELETE a /review
 const removeproductReview = async(req, res) =>{
     const { productId } = req.params;
-    const { userId, idReview } = req.query;
+    const { idReview } = req.query;
 
 try {
-    const review = await deleteReviewController(productId, userId, idReview)
+    const review = await deleteReviewController(productId, idReview)
     res.status(200).json(review)
 } catch (error) {
     res.status(400).json({ error: error.message });
@@ -77,7 +64,6 @@ try {
 
 module.exports = {
 getProductReviews,
-getProductReviewsById,
 postProductReview,
 editProductReview,
 removeproductReview

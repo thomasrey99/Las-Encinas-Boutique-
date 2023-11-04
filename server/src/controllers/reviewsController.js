@@ -12,8 +12,8 @@ const getReviewsController = async (productId) => {
 const getReviewByIdController = async (productId, idReview) => {
 
   const review = await Review.findOne({ where: {id_product: productId, id_review: idReview } });
-  if (review.length > 0) return review;
-  else return [];
+  if (review !== null) return review;
+  else return 'No se encontró ninguna reseña con ese ID';
 };
 
 //CONTROLLER QUE CREA UNA NUEVA REVIEW
@@ -30,20 +30,20 @@ const postReviewController = async (userId, productId, rating, comment) => {
 };
 
 //CONTROLLER QUE EDITA UNA REVIEW
-const updateReviewController = async (productId, userId, idReview, rating, comment) => {
+const updateReviewController = async (productId, idReview, rating, comment) => {
     const reviewData = {
         rating: rating,
         comment: comment,
     };
-    const update = await Review.update(reviewData, { where: { id_product: productId, uid: userId,  id_review: idReview  } });
-    if (update) return await Review.findOne({ where: { uid: userId, id_product: productId, id_review: idReview } });
+    const update = await Review.update(reviewData, { where: {id_review: idReview } });
+    if (update) return await Review.findOne({ where: {id_product: productId, id_review: idReview } });
     else return 'Hubo un problema al actualizar';
 };
 
 //CONTROLLER QUE ELIMINA UNA REVIEW
-const deleteReviewController = async (productId, userId, idReview,) => {
-    console.log(idReview);
-  const reviewDeleted = await Review.destroy({ where: { id_product: productId, uid: userId,  id_review: idReview } });
+const deleteReviewController = async (productId, idReview) => {
+
+  const reviewDeleted = await Review.destroy({ where: {id_product: productId, id_review: idReview} });
   if (reviewDeleted) return `Review Eliminado con éxito`
   else return 'Error al eliminar la review'
 };

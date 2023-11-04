@@ -1,7 +1,7 @@
 import style from './App.module.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
-import Landing from './VIEWS/Landind/Landig';
+import Landing from './VIEWS/Landing/Landing';
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
 import FormProducts from './VIEWS/FormProduct/FormProducts';
@@ -43,7 +43,7 @@ const App = () => {
       <AuthProvider>
         {validate && <NavBar />}
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Landing />} />
           <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />

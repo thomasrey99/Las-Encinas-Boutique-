@@ -132,11 +132,11 @@ console.log(form);
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
                 
                 <Form.Item label="Contraseña" name="password" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contraseña'}]}>
-                    <Input name="password" value={form.password} onChange={(e) => handlerCange('password', e.target.value)} />
+                    <Password name="password" value={form.password} onChange={(e) => handlerCange('password', e.target.value)} />
                 </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
-                <Button type="primary" htmlType="submit">Registrar</Button>
+                <Button type="primary" htmlType="submit" >Registrar</Button>
                 <div className={style.divButtons}>
                     
                 </div>

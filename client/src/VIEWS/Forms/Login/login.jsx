@@ -53,8 +53,7 @@ const Login = () => {
         
     }
     console.log(form);
-    // console.log("email:",login.email)
-    // console.log("password", login.password)
+    
 
     return (
         <div>
@@ -62,7 +61,7 @@ const Login = () => {
             {console.log("Contenido del error")} */}
             <form onSubmit={handleSubmit}>
                 <h1>Ingresar</h1>
-                <Form.Item label="Nombre" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
+                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
                     <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
                 </Form.Item>
 

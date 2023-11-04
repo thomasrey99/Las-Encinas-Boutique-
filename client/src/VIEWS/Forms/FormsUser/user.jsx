@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, InputNumber } from 'antd'
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useAuth } from "../../../firebase/authContext";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const FormUser = () => {
         lastName: '',
         address: '',
         email: '',
-        phone: '',
+        phone: 0,
         password: ''
     })
 
@@ -39,16 +39,17 @@ const FormUser = () => {
     const [isFormValid, setIsFormValid] = useState(false);
 
 
-    const handlerCange = (e) => {
+    const handlerCange = (name, value) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [name]: value
         });
+
         const newErrors = { ...errors };
 
         Validates({
             ...form,
-            [e.target.name]: e.target.value
+            [name]: value
         },
             newErrors,
             setErrors
@@ -68,8 +69,7 @@ const FormUser = () => {
     };
 
     const handlerSubmit = async (event) => {
-        event.preventDefault();
-        
+        event.preventDefault();   
         if (
             !form.name ||
             !form.lastName ||
@@ -97,6 +97,7 @@ const FormUser = () => {
                 }else if(error.code === 'auth/email-already-in-use'){
                     setError("El correo electrónico ya está registrado!!!")
                 }
+                
         }
     };    
 console.log(form);
@@ -105,37 +106,39 @@ console.log(form);
         <div>
             <h1>Registro de Usuario</h1>
             <form onSubmit={handlerSubmit}>
-                <label htmlFor="name">Nombre: </label>
-                <Input type="text" name= 'name'  placeholder='Ingresar nombre...' onChange={handlerCange} />
+                <Form.Item label="Nombre" name="name" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
+                    <Input name="name" value={form.name} onChange={(e) => handlerCange('name', e.target.value)} />
+                </Form.Item>
                 {errors.name !== '' ? <span>{errors.name}</span> : ''}
-                <hr />
-                <label htmlFor="lastName">Apellido: </label>
-                <Input type="text" name= 'lastName'  placeholder='Ingresar apellido...' onChange={handlerCange} />
+                
+                <Form.Item label="Apellido" name="lastName" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su apellido'}]}>
+                    <Input name="lastName" value={form.lastName} onChange={(e) => handlerCange('lastName', e.target.value)} />
+                </Form.Item>
                 {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
-                <hr />
-                <label htmlFor="address">Dirección: </label>
-                <Input type="text" name= 'address'  placeholder='Ingresar dirección...' onChange={handlerCange} />
+                
+                <Form.Item label="Domicilio" name="address" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su domicilio'}]}>
+                    <Input name="address" value={form.address} onChange={(e) => handlerCange('address', e.target.value)} />
+                </Form.Item>
                 {errors.address !== '' ? <span>{errors.address}</span> : ''}
-                <hr />
-                <label htmlFor="email">E-Mail: </label>
-                <Input type="text" name= 'email'  placeholder='Escribe tu e-mail...' onChange={handlerCange} />
+                
+                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su e-mail'}]}>
+                    <Input name="email" value={form.email} onChange={(e) => handlerCange('email', e.target.value)} />
+                </Form.Item>
                 {errors.email !== '' ? <span>{errors.email}</span> : ''}
-                <hr />
-                <label htmlFor="phone">Teléfono: </label>
-                <Input type="text" name= 'phone'  placeholder='Dejanos tu contacto...' onChange={handlerCange} />
+                
+                <Form.Item label="Teléfono" name="phone" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contacto'}]}>
+                    <Input name="phone" value={form.phone} onChange={(e) => handlerCange('phone', e.target.value)} />
+                </Form.Item>
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
-                <hr />
-                <label htmlFor="password">Contraseña: </label>
-                <Password type="text" name= 'password' placeholder='Debe ser secreta...' onChange={handlerCange} />
+                
+                <Form.Item label="Contraseña" name="password" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contraseña'}]}>
+                    <Input name="password" value={form.password} onChange={(e) => handlerCange('password', e.target.value)} />
+                </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
-                <hr />
-                <button type='submit'>Registrar</button>
+                
+                <Button type="primary" htmlType="submit">Registrar</Button>
                 <div className={style.divButtons}>
-                    <Button>Registratse con Google <GoogleOutlined /></Button>
-                
-                    {/* <Button>Registratse con Instagram <InstagramOutlined /></Button>
-                
-                    <Button>Registratse con Facebook <FacebookOutlined /></Button> */}
+                    
                 </div>
 
             </form>

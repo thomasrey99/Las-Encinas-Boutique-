@@ -14,7 +14,6 @@ const Favorites = () => {
     useEffect(() => {
         refetch();
     },[getAllFavProducts])
-    console.log(getAllFavProducts);
 
     return(
         <div className={styles.container}>

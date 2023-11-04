@@ -74,6 +74,9 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
 
+//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
+User.belongsToMany(Product, { through: 'Favorites' });
+Product.belongsToMany(User, { through: 'Favorites' });
 
 module.exports={
   ...dataBase.models,

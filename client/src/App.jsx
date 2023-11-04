@@ -15,7 +15,7 @@ import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
-
+import {Cart} from "./VIEWS/cart/Cart"
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -51,6 +51,7 @@ const App = () => {
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
           <Route path='login' element={<Login/>} />
           <Route path='resetpassword' element={<FormResetPassword />} />
+          <Route path='/cart' element={<Cart/>}/>
           {/* Rutas protegidas del admin */}
           {userRole === 'admin' ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           <Route path='/productsAdmin' element={<Products />} />

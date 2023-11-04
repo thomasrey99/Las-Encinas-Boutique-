@@ -6,17 +6,26 @@ import { useGetAllFavProductsQuery, useGetFavProductQuery,
 import { Card as AndCard, Rate, Button } from 'antd';
 const { Meta } = AndCard;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/icons';
-
+import { addProductCart } from '../../libs/redux/features/CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePutCartMutation } from '../../libs/redux/services/CartApi';
+import { useAuth } from '../../firebase/authContext';
 
 const Card = (props) => {
 
+  const {user}=useAuth()
+
+  const dispatch=useDispatch()
   const navigate = useNavigate();
+  const cartData=useSelector((state)=>state.cart)
+  const id_cart=useSelector((state)=>state.user.userCartId)
   const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();
   const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
   const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
+  const [mutate]=usePutCartMutation()
   console.log(productFav);
 
   const handlefavClick = async (event) => {
@@ -31,6 +40,18 @@ const Card = (props) => {
     refresh();
   }
 
+  const handleProductCart=async (product)=>{
+    if(user===null){
+      alert("Tienes que registrart para agregar productos al carrito")
+      navigate("/login")
+    }else{
+      dispatch(addProductCart(product))
+      await mutate({ dataUpdate: cartData, id_cart: id_cart })
+    }
+  }
+
+  console.log("info del carrito",cartData)
+  console.log("id del carrito", id_cart)
   return (
     <div className={Style.productList}>
 
@@ -38,13 +59,12 @@ const Card = (props) => {
           className={Style.card}
           hoverable
           style={{ width: 280, height: 400}}
-          onClick={()=>navigate(`/detail/${productId}`)}
           cover={<img alt={props.name} src={props.image} style={{height: 200}} className={Style.img} />}>
-          <Meta title={<p className={Style.name}>{props.name}</p>} />
+          <Meta  onClick={()=>navigate(`/detail/${productId}`)} title={<p className={Style.name}>{props.name}</p>} />
           <Meta title={<div className={Style.raiting}><Rate disabled value={props.raiting}/></div>}
            description={<p className={Style.price}>${props.price}</p>} />
            <div className={Style.buttons}>
-           <Button className={Style.button}><ShoppingCartOutlined/></Button>
+           <Button className={Style.button} onClick={()=>handleProductCart(props)}><ShoppingCartOutlined/></Button>
            <Button className={Style.button} onClick={handlefavClick}>{productFav?<HeartFilled/>:<HeartOutlined/>}</Button>
            </div>
         </AndCard>

@@ -31,10 +31,11 @@ const LoginFirebase = ()=>{
         setError('')
 
             try {
-                await login(user.email, user.password);
+                const userCredential= await login(user.email, user.password);
+                const uid=userCredential.user.uid
+                console.log("identificador del usuario",uid)
                 navigate('/home')
             } catch (error) {
-                // console.log(error.code)
                 if(error.code === 'auth/invalid-login-credentials'){
                     setError("Contraseña o correo electrónico incorrecto.")
 
@@ -57,13 +58,9 @@ const LoginFirebase = ()=>{
         
     }
     
-    
-    // console.log("email:",user.email)
-    // console.log("password", user.password)
     return(
         <div>
             {error && <p>{error}</p>}
-            {/* {console.log("Contenido del error")} */}
 
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" placeholder="Email"

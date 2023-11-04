@@ -47,3 +47,9 @@
     text-decoration: none;
     color: white;
 }
+.brand {
+    --font-family: eccentric; /* Apply the desired font family */
+    display: flex; /* Ensure it's displayed as a flex container */
+    align-items: center; /* Align items vertically in the center */
+    color: aliceblue;
+  }

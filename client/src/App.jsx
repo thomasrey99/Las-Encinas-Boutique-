@@ -30,6 +30,7 @@ const App = () => {
 
   const validate =
   location.pathname !== '/controlAdmin' && 
+
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&

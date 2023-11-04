@@ -10,32 +10,29 @@ module.exports = (dataBase) => {
         'User', {
         uid:{
             type:DataTypes.STRING,
-            primaryKey: true,
+            primaryKey:true,
             allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true, 
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING,   
             allowNull: true,
         },
         lastName: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: true,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         phone: {
             type: DataTypes.NUMERIC
         },
+
         is_Admin:{
             type:DataTypes.BOOLEAN,
             defaultValue: false

@@ -19,8 +19,8 @@ const {
 } = process.env; 
 
 const dataBase=new Sequelize( 
-  `${DB_SERVER_DEPLOY}`,
-  {logging:false, dialectOptions:{ssl:{require:true}}}
+  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  {logging:false}
 )
 
 userModel(dataBase)

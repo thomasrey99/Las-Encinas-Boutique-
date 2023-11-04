@@ -45,11 +45,7 @@ const LoginFirebase = ()=>{
                 }
                 
             }      
-            
-            
-            
-        
-
+     
     }
     
     const handleGoogle = async()=>{

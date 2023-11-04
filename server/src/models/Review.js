@@ -9,13 +9,13 @@ module.exports = (dataBase) => {
             allowNull: false,
         },
         id_user: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         score: {
             type: DataTypes.NUMBER,
         },
-        comments: {
+        comment: {
             type: DataTypes.STRING,
         },
 

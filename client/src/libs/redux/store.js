@@ -13,6 +13,7 @@ import { categoriesApi } from "./services/categoriesApi";
 import { favoritesApi } from "./services/favoritesApi";
 import { cartApi } from "./services/CartApi";
 
+
 export const store = configureStore({
     reducer: {
       user:userSlice.reducer,

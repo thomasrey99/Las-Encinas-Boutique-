@@ -20,13 +20,13 @@ try {
 }
 }
 
-// Handler GET /reviews/:productId?userId=''
+// Handler GET /reviews/:productId?idReview=''
 const getProductReviewsById = async (req, res) => {
 const { productId } = req.params;
-const { userId } = req.query;
-
+const { idReview } = req.query;
+console.log(idReview);
 try {
-    const review = await getReviewByIdController(userId, productId);
+    const review = await getReviewByIdController(productId, idReview);
     res.status(200).json(review);
 } catch (error) {
     res.status(400).json({ error: error.message });

@@ -9,9 +9,9 @@ const getReviewsController = async (productId) => {
 };
 
 //CONTROLER QUE TRAE LA REVIEW DE UN PRODUCTO DE UN USUARIO
-const getReviewByIdController = async (userId, productId) => {
+const getReviewByIdController = async (productId, idReview) => {
 
-  const review = await Review.findOne({ where: { uid: userId, id_product: productId } });
+  const review = await Review.findOne({ where: {id_product: productId, id_review: idReview } });
   if (review.length > 0) return review;
   else return [];
 };

@@ -1,23 +1,35 @@
 const { DataTypes } = require('sequelize');
 
-
 module.exports = (dataBase) => {
-
-    dataBase.define('Product_Feedback', {
-        id_product: {
-            type: DataTypes.UUID,
-            allowNull: false,
+    dataBase.define('Review', {
+        id_review: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
         },
-        id_user: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        score: {
-            type: DataTypes.NUMBER,
+        rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
         },
         comment: {
-            type: DataTypes.STRING,
+        type: DataTypes.TEXT,
+        allowNull: false,
         },
-
-    })
+        date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+        },
+        avatar: {
+        type: DataTypes.STRING,
+        defaultValue: "https://img.freepik.com/vector-premium/cacao-come-mascota-chocolate-vector-dibujos-animados_193274-12227.jpg",
+        allowNull: true,
+        }
+    },
+    {
+        freezeTableName: true,
+        timestamps: false,
+        createdAt:false,
+        updatedAt:false
+    }
+    )
 }

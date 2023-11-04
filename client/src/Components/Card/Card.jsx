@@ -11,9 +11,16 @@ import { addProductCart } from '../../libs/redux/features/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePutCartMutation } from '../../libs/redux/services/CartApi';
 import { useAuth } from '../../firebase/authContext';
+import { addProductCart } from '../../libs/redux/features/CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { usePutCartMutation } from '../../libs/redux/services/CartApi';
+import { useAuth } from '../../firebase/authContext';
 
 const Card = (props) => {
 
+  const {user}=useAuth()
+
+  const dispatch=useDispatch()
   const {user}=useAuth()
 
   const dispatch=useDispatch()
@@ -53,6 +60,18 @@ const Card = (props) => {
 
   console.log("info del carrito",cartData)
   console.log("id del carrito", id_cart)
+  const handleProductCart=async (product)=>{
+    if(user===null){
+      alert("Tienes que registrart para agregar productos al carrito")
+      navigate("/login")
+    }else{
+      dispatch(addProductCart(product))
+      await mutate({ dataUpdate: cartData, id_cart: id_cart })
+    }
+  }
+
+  console.log("info del carrito",cartData)
+  console.log("id del carrito", id_cart)
   return (
     <div className={Style.productList}>
 
@@ -62,9 +81,11 @@ const Card = (props) => {
           style={{ width: 280, height: 400}}
           cover={<img alt={props.name} src={props.image} style={{height: 200}} className={Style.img} />}>
           <Meta  onClick={()=>navigate(`/detail/${productId}`)} title={<p className={Style.name}>{props.name}</p>} />
+          <Meta  onClick={()=>navigate(`/detail/${productId}`)} title={<p className={Style.name}>{props.name}</p>} />
           <Meta title={<div className={Style.raiting}><Rate disabled value={props.raiting}/></div>}
            description={<p className={Style.price}>${props.price}</p>} />
            <div className={Style.buttons}>
+           <Button className={Style.button} onClick={()=>handleProductCart(props)}><ShoppingCartOutlined/></Button>
            <Button className={Style.button} onClick={()=>handleProductCart(props)}><ShoppingCartOutlined/></Button>
            <Button className={Style.button} onClick={handlefavClick}>{productFav?<HeartFilled/>:<HeartOutlined/>}</Button>
            </div>

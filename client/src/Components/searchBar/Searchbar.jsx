@@ -47,10 +47,6 @@ const Searchbar = () => {
   }, [search, data])
 
 
-  console.log("productos en la searchbar", products)
-  console.log(isLoading)
-  console.log("esto trae data: ",data)
-
   return (
     <div className={style.searchCont} id="products">
         {/*<div className={style.inputCont}>

@@ -47,3 +47,20 @@
     text-decoration: none;
     color: white;
 }
+.cartIconCont{
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.TotaItems{
+    position: absolute;
+    text-decoration: none;
+    top: 0px;
+    left:10px;
+    color: green;
+    font-size: 12px;
+    font-weight: bold;
+}

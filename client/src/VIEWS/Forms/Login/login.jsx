@@ -4,48 +4,43 @@ import { Form, Input, Checkbox, Button } from 'antd';
 import Password from 'antd/es/input/Password';
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
+const { TextArea } = Input;
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const [error, setError] = useState();
-
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
-
     const {login, loginWithGoogle}= useAuth();
     const { Item } = Form;
     
+    const [error, setError] = useState();
+    
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    });
+    
 
-    const handleChange = ({target: {name, value}})=>{
-        setUser({
-            ...user,
+    const handlerChange = (name, value) => {
+        setForm({
+            ...form,
             [name]: value
-
         })
-    }
+    };
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        setError('')
-
-            try {
-                await login(user.email, user.password);
-                navigate('/home')
-            } catch (error) {
-                console.log(error.code)
-                if(error.code === 'auth/invalid-login-credentials'){
-                    setError("Contraseña o correo electrónico incorrecto.")
+        try {
+            await login(form.email, form.password);
+            navigate('/home')
+        } catch (error) {
+            console.log(error.code)
+            if(error.code === 'auth/invalid-login-credentials'){
+                setError("La contraseña o el E-mail son incorrectos.")
 
                 }if(error.code === 'auth/too-many-requests'){
                     setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-
                 }
-                
             }      
-     
     }
 
     const handleGoogle = async()=>{
@@ -53,42 +48,37 @@ const Login = () => {
             await loginWithGoogle()
             navigate('/home')
         } catch (error) {
-            setError("Ocurrió un error, inténtelo otra vez.")
+            setError("Ha Ocurrido un error, inténtelo nuevamente.")
         }
         
     }
-
-    console.log("email:",user.email)
-    console.log("password", user.password)
+    console.log(form);
+    
 
     return (
         <div>
-            <h1>Ingresar</h1>
-            {error && <p>{error}</p>}
-            {console.log("Contenido del error")}
-
+            {/* {error && <p>{error}</p>}
+            {console.log("Contenido del error")} */}
             <form onSubmit={handleSubmit}>
-                
-                <Form initialValues={{recordar: true}} >
-                    <Item label= 'Usuario' name='email' rules={[{required: true, message: 'Ingrese un email válido', type:'email'}]} >
-                        <Input name='email' placeholder='Ingresar e-mail...' onChange={handleChange}/>
-                    </Item>
-            
-                    <Item label= 'Contraseña' name='password' rules={[{required: true, message: 'Ingrese su contraseña'}]} >
-                        <Password name='password' placeholder='Ingrese contraseña...' onChange={handleChange}/>
-                    </Item>
+                <h1>Ingresar</h1>
+                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
+                    <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
+                </Form.Item>
 
-                    <Item name='recordar' valuePropName='checked' >
-                        <Checkbox>Recordar usuario</Checkbox>
-                    </Item>
-                </Form> 
+                <Form.Item label="Contraseña" name="password" rules={[{ required: true, message: 'Ingrese el precio' }]}>
+                    <Password name="password" placeholder='Ingrese su contraseña...' value={form.password} onChange={(e) => handlerChange('password', e.target.value)} />
+                </Form.Item>
+                     
+                <div>
+                    <Button type="primary" htmlType="submit">Ingresar</Button>
+                    <Link to='/resetpassword'>Olvidé mi constraseña</Link>
+                    <Link to='/registeruser'><Button>Registrate</Button></Link>
+                    <Button onClick={handleGoogle}>Ingresa con Google</Button>
+                </div>
 
-                <button type='submit'>Ingresar</button>
-                <Link to='/registeruser'><button>Registrate</button></Link>
-                <br></br>
-                <Link to='/resetpassword'>Olvidé mi constraseña</Link>
             </form>
-            <button onClick={handleGoogle}>Ingresa con Google</button>
+            
+           
         </div>
     )
 };

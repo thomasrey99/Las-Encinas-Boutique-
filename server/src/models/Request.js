@@ -7,10 +7,10 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        uid: {
-            type: DataTypes.UUID,
-            allowNull: false,
-        },
+        // uid: {
+        //     type: DataTypes.UUID,
+        //     allowNull: false,
+        // },
         id_send: {
             type: DataTypes.UUID,
             allowNull: false,

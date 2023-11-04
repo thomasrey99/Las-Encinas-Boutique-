@@ -16,7 +16,7 @@ const startServer=async()=>{
       console.log(`Server of las encinas boutique listening on port ${PORT}`);
     });
   } catch (error) {
-    console.error('Error starting server:', error);
+    console.error('Error starting server:', error.message);  
   }
 }
 

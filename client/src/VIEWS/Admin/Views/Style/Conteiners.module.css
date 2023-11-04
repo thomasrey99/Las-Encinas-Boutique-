@@ -5,6 +5,7 @@
   
   .Panel {
     width: 100%;
+    min-height:100dvh;
     display: flex;
     flex-direction: column;
     margin-left: 20%;

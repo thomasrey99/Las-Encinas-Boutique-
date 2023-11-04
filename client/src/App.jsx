@@ -15,7 +15,7 @@ import { AuthProvider } from './firebase/authContext';
 import LoginFirebase from './VIEWS/Forms/LoginFirebase/LoginFirebase';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
-
+import {Cart} from "./VIEWS/cart/Cart"
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -24,10 +24,11 @@ import Orders from './VIEWS/Admin/Views/Orders/Orders';
 import Clients from './VIEWS/Admin/Views/Clients/Clients';
 
 const App = () => {
-
+  const userRole = "admin" //Esta información se obtendrá de la Base de datos.
+                           //Esto solo es una prueba.
   const location = useLocation();
 
-  const validate = location.pathname !== '/' && 
+  const validate =
   location.pathname !== '/controlAdmin' && 
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
@@ -39,25 +40,26 @@ const App = () => {
       
       
       {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
-      <AuthProvider> 
-      {validate && <NavBar/>}
+      <AuthProvider>
+        {validate && <NavBar />}
         <Routes>
-          <Route path='/' element={<Landing />} />
+          <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<Register />} />
           <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
-          <Route path='login' element={<Login />} />
-          <Route path='resetpassword' element={<FormResetPassword/>} />
-
-          <Route path='/controlAdmin' element={<ControlPanel/>} />
-          <Route path='/productsAdmin' element={<Products/>} />
-          <Route path='/paymentsAdmin' element={<Payments/>} />
-          <Route path='/ordersAdmin' element={<Orders/>} />
-        <Route path='/clientsAdmin' element={<Clients/>} />
+          <Route path='login' element={<Login/>} />
+          <Route path='resetpassword' element={<FormResetPassword />} />
+          <Route path='/cart' element={<Cart/>}/>
+          {/* Rutas protegidas del admin */}
+          {userRole === 'admin' ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
+          <Route path='/productsAdmin' element={<Products />} />
+          <Route path='/paymentsAdmin' element={<Payments />} />
+          <Route path='/ordersAdmin' element={<Orders />} />
+          <Route path='/clientsAdmin' element={<Clients />} />
         </Routes>
-        {validate && <Footer/>} 
+        {validate && <Footer />}
       </AuthProvider>
      
        

@@ -35,7 +35,7 @@ const FormResetPassword = ()=>{
                 navigate('/home')
             } catch (error) {
                setError(error.message) 
-                
+                 
             }      
      
     }

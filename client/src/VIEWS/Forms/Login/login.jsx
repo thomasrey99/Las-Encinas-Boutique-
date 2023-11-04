@@ -9,21 +9,16 @@ const { TextArea } = Input;
 const Login = () => {
 
     const navigate = useNavigate();
-    const [error, setError] = useState();
-
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
-
     const {login, loginWithGoogle}= useAuth();
     const { Item } = Form;
+    
+    const [error, setError] = useState();
     
     const [form, setForm] = useState({
         email: '',
         password: ''
     });
-    const [error, setError] = useState();
+    
 
     const handlerChange = (name, value) => {
         setForm({
@@ -35,7 +30,7 @@ const Login = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try {
-            await login(login.email, login.password);
+            await login(form.email, form.password);
             navigate('/home')
         } catch (error) {
             console.log(error.code)
@@ -44,11 +39,8 @@ const Login = () => {
 
                 }if(error.code === 'auth/too-many-requests'){
                     setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-
                 }
-                
             }      
-     
     }
 
     const handleGoogle = async()=>{
@@ -69,9 +61,6 @@ const Login = () => {
             {/* {error && <p>{error}</p>}
             {console.log("Contenido del error")} */}
             <form onSubmit={handleSubmit}>
-
-            </form>
-            
                 <h1>Ingresar</h1>
                 <Form.Item label="Nombre" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
                     <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
@@ -80,13 +69,16 @@ const Login = () => {
                 <Form.Item label="Contraseña" name="password" rules={[{ required: true, message: 'Ingrese el precio' }]}>
                     <Password name="password" placeholder='Ingrese su contraseña...' value={form.password} onChange={(e) => handlerChange('password', e.target.value)} />
                 </Form.Item>
-                
-                    
-                
-                <Button type='submit'>Ingresar</Button>
-                <Link to='/registeruser'><Button>Registrate</Button></Link>
-                <Link to='/resetpassword'>Olvidé mi constraseña</Link>
-                <Button onClick={handleGoogle}>Ingresa con Google</Button>
+                     
+                <div>
+                    <Button type="primary" htmlType="submit">Ingresar</Button>
+                    <Link to='/resetpassword'>Olvidé mi constraseña</Link>
+                    <Link to='/registeruser'><Button>Registrate</Button></Link>
+                    <Button onClick={handleGoogle}>Ingresa con Google</Button>
+                </div>
+
+            </form>
+            
            
         </div>
     )

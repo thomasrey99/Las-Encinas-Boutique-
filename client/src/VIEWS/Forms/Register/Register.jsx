@@ -16,8 +16,6 @@ const Register = ()=>{
     const {signup}= useAuth()
    
     
-
-
     const handleChange = ({target: {name, value}})=>{
         setUser({
             ...user,

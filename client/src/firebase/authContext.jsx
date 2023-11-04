@@ -22,14 +22,22 @@ export const useAuth = ()=>{
 export function AuthProvider({children}){
     const [mutate] = useCreateUsersMutation();
     let [user, setUser] = useState(null)
-
-    const signup = async(email, password)=>{
+    const signup = async(email, password, name, lastName, phone, address)=>{
         try {
             const userCreated = await createUserWithEmailAndPassword(auth, email, password)
             console.log("User createdeeeeeeeeeeeeeeeeee:",userCreated)
-            await mutate({uid: userCreated.user.uid, email: userCreated.user.email})
-
-        } catch (error) {
+            await mutate({
+                uid: userCreated.user.uid, 
+                email: userCreated.user.email,
+                
+                name: name,
+                lastName: lastName,
+                phone: phone,
+                address: address 
+            })
+                console.log(user);
+                
+            } catch (error) {
             throw error
         } 
     }

@@ -11,6 +11,7 @@ module.exports = (dataBase) => {
         uid:{
             type:DataTypes.STRING, 
             primaryKey: true,
+            allowNull: false
         },
         name: {
             type: DataTypes.STRING,

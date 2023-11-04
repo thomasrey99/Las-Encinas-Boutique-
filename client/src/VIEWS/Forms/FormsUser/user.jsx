@@ -4,14 +4,18 @@ import { useState } from 'react';
 import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button } from 'antd'
-import style from './user.module.css';
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
+import { useAuth } from "../../../firebase/authContext";
+import { useNavigate } from "react-router-dom";
+import style from './user.module.css';
 
 const FormUser = () => {
     const { Item } = Form
     const { Password } = Input;
     const userForm = useSelector(state => state.user)
+    const {signup} = useAuth()
     const [mutate] = useCreateUsersMutation();
+
     const [form, setForm] = useState({
         name: '',
         lastName: '',
@@ -20,6 +24,8 @@ const FormUser = () => {
         phone: '',
         password: ''
     })
+
+    let [error, setError] = useState();
 
     let [errors, setErrors] = useState({
         name: '',
@@ -31,6 +37,7 @@ const FormUser = () => {
     })
 
     const [isFormValid, setIsFormValid] = useState(false);
+
 
     const handlerCange = (e) => {
         setForm({
@@ -68,23 +75,31 @@ const FormUser = () => {
             !form.lastName ||
             !form.address ||
             !form.email ||
-            // !form.phone ||
+            !form.phone ||
             !form.password 
         ) {
             alert('Por favor complete todos los campos')
             return;
         }
-        //agregar dispatch
+        
         try {
-           await mutate(form);
-           console.log();
-        } catch (error) {
-            return error
-        }
-        resetState()
-    }
-    
+           
+           setError('')
 
+                await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
+                navigate('/home')
+                } catch (error) {
+                console.log(error.code)
+                if(error.code === 'auth/invalid-email'){
+                    setError("Correo electrónico inválido")
+                } else if(error.code === 'auth/weak-password'){
+                    setError("La constraseña debe tener al menos 6 caracteres")
+                }else if(error.code === 'auth/email-already-in-use'){
+                    setError("El correo electrónico ya está registrado!!!")
+                }
+        }
+    };    
+console.log(form);
     return (
 
         <div>
@@ -118,9 +133,9 @@ const FormUser = () => {
                 <div className={style.divButtons}>
                     <Button>Registratse con Google <GoogleOutlined /></Button>
                 
-                    <Button>Registratse con Instagram <InstagramOutlined /></Button>
+                    {/* <Button>Registratse con Instagram <InstagramOutlined /></Button>
                 
-                    <Button>Registratse con Facebook <FacebookOutlined /></Button>
+                    <Button>Registratse con Facebook <FacebookOutlined /></Button> */}
                 </div>
 
             </form>

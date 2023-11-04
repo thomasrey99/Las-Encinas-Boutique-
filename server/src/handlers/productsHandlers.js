@@ -96,8 +96,8 @@ const createPreference = (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:5173/home?isSuccess=true",
-			"failure": "http://localhost:5173/home?isSuccess=false",
+			"success": "http://localhost:5173/home",
+			"failure": "http://localhost:5173/home",
 			"pending": ""
 		},
 		auto_return: "approved",

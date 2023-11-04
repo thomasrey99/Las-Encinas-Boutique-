@@ -10,18 +10,18 @@ import { json, useLocation } from 'react-router-dom';
 
 const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
-
+    
     /*It is for handleAdminMail */
     const refTemplate = useRef();
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search)
-    const isSuccess = searchParams.get('isSuccess')
-
+    const status = searchParams.get('status')
+    
     useEffect(() => {
-        if (isSuccess === 'true') {
+        if (status === 'approved') {
             handleAdminMail()
         }
-    }, [])
+    }, [status])
     /*----------------------------------------- */
 
     initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b');

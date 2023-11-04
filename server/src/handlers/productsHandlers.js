@@ -96,8 +96,8 @@ const createPreference = (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:5173/home",
-			"failure": "http://localhost:5173/home",
+			"success": "http://localhost:5173/home?isSuccess=true",
+			"failure": "http://localhost:5173/home?isSuccess=false",
 			"pending": ""
 		},
 		auto_return: "approved",
@@ -106,7 +106,7 @@ const createPreference = (req, res) => {
     mercadoPago.preferences.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body.id
+				id: response.body
 			});
 		})
         .catch(function (error) {

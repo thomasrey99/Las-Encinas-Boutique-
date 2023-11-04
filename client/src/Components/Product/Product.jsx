@@ -1,17 +1,33 @@
 import axios from 'axios';
+import { useState, useRef, useEffect } from 'react'
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { Form, Input, Checkbox, Button } from 'antd';
-import { useRef } from "react";
 import emailjs from '@emailjs/browser'
+import mercadopago from 'mercadopago';
+import { MercadoPagoResponse } from 'mercadopago';
+import { json, useLocation } from 'react-router-dom';
+
 
 const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
+
+    /*It is for handleAdminMail */
+    const refTemplate = useRef();
+    const location = useLocation()
+    const searchParams = new URLSearchParams(location.search)
+    const isSuccess = searchParams.get('isSuccess')
+
+    useEffect(() => {
+        if (isSuccess === 'true') {
+            handleAdminMail()
+        }
+    }, [])
+    /*----------------------------------------- */
 
     initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b');
 
     const createPreference = async () => {
 
-        /*const refTemplate = useRef();*/
 
         try {
             const response = await axios.post("http://localhost:3001/products/create_preference", {
@@ -20,35 +36,43 @@ const Product = () => {
                 quantity: 1,
                 currency_id: 'ARS'
             });
-
-            const { id } = response.data;
+            console.log('response.data', response.data)
+            const { id } = response.data.id;
             return id;
         } catch (error) {
             console.log(error);
         }
     };
-    
-    const handleBuy = async () => {
+
+    const handleBuy = async (event) => {
         const id = await createPreference();
         if (id) {
             setPreferenceId(id);
         };
 
-        /*const emails = (event) => {
-            event.preventDefault();
-
-            const serviceId = "service_zigdlws"
-            const templateAdminId = "template_8gadd5r"
-            const templateClientId = "template_gs77yab"
-
-            const apikey = "jYr3TGnr-3SdDMbpq"
-
-            emailjs.sendForm(serviceId, templateAdminId, templateClientId, "pending", apikey)
-            .then(result => console.log(result.text))
-            .catch (error => console.log(error))
-        }*/
-
     };
+
+
+    const handleAdminMail = () => {
+        console.log('init email')
+        const serviceId = "service_zigdlws"
+        const templateAdminId = "template_8gadd5r"
+        const templateClientId = "template_gs77yab"
+
+        const apikey = "jYr3TGnr-3SdDMbpq"
+
+        emailjs.send("service_zigdlws", "template_8gadd5r", {
+            admin_name: "Admin encinas boutique",
+        }, "jYr3TGnr-3SdDMbpq")
+            .then(response => { console.log('SUCCESS!', response.status, response.text); })
+            .catch(err => { console.log('FAILED...', err); })
+
+        emailjs.send("service_zigdlws", "template_gs77yab", {
+            user_name: "usuario",
+        }, "jYr3TGnr-3SdDMbpq")
+            .then(response => { console.log('SUCCESS!', response.status, response.text); })
+            .catch(err => { console.log('FAILED...', err); })
+    }
 
     return (
         <div>
@@ -58,7 +82,8 @@ const Product = () => {
                     <h3>air jordan</h3>
                     <p>precio: $100</p>
                     <Button onClick={handleBuy}>Comprar</Button>
-                    {preferenceId && <Wallet initialization={{ preferenceId }} />}
+                    {preferenceId && <Wallet initialization={{ preferenceId }} customization={handleAdminMail} />}
+
                 </div>
             </div>
         </div>

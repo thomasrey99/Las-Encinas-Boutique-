@@ -74,6 +74,19 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
 
+//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
+User.belongsToMany(Product, { through: 'Favorites' });
+Product.belongsToMany(User, { through: 'Favorites' });
+
+//!REVIEWS
+
+//Cada Product y User pueden tener varias Review
+Product.hasMany(Review, { foreignKey: 'id_product' });
+User.hasMany(Review, { foreignKey: 'uid' });
+
+//Cada Review pertenece a un Product y a un User
+Review.belongsTo(Product, { foreignKey: 'id_product' });
+Review.belongsTo(User, { foreignKey: 'uid' });
 
 module.exports={
   ...dataBase.models,

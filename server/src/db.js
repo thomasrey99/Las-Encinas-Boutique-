@@ -5,6 +5,7 @@ const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
+const reviewModel=require("./models/Review")
 require("dotenv").config();
 
 
@@ -29,10 +30,11 @@ categoryModel(dataBase)
 typeModel(dataBase)
 requestModel(dataBase)
 cartModel(dataBase)
+reviewModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request, Cart, Category, Type } = dataBase.models;
+const { User, Product, Request, Cart, Category, Type, Review } = dataBase.models;
 
 //*un producto puede tener una categoria y una categoria puede tener varios productos
 
@@ -56,8 +58,8 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"uid"})
-Request.belongsTo(User, {foreignKey:"uid"})
+// User.hasMany(Request, {foreignKey:"uid"})
+// Request.belongsTo(User, {foreignKey:"uid"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
 

@@ -57,7 +57,7 @@ const Detail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;
-    const userId = '5546a';
+    const userId = 'a500';
     const [ addFavProduct ] = useAddFavProductMutation();
     const [ removeFavProduct ] = useRemoveFavProductMutation();
     const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);

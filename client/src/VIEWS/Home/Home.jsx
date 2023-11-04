@@ -35,7 +35,6 @@ const Home = () => {
  
   return (
     <div className={styles.homeContainer}>
-      
       <Carousel />
       <Searchbar />
       <Filters />

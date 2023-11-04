@@ -8,6 +8,7 @@ module.exports = (dataBase) => {
     
     dataBase.define(
         'User', {
+
         uid:{
             type:DataTypes.STRING,
             primaryKey:true,

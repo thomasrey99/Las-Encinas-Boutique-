@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../firebase/authContext";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, Input, Checkbox, Button } from 'antd';
 
 
 const FormResetPassword = ()=>{
@@ -10,21 +11,16 @@ const FormResetPassword = ()=>{
 
     const [user, setUser] = useState({
         email: "",
-        
     })
 
     const {login, resetPassword}= useAuth()
-   
-    
 
-
-    const handleChange = ({target: {name, value}})=>{
+    const handlerChange = (name, value) => {
         setUser({
             ...user,
             [name]: value
-
         })
-    }
+    };
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -39,22 +35,19 @@ const FormResetPassword = ()=>{
             }      
      
     }
-    
-     
+       console.log(user);
     return(
         <div>
             {error && <p>{error}</p>}
-            <h2>Restaurar contraseña</h2>
             <form onSubmit={handleSubmit}>
-                <input type="email" name="email" placeholder="Email"
-                    onChange={handleChange}
-                    required
-                />
-                <br></br>
-                
-                <button>Enviar correo de recuperación</button>
-                
-                
+                <h2>Restaurar contraseña</h2>
+                    <Form.Item onSubmit={handleSubmit} label="Nombre" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
+                        <Input name="email" value={user.email} onChange={(e) => handlerChange('email', e.target.value)} />
+                    </Form.Item>
+
+                   <br></br>
+
+                   <Button type="primary" htmlType="submit">Enviar correo de recuperación</Button>
             </form>
             
         </div>

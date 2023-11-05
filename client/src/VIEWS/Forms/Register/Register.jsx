@@ -16,8 +16,6 @@ const Register = ()=>{
     const {signup}= useAuth()
    
     
-
-
     const handleChange = ({target: {name, value}})=>{
         setUser({
             ...user,
@@ -31,7 +29,9 @@ const Register = ()=>{
         setError('')
 
             try {
-                await signup(user.email, user.password);
+                const userCredentials=await signup(user.email, user.password);
+                const uid=userCredentials.user.uid
+                console.log("identificador del usuario",uid)
                 navigate('/home')
             } catch (error) {
                 console.log(error.code)
@@ -44,12 +44,7 @@ const Register = ()=>{
                     setError("El correo electrónico ya está registrado!!!")
                 }
                 
-            }      
-            
-            
-            
-        
-
+            }
     }
 
     console.log("email:",user.email)

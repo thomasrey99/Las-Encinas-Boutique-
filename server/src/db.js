@@ -5,22 +5,24 @@ const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
-require("dotenv").config();
+require("dotenv").config();  
 
 
 const {
   DB_USER,
-  DB_PASSWORD, 
-  DB_HOST,
+  DB_PASSWORD,  
+  DB_HOST, 
   DB_NAME,
   DB_DIALECT,
-  DB_PORT 
+  DB_PORT,
+  DB_SERVER_DEPLOY
 } = process.env; 
 
-const dataBase = new Sequelize( 
+const dataBase=new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}
 )
+
 userModel(dataBase)
 productModel(dataBase)
 categoryModel(dataBase)
@@ -44,10 +46,8 @@ Product.belongsTo(Type, {foreignKey:"id_type"})
 
 //*un usuario puede comprar varios productos y un producto puede ser comprado por varios usuarios
 
-
 User.belongsToMany(Product, {through: 'user_product'})
 Product.belongsToMany(User, {through: 'user_product'})
-
 
 //*un usuario puede tener un carrito y un carrito pertenece a un unico usuario
 
@@ -56,11 +56,10 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"user_id"})
-Request.belongsTo(User, {foreignKey:"user_id"})
+User.hasMany(Request, {foreignKey:"uid"})
+Request.belongsTo(User, {foreignKey:"uid"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
-
 
 Product.belongsToMany(Request , { through: 'product_request' });
 Request.belongsToMany(Product , { through: 'product_request' });
@@ -75,9 +74,6 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
 
-//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
-User.belongsToMany(Product, { through: 'Favorites' });
-Product.belongsToMany(User, { through: 'Favorites' });
 
 module.exports={
   ...dataBase.models,

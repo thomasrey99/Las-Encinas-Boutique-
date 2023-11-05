@@ -15,8 +15,6 @@ import cajonerra2 from "./image/cajonerra2.jpg";
 
 
 const Home = () => {
-  const {user}= useAuth() //Esto trae la info del usuario que está logeado actualmente
-  console.log("Este es el currentUser:",user)
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
@@ -37,7 +35,6 @@ const Home = () => {
  
   return (
     <div className={styles.homeContainer}>
-      
       <Carousel />
       <Searchbar />
       <Filters />

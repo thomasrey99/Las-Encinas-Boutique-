@@ -16,8 +16,6 @@ const Register = ()=>{
     const {signup}= useAuth()
    
     
-
-
     const handleChange = ({target: {name, value}})=>{
         setUser({
             ...user,
@@ -46,12 +44,7 @@ const Register = ()=>{
                     setError("El correo electrónico ya está registrado!!!")
                 }
                 
-            }      
-            
-            
-            
-        
-
+            }
     }
 
     console.log("email:",user.email)

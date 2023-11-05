@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (dataBase) => {
     dataBase.define('Request', {
         id_request: {
-            type: DataTypes.UUID,
+            type: DataTypes.UUID, 
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },

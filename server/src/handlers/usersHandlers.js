@@ -20,6 +20,7 @@ const getAllUsers=async (req, res)=>{
 const getUserById = async ( req, res) => {
 
    const { id } = req.params
+   console.log("Esto es el params",req.params)
    
    try {
         const result = await getUserIdController(id)
@@ -32,7 +33,7 @@ const getUserById = async ( req, res) => {
 
 //!HANDLER QUE MANEJA LOS ERRORES Y PETICION DE POST /USER
 const postNewUser = async (req, res) => {
-    const { uid, name, lastName, email, address, phone } = req.body;
+    const { uid, name, lastName, email, address, phone, is_Admin } = req.body;
     console.log("Esto es el body ->",req.body)
     try{
         const data={
@@ -41,7 +42,8 @@ const postNewUser = async (req, res) => {
             lastName:lastName,
             email:email,
             phone:phone,
-            address:address
+            address:address,
+            is_Admin:is_Admin
         }
         
         const newUser = await createNewUserController(data);
@@ -56,15 +58,15 @@ const postNewUser = async (req, res) => {
 //HANDLER QUE MANEJA LA PETICIÓN PUT A /Users
 const putUser = async(req, res) =>{
     const { id } = req.params;
-    const { name, lastName, email, password, address, phone } = req.body;
+    const { name, lastName, email, address, phone, is_Admin } = req.body;
     try {
         const data={
             name:name,
             lastName: lastName,
             email:email,
-            password:password,
             address:address,
-            phone:phone
+            phone:phone,
+            is_Admin:is_Admin
         }
         const result = await putUserController(id, data)
         res.status(201).json(result)

@@ -17,14 +17,14 @@ const Product = () => {
     const searchParams = new URLSearchParams(location.search)
     const status = searchParams.get('status')
     
-    useEffect(() => {
-        if (status === 'approved') {
-            handleAdminMail()
-        }
-    }, [status])
+    // useEffect(() => {
+    //     if (status === 'approved') {
+    //         handleAdminMail()
+    //     }
+    // }, [status])
     /*----------------------------------------- */
 
-    initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b');
+    initMercadoPago('TEST-d6eb9512-989a-4e82-a378-43c986c7833b'); 
 
     const createPreference = async () => {
 
@@ -53,26 +53,26 @@ const Product = () => {
     };
 
 
-    const handleAdminMail = () => {
-        console.log('init email')
-        const serviceId = "service_zigdlws"
-        const templateAdminId = "template_8gadd5r"
-        const templateClientId = "template_gs77yab"
+    // const handleAdminMail = () => {
+    //     console.log('init email')
+    //     const serviceId = "service_zigdlws"
+    //     const templateAdminId = "template_8gadd5r"
+    //     const templateClientId = "template_gs77yab"
 
-        const apikey = "jYr3TGnr-3SdDMbpq"
+    //     const apikey = "jYr3TGnr-3SdDMbpq"
 
-        emailjs.send("service_zigdlws", "template_8gadd5r", {
-            admin_name: "Admin encinas boutique",
-        }, "jYr3TGnr-3SdDMbpq")
-            .then(response => { console.log('SUCCESS!', response.status, response.text); })
-            .catch(err => { console.log('FAILED...', err); })
+    //     emailjs.send("service_zigdlws", "template_8gadd5r", {
+    //         admin_name: "Admin encinas boutique",
+    //     }, "jYr3TGnr-3SdDMbpq")
+    //         .then(response => { console.log('SUCCESS!', response.status, response.text); })
+    //         .catch(err => { console.log('FAILED...', err); })
 
-        emailjs.send("service_zigdlws", "template_gs77yab", {
-            user_name: "usuario",
-        }, "jYr3TGnr-3SdDMbpq")
-            .then(response => { console.log('SUCCESS!', response.status, response.text); })
-            .catch(err => { console.log('FAILED...', err); })
-    }
+    //     emailjs.send("service_zigdlws", "template_gs77yab", {
+    //         user_name: "usuario",
+    //     }, "jYr3TGnr-3SdDMbpq")
+    //         .then(response => { console.log('SUCCESS!', response.status, response.text); })
+    //         .catch(err => { console.log('FAILED...', err); })
+    // }
 
     return (
         <div>

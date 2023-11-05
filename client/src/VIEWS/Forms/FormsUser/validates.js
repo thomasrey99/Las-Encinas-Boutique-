@@ -2,7 +2,7 @@ const Validates = (form, errors, setErrors) => {
 
     if (form.name) {
         
-        if (/^[A-Z][a-z]*$/.test(form.name)) {
+        if (/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/.test(form.name)) {
             setErrors((prev) =>({...prev, name: ''}))
         } else {
             setErrors((prev) => ({...prev, name: '*Nombre inválido'}))
@@ -12,7 +12,7 @@ const Validates = (form, errors, setErrors) => {
 
     if (form.lastName) {
     
-        if (/^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/.test(form.lastName)) {
+        if (/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/.test(form.lastName)) {
             setErrors((prev) =>({...prev, lastName: ''}))
         } else {
             setErrors((prev) => ({...prev, lastName: '*Apellido inválido'}))

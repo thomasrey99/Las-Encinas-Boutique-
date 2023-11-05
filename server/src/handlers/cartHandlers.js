@@ -41,7 +41,36 @@ const updateCartHandler=async (req, res)=>{
     }
 }
 
+const createPreference = (req, res) => {
+    let preference = {
+		items: [
+			{
+				title: req.body.description,
+				unit_price: Number(req.body.price),
+				quantity: Number(req.body.quantity),
+			}
+		],
+		back_urls: {
+			"success": "http://localhost:5173/home",
+			"failure": "http://localhost:5173/home",
+			"pending": ""
+		},
+		auto_return: "approved",
+	};
+
+    mercadoPago.preferences.create(preference)
+		.then(function (response) {
+			res.json({
+				id: response.body
+			});
+		})
+        .catch(function (error) {
+			console.log(error);
+		});
+};
+
 module.exports={
     getCartByIdHandler,
-    updateCartHandler
+    updateCartHandler,
+    createPreference
 }

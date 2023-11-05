@@ -14,6 +14,7 @@ import cajonerra2 from "./image/cajonerra2.jpg";
 
 
 
+
 const Home = () => {
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
@@ -75,7 +76,7 @@ const Home = () => {
             <Title className={styles.h3} level={3}>Ideales para agasajar con un regalo para alguien especial.</Title>
             <Space direction='vertical'>
                 <Text className={styles.text} type='secondary' >* Pedidos personalizados</Text>
-                <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
+                <Text className={styles.text} type='secondary' >* Tarjetas que expresan nuestros mejores deseos.</Text>
                 <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
                 <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
 

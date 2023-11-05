@@ -23,6 +23,7 @@ import Orders from './VIEWS/Admin/Views/Orders/Orders';
 import Clients from './VIEWS/Admin/Views/Clients/Clients';
 import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
 import { useSelector } from 'react-redux';
+import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 
 const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
@@ -50,6 +51,7 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<FormUser />} />
+          <Route path='homeblocked' element={<PageUserBlocked />} />
           {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
           ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />

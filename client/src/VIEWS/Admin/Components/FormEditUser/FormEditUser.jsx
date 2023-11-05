@@ -1,45 +1,35 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import Validates from './validates';
-import { useCreateUsersMutation } from '../../../../libs/redux/services/usersApi';
-import { Form, Input, Button, InputNumber } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useAuth } from '../../../../firebase/authContext';
-import { useNavigate } from 'react-router-dom';
-import style from './FormEditUser.module.css';
-import { useDispatch } from 'react-redux';
-import { getUserByUid } from '../../../../libs/redux/features/actions/userActions';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getUserByUid, updateUserFromDB } from '../../../../libs/redux/features/actions/userActions';
+import styles from './FormEditUser.module.css'; // Importa los estilos
 
 const FormEditUser = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { id } = useParams();
-  const { Item } = Form;
-  const { Password } = Input;
   const userForm = useSelector((state) => state.user);
-  const userByUid = useSelector(state => state.user.userByUid)
+  const userByUid = useSelector((state) => state.user.userByUid);
   const { signup } = useAuth();
-  const [mutate] = useCreateUsersMutation();
+  const navigate = useNavigate();
 
-  
-
-  useEffect(()=>{
-    dispatch(getUserByUid(id))
-  },[])
-
- 
-
-  
-
+  useEffect(() => {
+    dispatch(getUserByUid(id));
+  }, [id, dispatch]);
 
   const [form, setForm] = useState({
     name: '',
     lastName: '',
     address: '',
     email: '',
-    phone: 0,
-    password: '',
+    phone: '',
+    is_Admin: Boolean,
+    isBlocked: Boolean
+
   });
+
+  console.log('is_Admin:', form.is_Admin);
+  console.log('isBlocked:', form.isBlocked);
 
   useEffect(() => {
     if (userByUid) {
@@ -47,13 +37,7 @@ const FormEditUser = () => {
     }
   }, [userByUid]);
 
-
-console.log("Esto son los datos del Form",form)
-console.log('Nombre', form.name )
-
-  let [error, setError] = useState();
-
-  let [errors, setErrors] = useState({
+  const [errors, setErrors] = useState({
     name: '',
     lastName: '',
     address: '',
@@ -62,24 +46,25 @@ console.log('Nombre', form.name )
     password: '',
   });
 
-  const [isFormValid] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const isBool = name === 'is_Admin';
 
-  const handlerCange = (name, value) => {
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: isBool ? value === 'true' : value,
+    }));
 
     const newErrors = { ...errors };
 
-    Validates(
-      {
-        ...form,
-        [name]: value,
-      },
-      newErrors,
-      setErrors
-    );
+    // Validates(
+    //   {
+    //     ...form,
+    //     [name]: value,
+    //   },
+    //   newErrors,
+    //   setErrors
+    // );
   };
 
   const resetState = () => {
@@ -89,136 +74,105 @@ console.log('Nombre', form.name )
       address: '',
       email: '',
       phone: '',
-      password: '',
+      
     });
   };
 
-  const handlerSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      !form.name ||
-      !form.lastName ||
-      !form.address ||
-      !form.email ||
-      !form.phone ||
-      !form.password
-    ) {
-      alert('Por favor complete todos los campos');
-      return;
-    }
-
     try {
-      setError('');
+      setErrors('');
 
-      await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
-      navigate('/home');
+      dispatch(updateUserFromDB(id, form));
+      navigate('/clientsAdmin');
     } catch (error) {
       console.log(error.code);
       if (error.code === 'auth/invalid-email') {
-        setError('Correo electrónico inválido');
+        setErrors('Correo electrónico inválido');
       } else if (error.code === 'auth/weak-password') {
-        setError('La contraseña debe tener al menos 6 caracteres');
+        setErrors('La contraseña debe tener al menos 6 caracteres');
       } else if (error.code === 'auth/email-already-in-use') {
-        setError('El correo electrónico ya está registrado!!!');
+        setErrors('El correo electrónico ya está registrado!!!');
       }
     }
   };
 
+  const handleCancel = ()=>{
+    navigate("/clientsAdmin");
+  }
+
   return (
-    <div className={style.containerPrincipal}>
-      <h1 className={style.h1}>Editar usuario</h1>
-      <form onSubmit={handlerSubmit}>
-        <Form.Item
-          label="Nombre"
+    <div className={styles.container}>
+      <h1>Editar usuario</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Nombre</label>
+        <input
+          type="text"
           name="name"
-          rules={[{ required: true, message: 'Ingrese su nombre' }]}
-        >
-          <Input
-            name="name"
-            value={form.name}
-            onChange={(e) => handlerCange('name', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.name !== '' ? <span className={style.span}>{errors.name}</span> : ''}
+          value={form.name}
+          onChange={handleChange}
+        />
+        {errors.name !== '' && <span>{errors.name}</span>}
 
-        <Form.Item
-          label="Apellido"
+        <label>Apellido</label>
+        <input
+          type="text"
           name="lastName"
-          rules={[{ required: true, message: 'Ingrese su apellido' }]}
-        >
-          <Input
-            name="lastName"
-            value={form.lastName}
-            onChange={(e) => handlerCange('lastName', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.lastName !== '' ? (
-          <span className={style.span}>{errors.lastName}</span>
-        ) : ''}
+          value={form.lastName}
+          onChange={handleChange}
+        />
+        {errors.lastName !== '' && <span>{errors.lastName}</span>}
 
-        <Form.Item
-          label="Domicilio"
+        <label>Domicilio</label>
+        <input
+          type="text"
           name="address"
-          rules={[{ required: true, message: 'Ingrese su domicilio' }]}
-        >
-          <Input
-            name="address"
-            value={form.address}
-            onChange={(e) => handlerCange('address', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.address !== '' ? (
-          <span className={style.span}>{errors.address}</span>
-        ) : ''}
+          value={form.address}
+          onChange={handleChange}
+        />
+        {errors.address !== '' && <span>{errors.address}</span>}
 
-        <Form.Item
-          label="E-mail"
+        <label>E-mail</label>
+        <input
+          type="email"
           name="email"
-          rules={[{ required: true, message: 'Ingrese su e-mail' }]}
-        >
-          <Input
-            name="email"
-            value={form.email}
-            onChange={(e) => handlerCange('email', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.email !== '' ? <span className={style.span}>{errors.email}</span> : ''}
+          value={form.email}
+          onChange={handleChange}
+          disabled
+        />
+        {errors.email !== '' && <span>{errors.email}</span>}
 
-        <Form.Item
-          label="Teléfono"
+        <label>Teléfono</label>
+        <input
+          type="text"
           name="phone"
-          rules={[{ required: true, message: 'Ingrese su contacto' }]}
-        >
-          <Input
-            name="phone"
-            value={form.phone}
-            onChange={(e) => handlerCange('phone', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.phone !== '' ? <span className={style.span}>{errors.phone}</span> : ''}
+          value={form.phone}
+          onChange={handleChange}
+        />
+        {errors.phone !== '' && <span>{errors.phone}</span>}
 
-        <Form.Item
-          label="Contraseña"
-          name="password"
-          rules={[{ required: true, message: 'Ingrese su contraseña' }]}
+        <label>Tipo de usuario</label>
+        <select
+          name="is_Admin"
+          value={form.is_Admin}
+          onChange={handleChange}
         >
-          <Password
-            name="password"
-            value={form.password}
-            onChange={(e) => handlerCange('password', e.target.value)}
-            className={style.formItem}
-          />
-        </Form.Item>
-        {errors.password !== '' ? <span className={style.span}>{errors.password}</span> : ''}
+          <option value={true}>Administrador</option>
+          <option value={false}>Usuario</option>
+        </select>
 
-        <Button type="primary" htmlType="submit" className={style.button}>
-          Guardar
-        </Button>
+        <label>Bloquear usuario</label>
+        <select
+          name="isBlocked"
+          value={form.isBlocked}
+          onChange={handleChange}
+        >
+          <option value={true}>Si</option>
+          <option value={false}>No</option>
+        </select>
+
+        <button className={styles.button} type="submit">Guardar</button>
+        <button className={styles.button} onClick={handleCancel}>Cancelar</button>
       </form>
     </div>
   );

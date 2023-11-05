@@ -5,13 +5,13 @@ const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
-require("dotenv").config();
+require("dotenv").config();  
 
 
 const {
   DB_USER,
-  DB_PASSWORD, 
-  DB_HOST,
+  DB_PASSWORD,  
+  DB_HOST, 
   DB_NAME,
   DB_DIALECT,
   DB_PORT,

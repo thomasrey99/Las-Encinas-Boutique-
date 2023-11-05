@@ -20,6 +20,7 @@ const getAllUsers=async (req, res)=>{
 const getUserById = async ( req, res) => {
 
    const { id } = req.params
+   console.log("Esto es el params",req.params)
    
    try {
         const result = await getUserIdController(id)
@@ -32,28 +33,19 @@ const getUserById = async ( req, res) => {
 
 //!HANDLER QUE MANEJA LOS ERRORES Y PETICION DE POST /USER
 const postNewUser = async (req, res) => {
-    const { uid, name, lastName, email, address } = req.body;
+    const { uid, name, lastName, email, address, phone, is_Admin } = req.body;
     console.log("Esto es el body ->",req.body)
-    // if(
-    //     !uid || 
-    //     !name ||
-    //     !lastName ||
-    //     !email ||
-    //     !password ||
-    //     !address
-    // ) {
-    //     return res.status(400)
-    //     .json({error: "Todos los campos deben ser completados"})
-    // }
     try{
         const data={
             uid: uid,
             name:name,
             lastName:lastName,
             email:email,
-            address:address
+            phone:phone,
+            address:address,
+            is_Admin:is_Admin
         }
-
+        
         const newUser = await createNewUserController(data);
 
         res.status(201).json(newUser);
@@ -66,14 +58,15 @@ const postNewUser = async (req, res) => {
 //HANDLER QUE MANEJA LA PETICIÓN PUT A /Users
 const putUser = async(req, res) =>{
     const { id } = req.params;
-    const { name, lastName, email, password, address } = req.body;
+    const { name, lastName, email, address, phone, is_Admin } = req.body;
     try {
         const data={
             name:name,
             lastName: lastName,
             email:email,
-            password:password,
-            address:address
+            address:address,
+            phone:phone,
+            is_Admin:is_Admin
         }
         const result = await putUserController(id, data)
         res.status(201).json(result)
@@ -85,7 +78,7 @@ const putUser = async(req, res) =>{
 //Handler que maneja la petición delete a /Users
 const deleteUser = async(req, res) =>{
     const { id } = req.params;
-   
+    
     try {
         const result = await deleteUserController(id)
         res.status(201).json(result)
@@ -103,3 +96,14 @@ module.exports = {
     putUser,
     deleteUser
 }
+// if(
+//     !uid || 
+//     !name ||
+//     !lastName ||
+//     !email ||
+//     !password ||
+//     !address
+// ) {
+//     return res.status(400)
+//     .json({error: "Todos los campos deben ser completados"})
+// }

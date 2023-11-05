@@ -106,7 +106,7 @@ const createPreference = (req, res) => {
     mercadoPago.preferences.create(preference)
 		.then(function (response) {
 			res.json({
-				id: response.body.id
+				id: response.body
 			});
 		})
         .catch(function (error) {

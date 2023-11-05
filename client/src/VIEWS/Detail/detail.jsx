@@ -9,7 +9,7 @@ import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton,
 const { Meta } = Card;
 const { Item } = Tabs;
 const { TabPane } = Tabs;
-import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
@@ -126,24 +126,30 @@ const Detail = () => {
                                             </TabPane>
                                             <TabPane tab="Comentarios" key="2">
                                                 <div style={{ maxHeight: '50%', overflow: 'auto', textAlign: 'center' }}>
-                                                <Rate onChange={(value) => setNewReview({...newReview, rating: value})} 
-                                                value={newReview.rating} />
-                                                <Input.TextArea
-                                                    rows={4}
-                                                    onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
-                                                    value={newReview.comment}
-                                                    />
-                                                    <Button type="primary" onClick={handleAddReview}>
-                                                    Agregar comentario
-                                                    </Button>
-
-                                                <List
-                                                className="comment-list"
-                                                loading={false}
-                                                itemLayout="horizontal"
-                                                loadMore=''
-                                                dataSource={reviews}
-                                                renderItem={(item) => (
+                                                    <h2 className={styles.titleComments}>Danos tu opinión</h2>
+                                                    <div className={styles.contentAddReview}>
+                                                        <Rate onChange={(value) => setNewReview({...newReview, rating: value})} 
+                                                        value={newReview.rating} className={styles.addRating}/>
+                                                        <div className={styles.addReview}>
+                                                            <Input.TextArea
+                                                                rows={4}
+                                                                onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
+                                                                value={newReview.comment}
+                                                                className={styles.inputToComment}
+                                                            />
+                                                            <Button type="primary" onClick={handleAddReview} className={styles.buttonAddComment}>
+                                                            Agregar 
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                    <h1 className={styles.Comments}>Comentarios</h1>
+                                                    <List
+                                                    className="comment-list"
+                                                    loading={false}
+                                                    itemLayout="horizontal"
+                                                    loadMore=''
+                                                    dataSource={reviews}
+                                                    renderItem={(item) => (
                                                     <List.Item
                                                         actions={[
                                                             <a key="comment-edit" 
@@ -152,12 +158,12 @@ const Detail = () => {
                                                                 setSelectedReviewId(item.id_review)
                                                                 setUpdatedReview({... updateReview, comment: item.comment,
                                                                 rating: item.rating});
-                                                            }}>Editar</a>,
+                                                            }}><EditOutlined /></a>,
                                                             <a key="comment-delete" 
                                                             onClick={()=> {
                                                                 setIsModalVisibleRemoveReview(true)
                                                                 setSelectedReviewId(item.id_review)
-                                                            }}>Eliminar</a>
+                                                            }}><DeleteOutlined style={{color: 'red'}} /></a>
                                                         ]}
                                                     >
                                                         {/* Eliminar comentario */}
@@ -172,7 +178,7 @@ const Detail = () => {
                                                         onCancel={() => {
                                                             setIsModalVisibleEditReview(false)
                                                             setIsModalVisibleEditReview({comment: '', rating: 0})}}>
-                                                            <p>Por favor, introduce la nueva calificación del producto</p>
+                                                            <p></p>
                                                             <Rate  onChange={(value) =>
                                                             setUpdatedReview({...updateReview, rating: value})} 
                                                             value={updateReview.rating} />
@@ -182,7 +188,7 @@ const Detail = () => {
                                                     <Skeleton avatar title={false} loading={item.loading} active>
                                                         <List.Item.Meta
                                                         avatar={<Avatar src={item.avatar} />}
-                                                        title={<h4>{item.id}</h4>}
+                                                        title={<h4>Matty</h4>}
                                                         description={item.comment}
                                                         />
                                                         <p><Rate disabled value={item.rating} style={{ fontSize: '15px', 

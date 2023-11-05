@@ -2,27 +2,28 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (dataBase) => {
     dataBase.define('Review', {
+        
         id_review: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         comment: {
-        type: DataTypes.TEXT,
-        allowNull: false,
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
         date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+            type: DataTypes.DATEONLY,
+            defaultValue: DataTypes.NOW
         },
         avatar: {
-        type: DataTypes.STRING,
-        defaultValue: "https://img.freepik.com/vector-premium/cacao-come-mascota-chocolate-vector-dibujos-animados_193274-12227.jpg",
-        allowNull: true,
+            type: DataTypes.STRING,
+            defaultValue: "https://img.freepik.com/vector-premium/cacao-come-mascota-chocolate-vector-dibujos-animados_193274-12227.jpg",
+            allowNull: true,
         }
     },
     {

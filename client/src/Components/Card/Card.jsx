@@ -27,7 +27,11 @@ const Card = (props) => {
   const navigate = useNavigate();
   const cartData=useSelector((state)=>state.cart)
   const id_cart=useSelector((state)=>state.user.userCartId)
+<<<<<<< HEAD
   const userId = '5546a';
+=======
+  const userId = 'a500';
+>>>>>>> 5f16f06575f8a08ad02464a08bf1b60c034534c9
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();

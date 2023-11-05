@@ -189,7 +189,7 @@ const Detail = () => {
                                                         <List.Item.Meta
                                                         avatar={<Avatar src={item.avatar} />}
                                                         title={<div className={styles.NameAndRate}>
-                                                            <h4>Matty</h4><p><Rate disabled value={item.rating} 
+                                                            <h4>Nombre</h4><p><Rate disabled value={item.rating} 
                                                             style={{ fontSize: '15px', marginRight: '15px'}}/></p>
                                                             </div>}
                                                         description={item.comment}

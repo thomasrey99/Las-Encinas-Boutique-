@@ -21,7 +21,10 @@ export const reviewsApi=createApi({
             query:({userId, productId, newReview}) =>({
                 url: `/reviews/${productId}?userId=${userId}`,
                 method:"POST",
-                body: newReview
+                body: {
+                    rating: newReview.rating,
+                    comment: newReview.comment
+                }
             }),
             invalidatesTags:["reviews"]
         }),

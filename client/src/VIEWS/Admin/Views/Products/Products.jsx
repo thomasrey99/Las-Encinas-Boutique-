@@ -27,7 +27,7 @@ const Products = () => {
 
         <div className={Style.Cards}>
           {products.map((p) => (
-            <CardAdmin name={p.name} image={p.image} description={p.description} />
+            <CardAdmin name={p.name} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
           ))}
         </div>
       </div>

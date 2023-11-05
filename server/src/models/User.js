@@ -38,10 +38,11 @@ module.exports = (dataBase) => {
             type:DataTypes.BOOLEAN,
             defaultValue: false
         },
-        payment_code:{
-            type:DataTypes.STRING,
-            allowNull:true,
-        }
+        is_Delete:{
+            type:DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+       
     },
     {
         freezeTableName: true,

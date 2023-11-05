@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
-import { useGetAllReviewsQuery, useAddReviewMutation, useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
+import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, 
+        useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton, Avatar, Input } from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
@@ -18,16 +19,22 @@ const Detail = () => {
     const { id } = useParams();
     const  productId  = id;
     const userId = 'a500';
+
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isModalVisibleRemoveReview, setIsModalVisibleRemoveReview ] = useState(false);
-    const [selectedReviewId, setSelectedReviewId] = useState(null);
+    const [ isModalVisibleEditReview, setIsModalVisibleEditReview ] = useState(false)
+    const [ selectedReviewId, setSelectedReviewId ] = useState(null);
+    const [ updateReview, setUpdatedReview ] = useState({comment: '', rating: 0});
+
     const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);
     const { data: productFav, refetch } = useGetFavProductQuery({userId, productId});
     const [ addFavProduct ] = useAddFavProductMutation();
     const [ removeFavProduct ] = useRemoveFavProductMutation();
     const { data: reviews, refetch: getNewReviews } = useGetAllReviewsQuery(productId);
     const [ addReview ] = useAddReviewMutation();
+    const [ editReview ] = useEditReviewMutation();
     const [ removeReview ] = useRemoveReviewMutation();
+
 
     const handlefavClick = async () => {
 
@@ -39,10 +46,7 @@ const Detail = () => {
         refetch(); 
     }
 
-    const [newReview, setNewReview] = useState({ 
-        comment: '',
-        rating: 0
-    });
+    const [newReview, setNewReview] = useState({ comment: '', rating: 0 });
 
     const cleanReview = () => {setNewReview({ comment: '', rating: 0 })}
 
@@ -58,16 +62,26 @@ const Detail = () => {
             }
             getNewReviews();
         }
-        else ''
     };
 
-    const handleRemoveReview = async (id_review) => {
-    const idReview = id_review;
-    await removeReview({productId, idReview});
-    console.log(productId, idReview);
-    setIsModalVisibleRemoveReview(false);
-    getNewReviews();
+    const handleRemoveReview = async (selectedReviewId) => {
+
+        const idReview = selectedReviewId;
+        await removeReview({productId, idReview});
+
+        setIsModalVisibleRemoveReview(false);
+        getNewReviews();
+        setSelectedReviewId(null);
     };
+
+    const handleEditReview = async (selectedReviewId, updateReview) => {
+        const idReview = selectedReviewId;
+        await editReview({productId, idReview, updateReview});
+
+        setIsModalVisibleEditReview(false);
+        getNewReviews();
+        setSelectedReviewId(null);
+    }
 
     const handleOk = () => navigate('/*')
 
@@ -132,8 +146,13 @@ const Detail = () => {
                                                 renderItem={(item) => (
                                                     <List.Item
                                                         actions={[
-                                                            <a key="comment-reply">Responder</a>,
-                                                            <a key="comment-edit" >Editar</a>,
+                                                            <a key="comment-edit" 
+                                                            onClick={()=> {
+                                                                setIsModalVisibleEditReview(true);
+                                                                setSelectedReviewId(item.id_review)
+                                                                setUpdatedReview({... updateReview, comment: item.comment,
+                                                                rating: item.rating});
+                                                            }}>Editar</a>,
                                                             <a key="comment-delete" 
                                                             onClick={()=> {
                                                                 setIsModalVisibleRemoveReview(true)
@@ -141,10 +160,24 @@ const Detail = () => {
                                                             }}>Eliminar</a>
                                                         ]}
                                                     >
-                                                        <Modal title="Confirmar compra" visible={isModalVisibleRemoveReview} 
+                                                        {/* Eliminar comentario */}
+                                                        <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
                                                         onOk={()=>handleRemoveReview(selectedReviewId)} 
                                                         onCancel={()=>setIsModalVisibleRemoveReview(false)}>
                                                         <p>¿Estás seguro de que quieres eliminar este comentario?</p>
+                                                        </Modal>
+                                                        {/* Editar comentario */}
+                                                        <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
+                                                        onOk={() => handleEditReview(selectedReviewId, updateReview)} 
+                                                        onCancel={() => {
+                                                            setIsModalVisibleEditReview(false)
+                                                            setIsModalVisibleEditReview({comment: '', rating: 0})}}>
+                                                            <p>Por favor, introduce la nueva calificación del producto</p>
+                                                            <Rate  onChange={(value) =>
+                                                            setUpdatedReview({...updateReview, rating: value})} 
+                                                            value={updateReview.rating} />
+                                                            <Input value={updateReview.comment} 
+                                                            onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
                                                         </Modal>
                                                     <Skeleton avatar title={false} loading={item.loading} active>
                                                         <List.Item.Meta

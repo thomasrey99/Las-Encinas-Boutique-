@@ -1,0 +1,46 @@
+/* FormEditUser.module.css */
+.containerPrincipal {
+  
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formItem {
+  width: 100%;
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-bottom: 20px;
+}
+
+.span {
+  color: red;
+}
+
+.button {
+  background-color: #8B4513; /* Color café */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: auto;
+  margin-left: 100px;
+}
+
+.button:hover {
+  background-color: #A0522D; /* Cambia el color al pasar el mouse */
+}
+
+.buttonContainer {
+  text-align: center;
+  margin-top: 10px;
+} 
+
+.h1{
+  margin: auto;
+  margin-left: 50px;
+}

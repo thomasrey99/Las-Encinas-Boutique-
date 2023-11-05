@@ -1,53 +1,12 @@
-// import { useGetAllUsersQuery } from "../../../../libs/redux/services/usersApi"
-// import { useEffect } from "react"
 
-// const UsersTable = () => {
-//     const { data } = useGetAllUsersQuery()
-
-//     return (
-//     <div>
-//         <h1>Lista de usuarios</h1>
-
-//         <table>
-//             <thead>
-//                 <tr>
-//                     <th>Nombres</th>
-//                     <th>Apellidos</th>
-//                     <th>Email</th>
-//                     <th>Telefono</th>
-//                     <th>Direccion</th>
-//                     <th>Administrador</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-                
-//                     {data && data.map(el => (
-//                         <tr key={el.id}>
-//                             <td>{el.name}</td>
-//                             <td>{el.lastName}</td>
-//                             <td>{el.email}</td>
-//                             <td>{el.phone}</td>
-//                             <td>{el.address}</td>
-//                             <td>{el.isAdmin}</td>
-//                         </tr>
-//                     ))}
-             
-//             </tbody>
-//         </table>
-
-
-
-
-//     </div>)
-// }
-
-// export default UsersTable
 
 import React from 'react';
-import { Table } from 'antd';
+import { Table} from 'antd';
 import styles from "./UsersTable.module.css"
 import { useGetAllUsersQuery } from "../../../../libs/redux/services/usersApi"
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+import {Link} from 'react-router-dom'
 const handleAction = ()=>{
     alert("Soy el button")
 }
@@ -80,16 +39,34 @@ const columns = [
   },
   {
     title: 'Teléfono',
-    dataIndex: 'telefono',
+    dataIndex: 'phone',
     key: '3',
     width: 150,
+  },
+  {
+    title: 'Administrador',
+    dataIndex: 'is_Admin',
+    key: '4',
+    width: 150,
+    render: (text, record) => {
+      return text ? "Sí" : "No";
+    },
   },
   {
     title: 'Action',
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: () => <a onClick={handleAction}>action</a>,
+    render: (record) => (
+      <div>
+        <Link to={`/editUserAdmin/${record.uid}`}> 
+          <EditOutlined className={styles.marginIcon} />
+        </Link>
+        <a>
+          <DeleteOutlined className={styles.marginIcon} />
+        </a>
+      </div>
+    ),
   },
 ];
 

@@ -78,7 +78,18 @@
     right: 0;
 
 }
-
+.NameAndRate{
+    margin-left: 3%;
+    display: flex;
+}
+.NameAndRate > *{
+    margin-right: 5%;
+}
 .Comments{
     margin: 5%;
+}
+.date{
+    font-size: 0.7rem;
+    text-align: right;
+    color:darkgrey;
 }

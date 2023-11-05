@@ -188,12 +188,14 @@ const Detail = () => {
                                                     <Skeleton avatar title={false} loading={item.loading} active>
                                                         <List.Item.Meta
                                                         avatar={<Avatar src={item.avatar} />}
-                                                        title={<h4>Matty</h4>}
+                                                        title={<div className={styles.NameAndRate}>
+                                                            <h4>Matty</h4><p><Rate disabled value={item.rating} 
+                                                            style={{ fontSize: '15px', marginRight: '15px'}}/></p>
+                                                            </div>}
                                                         description={item.comment}
                                                         />
-                                                        <p><Rate disabled value={item.rating} style={{ fontSize: '15px', 
-                                                        marginRight: '15px'}}/></p>
-                                                        <p>{item.date}</p>
+                                                        
+                                                        <p className={styles.date}>{item.date}</p>
                                                     </Skeleton>
                                                     </List.Item>
                                                 )}

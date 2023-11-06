@@ -76,7 +76,7 @@ const handleActivate = () => {
         <Meta 
           style={{minHeight: "6em"}}
           title={name}
-          description={descriptionEdit + "..."}
+          //description={descriptionEdit + "..."}
         />
       </Card>
       </div>

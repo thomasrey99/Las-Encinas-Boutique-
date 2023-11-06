@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import styles from './FormEditProduct.module.css'
 
 
-import { useUpdateProductMutation , useGetProductByIdQuery } from '../../../../libs/redux/services/productsApi';
+import {  useGetProductByIdQuery } from '../../../../libs/redux/services/productsApi';
 
 const FormEditProduct = () => {
 
@@ -16,7 +16,7 @@ const FormEditProduct = () => {
   const categories=useSelector((state)=>state.categories.allCategories)
 
   const {data} = useGetProductByIdQuery(id);
-  const [mutate] = useUpdateProductMutation()
+  //const [mutate] = useUpdateProductMutation()
 
   const [imageToCloud, setImageToCloud] = useState("");
   const [state, setState] = useState({
@@ -94,7 +94,7 @@ const FormEditProduct = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (id) { // Asegúrate de que el id no sea undefined
@@ -114,7 +114,7 @@ const FormEditProduct = () => {
       console.log({ error: error.message, details: error.details });
       alert("Error al crear producto: " + error);
     }
-  };
+  }; */
 
 return (
     <div className={styles.Container}>

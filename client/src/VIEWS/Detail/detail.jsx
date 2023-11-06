@@ -15,13 +15,45 @@ import styles from './detail.module.css';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
-
+//     Cart
+// : 
+// {id_Cart: 'e62973d1-91b6-4721-ba7f-9f118497edd9', products: Array(0), product_quantity: 0, total_price: '0', UserUid: '4dImDNRZnWhpVcEs8eYjtmb3wgk2'}
+// address
+// : 
+// "Elm Street"
+// email
+// : 
+// "mateolt202@gmail.com"
+// isBlocked
+// : 
+// false
+// is_Admin
+// : 
+// false
+// is_Delete
+// : 
+// false
+// lastName
+// : 
+// "Leon"
+// name
+// : 
+// "Mateo"
+// payment_code
+// : 
+// null
+// phone
+// : 
+// "3245310156"
+// uid
+// : 
+// "4dImDNRZnWhpVcEs8eYjtmb3wgk2"
     const user= useSelector((state)=>state.user.userLog)
+    const userId = user.uid;
     console.log(user);
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;
-    const userId = 'a500';
 
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isModalVisibleRemoveReview, setIsModalVisibleRemoveReview ] = useState(false);
@@ -173,39 +205,39 @@ const Detail = () => {
                                                                     }}><DeleteOutlined style={{color: 'red'}} /></a>
                                                             ]}
                                                         >
-                                                        {/* Eliminar comentario */}
-                                                        <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
-                                                            onOk={()=>handleRemoveReview(selectedReviewId)} 
-                                                            onCancel={()=>setIsModalVisibleRemoveReview(false)}>
-                                                        <p>¿Estás seguro de que quieres eliminar este comentario?</p>
-                                                        </Modal>
-                                                        {/* Editar comentario */}
-                                                        <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
-                                                        onOk={() => handleEditReview(selectedReviewId, updateReview)} 
-                                                        onCancel={() => {
-                                                            setIsModalVisibleEditReview(false)
-                                                            setUpdatedReview({comment: '', rating: 0})}}>
-                                                            <p></p>
-                                                            <Rate  onChange={(value) =>
-                                                            setUpdatedReview({...updateReview, rating: value})} 
-                                                            value={updateReview.rating} />
-                                                            <Input value={updateReview.comment} 
-                                                            onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
-                                                        </Modal>
-                                                    <Skeleton avatar title={false} loading={item.loading} active>
-                                                        <List.Item.Meta
-                                                        avatar={<Avatar src={item.avatar} />}
-                                                        title={<div className={styles.NameAndRate}>
-                                                            <h4>Nombre</h4><p><Rate disabled value={item.rating} 
-                                                            style={{ fontSize: '15px', marginRight: '15px'}}/></p>
-                                                            </div>}
-                                                        description={item.comment}
-                                                        />
-                                                        
-                                                        <p className={styles.date}>{item.date}</p>
-                                                    </Skeleton>
-                                                    </List.Item>
-                                                )}
+                                                            {/* Eliminar comentario */}
+                                                            <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
+                                                                onOk={()=>handleRemoveReview(selectedReviewId)} 
+                                                                onCancel={()=>setIsModalVisibleRemoveReview(false)}>
+                                                            <p>¿Estás seguro de que quieres eliminar este comentario?</p>
+                                                            </Modal>
+                                                            {/* Editar comentario */}
+                                                            <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
+                                                                onOk={() => handleEditReview(selectedReviewId, updateReview)} 
+                                                                onCancel={() => {
+                                                                setIsModalVisibleEditReview(false)
+                                                                setUpdatedReview({comment: '', rating: 0})}}>
+                                                                <p></p>
+                                                                <Rate  onChange={(value) =>
+                                                                setUpdatedReview({...updateReview, rating: value})} 
+                                                                value={updateReview.rating} />
+                                                                <Input value={updateReview.comment} 
+                                                                onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
+                                                            </Modal>
+                                                            <Skeleton avatar title={false} loading={item.loading} active>
+                                                                <List.Item.Meta
+                                                                    avatar={<Avatar src={item.avatar} />}
+                                                                    title={<div className={styles.NameAndRate}>
+                                                                    <h4>{`${user.name} ${user.lastName}`}</h4>
+                                                                    <p><Rate disabled value={item.rating} 
+                                                                    style={{ fontSize: '15px', marginRight: '15px'}}/></p>
+                                                                    </div>}
+                                                                    description={item.comment}
+                                                                />
+                                                                <p className={styles.date}>{item.date}</p>
+                                                            </Skeleton>
+                                                        </List.Item>
+                                                    )}
                                                 />
                                                 </div>
                                             </TabPane>

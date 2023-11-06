@@ -1,46 +1,30 @@
-import React, { useState } from 'react'
-import { EditOutlined, SettingOutlined } from '@ant-design/icons';
-import { Card, Button } from 'antd';
+import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
+import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
-import FormEditAdmin from '../FormEditAdmin/FormEditAdmin'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useSoftDeleteMutation } from '../../../../libs/redux/services/productsApi'
 
 const { Meta } = Card;
 
-const CardAdmin = ({name, id_product, image, description, is_Delete }) => {
+const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
 
   const [softDelete, { data, isLoading, isError, error, }] = useSoftDeleteMutation()
-  const [isEditing, setIsEditing] = useState(false)
-
-  const products=useSelector((state)=>state.items.allProducts)
-  console.log(products)   
-
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
-const handleDelete=()=> {
-  const body = {
-    id_product: id_product,
-    is_Delete: true
-  }
-  softDelete(body)
-}
-
-  //console.log(products)
-
   const descriptionEdit = description.slice(0, 35)
 
+  const handleDelete=()=> {
+    const body = {
+      id_product: id_product,
+      is_Delete: true
+    }
+    softDelete(body)
+  }
+
   return (
-    <>
-      {isEditing ? (
-        <FormEditAdmin id={id}/>
-      ) : (
+    <div>
         <Card
         style={{
-          width: "22%",
-          height: "30%",
-          margin: "1%",
+          margin: "5% 0 0 0",
+          width: "18em",
           border: is_Delete ? "solid 2px red" : "transparent"
         }}
         cover={
@@ -57,9 +41,8 @@ const handleDelete=()=> {
           />
         }
         actions={[
-          <NavLink to={"/productsAdmin"}><SettingOutlined key="setting" /></NavLink>,
-          <span onClick={handleEditClick}><EditOutlined key="edit" /></span>,
-          <button onClick={handleDelete}>X</button>
+          <button onClick={handleDelete}><DeleteOutlined /></button>,
+          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink>,
         ]}
       >
         <Meta
@@ -67,8 +50,7 @@ const handleDelete=()=> {
           description={descriptionEdit + "..."}
         />
       </Card>
-      )}
-      </>
+      </div>
   )
 }
 

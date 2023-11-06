@@ -16,6 +16,11 @@ const getUserIdController = async (id) => {
     return user;
 }
 
+//Busca al user por el email
+const getUserByEmail = async(email) =>{
+    const user = await User.findOne({where:{email}})
+    return user
+}
 
 //!el usuario se crea si el email no existe en la db
 const createNewUserController = async (data) => {
@@ -64,5 +69,6 @@ module.exports = {
     getAllUsersController,
     createNewUserController,
     putUserController,
-    deleteUserController
+    deleteUserController,
+    getUserByEmail
 };

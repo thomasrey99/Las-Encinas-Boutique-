@@ -1,13 +1,14 @@
 import style from "./NavBar.module.css";
 import { useAuth } from "../../firebase/authContext";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import HamburguerMenu from "../HamburgerMenu/menu";
-import cart from "../../assets/carrito.png"
-import logo from "../../assets/Las_encinas_Logo.png"
-import axios from "axios"
+import cart from "../../assets/carrito.png";
+import logo from "../../assets/Las_encinas_Logo.png";
+import title from "../../assets/las_encinas_letras.png";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 import { useState } from "react";
@@ -50,7 +51,7 @@ const NavBar = () => {
         try {
           const response = await getUserById(uid);
           dispatch(addUser(response.user));
-          dispatch(addCart(response.cart))
+          dispatch(addCart(response.cart));
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }
@@ -64,6 +65,7 @@ const NavBar = () => {
     <nav className={style.navCont}>
         <div className={style.logCont}>
           <img src={logo} className={style.img}/>
+          <img src={title} className={style.brand}/>
         </div>
         <div className={style.navItems}>
           {user && ((user.displayName? <p>Bienvenido(a):{user.displayName}</p>: <p>Bienvenido(a):{user.email}</p>)) }
@@ -83,7 +85,7 @@ const NavBar = () => {
           </div>
         </div>
     </nav>
-  )
-}
+  );
+};
 
 export default NavBar;

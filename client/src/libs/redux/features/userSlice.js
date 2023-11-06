@@ -14,7 +14,11 @@ export const userSlice = createSlice({
         addUser (state, {payload}){
             
             state.userLog=payload
-            state.userCartId=payload.Cart.id_Cart
+            if(payload!==null){
+                state.userCartId=payload.Cart.id_Cart
+            }else{
+                state.userCartId=""
+            }
         },
 
         userByUid: (state, action)=>{
@@ -22,7 +26,7 @@ export const userSlice = createSlice({
             state.userByUid = action.payload
 
         },
-
+        
         updateUser:(state, action)=>{
           
            

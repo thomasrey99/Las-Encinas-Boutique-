@@ -25,9 +25,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 16px;
     padding: 10px;
+    width: 30vw;
 }
 .cartIcon{
     width: 24px;

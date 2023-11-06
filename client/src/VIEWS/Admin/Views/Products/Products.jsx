@@ -11,8 +11,8 @@ import { useSelector } from 'react-redux';
 
 const Products = () => {
 
-  const products = useSelector((state) => state.items.allProducts);
-  
+  const products=useSelector((state)=>state.items.allProducts) 
+
   const [showAll, setShowAll] = useState(false);       
 
   const handleClick = () => {
@@ -43,10 +43,10 @@ const Products = () => {
         <div className={Style.Cards}>
           {showAll
             ? products?.map((p) => (
-                <CardAdmin name={p.name} image={p.image} description={p.description} />
+              <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
               ))
             : products.slice(0, 8).map((p) => (
-                <CardAdmin name={p.name} image={p.image} description={p.description} id_product={p.id_product} />
+              <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
             ))}
         </div>
       </div>

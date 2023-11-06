@@ -26,11 +26,21 @@ import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
 import EditProducts from './VIEWS/Admin/Views/Products/EditProducts'
 import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
+import { useState } from 'react';
+
+import Menu from './Components/menu/Menu';
 
 const App = () => {
+
+  const [isOPen, setIsOpen]=useState(false)
+
   const currentUser = useSelector(state => state.user.userLog)
  
- 
+  const handleOPen=()=>{
+    console.log("hola perro!")
+    setIsOpen(!isOPen)
+  }
+
   const location = useLocation();
 
   const validate =
@@ -50,9 +60,9 @@ const App = () => {
       
       {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
       <AuthProvider>
-        {validate && <NavBar />}
+        {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
-          <Route path='/' element={<Landing />} />
+          <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
@@ -77,6 +87,7 @@ const App = () => {
           {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
 
         </Routes>
+        {isOPen&&<Menu handleOPen={handleOPen}/>}
         {validate && <Footer />}
       </AuthProvider>
      
@@ -86,3 +97,4 @@ const App = () => {
 }
 
 export default App
+

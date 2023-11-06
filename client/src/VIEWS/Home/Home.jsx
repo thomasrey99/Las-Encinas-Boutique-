@@ -18,7 +18,7 @@ const Home = () => {
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.items.allProducts);
+  const productsData = useSelector((state) => state.items.allProducts);
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
 
@@ -26,7 +26,9 @@ const Home = () => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const productsToDisplay = products.slice(startIndex, endIndex);
+  const products = productsData.slice(startIndex, endIndex);
+  const productsToDisplay = products.filter((product) => product.is_Delete === false||product.is_Delete===undefined)
+  console.log('productsToDisplay', productsToDisplay)
   
 
   const paginate = (pageNumber) => {

@@ -4,6 +4,7 @@ export const productsApi=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:"https://las-encinas-boutique-server.onrender.com"
     }),
+    tagTypes: ['products'],
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
@@ -21,6 +22,17 @@ export const productsApi=createApi({
         getProductById:builder.query({
             query:(id) => `/products/${id}`
         }),
+        softDelete: builder.mutation({
+            query: ({id_product, is_Delete}) => {
+                console.log('MUTATION ID', id_product)
+                return {
+                    url: `/products/${id_product}`,
+                    body: {is_Delete},
+                    method: 'PATCH'
+                }
+            },
+            invalidatesTags:["products"]
+        }),
         updateProduct: builder.mutation({
             query: ({ id, updatedProduct }) => ({
               url: `/products/${id}`,
@@ -32,4 +44,4 @@ export const productsApi=createApi({
     })
 })
 
-export const {useCreateProductMutation, useGetAllProductsQuery, useGetProductByIdQuery, useUpdateProductMutation }=productsApi
+export const {useCreateProductMutation, useGetAllProductsQuery, useGetProductByIdQuery, useSoftDeleteMutation, useUpdateProductMutation }=productsApi

@@ -1,16 +1,50 @@
-h1, h2, h3 {
+.Header{
+  background-color: white;
+  border: 1px black solid;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+
+h3 {
   color: #582f0e;
+  font-weight: bolder;
 }
 
-.Texts {
+.SubHeader{
   display: flex;
+  flex-direction: row;
+}
+
+.InfoCards{
+  width: 100%;
+}
+
+.CardsInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.BestCard{
+  display: flex;
+  width: 25em;
+  margin: 3%;
+  border: 1px solid black;
+  flex-direction: column;
   align-items: center;
+  background-color: white;
+  border-radius: 10px;
 }
 
-.Prod {
+.Grafics {
   display: flex;
-  justify-content: space-between;
-  margin: 0 3% 1% 3%;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3% 0 5% 3%;
+}
+
+.h2Ventas {
+  margin: 3% 0 0 3% ;
 }
 
 .SeeMoreText {
@@ -21,24 +55,4 @@ h1, h2, h3 {
   &:hover {
     color: #9c7652;
   }
-}
-
-h1, h3 {
-  margin: 3%;
-}
-  
-  .Cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-.Grafics {
-  display: flex;
-  justify-content: center;
-  margin: 3% 0 5% 0;
-}
-
-.h2Ventas {
-  margin: 3% 0 0 3% ;
 }

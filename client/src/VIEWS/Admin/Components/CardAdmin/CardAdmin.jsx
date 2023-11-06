@@ -33,19 +33,20 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
             src={image}
             style={{
               width: "100%",
-              height: "auto",
+              height: "18em",
               position: "static",
               top: "0",
-              left: "0",
+              left: "0"
               }}
           />
         }
         actions={[
           <button onClick={handleDelete}><DeleteOutlined /></button>,
-          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink>,
+          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink >
         ]}
       >
-        <Meta
+        <Meta 
+          style={{minHeight: "6em"}}
           title={name}
           description={descriptionEdit + "..."}
         />

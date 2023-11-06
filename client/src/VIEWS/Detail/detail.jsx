@@ -15,39 +15,7 @@ import styles from './detail.module.css';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
-//     Cart
-// : 
-// {id_Cart: 'e62973d1-91b6-4721-ba7f-9f118497edd9', products: Array(0), product_quantity: 0, total_price: '0', UserUid: '4dImDNRZnWhpVcEs8eYjtmb3wgk2'}
-// address
-// : 
-// "Elm Street"
-// email
-// : 
-// "mateolt202@gmail.com"
-// isBlocked
-// : 
-// false
-// is_Admin
-// : 
-// false
-// is_Delete
-// : 
-// false
-// lastName
-// : 
-// "Leon"
-// name
-// : 
-// "Mateo"
-// payment_code
-// : 
-// null
-// phone
-// : 
-// "3245310156"
-// uid
-// : 
-// "4dImDNRZnWhpVcEs8eYjtmb3wgk2"
+
     const user= useSelector((state)=>state.user.userLog)
     const userId = user.uid;
     console.log(user);

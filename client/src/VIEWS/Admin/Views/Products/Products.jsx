@@ -27,7 +27,6 @@ const Products = () => {
 
         <div className={Style.Cards}>
           {products.map((p) => {
-            console.log('p', p)
             return (
               <>
                 <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>

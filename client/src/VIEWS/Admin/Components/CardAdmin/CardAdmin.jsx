@@ -10,8 +10,6 @@ const { Meta } = Card;
 
 const CardAdmin = ({name, id_product, image, description, is_Delete }) => {
 
-  console.log('id_product', id_product)
-
   const [softDelete, { data, isLoading, isError, error, }] = useSoftDeleteMutation()
   const [isEditing, setIsEditing] = useState(false)
 
@@ -26,7 +24,6 @@ const handleDelete=()=> {
     id_product: id_product,
     is_Delete: true
   }
-  console.log('BODY', body)
   softDelete(body)
 }
 

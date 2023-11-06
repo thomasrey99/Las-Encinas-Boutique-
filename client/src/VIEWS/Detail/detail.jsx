@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, 
         useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
+import { addProductCart } from '../../libs/redux/features/CartSlice';
+import { usePutCartMutation } from '../../libs/redux/services/CartApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton, Avatar, Input } from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
@@ -16,13 +18,15 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
 
-    const user= useSelector((state)=>state.user.userLog)
-    const userId = user.uid;
-    console.log(user);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;
-
+    const user= useSelector((state)=>state.user.userLog)
+    const userId = user.uid;
+    const id_cart=useSelector((state)=>state.user.userCartId)
+    const cartData=useSelector((state)=>state.cart)
+    
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isModalVisibleRemoveReview, setIsModalVisibleRemoveReview ] = useState(false);
     const [ isModalVisibleEditReview, setIsModalVisibleEditReview ] = useState(false)
@@ -37,7 +41,7 @@ const Detail = () => {
     const [ addReview ] = useAddReviewMutation();
     const [ editReview ] = useEditReviewMutation();
     const [ removeReview ] = useRemoveReviewMutation();
-
+    const [mutate]=usePutCartMutation()
 
     const handlefavClick = async () => {
 
@@ -88,6 +92,16 @@ const Detail = () => {
 
     const handleOk = () => navigate('/*')
 
+    const handleProductCart = async (productDetail)=>{
+        if(user===null){
+          alert("Tienes que registrarte para agregar productos al carrito")
+          navigate("/login")
+        }else{
+          dispatch(addProductCart(productDetail))
+          await mutate({ dataUpdate: cartData, id_cart: id_cart })
+        }
+    }
+
     return(
         <div className={styles.detailContainer}>
             { isLoading ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin> 
@@ -113,9 +127,10 @@ const Detail = () => {
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 
                                         <div className={styles.productButtons}>
-                                            <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
-                                            <Button type="primary" block className={styles.buttonComprar} 
-                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button>
+                                            <Button type="default" block onClick={()=>handleProductCart(productDetail)}>
+                                            <ShoppingCartOutlined size="large"/></Button> 
+                                            {/* <Button type="primary" block className={styles.buttonComprar} 
+                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button> */}
                                         </div>
                                     </div>
                                 </Col>

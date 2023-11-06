@@ -17,7 +17,6 @@ export const cartSlice=createSlice({
             state.total_price=Number(payload.total_price)
         },
         addProductCart (state, {payload}){
-            ConsoleSqlOutlined.log(payload)
             const { name, price } = payload;
             const existingProductIndex = state.products.findIndex(product => product.name === name);
             if (existingProductIndex !== -1) {

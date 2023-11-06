@@ -105,7 +105,7 @@ export const Cart = () => {
         </div>
         <aside className={style.resumeCont}>
             <div className={style.resumeTitle}>
-                <h3>Resumen de compra</h3>
+                <h3 className={style.title}>Resumen de compra</h3>
             </div>
             <div className={style.payment}>
                 <div className={style.paymentInfo}>

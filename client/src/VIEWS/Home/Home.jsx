@@ -25,7 +25,7 @@ const Home = () => {
 
   const {name}=useSelector((state)=>state.filters)
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage-1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const products = productsFilter?.slice(startIndex, endIndex);
   const productsToDisplay = products

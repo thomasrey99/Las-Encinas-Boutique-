@@ -1,10 +1,10 @@
-const mercadoPago = require("mercadopago")
-
+const mercadopago = require("mercadopago")
 const { productId, 
     allProducts, 
     postProductContoller, 
     putProductContoller,
-    deleteProductContoller
+    deleteProductContoller,
+    patchProductContoller,
   } = require("../controllers/productsControllers");
 
 //!HANDLER QUE MANEJA LA PETICION GET POR ID DE /USERS/:ID
@@ -74,6 +74,19 @@ try {
 }
 }
 
+//HANDLER QUE MANEJA LA PETICIÓN Patch A /Products
+const patchProduct = async(req, res) =>{
+const { id } = req.params;
+const {is_Delete} = req.body;
+
+try {
+    const result = await patchProductContoller(id, is_Delete)
+    res.status(201).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
+}
+
 //Handler que maneja la petición delete a /Products
 const deleteProduct = async(req, res) =>{
 const { id } = req.params;
@@ -86,13 +99,45 @@ try {
 }
 }
 
+const createPreference = async (req, res) => {
+    mercadopago.configure({
+        access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
+    })
+    const {description, price, quantity}=req.body
+    console.log("esto llega para la preferencia", description, price, quantity)
+    let preference = {
+		items: [
+			{
+				title: description,
+				unit_price: Number(price),
+				quantity: quantity,
+			}
+		],
+		back_urls: {
+			"success": "http://localhost:5173/home",
+			"failure": "http://localhost:5173/home",
+			"pending": ""
+		},
+		auto_return: "approved",
+	};
 
+    mercadopago.preferences.create(preference)
+		.then(function (response) {
+			res.json({
+				id: response.body.id
+			});
+		})
+        .catch(function (error) {
+			console.log(error);
+		});
+};
 
 module.exports = {
     getProductById,
     getAllProducts,
     postProduct,
     putProduct,
-    deleteProduct
-    
+    deleteProduct,
+    createPreference,
+    patchProduct
 }

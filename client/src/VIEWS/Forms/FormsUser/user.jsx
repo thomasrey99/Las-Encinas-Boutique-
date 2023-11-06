@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
@@ -7,6 +6,13 @@ import { Form, Input, Button, InputNumber } from 'antd'
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useAuth } from "../../../firebase/authContext";
 import { useNavigate } from "react-router-dom";
+import style from './user.module.css';
+
+import { Form, Input, Button, message } from 'antd';
+import style from './user.module.css';
+import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
+import { useAuth } from "../../../firebase/authContext";
+import { Navigate, useNavigate } from "react-router-dom";
 import style from './user.module.css';
 
 const FormUser = () => {
@@ -87,10 +93,9 @@ const FormUser = () => {
            setError('')
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
-                navigate('/home')
+                Navigate('/home')
                 } catch (error) {
-                // console.log(error.code)
-
+                console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
                 } else if(error.code === 'auth/weak-password'){
@@ -101,30 +106,32 @@ const FormUser = () => {
                 
         }
     };    
-// console.log(form);
+console.log(form);
 const formItemLayout = {
     labelCol: {
-        xs: {
-            span: 12
-        },
-        sm: {
-            span: 8
-        },
+      xs: {
+        span: 12,
+      },
+      sm: {
+        span: 8,
+      },
     },
     wapperCol: {
-        xs: {
-            span: 4
-        },
-        sm: {
-            span: 20
-        },
-    }
-};
+      xs: {
+        span: 4,
+      },
+      sm: {
+        span: 20,
+      },
+    },
+  };
     return (
 
-        <div>
-            <h1>Registro de Usuario</h1>
-            <form onSubmit={handlerSubmit}>
+        <div className={style.formPage}>
+            <form onSubmit={handlerSubmit}  className={style.form}>
+            <div className={style.h1}>
+            <h2>Registro de Usuario</h2>
+            </div>
                 <Form.Item label="Nombre" name="name" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
                     <Input name="name" value={form.name} onChange={(e) => handlerCange('name', e.target.value)} />
                 </Form.Item>
@@ -155,9 +162,9 @@ const formItemLayout = {
                 </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
-                <Button type="primary" htmlType="submit" >Registrar</Button>
-                <div className={style.divButtons}>
                     
+                <Button type="primary" htmlType="submit" className="button-submit" >Registrar</Button>
+                <div className={style.divButtons}>
                 </div>
 
             </form>

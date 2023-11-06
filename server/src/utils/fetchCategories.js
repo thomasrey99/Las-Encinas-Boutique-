@@ -3,14 +3,14 @@ const { Category } = require("../db");
 const categories = [
   { name: "Todas" },
   { name: "Alfajores" },
-  { name: "Chocolate en rama" },
+  { name: "Baños de chocolate" },
+  { name: "Bombones" },
   { name: "Bocaditos" },
-  { name: "Chocolate en barra" },
-  { name: "Volcáncito" },
-  { name: "Marroc" },
-  { name: "Huevos de pascua" },
-  { name: "Oreo" },
-  { name: "Brownie" },
+  { name: "Chocolate en rama" },
+  { name: "Huevos de Pascua" },
+  { name: "Surtidos" },
+  { name: "Tabletas rellenas" },
+  { name: "Turrones" },
 ];
 
 const fetchCategories = async () => {

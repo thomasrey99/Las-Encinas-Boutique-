@@ -19,7 +19,8 @@ const Card = (props) => {
   const navigate = useNavigate();
   const cartData=useSelector((state)=>state.cart)
   const id_cart=useSelector((state)=>state.user.userCartId)
-  const userId = '19b6dfcf-095c-432e-af5a-95b74b037414';
+  const currentUser= useSelector((state)=>state.user.userLog)
+  const userId = currentUser.uid;
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();
@@ -42,7 +43,7 @@ const Card = (props) => {
 
   const handleProductCart=async (product)=>{
     if(user===null){
-      alert("Tienes que registrart para agregar productos al carrito")
+      alert("Tienes que registrarte para agregar productos al carrito")
       navigate("/login")
     }else{
       dispatch(addProductCart(product))

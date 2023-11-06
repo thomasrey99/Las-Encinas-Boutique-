@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin';
 
 import Conteiner from '../Style/Conteiners.module.css'
@@ -8,9 +8,17 @@ import { NavLink } from 'react-router-dom';
 import CardAdmin from '../../Components/CardAdmin/CardAdmin';
 import { useSelector } from 'react-redux';
 
+
 const Products = () => {
 
-  const products=useSelector((state)=>state.items.allProducts)       
+  const products=useSelector((state)=>state.items.allProducts) 
+
+  const [showAll, setShowAll] = useState(false);       
+
+  const handleClick = () => {
+    setShowAll(!showAll);
+  }
+  const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
 
   return (
     <div className={Conteiner.Container}>
@@ -25,10 +33,21 @@ const Products = () => {
           </NavLink>
         </div>
 
+        <div className={Style.Prod}>
+            <h2>Productos mas vendidos</h2>
+            <span onClick={handleClick} className={Style.SeeMoreText}>
+            {seeMoreText}
+            </span>
+          </div>
+
         <div className={Style.Cards}>
-          {products.map((p) => (
-            <CardAdmin name={p.name} image={p.image} description={p.description} />
-          ))}
+          {showAll
+            ? products?.map((p) => (
+              <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
+              ))
+            : products.slice(0, 8).map((p) => (
+              <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
+            ))}
         </div>
       </div>
     </div>

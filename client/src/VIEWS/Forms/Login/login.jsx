@@ -1,51 +1,76 @@
-import React from 'react';
-import { useState } from 'react';
-import { Form, Input, Checkbox, Button } from 'antd';
-import Password from 'antd/es/input/Password';
+import { useEffect, useState } from "react";
+import { Form, Input, Checkbox, Button } from "antd";
+import Password from "antd/es/input/Password";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
+import { GoogleCircleFilled } from "@ant-design/icons";
+import logo from "../../../assets/las_encinas_logo.png";
+import "./login.css";
+const { TextArea } = Input;
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const [error, setError] = useState();
-
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
-
     const {login, loginWithGoogle}= useAuth();
     const { Item } = Form;
     
+    const [error, setError] = useState();
 
-    const handleChange = ({target: {name, value}})=>{
-        setUser({
-            ...user,
-            [name]: value
+    
+    
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        isBlocked: false
+    });
 
-        })
-    }
+    useEffect(() => {
+        // Aquí haces una solicitud al servidor para obtener la información del usuario
+        // La respuesta de la solicitud debe incluir el estado de bloqueo del usuario
+    
+        
+        fetch(`http://localhost:3001/users?email=${form.email}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setForm({
+              email: data.email,
+              isBlocked: data.isBlocked,
+            });
+          })
+          .catch((error) => {
+            console.error('Error al obtener información del usuario', error);
+          });
+      }, [form.email]);
+    
+
+  const handlerChange = (name, value) => {
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        setError('')
-
+        if (form.isBlocked) {
+            navigate('/homeblocked')
+          } else {
             try {
-                await login(user.email, user.password);
+                await login(form.email, form.password);
                 navigate('/home')
             } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-login-credentials'){
-                    setError("Contraseña o correo electrónico incorrecto.")
-
-                }if(error.code === 'auth/too-many-requests'){
-                    setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-
-                }
-                
-            }      
-     
+                    setError("La contraseña o el E-mail son incorrectos.")
+    
+                    }if(error.code === 'auth/too-many-requests'){
+                        setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+                    }
+                }  
+          }
+        
+        
+            
     }
 
     const handleGoogle = async()=>{
@@ -53,44 +78,87 @@ const Login = () => {
             await loginWithGoogle()
             navigate('/home')
         } catch (error) {
-            setError("Ocurrió un error, inténtelo otra vez.")
+            setError("Ha Ocurrido un error, inténtelo nuevamente.")
         }
         
     }
+  
+  console.log(form);
 
-    console.log("email:",user.email)
-    console.log("password", user.password)
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 12,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wapperCol: {
+      xs: {
+        span: 4,
+      },
+      sm: {
+        span: 20,
+      },
+    },
+  };
 
-    return (
+  return (
+    <div className="formPage">
+      {error && <p>{error}</p>}
+            {/* {console.log("Contenido del error")} */}
+      <form onSubmit={handleSubmit} className="form">
+        <img src={logo} className="logoImg" />
+        <Form.Item
+          label="E-mail"
+          name="email"
+          {...formItemLayout}
+          rules={[
+            { marginTop: "5%", required: true, message: "Ingrese el nombre" },
+          ]}
+        >
+          <Input
+            name="email"
+            placeholder="Ingrese su email..."
+            value={form.email}
+            onChange={(e) => handlerChange("email", e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Contraseña"
+          name="password"
+          {...formItemLayout}
+          rules={[{ required: true, message: "Ingrese el precio" }]}
+        >
+          <Password
+            name="password"
+            placeholder="Ingrese su contraseña..."
+            value={form.password}
+            onChange={(e) => handlerChange("password", e.target.value)}
+          />
+        </Form.Item>
+
         <div>
-            <h1>Ingresar</h1>
-            {error && <p>{error}</p>}
-            {console.log("Contenido del error")}
-
-            <form onSubmit={handleSubmit}>
-                
-                <Form initialValues={{recordar: true}} >
-                    <Item label= 'Usuario' name='email' rules={[{required: true, message: 'Ingrese un email válido', type:'email'}]} >
-                        <Input name='email' placeholder='Ingresar e-mail...' onChange={handleChange}/>
-                    </Item>
-            
-                    <Item label= 'Contraseña' name='password' rules={[{required: true, message: 'Ingrese su contraseña'}]} >
-                        <Password name='password' placeholder='Ingrese contraseña...' onChange={handleChange}/>
-                    </Item>
-
-                    <Item name='recordar' valuePropName='checked' >
-                        <Checkbox>Recordar usuario</Checkbox>
-                    </Item>
-                </Form> 
-
-                <button type='submit'>Ingresar</button>
-                <Link to='/registeruser'><button>Registrate</button></Link>
-                <br></br>
-                <Link to='/resetpassword'>Olvidé mi constraseña</Link>
-            </form>
-            <button onClick={handleGoogle}>Ingresa con Google</button>
+          <Button type="primary" htmlType="submit" className="button-submit">
+            Ingresar
+          </Button>
+          <div className="passwordReset">
+            <Link to="/resetpassword">Olvidé mi constraseña</Link>
+          </div>
+          <div className="register">
+            <Button className="btnregistry">
+              {" "}
+              <Link to="/registeruser">Registrate</Link>
+            </Button>
+            <Button onClick={handleGoogle} className="btnGoogle">
+              <GoogleCircleFilled className="logoGoogle" /> Google
+            </Button>
+          </div>
         </div>
-    )
+      </form>
+    </div>
+  );
 };
-
-export default Login; 
+export default Login;

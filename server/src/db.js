@@ -5,13 +5,14 @@ const requestModel=require("./models/Request")
 const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
+const reviewModel=require("./models/Review")
 require("dotenv").config();
 
 
 const {
   DB_USER,
-  DB_PASSWORD, 
-  DB_HOST,
+  DB_PASSWORD,  
+  DB_HOST, 
   DB_NAME,
   DB_DIALECT,
   DB_PORT,
@@ -19,8 +20,8 @@ const {
 } = process.env; 
 
 const dataBase=new Sequelize( 
-  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-  {logging:false}
+  `${DB_SERVER_DEPLOY}`,
+  {logging:false, dialectOptions:{ssl:{require:true}}}
 )
 
 userModel(dataBase)
@@ -29,10 +30,11 @@ categoryModel(dataBase)
 typeModel(dataBase)
 requestModel(dataBase)
 cartModel(dataBase)
+reviewModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request, Cart, Category, Type } = dataBase.models;
+const { User, Product, Request, Cart, Category, Type, Review } = dataBase.models;
 
 //*un producto puede tener una categoria y una categoria puede tener varios productos
 
@@ -56,8 +58,8 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"uid"})
-Request.belongsTo(User, {foreignKey:"uid"})
+// User.hasMany(Request, {foreignKey:"uid"})
+// Request.belongsTo(User, {foreignKey:"uid"})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
 
@@ -74,6 +76,19 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
 
+//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
+User.belongsToMany(Product, { through: 'Favorites' });
+Product.belongsToMany(User, { through: 'Favorites' });
+
+//!REVIEWS
+
+//Cada Product y User pueden tener varias Review
+Product.hasMany(Review, { foreignKey: 'id_product' });
+User.hasMany(Review, { foreignKey: 'uid' });
+
+//Cada Review pertenece a un Product y a un User
+Review.belongsTo(Product, { foreignKey: 'id_product' });
+Review.belongsTo(User, { foreignKey: 'uid' });
 
 module.exports={
   ...dataBase.models,

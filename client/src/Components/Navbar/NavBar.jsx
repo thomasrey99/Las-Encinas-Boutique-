@@ -65,6 +65,7 @@ const NavBar = () => {
     <nav className={style.navCont}>
         <div className={style.logCont}>
           <img src={logo} className={style.img}/>
+          <img src={title} className={style.brand}/>
         </div>
         <div className={style.navItems}>
           {user && ((user.displayName? <p>Bienvenido(a):{user.displayName}</p>: <p>Bienvenido(a):{user.email}</p>)) }

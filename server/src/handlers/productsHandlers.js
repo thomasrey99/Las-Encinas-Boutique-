@@ -110,7 +110,7 @@ const createPreference = async (req, res) => {
 			{
 				title: description,
 				unit_price: Number(price),
-				quantity: quantity===1?Number(quantity):Number(quantity)/2,
+				quantity: quantity,
 			}
 		],
 		back_urls: {

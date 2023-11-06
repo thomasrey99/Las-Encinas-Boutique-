@@ -127,7 +127,7 @@ const Detail = () => {
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 
                                         <div className={styles.productButtons}>
-                                            <Button type="default" block onClick={()=>handleProductCart(productDetail)}>
+                                            <Button type="primary" block onClick={()=>handleProductCart(productDetail)}>
                                             <ShoppingCartOutlined size="large"/></Button> 
                                             {/* <Button type="primary" block className={styles.buttonComprar} 
                                             onClick={()=> setIsModalVisible(true)}>Comprar</Button> */}
@@ -161,7 +161,7 @@ const Detail = () => {
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                    {reviews.length > 0 ?
+                                                    {reviews && reviews.length > 0 ?
                                                     <div>
                                                     <h1 className={styles.Comments}>Comentarios</h1>
                                                     <List

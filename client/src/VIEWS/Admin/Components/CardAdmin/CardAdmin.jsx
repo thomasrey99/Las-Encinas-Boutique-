@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { EditOutlined, SettingOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, DeleteOutlined, EditOutlined, SettingOutlined } from '@ant-design/icons';
 import { Card, Button } from 'antd';
 import { NavLink } from 'react-router-dom';
 import FormEditAdmin from '../FormEditAdmin/FormEditAdmin'
@@ -7,6 +7,16 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useSoftDeleteMutation } from '../../../../libs/redux/services/productsApi'
 
 const { Meta } = Card;
+
+const ActivateButton = ({ handleClick, isDelete }) => {
+  const buttonn = isDelete && <span onClick={handleClick}><CheckCircleOutlined key='activate' /></span>
+  return buttonn
+}
+
+const DeleteButton = ({ handleClick, isDelete }) => {
+  const buttonn = !isDelete && <span onClick={handleClick}><DeleteOutlined key='delete' /></span>
+  return buttonn
+}
 
 const CardAdmin = ({name, id_product, image, description, is_Delete }) => {
 
@@ -23,6 +33,14 @@ const handleDelete=()=> {
   const body = {
     id_product: id_product,
     is_Delete: true
+  }
+  softDelete(body)
+}
+
+const handleActivate = () => {
+  const body = {
+    id_product: id_product,
+    is_Delete: false
   }
   softDelete(body)
 }
@@ -57,9 +75,10 @@ const handleDelete=()=> {
           />
         }
         actions={[
+          <ActivateButton handleClick={handleActivate} isDelete={is_Delete} />,
           <NavLink to={"/productsAdmin"}><SettingOutlined key="setting" /></NavLink>,
           <span onClick={handleEditClick}><EditOutlined key="edit" /></span>,
-          <button onClick={handleDelete}>X</button>
+          <DeleteButton handleClick={handleDelete} isDelete={is_Delete} />
         ]}
       >
         <Meta

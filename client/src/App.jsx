@@ -29,7 +29,6 @@ import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
  
-  const currentUser = useSelector(state => state.user.userLog)
  
   const location = useLocation();
 

@@ -99,3 +99,4 @@ const NavBar = ({handleOPen, isOPen}) => {
 };
 
 export default NavBar;
+

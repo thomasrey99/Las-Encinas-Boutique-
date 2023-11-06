@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../firebase/authContext";
 import { useNavigate } from "react-router-dom";
+import "../Login/login.css";
 
 
 const Register = ()=>{
@@ -66,7 +67,7 @@ const Register = ()=>{
                 />
                 <br></br>
 
-                <button>Register</button>
+                <button className="button-submit">Register</button>
                 
             </form>
         </div>

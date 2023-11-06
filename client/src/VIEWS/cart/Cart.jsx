@@ -3,17 +3,14 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import style from "./Cart.module.css"
 import {useSelector, useDispatch} from "react-redux"
 import CardsCart from "../../Components/cardsCart/cardsCart"
-import { deleteProductCart, decrementQuantity, incrementQuantity, cartSlice } from "../../libs/redux/features/CartSlice"
-import { deleteProductCart, decrementQuantity, incrementQuantity, cartSlice } from "../../libs/redux/features/CartSlice"
+import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
-import axios from "axios"
 import axios from "axios"
 
 export const Cart = () => {
 
     initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
 
-    initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
 
     const dispatch=useDispatch()
 
@@ -23,7 +20,6 @@ export const Cart = () => {
 
     const [mutate]=usePutCartMutation()
 
-    const [preferenceId, setPreferenceId]=useState("")
 
     const [preferenceId, setPreferenceId]=useState("")
 
@@ -88,9 +84,6 @@ export const Cart = () => {
         if(isBuy===true){
             handleBuy()
         }
-        if(isBuy===true){
-            handleBuy()
-        }
     }, [cart])
 
 
@@ -134,33 +127,12 @@ export const Cart = () => {
                         <p className={style.total}>TOTAL:</p>
                         <p className={style.totalPrice}>${cartData.total_price}</p>
                     </div>
-                    <div className={style.itemsCont}>
-                        <ul className={style.listItems}>
-                            {
-                                cart.products?.map(({name, quantity, price}, index)=>{
-                                    return (
-                                        <li key={index} className={style.item}>
-                                            <p>{name}</p>
-                                            <p>{price} x {quantity}</p>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    </div>
-                    <div className={style.priceCont}>
-                        <p className={style.total}>TOTAL:</p>
-                        <p className={style.totalPrice}>${cartData.total_price}</p>
-                    </div>
                 </div>  
                 <div className={style.paymentButton}>
                     {isBuy===false&&<button className={style.buyButton} disabled={cart.product_quantity===0} onClick={handleBuy}>Comprar</button>}
                     {isBuy===true&&<button className={style.buyButton} onClick={handleCancel}>Cancelar</button>}
-                    {isBuy===false&&<button className={style.buyButton} disabled={cart.product_quantity===0} onClick={handleBuy}>Comprar</button>}
-                    {isBuy===true&&<button className={style.buyButton} onClick={handleCancel}>Cancelar</button>}
                 </div>
             </div>
-            {preferenceId && <Wallet initialization={{preferenceId}} />}
             {preferenceId && <Wallet initialization={{preferenceId}} />}
         </aside>
     </section>

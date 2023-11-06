@@ -178,9 +178,8 @@ const Detail = () => {
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                    {/* {reviews.length > 0 &&
+                                                    {reviews.length > 0 ?
                                                     <div>
-                                                    </div>} */}
                                                     <h1 className={styles.Comments}>Comentarios</h1>
                                                     <List
                                                         className="comment-list"
@@ -189,56 +188,59 @@ const Detail = () => {
                                                         loadMore=''
                                                         dataSource={reviews}
                                                         renderItem={(item) => (
-                                                        <List.Item
-                                                            actions={[
-                                                                <a key="comment-edit" 
-                                                                    onClick={()=> {
-                                                                        setIsModalVisibleEditReview(true);
-                                                                        setSelectedReviewId(item.id_review)
-                                                                        setUpdatedReview({... updateReview, comment: item.comment,
-                                                                        rating: item.rating});
-                                                                    }}><EditOutlined /></a>,
-                                                                <a key="comment-delete" 
-                                                                    onClick={()=> {
-                                                                        setIsModalVisibleRemoveReview(true)
-                                                                        setSelectedReviewId(item.id_review)
-                                                                    }}><DeleteOutlined style={{color: 'red'}} /></a>
-                                                            ]}
-                                                        >
-                                                            {/* Eliminar comentario */}
-                                                            <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
-                                                                onOk={()=>handleRemoveReview(selectedReviewId)} 
-                                                                onCancel={()=>setIsModalVisibleRemoveReview(false)}>
-                                                            <p>¿Estás seguro de que quieres eliminar este comentario?</p>
-                                                            </Modal>
-                                                            {/* Editar comentario */}
-                                                            <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
-                                                                onOk={() => handleEditReview(selectedReviewId, updateReview)} 
-                                                                onCancel={() => {
-                                                                setIsModalVisibleEditReview(false)
-                                                                setUpdatedReview({comment: '', rating: 0})}}>
-                                                                <p></p>
-                                                                <Rate  onChange={(value) =>
-                                                                setUpdatedReview({...updateReview, rating: value})} 
-                                                                value={updateReview.rating} />
-                                                                <Input value={updateReview.comment} 
-                                                                onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
-                                                            </Modal>
-                                                            <Skeleton avatar title={false} loading={item.loading} active>
-                                                                <List.Item.Meta
-                                                                    avatar={<Avatar src={item.avatar} />}
-                                                                    title={<div className={styles.NameAndRate}>
-                                                                    <h4>{`${user.name} ${user.lastName}`}</h4>
-                                                                    <p><Rate disabled value={item.rating} 
-                                                                    style={{ fontSize: '15px', marginRight: '15px'}}/></p>
-                                                                    </div>}
-                                                                    description={item.comment}
-                                                                />
-                                                                <p className={styles.date}>{item.date}</p>
-                                                            </Skeleton>
-                                                        </List.Item>
-                                                    )}
-                                                />
+                                                            <List.Item
+                                                                actions={[
+                                                                    <a key="comment-edit" 
+                                                                        onClick={()=> {
+                                                                            setIsModalVisibleEditReview(true);
+                                                                            setSelectedReviewId(item.id_review)
+                                                                            setUpdatedReview({... updateReview, comment: item.comment,
+                                                                            rating: item.rating});
+                                                                        }}><EditOutlined /></a>,
+                                                                    <a key="comment-delete" 
+                                                                        onClick={()=> {
+                                                                            setIsModalVisibleRemoveReview(true)
+                                                                            setSelectedReviewId(item.id_review)
+                                                                        }}><DeleteOutlined style={{color: 'red'}} /></a>
+                                                                ]}
+                                                            >
+                                                                {/* Eliminar comentario */}
+                                                                <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
+                                                                    onOk={()=>handleRemoveReview(selectedReviewId)} 
+                                                                    onCancel={()=>setIsModalVisibleRemoveReview(false)}>
+                                                                <p>¿Estás seguro de que quieres eliminar este comentario?</p>
+                                                                </Modal>
+                                                                {/* Editar comentario */}
+                                                                <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
+                                                                    onOk={() => handleEditReview(selectedReviewId, updateReview)} 
+                                                                    onCancel={() => {
+                                                                    setIsModalVisibleEditReview(false)
+                                                                    setUpdatedReview({comment: '', rating: 0})}}>
+                                                                    <p></p>
+                                                                    <Rate  onChange={(value) =>
+                                                                    setUpdatedReview({...updateReview, rating: value})} 
+                                                                    value={updateReview.rating} />
+                                                                    <Input value={updateReview.comment} 
+                                                                    onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
+                                                                </Modal>
+                                                                <Skeleton avatar title={false} loading={item.loading} active>
+                                                                    <List.Item.Meta
+                                                                        avatar={<Avatar src={item.avatar} />}
+                                                                        title={<div className={styles.NameAndRate}>
+                                                                        <h4>{`${user.name} ${user.lastName}`}</h4>
+                                                                        <p><Rate disabled value={item.rating} 
+                                                                        style={{ fontSize: '15px', marginRight: '15px'}}/></p>
+                                                                        </div>}
+                                                                        description={item.comment}
+                                                                    />
+                                                                    <p className={styles.date}>{item.date}</p>
+                                                                </Skeleton>
+                                                            </List.Item>
+                                                        )}
+                                                    />
+                                                    </div> :
+                                                    <Alert message="Sin comentarios" type="info" showIcon
+                                                    description="Sé el primero en dar tu opinión"/>}
                                                 </div>
                                             </TabPane>
                                         </Tabs>

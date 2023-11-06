@@ -4,6 +4,7 @@ import { Form, Input, Checkbox, Button } from 'antd';
 import Password from 'antd/es/input/Password';
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
+import { useEffect } from 'react';
 const { TextArea } = Input;
 
 const Login = () => {
@@ -13,11 +14,32 @@ const Login = () => {
     const { Item } = Form;
     
     const [error, setError] = useState();
+
+    
     
     const [form, setForm] = useState({
         email: '',
-        password: ''
+        password: '',
+        isBlocked: false
     });
+
+    useEffect(() => {
+        // Aquí haces una solicitud al servidor para obtener la información del usuario
+        // La respuesta de la solicitud debe incluir el estado de bloqueo del usuario
+    
+        
+        fetch(`http://localhost:3001/users?email=${form.email}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setForm({
+              email: data.email,
+              isBlocked: data.isBlocked,
+            });
+          })
+          .catch((error) => {
+            console.error('Error al obtener información del usuario', error);
+          });
+      }, [form.email]);
     
 
     const handlerChange = (name, value) => {
@@ -29,18 +51,25 @@ const Login = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        try {
-            await login(form.email, form.password);
-            navigate('/home')
-        } catch (error) {
-            console.log(error.code)
-            if(error.code === 'auth/invalid-login-credentials'){
-                setError("La contraseña o el E-mail son incorrectos.")
-
-                }if(error.code === 'auth/too-many-requests'){
-                    setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
-                }
-            }      
+        if (form.isBlocked) {
+            navigate('/homeblocked')
+          } else {
+            try {
+                await login(form.email, form.password);
+                navigate('/home')
+            } catch (error) {
+                console.log(error.code)
+                if(error.code === 'auth/invalid-login-credentials'){
+                    setError("La contraseña o el E-mail son incorrectos.")
+    
+                    }if(error.code === 'auth/too-many-requests'){
+                        setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+                    }
+                }  
+          }
+        
+        
+            
     }
 
     const handleGoogle = async()=>{

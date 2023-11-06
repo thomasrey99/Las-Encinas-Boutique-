@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
@@ -6,7 +5,7 @@ import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, InputNumber } from 'antd'
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useAuth } from "../../../firebase/authContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import style from './user.module.css';
 
 const FormUser = () => {
@@ -87,7 +86,7 @@ const FormUser = () => {
            setError('')
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
-                navigate('/home')
+                Navigate('/home')
                 } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-email'){

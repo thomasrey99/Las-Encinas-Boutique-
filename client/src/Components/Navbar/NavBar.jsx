@@ -1,22 +1,24 @@
 import style from "./NavBar.module.css";
+import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import HamburgerMenu from "../HamburgerMenu/menu";
-import cart from "../../assets/carrito.png"
-import logo from "../../assets/Las_encinas_Logo.png"
-import axios from "axios"
+import cart from "../../assets/carrito.png";
+import logo from "../../assets/Las_encinas_Logo.png";
+import title from "../../assets/las_encinas_letras.png";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
-import { useState } from "react";
+
 
 const getUserById=async(id)=>{
 
-  const responseUser=(await axios(`http://localhost:3001/users/${id}`)).data
+  const responseUser=(await axios(`https://las-encinas-boutique-server.onrender.com/users/${id}`)).data
   const {id_Cart}=responseUser.Cart
-  const responseCart=(await axios(`http://localhost:3001/cart/${id_Cart}`)).data
+  const responseCart=(await axios(`https://las-encinas-boutique-server.onrender.com/cart/${id_Cart}`)).data
   const response={
     user:responseUser,
     cart:responseCart
@@ -24,18 +26,18 @@ const getUserById=async(id)=>{
   return response
 }
 
-const NavBar = () => {
+const NavBar = ({handleOPen, isOPen}) => {
+
   const { user, logout } = useAuth();
   
  
   const dispatch = useDispatch();
 
+  
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
   console.log("user actuallllllllll:",currentUser?.is_Admin)
 
-
-  
 
   user && getUserByUid(user.uid)
 
@@ -50,7 +52,7 @@ const NavBar = () => {
         try {
           const response = await getUserById(uid);
           dispatch(addUser(response.user));
-          dispatch(addCart(response.cart))
+          dispatch(addCart(response.cart));
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }
@@ -64,9 +66,9 @@ const NavBar = () => {
     <nav className={style.navCont}>
         <div className={style.logCont}>
           <img src={logo} className={style.img}/>
+          <img src={title} className={style.brand}/>
         </div>
         <div className={style.navItems}>
-          {user && ((user.displayName? <p>Bienvenido(a):{user.displayName}</p>: <p>Bienvenido(a):{user.email}</p>)) }
           <NavLink to={"/cart"}>
             <div className={style.cartIconCont}>
               <img src={cart} className={style.cartIcon}/>
@@ -74,16 +76,27 @@ const NavBar = () => {
             </div>
           </NavLink>
           <div className={style.navLinks}>
-              <NavLink to={"/home"} className={style.item}>Pagina Principal</NavLink>
-              <NavLink to={"/about"} className={style.item}>Conócenos</NavLink>
-              {((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>}
-              
-              {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.item}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.item}>Inicia sesión</NavLink>}
-              <HamburgerMenu/>
+              {!user&&<p>¿Aun no sos cliente? <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>Resgistrate</NavLink></p>}
+              {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
           </div>
+          <div className={menuStyle.menuCont}>
+          <input
+            type='checkbox'
+            name="checkbox"
+            checked={isOPen}
+            id={menuStyle.checkbox}
+          />
+          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
+            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
+          </label>
         </div>
+        </div>
+        
     </nav>
-  )
-}
+  );
+};
 
 export default NavBar;
+

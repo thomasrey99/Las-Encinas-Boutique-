@@ -3,13 +3,14 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import style from "./Cart.module.css"
 import {useSelector, useDispatch} from "react-redux"
 import CardsCart from "../../Components/cardsCart/cardsCart"
-import { deleteProductCart, decrementQuantity, incrementQuantity, cartSlice } from "../../libs/redux/features/CartSlice"
+import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios"
 
 export const Cart = () => {
 
     initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
+
 
     const dispatch=useDispatch()
 
@@ -18,6 +19,7 @@ export const Cart = () => {
     const id_cart=useSelector((state)=>state.user.userCartId)
 
     const [mutate]=usePutCartMutation()
+
 
     const [preferenceId, setPreferenceId]=useState("")
 
@@ -83,6 +85,7 @@ export const Cart = () => {
             handleBuy()
         }
     }, [cart])
+
 
 
   return (

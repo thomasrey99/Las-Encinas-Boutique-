@@ -1,7 +1,7 @@
 import style from "./NavBar.module.css";
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom"
-import HamburguerMenu from "../HamburgerMenu/menu";
+import HamburgerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png"
 import logo from "../../assets/Las_encinas_Logo.png"
 import axios from "axios"
@@ -79,7 +79,7 @@ const NavBar = () => {
               {((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"} className={style.item}>Dashboard</NavLink>}
               
               {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.item}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.item}>Inicia sesión</NavLink>}
-              <HamburguerMenu/>
+              <HamburgerMenu/>
           </div>
         </div>
     </nav>

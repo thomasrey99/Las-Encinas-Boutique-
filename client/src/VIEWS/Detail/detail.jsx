@@ -137,39 +137,43 @@ const Detail = () => {
                                                                 value={newReview.comment}
                                                                 className={styles.inputToComment}
                                                             />
-                                                            <Button type="primary" onClick={handleAddReview} className={styles.buttonAddComment}>
+                                                            <Button type="primary" onClick={handleAddReview} 
+                                                            className={styles.buttonAddComment}>
                                                             Agregar 
                                                             </Button>
                                                         </div>
                                                     </div>
+                                                    {reviews.length > 0 &&
+                                                    <div>
+                                                    </div>}
                                                     <h1 className={styles.Comments}>Comentarios</h1>
                                                     <List
-                                                    className="comment-list"
-                                                    loading={false}
-                                                    itemLayout="horizontal"
-                                                    loadMore=''
-                                                    dataSource={reviews}
-                                                    renderItem={(item) => (
-                                                    <List.Item
-                                                        actions={[
-                                                            <a key="comment-edit" 
-                                                            onClick={()=> {
-                                                                setIsModalVisibleEditReview(true);
-                                                                setSelectedReviewId(item.id_review)
-                                                                setUpdatedReview({... updateReview, comment: item.comment,
-                                                                rating: item.rating});
-                                                            }}><EditOutlined /></a>,
-                                                            <a key="comment-delete" 
-                                                            onClick={()=> {
-                                                                setIsModalVisibleRemoveReview(true)
-                                                                setSelectedReviewId(item.id_review)
-                                                            }}><DeleteOutlined style={{color: 'red'}} /></a>
-                                                        ]}
-                                                    >
+                                                        className="comment-list"
+                                                        loading={false}
+                                                        itemLayout="horizontal"
+                                                        loadMore=''
+                                                        dataSource={reviews}
+                                                        renderItem={(item) => (
+                                                        <List.Item
+                                                            actions={[
+                                                                <a key="comment-edit" 
+                                                                    onClick={()=> {
+                                                                        setIsModalVisibleEditReview(true);
+                                                                        setSelectedReviewId(item.id_review)
+                                                                        setUpdatedReview({... updateReview, comment: item.comment,
+                                                                        rating: item.rating});
+                                                                    }}><EditOutlined /></a>,
+                                                                <a key="comment-delete" 
+                                                                    onClick={()=> {
+                                                                        setIsModalVisibleRemoveReview(true)
+                                                                        setSelectedReviewId(item.id_review)
+                                                                    }}><DeleteOutlined style={{color: 'red'}} /></a>
+                                                            ]}
+                                                        >
                                                         {/* Eliminar comentario */}
                                                         <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
-                                                        onOk={()=>handleRemoveReview(selectedReviewId)} 
-                                                        onCancel={()=>setIsModalVisibleRemoveReview(false)}>
+                                                            onOk={()=>handleRemoveReview(selectedReviewId)} 
+                                                            onCancel={()=>setIsModalVisibleRemoveReview(false)}>
                                                         <p>¿Estás seguro de que quieres eliminar este comentario?</p>
                                                         </Modal>
                                                         {/* Editar comentario */}
@@ -177,7 +181,7 @@ const Detail = () => {
                                                         onOk={() => handleEditReview(selectedReviewId, updateReview)} 
                                                         onCancel={() => {
                                                             setIsModalVisibleEditReview(false)
-                                                            setIsModalVisibleEditReview({comment: '', rating: 0})}}>
+                                                            setUpdatedReview({comment: '', rating: 0})}}>
                                                             <p></p>
                                                             <Rate  onChange={(value) =>
                                                             setUpdatedReview({...updateReview, rating: value})} 

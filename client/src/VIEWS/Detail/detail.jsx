@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
@@ -15,6 +16,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
 
+    //const user= useSelector((state)=>state.user.userLog)
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;

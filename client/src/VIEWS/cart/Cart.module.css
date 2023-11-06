@@ -24,7 +24,7 @@
     
 }
 .productsCont::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
   
 .productsCont::-webkit-scrollbar-thumb {
@@ -48,7 +48,6 @@
     flex-direction: column;
     justify-content:center;
     align-items: start;
-    color: black !important;
 }
 
 .payment{
@@ -74,7 +73,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    overflow-y: scroll;
+}
+.itemsCont::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.itemsCont::-webkit-scrollbar-thumb {
+    background-color: black; 
+    border-radius: 5px; 
+}
+  
+.itemsCont::-webkit-scrollbar-track {
+    background-color: white; 
 }
 .listItems{
     list-style: none;
@@ -83,6 +94,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    font-size: 12px;
+    padding: 5px;
 }
 .item{
     width: 100%;

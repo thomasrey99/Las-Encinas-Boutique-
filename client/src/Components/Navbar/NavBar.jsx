@@ -60,9 +60,9 @@ const NavBar = () => {
       <div className={style.navItems}>
         {user &&
           (user.displayName ? (
-            <p>Bienvenido(a): {user.displayName}</p>
+            <p>Bienvenido(a):{user.displayName}</p>
           ) : (
-            <p>Bienvenido(a): {user.email}</p>
+            <p>Bienvenido(a):{user.email}</p>
           ))}
         <NavLink to={"/cart"}>
           <div className={style.cartIconCont}>

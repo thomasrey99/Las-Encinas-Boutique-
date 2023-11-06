@@ -103,9 +103,11 @@ const FormUser = () => {
 console.log(form);
     return (
 
-        <div>
-            <h1>Registro de Usuario</h1>
-            <form onSubmit={handlerSubmit}>
+        <div className={style.formPage}>
+            <form onSubmit={handlerSubmit}  className={style.form}>
+            <div className={style.h1}>
+            <h2>Registro de Usuario</h2>
+            </div>
                 <Form.Item label="Nombre" name="name" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
                     <Input name="name" value={form.name} onChange={(e) => handlerCange('name', e.target.value)} />
                 </Form.Item>
@@ -136,9 +138,9 @@ console.log(form);
                 </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
-                <Button type="primary" htmlType="submit" >Registrar</Button>
-                <div className={style.divButtons}>
                     
+                <Button type="primary" htmlType="submit" className="button-submit" >Registrar</Button>
+                <div className={style.divButtons}>
                 </div>
 
             </form>

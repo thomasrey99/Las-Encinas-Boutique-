@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { CheckCircleOutlined, DeleteOutlined, EditOutlined, SettingOutlined } from '@ant-design/icons';
 import { Card, Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-import FormEditAdmin from '../FormEditAdmin/FormEditAdmin'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useSoftDeleteMutation } from '../../../../libs/redux/services/productsApi'
 

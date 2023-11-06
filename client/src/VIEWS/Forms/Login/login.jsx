@@ -55,17 +55,36 @@ const Login = () => {
     console.log(form);
     
 
+    const formItemLayout = {
+        labelCol: {
+            xs: {
+                span: 12
+            },
+            sm: {
+                span: 8
+            },
+        },
+        wapperCol: {
+            xs: {
+                span: 4
+            },
+            sm: {
+                span: 20
+            },
+        }
+    };
+
     return (
         <div>
             {/* {error && <p>{error}</p>}
             {console.log("Contenido del error")} */}
             <form onSubmit={handleSubmit}>
                 <h1>Ingresar</h1>
-                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
+                <Form.Item label="E-mail" name="email" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
                     <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
                 </Form.Item>
 
-                <Form.Item label="Contraseña" name="password" rules={[{ required: true, message: 'Ingrese el precio' }]}>
+                <Form.Item label="Contraseña" name="password" {...formItemLayout} rules={[{ required: true, message: 'Ingrese el precio' }]}>
                     <Password name="password" placeholder='Ingrese su contraseña...' value={form.password} onChange={(e) => handlerChange('password', e.target.value)} />
                 </Form.Item>
                      

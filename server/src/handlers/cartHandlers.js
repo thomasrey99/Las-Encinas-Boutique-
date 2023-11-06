@@ -57,9 +57,11 @@ const createPreference = (req, res) => {
 		},
 		auto_return: "approved",
 	};
+    console.log(preference);
 
     mercadoPago.preferences.create(preference)
 		.then(function (response) {
+            
 			res.json({
 				id: response.body
 			});

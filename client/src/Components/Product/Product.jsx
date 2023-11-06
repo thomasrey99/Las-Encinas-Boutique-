@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useRef, useEffect } from 'react'
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { Form, Input, Checkbox, Button } from 'antd';
-import emailjs from '@emailjs/browser'
+// import emailjs from '@emailjs/browser'
 import mercadopago from 'mercadopago';
 import { MercadoPagoResponse } from 'mercadopago';
 import { json, useLocation } from 'react-router-dom';
@@ -12,10 +12,10 @@ const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
     
     /*It is for handleAdminMail */
-    const refTemplate = useRef();
-    const location = useLocation()
-    const searchParams = new URLSearchParams(location.search)
-    const status = searchParams.get('status')
+    // const refTemplate = useRef();
+    // const location = useLocation()
+    // const searchParams = new URLSearchParams(location.search)
+    // const status = searchParams.get('status')
     
     // useEffect(() => {
     //     if (status === 'approved') {
@@ -36,7 +36,7 @@ const Product = () => {
                 quantity: 1,
                 currency_id: 'ARS'
             });
-            console.log('response.data', response.data)
+            // console.log('response.data', response.data)
             const { id } = response.data.id;
             return id;
         } catch (error) {

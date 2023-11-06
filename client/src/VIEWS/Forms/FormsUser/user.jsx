@@ -89,7 +89,8 @@ const FormUser = () => {
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
                 navigate('/home')
                 } catch (error) {
-                console.log(error.code)
+                // console.log(error.code)
+
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
                 } else if(error.code === 'auth/weak-password'){
@@ -100,38 +101,56 @@ const FormUser = () => {
                 
         }
     };    
-console.log(form);
+// console.log(form);
+const formItemLayout = {
+    labelCol: {
+        xs: {
+            span: 12
+        },
+        sm: {
+            span: 8
+        },
+    },
+    wapperCol: {
+        xs: {
+            span: 4
+        },
+        sm: {
+            span: 20
+        },
+    }
+};
     return (
 
         <div>
             <h1>Registro de Usuario</h1>
             <form onSubmit={handlerSubmit}>
-                <Form.Item label="Nombre" name="name" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
+                <Form.Item label="Nombre" name="name" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
                     <Input name="name" value={form.name} onChange={(e) => handlerCange('name', e.target.value)} />
                 </Form.Item>
                 {errors.name !== '' ? <span>{errors.name}</span> : ''}
                 
-                <Form.Item label="Apellido" name="lastName" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su apellido'}]}>
+                <Form.Item label="Apellido" name="lastName" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su apellido'}]}>
                     <Input name="lastName" value={form.lastName} onChange={(e) => handlerCange('lastName', e.target.value)} />
                 </Form.Item>
                 {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
                 
-                <Form.Item label="Domicilio" name="address" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su domicilio'}]}>
+                <Form.Item label="Domicilio" name="address" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su domicilio'}]}>
                     <Input name="address" value={form.address} onChange={(e) => handlerCange('address', e.target.value)} />
                 </Form.Item>
                 {errors.address !== '' ? <span>{errors.address}</span> : ''}
                 
-                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su e-mail'}]}>
+                <Form.Item label="E-mail" name="email" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su e-mail'}]}>
                     <Input name="email" value={form.email} onChange={(e) => handlerCange('email', e.target.value)} />
                 </Form.Item>
                 {errors.email !== '' ? <span>{errors.email}</span> : ''}
                 
-                <Form.Item label="Teléfono" name="phone" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contacto'}]}>
+                <Form.Item label="Teléfono" name="phone" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contacto'}]}>
                     <Input name="phone" value={form.phone} onChange={(e) => handlerCange('phone', e.target.value)} />
                 </Form.Item>
                 {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
                 
-                <Form.Item label="Contraseña" name="password" rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contraseña'}]}>
+                <Form.Item label="Contraseña" name="password" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contraseña'}]}>
                     <Password name="password" value={form.password} onChange={(e) => handlerCange('password', e.target.value)} />
                 </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}

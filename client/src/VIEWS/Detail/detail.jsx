@@ -39,7 +39,7 @@ const Detail = () => {
     const handleOk = () => navigate('/shopping')
 
     const handleCancel = () => setIsModalVisible(false);
-console.log(productDetail);
+// console.log(productDetail);
     return(
         <div className={styles.detailContainer}>
             { isLoading ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin> 

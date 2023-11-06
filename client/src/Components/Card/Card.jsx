@@ -20,7 +20,7 @@ const Card = (props) => {
   const cartData=useSelector((state)=>state.cart)
   const id_cart=useSelector((state)=>state.user.userCartId)
   const currentUser= useSelector((state)=>state.user.userLog)
-  const userId = currentUser.uid;
+  const userId =  currentUser ? currentUser.uid : null;
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();

@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const favoritesApi=createApi({
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:3001"
+        baseUrl:"https://las-encinas-boutique-server.onrender.com"
     }),
     reducerPath:"favoritesApi",
     endpoints:(builder)=>({

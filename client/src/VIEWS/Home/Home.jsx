@@ -19,17 +19,18 @@ const Home = () => {
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const productsData = useSelector((state) => state.items.allProducts);
+  const productsFilter=productsData?.filter((product) => product.is_Delete ===false)
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
 
   const {name}=useSelector((state)=>state.filters)
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage-1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const products = productsData.slice(startIndex, endIndex);
-  const productsToDisplay = products.filter((product) => product.is_Delete === false||product.is_Delete===undefined)
-  console.log('productsToDisplay', productsToDisplay)
-  
+  const products = productsFilter?.slice(startIndex, endIndex);
+  const productsToDisplay = products
+
+  console.log("todos los productos", productsToDisplay)
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -100,3 +101,4 @@ const Home = () => {
 };
 
 export default Home;
+

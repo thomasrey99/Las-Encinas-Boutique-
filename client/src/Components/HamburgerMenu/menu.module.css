@@ -1,7 +1,10 @@
 .antMenu{
-    background-color: #FC8E28;
+    background-color: #FC8E28 !important;
+    color: #fff  !important;
 }
 
-.subMenu{
-    left: 0 !important;
+.menuItem {
+    color: #fff !important; 
+    background-color: #FC8E28 !important; 
 }
+

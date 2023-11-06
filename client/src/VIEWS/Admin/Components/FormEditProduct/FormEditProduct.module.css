@@ -43,7 +43,7 @@
     margin: 3%;
   }
   
-  label {
+  .labels {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -70,7 +70,7 @@
     transform: translateY(-2px);
   }
   
-  select {
+  .select1 {
     border: none;
     border-radius: 10px;
     padding: 10px;
@@ -79,12 +79,12 @@
     transition: box-shadow 0.3s, transform 0.3s;
   }
   
-  select:focus {
+  .select1:focus {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }
   
-  button {
+  .button1 {
     background-color: #8B4513;
     color: #fff;
     border: none;
@@ -95,7 +95,7 @@
     transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
   }
   
-  button:hover {
+  .button1:hover {
     background-color: #A0522D;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);

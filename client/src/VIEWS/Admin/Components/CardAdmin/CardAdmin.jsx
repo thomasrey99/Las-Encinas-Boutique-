@@ -60,10 +60,10 @@ const handleActivate = () => {
             src={image}
             style={{
               width: "100%",
-              height: "auto",
+              height: "18em",
               position: "static",
               top: "0",
-              left: "0",
+              left: "0"
               }}
           />
         }
@@ -74,7 +74,8 @@ const handleActivate = () => {
           <DeleteButton handleClick={handleDelete} isDelete={is_Delete} />
         ]}
       >
-        <Meta
+        <Meta 
+          style={{minHeight: "6em"}}
           title={name}
           description={descriptionEdit + "..."}
         />

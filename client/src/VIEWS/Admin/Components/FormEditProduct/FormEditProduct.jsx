@@ -124,22 +124,22 @@ return (
 
             <div className={styles.Section}>
                 <div className={styles.Element1}>
-                <label>Nombre:</label>
+                <label className={styles.labels}>Nombre:</label>
                 <input type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
-                <label>Precio:</label>
+                <label className={styles.labels}>Precio:</label>
                 <input type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
-                <label>Descripción:</label>
+                <label className={styles.labels}>Descripción:</label>
                 <textarea rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
-                <label>Rate:</label>
+                <label className={styles.labels}>Rate:</label>
                 <input type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
                 </div>
             </div>
@@ -147,7 +147,7 @@ return (
             <div className={styles.Section}>
 
                 <div className={styles.Element}>
-                <label>Imagen:</label>
+                <label className={styles.labels}>Imagen:</label>
                 <input type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
                 <input type="file" accept="image/*" onChange={handleImageUpload} />
                 </div>
@@ -163,15 +163,15 @@ return (
             <div className={styles.Section2}>
                 
                 <div className={styles.Element2}>
-                <label>Categorías:</label>
-                <select name="category" multiple value={state.category} onChange={(e) => handleChange("category", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
+                <label className={styles.labels}>Categorías:</label>
+                <select className={styles.select1} name="category" multiple value={state.category} onChange={(e) => handleChange("category", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
                 {categories?.map((c, i) => (<option value={c.name} key={i}>{c.name}</option>))}
                 </select>
                 </div>
 
                 <div className={styles.Element2}>
-                <label>Tipo:</label>
-                <select name="type" multiple value={state.type} onChange={(e) => handleChange("type", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
+                <label className={styles.labels}>Tipo:</label>
+                <select className={styles.select1} name="type" multiple value={state.type} onChange={(e) => handleChange("type", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
                 {types?.map((t, i) => (<option value={t.name} key={i}>{t.name}</option>))}
                 </select>
                 </div>
@@ -179,7 +179,7 @@ return (
             </div>
             
             <div className={styles.Section}>
-            <button type="submit">Actualizar producto</button>
+            <button className={styles.button1} type="submit">Actualizar producto</button>
             <Link to="/productsAdmin"><button>Volver</button></Link>
             </div>
             

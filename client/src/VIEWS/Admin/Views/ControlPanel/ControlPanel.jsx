@@ -36,7 +36,7 @@ const ControlPanel = () => {
             <div className={Style.Grafics}>
               
               <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                <h3>Graficas</h3>
+                <h3 className={Style.h31}>Graficas</h3>
 
                 <span
                 className={Style.SeeMoreText}

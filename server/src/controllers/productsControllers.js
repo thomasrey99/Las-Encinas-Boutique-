@@ -131,6 +131,14 @@ const putProductContoller = async (id, data) => {
     return updatedProduct;
 }
 
+//!CONTROLLER QUE MODIFICA O ACTUALIZA UN PRODUCTO
+const patchProductContoller = async (id, is_Delete) => {
+    const findProductById = await Product.findByPk(id);
+    const updatedProduct = await findProductById.update({is_Delete});
+
+    return updatedProduct;
+}
+
 const deleteProductContoller = async(id) =>{
     const findProductById = await Product.findByPk(id);
     await findProductById.destroy();
@@ -144,5 +152,6 @@ module.exports = {
     allProducts,
     postProductContoller,
     putProductContoller,
-    deleteProductContoller
+    deleteProductContoller,
+    patchProductContoller
 };

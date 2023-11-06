@@ -38,6 +38,11 @@ module.exports = (dataBase) => {
             type:DataTypes.BOOLEAN,
             defaultValue: false
         },
+        is_Delete:{
+            type:DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+       
 
         isBlocked:{
             type:DataTypes.BOOLEAN,

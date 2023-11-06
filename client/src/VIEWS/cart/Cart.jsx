@@ -39,7 +39,7 @@ export const Cart = () => {
         }
 
         try {
-            const response=await axios.post("http://localhost:3001/products/create_preference", {
+            const response=await axios.post("https://las-encinas-boutique-server.onrender.com/products/create_preference", {
                 description: description,
                 price:cart.total_price,
                 quantity:cart.product_quantity

@@ -4,6 +4,7 @@ const initialState = {
     userLog:null,
     userCartId:"",
     userByUid:{}
+    userByUid:{}
 }
 
 export const userSlice = createSlice({

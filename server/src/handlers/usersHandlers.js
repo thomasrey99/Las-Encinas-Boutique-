@@ -29,6 +29,7 @@ const getUserById = async ( req, res) => {
 
    const { id } = req.params
    console.log("Esto es el params",req.params)
+   console.log("Esto es el params",req.params)
    
    try {
         const result = await getUserIdController(id)

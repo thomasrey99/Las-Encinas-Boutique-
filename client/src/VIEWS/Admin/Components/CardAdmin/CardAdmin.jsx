@@ -45,20 +45,13 @@ const handleActivate = () => {
   softDelete(body)
 }
 
-  //console.log(products)
-
-  const descriptionEdit = description.slice(0, 35)
 
   return (
-    <>
-      {isEditing ? (
-        <FormEditAdmin id={id}/>
-      ) : (
+    <div>
         <Card
         style={{
-          width: "22%",
-          height: "30%",
-          margin: "1%",
+          margin: "5% 0 0 0",
+          width: "18em",
           border: is_Delete ? "solid 2px red" : "transparent"
         }}
         cover={
@@ -76,7 +69,7 @@ const handleActivate = () => {
         }
         actions={[
           <ActivateButton handleClick={handleActivate} isDelete={is_Delete} />,
-          <NavLink to={"/productsAdmin"}><SettingOutlined key="setting" /></NavLink>,
+          <NavLink to={`/editProductAdmin/${id_product}`}><SettingOutlined key="setting" /></NavLink>,
           <span onClick={handleEditClick}><EditOutlined key="edit" /></span>,
           <DeleteButton handleClick={handleDelete} isDelete={is_Delete} />
         ]}
@@ -86,8 +79,7 @@ const handleActivate = () => {
           description={descriptionEdit + "..."}
         />
       </Card>
-      )}
-      </>
+      </div>
   )
 }
 

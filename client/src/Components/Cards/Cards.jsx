@@ -8,7 +8,6 @@ const Cards = () => {
 
   // const { data: allProducts } = 
   const products=useSelector((state)=>state.items.allProducts)
-  console.log(`-----------------------------------------------------`);
   return (
     <div className={Style.Container}>
         {products?.map(prod => (

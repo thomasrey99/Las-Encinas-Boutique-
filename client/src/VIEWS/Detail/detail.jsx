@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
 import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, 
         useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
+import { addProductCart } from '../../libs/redux/features/CartSlice';
+import { usePutCartMutation } from '../../libs/redux/services/CartApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton, Avatar, Input } from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
@@ -15,46 +17,16 @@ import styles from './detail.module.css';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
-//     Cart
-// : 
-// {id_Cart: 'e62973d1-91b6-4721-ba7f-9f118497edd9', products: Array(0), product_quantity: 0, total_price: '0', UserUid: '4dImDNRZnWhpVcEs8eYjtmb3wgk2'}
-// address
-// : 
-// "Elm Street"
-// email
-// : 
-// "mateolt202@gmail.com"
-// isBlocked
-// : 
-// false
-// is_Admin
-// : 
-// false
-// is_Delete
-// : 
-// false
-// lastName
-// : 
-// "Leon"
-// name
-// : 
-// "Mateo"
-// payment_code
-// : 
-// null
-// phone
-// : 
-// "3245310156"
-// uid
-// : 
-// "4dImDNRZnWhpVcEs8eYjtmb3wgk2"
-    const user= useSelector((state)=>state.user.userLog)
-    const userId = user.uid;
-    console.log(user);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;
-
+    const user= useSelector((state)=>state.user.userLog)
+    const userId = user.uid;
+    const id_cart=useSelector((state)=>state.user.userCartId)
+    const cartData=useSelector((state)=>state.cart)
+    
     const [ isModalVisible, setIsModalVisible ] = useState(false);
     const [ isModalVisibleRemoveReview, setIsModalVisibleRemoveReview ] = useState(false);
     const [ isModalVisibleEditReview, setIsModalVisibleEditReview ] = useState(false)
@@ -69,7 +41,7 @@ const Detail = () => {
     const [ addReview ] = useAddReviewMutation();
     const [ editReview ] = useEditReviewMutation();
     const [ removeReview ] = useRemoveReviewMutation();
-
+    const [mutate]=usePutCartMutation()
 
     const handlefavClick = async () => {
 
@@ -120,6 +92,16 @@ const Detail = () => {
 
     const handleOk = () => navigate('/*')
 
+    const handleProductCart = async (productDetail)=>{
+        if(user===null){
+          alert("Tienes que registrarte para agregar productos al carrito")
+          navigate("/login")
+        }else{
+          dispatch(addProductCart(productDetail))
+          await mutate({ dataUpdate: cartData, id_cart: id_cart })
+        }
+    }
+
     return(
         <div className={styles.detailContainer}>
             { isLoading ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin> 
@@ -145,9 +127,10 @@ const Detail = () => {
                                         <p>{productDetail.category}</p> 
                                         <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 
                                         <div className={styles.productButtons}>
-                                            <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
-                                            <Button type="primary" block className={styles.buttonComprar} 
-                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button>
+                                            <Button type="primary" block onClick={()=>handleProductCart(productDetail)}>
+                                            <ShoppingCartOutlined size="large"/></Button> 
+                                            {/* <Button type="primary" block className={styles.buttonComprar} 
+                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button> */}
                                         </div>
                                     </div>
                                 </Col>
@@ -178,9 +161,8 @@ const Detail = () => {
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                    {/* {reviews.length > 0 &&
+                                                    {reviews && reviews.length > 0 ?
                                                     <div>
-                                                    </div>} */}
                                                     <h1 className={styles.Comments}>Comentarios</h1>
                                                     <List
                                                         className="comment-list"
@@ -189,56 +171,59 @@ const Detail = () => {
                                                         loadMore=''
                                                         dataSource={reviews}
                                                         renderItem={(item) => (
-                                                        <List.Item
-                                                            actions={[
-                                                                <a key="comment-edit" 
-                                                                    onClick={()=> {
-                                                                        setIsModalVisibleEditReview(true);
-                                                                        setSelectedReviewId(item.id_review)
-                                                                        setUpdatedReview({... updateReview, comment: item.comment,
-                                                                        rating: item.rating});
-                                                                    }}><EditOutlined /></a>,
-                                                                <a key="comment-delete" 
-                                                                    onClick={()=> {
-                                                                        setIsModalVisibleRemoveReview(true)
-                                                                        setSelectedReviewId(item.id_review)
-                                                                    }}><DeleteOutlined style={{color: 'red'}} /></a>
-                                                            ]}
-                                                        >
-                                                            {/* Eliminar comentario */}
-                                                            <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
-                                                                onOk={()=>handleRemoveReview(selectedReviewId)} 
-                                                                onCancel={()=>setIsModalVisibleRemoveReview(false)}>
-                                                            <p>¿Estás seguro de que quieres eliminar este comentario?</p>
-                                                            </Modal>
-                                                            {/* Editar comentario */}
-                                                            <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
-                                                                onOk={() => handleEditReview(selectedReviewId, updateReview)} 
-                                                                onCancel={() => {
-                                                                setIsModalVisibleEditReview(false)
-                                                                setUpdatedReview({comment: '', rating: 0})}}>
-                                                                <p></p>
-                                                                <Rate  onChange={(value) =>
-                                                                setUpdatedReview({...updateReview, rating: value})} 
-                                                                value={updateReview.rating} />
-                                                                <Input value={updateReview.comment} 
-                                                                onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
-                                                            </Modal>
-                                                            <Skeleton avatar title={false} loading={item.loading} active>
-                                                                <List.Item.Meta
-                                                                    avatar={<Avatar src={item.avatar} />}
-                                                                    title={<div className={styles.NameAndRate}>
-                                                                    <h4>{`${user.name} ${user.lastName}`}</h4>
-                                                                    <p><Rate disabled value={item.rating} 
-                                                                    style={{ fontSize: '15px', marginRight: '15px'}}/></p>
-                                                                    </div>}
-                                                                    description={item.comment}
-                                                                />
-                                                                <p className={styles.date}>{item.date}</p>
-                                                            </Skeleton>
-                                                        </List.Item>
-                                                    )}
-                                                />
+                                                            <List.Item
+                                                                actions={[
+                                                                    <a key="comment-edit" 
+                                                                        onClick={()=> {
+                                                                            setIsModalVisibleEditReview(true);
+                                                                            setSelectedReviewId(item.id_review)
+                                                                            setUpdatedReview({... updateReview, comment: item.comment,
+                                                                            rating: item.rating});
+                                                                        }}><EditOutlined /></a>,
+                                                                    <a key="comment-delete" 
+                                                                        onClick={()=> {
+                                                                            setIsModalVisibleRemoveReview(true)
+                                                                            setSelectedReviewId(item.id_review)
+                                                                        }}><DeleteOutlined style={{color: 'red'}} /></a>
+                                                                ]}
+                                                            >
+                                                                {/* Eliminar comentario */}
+                                                                <Modal title="Eliminar comentario" visible={isModalVisibleRemoveReview} 
+                                                                    onOk={()=>handleRemoveReview(selectedReviewId)} 
+                                                                    onCancel={()=>setIsModalVisibleRemoveReview(false)}>
+                                                                <p>¿Estás seguro de que quieres eliminar este comentario?</p>
+                                                                </Modal>
+                                                                {/* Editar comentario */}
+                                                                <Modal title="Editar comentario" visible={isModalVisibleEditReview} 
+                                                                    onOk={() => handleEditReview(selectedReviewId, updateReview)} 
+                                                                    onCancel={() => {
+                                                                    setIsModalVisibleEditReview(false)
+                                                                    setUpdatedReview({comment: '', rating: 0})}}>
+                                                                    <p></p>
+                                                                    <Rate  onChange={(value) =>
+                                                                    setUpdatedReview({...updateReview, rating: value})} 
+                                                                    value={updateReview.rating} />
+                                                                    <Input value={updateReview.comment} 
+                                                                    onChange={e => setUpdatedReview({...updateReview, comment: e.target.value})} />
+                                                                </Modal>
+                                                                <Skeleton avatar title={false} loading={item.loading} active>
+                                                                    <List.Item.Meta
+                                                                        avatar={<Avatar src={item.avatar} />}
+                                                                        title={<div className={styles.NameAndRate}>
+                                                                        <h4>{`${user.name} ${user.lastName}`}</h4>
+                                                                        <p><Rate disabled value={item.rating} 
+                                                                        style={{ fontSize: '15px', marginRight: '15px'}}/></p>
+                                                                        </div>}
+                                                                        description={item.comment}
+                                                                    />
+                                                                    <p className={styles.date}>{item.date}</p>
+                                                                </Skeleton>
+                                                            </List.Item>
+                                                        )}
+                                                    />
+                                                    </div> :
+                                                    <Alert message="Sin comentarios" type="info" showIcon
+                                                    description="Sé el primero en dar tu opinión"/>}
                                                 </div>
                                             </TabPane>
                                         </Tabs>

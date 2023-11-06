@@ -24,9 +24,11 @@ import Orders from './VIEWS/Admin/Views/Orders/Orders';
 import Clients from './VIEWS/Admin/Views/Clients/Clients';
 import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
 import { useSelector } from 'react-redux';
+import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 
 const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
+ 
  
   const location = useLocation();
 
@@ -35,6 +37,8 @@ const App = () => {
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
+  location.pathname !== '/ordersAdmin' &&
+  !location.pathname.startsWith('/editUserAdmin/')
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
   
@@ -51,6 +55,7 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<FormUser />} />
+          <Route path='homeblocked' element={<PageUserBlocked />} />
           {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
           ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />
@@ -60,6 +65,13 @@ const App = () => {
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
           {/* Rutas protegidas del admin */}
+          {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
+                     
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}

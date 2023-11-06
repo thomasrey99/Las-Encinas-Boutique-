@@ -103,56 +103,62 @@ const FormEditUser = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Editar usuario</h1>
+      <h1 className={styles.title}>Editar usuario</h1>
       <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
+        <label className={styles.label}>Nombre</label>
         <input
+          className={styles.input}
           type="text"
           name="name"
           value={form.name}
           onChange={handleChange}
         />
-        {errors.name !== '' && <span>{errors.name}</span>}
+        {errors.name !== '' && <span className={styles.span}>{errors.name}</span>}
 
-        <label>Apellido</label>
+        <label className={styles.label}>Apellido</label>
         <input
+          className={styles.input}
           type="text"
           name="lastName"
           value={form.lastName}
           onChange={handleChange}
         />
-        {errors.lastName !== '' && <span>{errors.lastName}</span>}
+        {errors.lastName !== '' && <span className={styles.span}>{errors.lastName}</span>}
 
-        <label>Domicilio</label>
+        <label className={styles.label}>Domicilio</label>
         <input
+          className={styles.input}
           type="text"
           name="address"
           value={form.address}
           onChange={handleChange}
         />
-        {errors.address !== '' && <span>{errors.address}</span>}
+        {errors.address !== '' && <span className={styles.span}>{errors.address}</span>}
 
-        <label>E-mail</label>
+        <label className={styles.label}>E-mail</label>
         <input
+          className={styles.input}
           type="email"
           name="email"
           value={form.email}
           onChange={handleChange}
           disabled
         />
-        {errors.email !== '' && <span>{errors.email}</span>}
+        {errors.email !== '' && <span className={styles.span}>{errors.email}</span>}
 
-        <label>Teléfono</label>
+        <label className={styles.label}>Teléfono</label>
         <input
+          className={styles.input}
           type="text"
           name="phone"
           value={form.phone}
           onChange={handleChange}
         />
-        {errors.phone !== '' && <span>{errors.phone}</span>}
+        {errors.phone !== '' && <span className={styles.span}>{errors.phone}</span>}
 
-        <label>Tipo de usuario</label>
+        <label className={styles.label}>Tipo de usuario</label>
         <select
+          className={styles.select}
           name="is_Admin"
           value={form.is_Admin}
           onChange={handleChange}
@@ -161,8 +167,9 @@ const FormEditUser = () => {
           <option value={false}>Usuario</option>
         </select>
 
-        <label>Bloquear usuario</label>
+        <label className={styles.label}>Bloquear usuario</label>
         <select
+          className={styles.select}
           name="isBlocked"
           value={form.isBlocked}
           onChange={handleChange}

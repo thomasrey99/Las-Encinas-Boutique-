@@ -9,16 +9,39 @@ import "./login.css";
 const { TextArea } = Input;
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { login, loginWithGoogle } = useAuth();
-  const { Item } = Form;
 
-  const [error, setError] = useState();
+    const navigate = useNavigate();
+    const {login, loginWithGoogle}= useAuth();
+    const { Item } = Form;
+    
+    const [error, setError] = useState();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+    
+    
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        isBlocked: false
+    });
+
+    useEffect(() => {
+        // Aquí haces una solicitud al servidor para obtener la información del usuario
+        // La respuesta de la solicitud debe incluir el estado de bloqueo del usuario
+    
+        
+        fetch(`http://localhost:3001/users?email=${form.email}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setForm({
+              email: data.email,
+              isBlocked: data.isBlocked,
+            });
+          })
+          .catch((error) => {
+            console.error('Error al obtener información del usuario', error);
+          });
+      }, [form.email]);
+    
 
   const handlerChange = (name, value) => {
     setForm({
@@ -27,33 +50,37 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(!form.email || !form.password){
-        alert("Debe completar los campos");
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        if (form.isBlocked) {
+            navigate('/homeblocked')
+          } else {
+            try {
+                await login(form.email, form.password);
+                navigate('/home')
+            } catch (error) {
+                console.log(error.code)
+                if(error.code === 'auth/invalid-login-credentials'){
+                    setError("La contraseña o el E-mail son incorrectos.")
+    
+                    }if(error.code === 'auth/too-many-requests'){
+                        setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+                    }
+                }  
+          }
+        
+        
+            
     }
-    try {
-      await login(form.email, form.password);
-      navigate("/home");
-    } catch (error) {
-      console.log(error.code);
-      if (error.code === "auth/invalid-login-credentials") {
-        setError("La contraseña o el E-mail son incorrectos.");
-      }
-      if (error.code === "auth/too-many-requests") {
-        setError(
-          "Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña."
-        );
-      }
-    }
-  };
 
-  const handleGoogle = async () => {
-    try {
-      await loginWithGoogle();
-      navigate("/home");
-    } catch (error) {
-      setError("Ha Ocurrido un error, inténtelo nuevamente.");
+    const handleGoogle = async()=>{
+        try {
+            await loginWithGoogle()
+            navigate('/home')
+        } catch (error) {
+            setError("Ha Ocurrido un error, inténtelo nuevamente.")
+        }
+        
     }
   };
   console.log(form);
@@ -134,5 +161,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

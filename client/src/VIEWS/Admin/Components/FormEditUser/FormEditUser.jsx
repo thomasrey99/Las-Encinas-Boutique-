@@ -48,9 +48,6 @@ const FormEditUser = () => {
   }, [userByUid]);
 
 
-console.log("Esto son los datos del Form",form)
-console.log('Nombre', form.name )
-
   let [error, setError] = useState();
 
   let [errors, setErrors] = useState({

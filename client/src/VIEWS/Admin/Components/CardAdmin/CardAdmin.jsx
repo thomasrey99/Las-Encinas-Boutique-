@@ -1,31 +1,19 @@
-import React, { useState } from 'react'
 import { EditOutlined, SettingOutlined } from '@ant-design/icons';
-import { Card, Button } from 'antd';
+import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
-import FormEditAdmin from '../FormEditAdmin/FormEditAdmin'
 
 const { Meta } = Card;
 
-const CardAdmin = ({ image, name, description, id }) => {
-
-  const [isEditing, setIsEditing] = useState(false)
-
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
+const CardAdmin = ({ image, name, description, id_product }) => {
 
   const descriptionEdit = description.slice(0, 35)
 
   return (
-    <>
-      {isEditing ? (
-        <FormEditAdmin id={id}/>
-      ) : (
+    <div>
         <Card
         style={{
-          width: "22%",
-          height: "30%",
-          margin: "1%",
+          margin: "5% 0 0 0",
+          width: "18em"
         }}
         cover={
           <img
@@ -42,7 +30,7 @@ const CardAdmin = ({ image, name, description, id }) => {
         }
         actions={[
           <NavLink to={"/productsAdmin"}><SettingOutlined key="setting" /></NavLink>,
-          <span onClick={handleEditClick}><EditOutlined key="edit" /></span>
+          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink>,
         ]}
       >
         <Meta
@@ -50,8 +38,7 @@ const CardAdmin = ({ image, name, description, id }) => {
           description={descriptionEdit + "..."}
         />
       </Card>
-      )}
-      </>
+      </div>
   )
 }
 

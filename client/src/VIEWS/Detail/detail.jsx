@@ -2,19 +2,13 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
-import { useGetFavProductQuery, useAddFavProductMutation, 
-         useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
-import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, 
-        useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
-import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton, Avatar, Input } from 'antd';
 import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, 
         useRemoveReviewMutation } from '../../libs/redux/services/reviewsApi';
 import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs, Modal, List, Skeleton, Avatar, Input } from 'antd';
 const { Meta } = Card;
 const { Item } = Tabs;
 const { TabPane } = Tabs;
-import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import styles from './detail.module.css';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
@@ -32,22 +26,8 @@ const Detail = () => {
     const [ selectedReviewId, setSelectedReviewId ] = useState(null);
     const [ updateReview, setUpdatedReview ] = useState({comment: '', rating: 0});
 
-    const userId = 'a500';
-
-    const [ isModalVisible, setIsModalVisible ] = useState(false);
-    const [ isModalVisibleRemoveReview, setIsModalVisibleRemoveReview ] = useState(false);
-    const [ isModalVisibleEditReview, setIsModalVisibleEditReview ] = useState(false)
-    const [ selectedReviewId, setSelectedReviewId ] = useState(null);
-    const [ updateReview, setUpdatedReview ] = useState({comment: '', rating: 0});
-
     const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);
     const { data: productFav, refetch } = useGetFavProductQuery({userId, productId});
-    const [ addFavProduct ] = useAddFavProductMutation();
-    const [ removeFavProduct ] = useRemoveFavProductMutation();
-    const { data: reviews, refetch: getNewReviews } = useGetAllReviewsQuery(productId);
-    const [ addReview ] = useAddReviewMutation();
-    const [ editReview ] = useEditReviewMutation();
-    const [ removeReview ] = useRemoveReviewMutation();
     const [ addFavProduct ] = useAddFavProductMutation();
     const [ removeFavProduct ] = useRemoveFavProductMutation();
     const { data: reviews, refetch: getNewReviews } = useGetAllReviewsQuery(productId);
@@ -65,45 +45,6 @@ const Detail = () => {
         }
         refetch(); 
     }
-
-    const [newReview, setNewReview] = useState({ comment: '', rating: 0 });
-
-    const cleanReview = () => {setNewReview({ comment: '', rating: 0 })}
-
-    const handleAddReview = async (e) => {
-        e.preventDefault();
-        if (newReview.comment !== '') {
-            try {
-                await addReview({productId, userId, newReview});
-                cleanReview();
-            } catch (error) {
-                console.log({ error: error.message, details: error.details });
-                alert("Error al agregar review: " + error);
-            }
-            getNewReviews();
-        }
-    };
-
-    const handleRemoveReview = async (selectedReviewId) => {
-
-        const idReview = selectedReviewId;
-        await removeReview({productId, idReview});
-
-        setIsModalVisibleRemoveReview(false);
-        getNewReviews();
-        setSelectedReviewId(null);
-    };
-
-    const handleEditReview = async (selectedReviewId, updateReview) => {
-        const idReview = selectedReviewId;
-        await editReview({productId, idReview, updateReview});
-
-        setIsModalVisibleEditReview(false);
-        getNewReviews();
-        setSelectedReviewId(null);
-    }
-
-    const handleOk = () => navigate('/*')
 
     const [newReview, setNewReview] = useState({ comment: '', rating: 0 });
 
@@ -163,10 +104,6 @@ const Detail = () => {
                                         onClick={handlefavClick}/>
                                         : <HeartFilled size="large" className={styles.likedButton} 
                                         onClick={handlefavClick} />}
-                                        {!productFav ? <HeartOutlined size="large" className={styles.noLikedButton} 
-                                        onClick={handlefavClick}/>
-                                        : <HeartFilled size="large" className={styles.likedButton} 
-                                        onClick={handlefavClick} />}
                                         <h1>{productDetail.name}</h1> 
                                         <h2>${productDetail.price}</h2> 
                                         <Rate disabled value={productDetail.raiting}/> 
@@ -174,8 +111,6 @@ const Detail = () => {
                                         <Meta description={<p>id: {productDetail.id_product}</p>}/> <br /> 
                                         <div className={styles.productButtons}>
                                             <Button type="default" block><ShoppingCartOutlined size="large"/></Button> 
-                                            <Button type="primary" block className={styles.buttonComprar} 
-                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button>
                                             <Button type="primary" block className={styles.buttonComprar} 
                                             onClick={()=> setIsModalVisible(true)}>Comprar</Button>
                                         </div>
@@ -208,9 +143,9 @@ const Detail = () => {
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                    {reviews.length > 0 &&
+                                                    {/* {reviews.length > 0 &&
                                                     <div>
-                                                    </div>}
+                                                    </div>} */}
                                                     <h1 className={styles.Comments}>Comentarios</h1>
                                                     <List
                                                         className="comment-list"
@@ -278,14 +213,10 @@ const Detail = () => {
                         </Card>
                             <Modal title="Confirmar compra" visible={isModalVisible} onOk={handleOk} 
                             onCancel={()=> setIsModalVisible(false)}>
-                            <Modal title="Confirmar compra" visible={isModalVisible} onOk={handleOk} 
-                            onCancel={()=> setIsModalVisible(false)}>
                                 <p>¿Estás seguro de que quieres comprar este producto?</p>
                             </Modal>
                         </div>
                         : isError &&
-                        <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" 
-                        showIcon className={styles}/>
                         <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" 
                         showIcon className={styles}/>
             }

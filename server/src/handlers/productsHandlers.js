@@ -1,5 +1,4 @@
-const mercadoPago = require("mercadopago")
-
+const mercadopago = require("mercadopago")
 const { productId, 
     allProducts, 
     postProductContoller, 
@@ -86,13 +85,18 @@ try {
 }
 }
 
-const createPreference = (req, res) => {
+const createPreference = async (req, res) => {
+    mercadopago.configure({
+        access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
+    })
+    const {description, price, quantity}=req.body
+    console.log("esto llega para la preferencia", description, price, quantity)
     let preference = {
 		items: [
 			{
-				title: req.body.description,
-				unit_price: Number(req.body.price),
-				quantity: Number(req.body.quantity),
+				title: description,
+				unit_price: Number(price),
+				quantity: quantity===1?Number(quantity):Number(quantity)/2,
 			}
 		],
 		back_urls: {
@@ -103,7 +107,7 @@ const createPreference = (req, res) => {
 		auto_return: "approved",
 	};
 
-    mercadoPago.preferences.create(preference)
+    mercadopago.preferences.create(preference)
 		.then(function (response) {
 			res.json({
 				id: response.body.id

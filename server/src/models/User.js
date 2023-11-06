@@ -8,6 +8,7 @@ module.exports = (dataBase) => {
     
     dataBase.define(
         'User', {
+
         uid:{
             type:DataTypes.STRING,
             primaryKey:true,
@@ -36,6 +37,11 @@ module.exports = (dataBase) => {
         is_Admin:{
             type:DataTypes.BOOLEAN,
             defaultValue: false
+        },
+
+        isBlocked:{
+            type:DataTypes.BOOLEAN,
+            defaultValue:false
         },
         payment_code:{
             type:DataTypes.STRING,

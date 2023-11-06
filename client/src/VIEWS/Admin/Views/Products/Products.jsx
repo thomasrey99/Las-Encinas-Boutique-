@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 const Products = () => {
 
-  const products=useSelector((state)=>state.items.allProducts)       
+  const products=useSelector((state)=>state.items.allProducts)   
 
   return (
     <div className={Conteiner.Container}>
@@ -26,9 +26,14 @@ const Products = () => {
         </div>
 
         <div className={Style.Cards}>
-          {products.map((p) => (
-            <CardAdmin name={p.name} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
-          ))}
+          {products.map((p) => {
+            console.log('p', p)
+            return (
+              <>
+                <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
+              </>
+            )
+          })}
         </div>
       </div>
     </div>

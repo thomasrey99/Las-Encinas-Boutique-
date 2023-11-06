@@ -5,7 +5,8 @@ const { putProduct,
         getAllProducts, 
         postProduct,
         deleteProduct,
-        createPreference
+        createPreference,
+        patchProduct
       } = require("../handlers/productsHandlers");
 
 const productsRouter = Router()
@@ -17,5 +18,6 @@ productsRouter.get("/", getAllProducts)
               .put("/:id", putProduct)
               .delete("/:id", deleteProduct)
               .post("/create_preference", createPreference)
+              .patch("/:id", patchProduct)
 
 module.exports= productsRouter;

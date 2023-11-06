@@ -16,7 +16,8 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
 
-    //const user= useSelector((state)=>state.user.userLog)
+    const user= useSelector((state)=>state.user.userLog)
+    console.log(user);
     const navigate = useNavigate();
     const { id } = useParams();
     const  productId  = id;

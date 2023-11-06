@@ -27,7 +27,7 @@ const Home = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const products = productsData.slice(startIndex, endIndex);
-  const productsToDisplay = products.filter((product) => product.is_Delete === false)
+  const productsToDisplay = products.filter((product) => product.is_Delete === false||product.is_Delete===undefined)
   console.log('productsToDisplay', productsToDisplay)
   
 

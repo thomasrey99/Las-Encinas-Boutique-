@@ -14,7 +14,7 @@ export const productsSlice = createSlice({
     addProducts(state, { payload }) {
       if (payload) {
         state.allProducts = payload;
-        console.log(payload);
+        console.log("estos son los productos",payload)
         state.totalItems = payload.length;
       }
     },

@@ -8,7 +8,7 @@ import Filters from "../../Components/FIlters/Filters.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { WhatsAppOutlined } from '@ant-design/icons';
+import { WhatsAppOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 
@@ -41,18 +41,20 @@ const Home = () => {
       <Searchbar />
       <Filters />
       <div className={styles.pagCont}>
-      <Pagination
-        current={currentPage}
-        pageSize={itemsPerPage}
-        total={products.length}
-        onChange={paginate}
-      />
+        <Pagination
+          current={currentPage}
+          pageSize={itemsPerPage}
+          total={products.length}
+          onChange={paginate}
+        />
       </div>
 
       <div className={styles.cardCont}>
-        {
-          name && <p className={styles.searchResult}>Resultados de la busqueda: {`"${name}"`}</p>
-        }
+        {name && (
+          <p className={styles.searchResult}>
+            Resultados de la busqueda: {`"${name}"`}
+          </p>
+        )}
         <div className={styles.cardLayout}>
           {productsToDisplay?.map((product) => (
             <Card
@@ -66,11 +68,12 @@ const Home = () => {
             />
           ))}
         </div>
-        {productsToDisplay.length===0 && <p className={styles.errorSearch}>No se encontraron productos</p>}
+        {productsToDisplay.length === 0 && (
+          <p className={styles.errorSearch}>No se encontraron productos</p>
+        )}
       </div>
       <div className={styles.content}>
-
-            <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
+        <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
 
         <div className={styles.contentBanner}>
             <Title className={styles.h1} level={1}>Disfrute de las mejores delicias de la región.</Title>
@@ -84,14 +87,13 @@ const Home = () => {
             </Space>
         </div>
 
-            <img className={styles.contentImg} src={cajonerra2} alt="ChocoImagen" />
-
+        <img className={styles.contentImg} src={cajonerra2} alt="ChocoImagen" />
       </div>
       <hr />
       <IniciarMap />
       <hr />
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-        <WhatsAppOutlined className={styles['whatsapp-icon']} />
+        <WhatsAppOutlined className={styles["whatsapp-icon"]} />
       </a>
     </div>
   );

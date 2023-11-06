@@ -4,12 +4,14 @@ import React from 'react';
 import { Table} from 'antd';
 import styles from "./UsersTable.module.css"
 import { useGetAllUsersQuery } from "../../../../libs/redux/services/usersApi"
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, StopOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { getUserByUid } from '../../../../libs/redux/features/actions/userActions';
+
+
 
 import {Link} from 'react-router-dom'
-const handleAction = ()=>{
-    alert("Soy el button")
-}
+
 const columns = [
   {
     title: 'Nombres',
@@ -59,13 +61,16 @@ const columns = [
     width: 100,
     render: (record) => (
       <div>
+        
         <Link to={`/editUserAdmin/${record.uid}`}> 
           <EditOutlined className={styles.marginIcon} />
         </Link>
-        <a>
-          <DeleteOutlined className={styles.marginIcon} />
-        </a>
+        
+        
+            
       </div>
+      
+      
     ),
   },
 ];
@@ -74,6 +79,16 @@ const columns = [
 
 
 const UsersTable = () => {
+
+  //start
+ 
+
+  //end
+
+  const funcion1 = ()=>{
+    alert("Se ha detenido el usuario");
+  }
+  
     const { data } = useGetAllUsersQuery()
     const users = data;
     console.log("Esto son los usuarios:",users)

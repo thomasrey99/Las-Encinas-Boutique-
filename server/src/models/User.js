@@ -43,6 +43,15 @@ module.exports = (dataBase) => {
             defaultValue: false
         },
        
+
+        isBlocked:{
+            type:DataTypes.BOOLEAN,
+            defaultValue:false
+        },
+        payment_code:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        }
     },
     {
         freezeTableName: true,

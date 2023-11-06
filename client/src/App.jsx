@@ -1,7 +1,7 @@
 import style from './App.module.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
-import Landing from './VIEWS/Landind/Landig';
+import Landing from './VIEWS/Landing/Landing';
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
 import FormProducts from './VIEWS/FormProduct/FormProducts';
@@ -11,6 +11,7 @@ import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Login from './VIEWS/Forms/Login/login';
 import Register from './VIEWS/Forms/Register/Register';
+import Favorites from './Components/Favorites/favorites';
 import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
@@ -24,19 +25,23 @@ import Clients from './VIEWS/Admin/Views/Clients/Clients';
 import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
 import EditProducts from './VIEWS/Admin/Views/Products/EditProducts'
 import { useSelector } from 'react-redux';
+import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 
 const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
+ 
  
   const location = useLocation();
 
   const validate =
   location.pathname !== '/controlAdmin' && 
+
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editProductAdmin/') &&
+  location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
   
   return (
@@ -47,26 +52,29 @@ const App = () => {
       <AuthProvider>
         {validate && <NavBar />}
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Landing />} />
           <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<FormUser />} />
+          <Route path='homeblocked' element={<PageUserBlocked />} />
           {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
           ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />
           <Route path='about' element={<AboutUs />} />
           <Route path='login' element={<Login/>} />
           <Route path='resetpassword' element={<FormResetPassword />} />
+          <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
           {/* Rutas protegidas del admin */}
-          {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
+                     
+          {currentUser?.is_Admin != true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
 
         </Routes>
         {validate && <Footer />}

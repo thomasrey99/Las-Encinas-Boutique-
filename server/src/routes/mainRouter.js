@@ -5,6 +5,7 @@ const typesRouter = require("./types");
 const usersRouter=require("./users")
 const cartRoutes=require("./Cart")
 const favoritesRouter=require("./favorites")
+const reviewsRouter=require("./reviews")
 const mainRouter = Router()
 
 mainRouter.use("/products", productsRouter);
@@ -13,6 +14,7 @@ mainRouter.use("/categories",categoryRouter);
 mainRouter.use("/types", typesRouter)
 mainRouter.use("/cart", cartRoutes)
 mainRouter.use("/favorites", favoritesRouter);
+mainRouter.use("/reviews", reviewsRouter);
 
 module.exports = mainRouter;
 

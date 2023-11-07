@@ -3,13 +3,14 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import style from "./Cart.module.css"
 import {useSelector, useDispatch} from "react-redux"
 import CardsCart from "../../Components/cardsCart/cardsCart"
-import { deleteProductCart, decrementQuantity, incrementQuantity, cartSlice } from "../../libs/redux/features/CartSlice"
+import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios"
 
 export const Cart = () => {
 
     initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
+
 
     const dispatch=useDispatch()
 
@@ -18,6 +19,7 @@ export const Cart = () => {
     const id_cart=useSelector((state)=>state.user.userCartId)
 
     const [mutate]=usePutCartMutation()
+
 
     const [preferenceId, setPreferenceId]=useState("")
 
@@ -39,10 +41,10 @@ export const Cart = () => {
         }
 
         try {
-            const response=await axios.post("http://localhost:3001/products/create_preference", {
+            const response=await axios.post("https://las-encinas-boutique-server.onrender.com/products/create_preference", {
                 description: description,
                 price:cart.total_price,
-                quantity:cart.product_quantity
+                quantity:1
             })
             const {id}=response.data
             return id
@@ -85,6 +87,7 @@ export const Cart = () => {
     }, [cart])
 
 
+
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>
@@ -102,7 +105,7 @@ export const Cart = () => {
         </div>
         <aside className={style.resumeCont}>
             <div className={style.resumeTitle}>
-                <h3>Resumen de compra</h3>
+                <h3 className={style.title}>Resumen de compra</h3>
             </div>
             <div className={style.payment}>
                 <div className={style.paymentInfo}>

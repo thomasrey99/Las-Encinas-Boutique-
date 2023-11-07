@@ -9,8 +9,8 @@ const PORT=3001
 
 const startServer=async()=>{
   try {
-    await dataBase.sync({ alter: true });
-    await fetchCategories(); 
+    await dataBase.sync({ alter:true});
+    await fetchCategories();
     await fetchTypes();
     server.listen(PORT, () => {
       console.log(`Server of las encinas boutique listening on port ${PORT}`);

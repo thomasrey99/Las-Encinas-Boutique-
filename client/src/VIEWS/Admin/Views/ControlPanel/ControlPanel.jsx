@@ -1,73 +1,79 @@
-import React, { useState } from 'react'
-import Style from './ControlPanel.module.css'
-import Conteiner from '../Style/Conteiners.module.css'
-
-import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin'
+import React, { useState } from 'react';
+import Style from './ControlPanel.module.css';
+import Conteiner from '../Style/Conteiners.module.css';
+import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin';
 import CardAdmin from '../../Components/CardAdmin/CardAdmin';
 import ChartLineAdmin from '../../Components/ChartJs/ChartLineAdmin';
 import { useSelector } from 'react-redux';
+import TextCardAdmin from '../../Components/TextCardAdmin/TextCardAdmin';
 
 const ControlPanel = () => {
-
-  const [showAll, setShowAll] = useState(false);
-
-  const products=useSelector((state)=>state.items.allProducts)   
-
+  const products = useSelector((state) => state.items.allProducts);
   const labels = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
+  const dataVentas = labels.map(() => Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000);
+  const dataPedidos = labels.map(() => Math.floor(Math.random() * (400 - 100 + 1)) + 100);
 
-  const dataVentas = labels.map(() => Math.floor(Math.random() * (40000 - 10000 + 1)) + 10000);
-  const dataPedidos = labels.map(() => Math.floor(Math.random() * (40000 - 10000 + 1)) + 10000);
+  const [mostrarGrafica1, setMostrarGrafica1] = useState(true);
 
-  const handleClick = () => {
-    setShowAll(!showAll);
-  }
-
-  const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
+  const toggleGrafica = () => {
+    setMostrarGrafica1(!mostrarGrafica1);
+  };
 
   return (
     <div className={Conteiner.Container}>
-        <NavBarAdmin/>
-        <div className={Conteiner.Panel}>
+      <NavBarAdmin />
+      <div className={Conteiner.Panel}>
+        <div className={Style.SubHeader}>
+          <div className={Style.InfoCards}>
+            <div className={Style.CardsInfo}>
+              <TextCardAdmin name={"Venta mensual"} info={"$1.200.000"} />
+              <TextCardAdmin name={"Pedidos mesuales"} info={"3.454"} />
+              <TextCardAdmin name={"Ventas realizadas"} info={"1.154"} />
+            </div>
+            <div className={Style.Grafics}>
+              
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <h3 className={Style.h31}>Graficas</h3>
 
-          <div className={Style.Texts}>
-          <h1>Las Encinas Boutique</h1>
-          <h3>Ingresos totales: $40.000</h3>
-          <h3>Numero de pedidos: 54</h3>
-          <h3>Numero de visitantes: 4.223</h3>
+                <span
+                className={Style.SeeMoreText}
+                onClick={toggleGrafica}
+                 >
+                {mostrarGrafica1 ? " Ver pedidos" : "Ver ventas"}
+                </span>
+              </div>
+              
+
+              <ChartLineAdmin
+                labels={labels}
+                data1={dataVentas}
+                data2={dataPedidos}
+                name1={"Ventas"}
+                name2={"Pedidos"}
+                mostrarGrafica1={mostrarGrafica1}
+              />
+            </div>
           </div>
-          
-          <div className={Style.Prod}>
-            <h2>Productos mas vendidos</h2>
-            <span onClick={handleClick} className={Style.SeeMoreText}>
-            {seeMoreText}
-            </span>
-          </div>
-          
-          <div className={Style.Cards}>
-          {showAll
-            ? products.map((p) => (
-                <CardAdmin name={p.name} image={p.image} description={p.description} />
-              ))
-            : products.slice(0, 4).map((p) => (
-                <CardAdmin name={p.name} image={p.image} description={p.description} />
+          <div className={Style.BestCard}>
+            <h2>Producto estrella ⭐</h2>
+            <div>
+              {products.slice(0, 1).map((p) => (
+                <CardAdmin
+                  name={p.name}
+                  image={p.image}
+                  description={p.description}
+                  id_product={p.id_product} 
+                />
               ))}
-          </div>
-
-          <h2 className={Style.h2Ventas}>Ventas anuales: </h2>
-          <div className={Style.Grafics}>
-          <ChartLineAdmin labels={labels} data={dataVentas} name={"Ventas"} />
-          </div>
-          
-          <h2 className={Style.h2Ventas}>Numero de pedidos anuales: </h2>
-          <div className={Style.Grafics}>
-          <ChartLineAdmin labels={labels} data={dataPedidos} name={"Pedidos"} />
+            </div>
           </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ControlPanel
+export default ControlPanel;

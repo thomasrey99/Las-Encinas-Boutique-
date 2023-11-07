@@ -23,13 +23,24 @@ import Payments from './VIEWS/Admin/Views/Payments/Payments';
 import Orders from './VIEWS/Admin/Views/Orders/Orders';
 import Clients from './VIEWS/Admin/Views/Clients/Clients';
 import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
+import EditProducts from './VIEWS/Admin/Views/Products/EditProducts'
 import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
+import { useState } from 'react';
+
+import Menu from './Components/menu/Menu'; 
 
 const App = () => {
+
+  const [isOPen, setIsOpen]=useState(false)
+
   const currentUser = useSelector(state => state.user.userLog)
  
- 
+  const handleOPen=()=>{
+    console.log("hola perro!")
+    setIsOpen(!isOPen)
+  } 
+
   const location = useLocation();
 
   const validate =
@@ -39,7 +50,7 @@ const App = () => {
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
   location.pathname !== '/ordersAdmin' &&
-  !location.pathname.startsWith('/editUserAdmin/')
+  !location.pathname.startsWith('/editProductAdmin/') &&
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
   
@@ -49,7 +60,7 @@ const App = () => {
       
       {/* AuthProvider es un contexto que permite saber cuando un usuario está logeado */}
       <AuthProvider>
-        {validate && <NavBar />}
+        {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='home' element={<Home />} />
@@ -66,12 +77,6 @@ const App = () => {
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
           {/* Rutas protegidas del admin */}
-          {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
                      
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
@@ -79,8 +84,10 @@ const App = () => {
           {currentUser?.is_Admin === true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
-                     
+          {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
+
         </Routes>
+        {isOPen&&<Menu handleOPen={handleOPen}/>}
         {validate && <Footer />}
       </AuthProvider>
      
@@ -90,3 +97,4 @@ const App = () => {
 }
 
 export default App
+

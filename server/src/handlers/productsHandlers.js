@@ -3,7 +3,8 @@ const { productId,
     allProducts, 
     postProductContoller, 
     putProductContoller,
-    deleteProductContoller
+    deleteProductContoller,
+    patchProductContoller,
   } = require("../controllers/productsControllers");
 
 //!HANDLER QUE MANEJA LA PETICION GET POR ID DE /USERS/:ID
@@ -73,6 +74,19 @@ try {
 }
 }
 
+//HANDLER QUE MANEJA LA PETICIÓN Patch A /Products
+const patchProduct = async(req, res) =>{
+const { id } = req.params;
+const {is_Delete} = req.body;
+
+try {
+    const result = await patchProductContoller(id, is_Delete)
+    res.status(201).json(result)
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
+}
+
 //Handler que maneja la petición delete a /Products
 const deleteProduct = async(req, res) =>{
 const { id } = req.params;
@@ -96,7 +110,7 @@ const createPreference = async (req, res) => {
 			{
 				title: description,
 				unit_price: Number(price),
-				quantity: quantity===1?Number(quantity):Number(quantity)/2,
+				quantity: quantity,
 			}
 		],
 		back_urls: {
@@ -124,5 +138,6 @@ module.exports = {
     postProduct,
     putProduct,
     deleteProduct,
-    createPreference
+    createPreference,
+    patchProduct
 }

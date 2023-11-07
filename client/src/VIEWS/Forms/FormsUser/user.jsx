@@ -87,6 +87,7 @@ const FormUser = () => {
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
                 Navigate('/home')
+                Navigate('/home')
                 } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
@@ -118,53 +119,51 @@ const formItemLayout = {
       },
     },
   };
-    return (
 
-        <div className={style.formPage}>
-            <form onSubmit={handlerSubmit}  className={style.form}>
-            <div className={style.h1}>
-            <h2>Registro de Usuario</h2>
-            </div>
-                <Form.Item label="Nombre" name="name" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su nombre'}]}>
-                    <Input name="name" value={form.name} onChange={(e) => handlerCange('name', e.target.value)} />
-                </Form.Item>
-                {errors.name !== '' ? <span>{errors.name}</span> : ''}
-                
-                <Form.Item label="Apellido" name="lastName" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su apellido'}]}>
-                    <Input name="lastName" value={form.lastName} onChange={(e) => handlerCange('lastName', e.target.value)} />
-                </Form.Item>
-                {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
-                
-                <Form.Item label="Domicilio" name="address" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su domicilio'}]}>
-                    <Input name="address" value={form.address} onChange={(e) => handlerCange('address', e.target.value)} />
-                </Form.Item>
-                {errors.address !== '' ? <span>{errors.address}</span> : ''}
-                
-                <Form.Item label="E-mail" name="email" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su e-mail'}]}>
-                    <Input name="email" value={form.email} onChange={(e) => handlerCange('email', e.target.value)} />
-                </Form.Item>
-                {errors.email !== '' ? <span>{errors.email}</span> : ''}
-                
-                <Form.Item label="Teléfono" name="phone" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contacto'}]}>
-                    <Input name="phone" value={form.phone} onChange={(e) => handlerCange('phone', e.target.value)} />
-                </Form.Item>
-                {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
-                
-                <Form.Item label="Contraseña" name="password" {...formItemLayout} rules={[{ marginTop: "5%", required: true, message: 'Ingrese su contraseña'}]}>
-                    <Password name="password" value={form.password} onChange={(e) => handlerCange('password', e.target.value)} />
-                </Form.Item>
-                {errors.password !== '' ? <span>{errors.password}</span> : ''}
-                
-                    
-                <Button type="primary" htmlType="submit" className={style.buttonSubmit} >Registrar</Button>
-                <div className={style.divButtons}>
-                </div>
 
-            </form>
-        </div>
-        
-    )
-};
 
-export default FormUser;
 
+
+return (
+  <div className={style.formPage}>
+    <form onSubmit={handlerSubmit} className={style.form}>
+      <div className={style.h1}>
+        <h2>Registro de Usuario</h2>
+      </div>
+      <Form.Item label="Nombre" name="name" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su nombre' }]}>
+        <Input name="name" value={form.name} onChange={(e) => handlerChange('name', e.target.value)} />
+      </Form.Item>
+      {errors.name !== '' ? <span>{errors.name}</span> : ''}
+
+      <Form.Item label="Apellido" name="lastName" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su apellido' }]}>
+        <Input name="lastName" value={form.lastName} onChange={(e) => handlerChange('lastName', e.target.value)} />
+      </Form.Item>
+      {errors.lastName !== '' ? <span>{errors.lastName}</span> : ''}
+
+      <Form.Item label="Domicilio" name="address" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su domicilio' }]}>
+        <Input name="address" value={form.address} onChange={(e) => handlerChange('address', e.target.value)} />
+      </Form.Item>
+      {errors.address !== '' ? <span>{errors.address}</span> : ''}
+
+      <Form.Item label="E-mail" name="email" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su e-mail' }]}>
+        <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
+      </Form.Item>
+      {errors.email !== '' ? <span>{errors.email}</span> : ''}
+
+      <Form.Item label="Teléfono" name="phone" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su contacto' }]}>
+        <Input name="phone" value={form.phone} onChange={(e) => handlerChange('phone', e.target.value)} />
+      </Form.Item>
+      {errors.phone !== '' ? <span>{errors.phone}</span> : ''}
+
+      <Form.Item label="Contraseña" name="password" {...formItemLayout} rules={[{ required: true, message: 'Ingrese su contraseña' }]}>
+        <Password name="password" value={form.password} onChange={(e) => handlerChange('password', e.target.value)} />
+      </Form.Item>
+      {errors.password !== '' ? <span>{errors.password}</span> : ''}
+
+      <Button type="primary" htmlType="submit" className={style.buttonSubmit}>Registrar</Button>
+    </form>
+  </div>
+);
+}
+
+export default FormUser

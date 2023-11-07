@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import { useGetAllFavProductsQuery } from "../../libs/redux/services/favoritesApi"
@@ -8,7 +9,9 @@ import { Alert, Button, Spin } from 'antd';
 const Favorites = () => {
 
     const navigate = useNavigate();
-    const userId = 'a500';
+    const user = useSelector(state => state.user.userLog)
+    console.log(user);
+    const userId = user.uid;
     const { data: getAllFavProducts, isError, isLoading, refetch } = useGetAllFavProductsQuery(userId);
 
     useEffect(() => {

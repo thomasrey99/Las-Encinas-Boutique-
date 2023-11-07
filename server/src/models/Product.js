@@ -40,7 +40,10 @@ module.exports = (dataBase) => {
     stock_quantity: {
       type:DataTypes.INTEGER,
       allowNull:true
-
+    },
+    is_Delete: {
+      type:DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {

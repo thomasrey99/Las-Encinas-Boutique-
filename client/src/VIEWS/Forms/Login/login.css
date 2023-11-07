@@ -102,8 +102,7 @@
   }
   
   .button-submit:hover {
-    background-color: #252727;
-    transition: 0.9s;
+    background-color: rgb(65, 64, 64) !important;
   }
   
   .p {

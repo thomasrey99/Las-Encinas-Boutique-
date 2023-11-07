@@ -1,12 +1,13 @@
-import React from 'react';
-import { useState } from 'react';
-import { Form, Input, Checkbox, Button } from 'antd';
-import Password from 'antd/es/input/Password';
+import { useEffect, useState } from "react";
+import { Form, Input, Checkbox, Button } from "antd";
+import Password from "antd/es/input/Password";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
-import { useEffect } from 'react';
+import { GoogleCircleFilled } from "@ant-design/icons";
+import logo from "../../../assets/las_encinas_logo.png";
+import "./login.css";
 const { TextArea } = Input;
-
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 const Login = () => {
 
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Login = () => {
         // La respuesta de la solicitud debe incluir el estado de bloqueo del usuario
     
         
-        fetch(`http://localhost:3001/users?email=${form.email}`)
+        fetch(`${URL_SERVER}/users?email=${form.email}`)
           .then((response) => response.json())
           .then((data) => {
             setForm({
@@ -42,12 +43,12 @@ const Login = () => {
       }, [form.email]);
     
 
-    const handlerChange = (name, value) => {
-        setForm({
-            ...form,
-            [name]: value
-        })
-    };
+  const handlerChange = (name, value) => {
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -81,35 +82,83 @@ const Login = () => {
         }
         
     }
-    console.log(form);
-    
+  
+  console.log(form);
 
-    return (
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 12,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wapperCol: {
+      xs: {
+        span: 4,
+      },
+      sm: {
+        span: 20,
+      },
+    },
+  };
+
+  return (
+    <div className="formPage">
+      {error && <p>{error}</p>}
+            {/* {console.log("Contenido del error")} */}
+      <form onSubmit={handleSubmit} className="form">
+        <img src={logo} className="logoImg" />
+        <Form.Item
+          label="E-mail"
+          name="email"
+          {...formItemLayout}
+          rules={[
+            { marginTop: "5%", required: true, message: "Ingrese el nombre" },
+          ]}
+        >
+          <Input
+            name="email"
+            placeholder="Ingrese su email..."
+            value={form.email}
+            onChange={(e) => handlerChange("email", e.target.value)}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Contraseña"
+          name="password"
+          {...formItemLayout}
+          rules={[{ required: true, message: "Ingrese el precio" }]}
+        >
+          <Password
+            name="password"
+            placeholder="Ingrese su contraseña..."
+            value={form.password}
+            onChange={(e) => handlerChange("password", e.target.value)}
+          />
+        </Form.Item>
+
         <div>
-            {/* {error && <p>{error}</p>}
-            {console.log("Contenido del error")} */}
-            <form onSubmit={handleSubmit}>
-                <h1>Ingresar</h1>
-                <Form.Item label="E-mail" name="email" rules={[{ marginTop: "5%", required: true, message: 'Ingrese el nombre'}]}>
-                    <Input name="email" value={form.email} onChange={(e) => handlerChange('email', e.target.value)} />
-                </Form.Item>
-
-                <Form.Item label="Contraseña" name="password" rules={[{ required: true, message: 'Ingrese el precio' }]}>
-                    <Password name="password" placeholder='Ingrese su contraseña...' value={form.password} onChange={(e) => handlerChange('password', e.target.value)} />
-                </Form.Item>
-                     
-                <div>
-                    <Button type="primary" htmlType="submit">Ingresar</Button>
-                    <Link to='/resetpassword'>Olvidé mi constraseña</Link>
-                    <Link to='/registeruser'><Button>Registrate</Button></Link>
-                    <Button onClick={handleGoogle}>Ingresa con Google</Button>
-                </div>
-
-            </form>
-            
-           
+          <Button type="primary" htmlType="submit" className="button-submit">
+            Ingresar
+          </Button>
+          <div className="passwordReset">
+            <Link to="/resetpassword">Olvidé mi constraseña</Link>
+          </div>
+          <div className="register">
+            <Button className="btnregistry">
+              {" "}
+              <Link to="/registeruser">Registrate</Link>
+            </Button>
+            <Button onClick={handleGoogle} className="btnGoogle">
+              <GoogleCircleFilled className="logoGoogle" /> Google
+            </Button>
+          </div>
         </div>
-    )
+      </form>
+    </div>
+  );
 };
-
-export default Login; 
+export default Login;

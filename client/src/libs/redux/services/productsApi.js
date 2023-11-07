@@ -1,9 +1,11 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 export const productsApi=createApi({
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:3001"
+        baseUrl:URL_SERVER
     }),
+    tagTypes: ['products'],
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
@@ -21,7 +23,18 @@ export const productsApi=createApi({
         getProductById:builder.query({
             query:(id) => `/products/${id}`
         }),
+        softDelete: builder.mutation({
+            query: ({id_product, is_Delete}) => {
+                console.log('MUTATION ID', id_product)
+                return {
+                    url: `/products/${id_product}`,
+                    body: {is_Delete},
+                    method: 'PATCH'
+                }
+            },
+            invalidatesTags:["products"]
+        })
     })
 })
 
-export const {useCreateProductMutation, useGetAllProductsQuery, useGetProductByIdQuery}=productsApi
+export const {useCreateProductMutation, useGetAllProductsQuery, useGetProductByIdQuery, useSoftDeleteMutation }=productsApi

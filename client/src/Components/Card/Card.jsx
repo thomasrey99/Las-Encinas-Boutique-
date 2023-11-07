@@ -42,7 +42,7 @@ const Card = (props) => {
 
   const handleProductCart=async (product)=>{
     if(user===null){
-      alert("Tienes que registrart para agregar productos al carrito")
+      alert("Tienes que registrarte para agregar productos al carrito")
       navigate("/login")
     }else{
       dispatch(addProductCart(product))

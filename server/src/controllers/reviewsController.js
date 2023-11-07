@@ -17,12 +17,13 @@ const getReviewByIdController = async (productId, idReview) => {
 };
 
 //CONTROLLER QUE CREA UNA NUEVA REVIEW
-const postReviewController = async (userId, productId, rating, comment) => {
+const postReviewController = async (userId, productId, rating, comment, name) => {
     const reviewData = {
         uid: userId,
         id_product: productId,
         rating: rating,
         comment: comment,
+        name: name
       };
     const newRevew = await Review.create(reviewData);
     if (newRevew) return newRevew;

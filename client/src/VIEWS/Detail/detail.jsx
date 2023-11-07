@@ -23,7 +23,8 @@ const Detail = () => {
     const { id } = useParams();
     const  productId  = id;
     const user= useSelector((state)=>state.user.userLog)
-    const userId = user.uid;
+    console.log(user);
+    const userId = user?user.uid:'';
     const id_cart=useSelector((state)=>state.user.userCartId)
     const cartData=useSelector((state)=>state.cart)
     
@@ -53,7 +54,7 @@ const Detail = () => {
         refetch(); 
     }
 
-    const [newReview, setNewReview] = useState({ comment: '', rating: 0 });
+    const [newReview, setNewReview] = useState({ comment: '', rating: 0, name: user? `${user.name} ${user.lastname}` : 'Anónimo' });
 
     const cleanReview = () => {setNewReview({ comment: '', rating: 0 })}
 

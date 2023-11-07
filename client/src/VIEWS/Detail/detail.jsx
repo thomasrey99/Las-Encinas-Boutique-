@@ -23,7 +23,7 @@ const Detail = () => {
     const { id } = useParams();
     const  productId  = id;
     const user= useSelector((state)=>state.user.userLog)
-    console.log(user);
+
     const userId = user?user.uid:'';
     const id_cart=useSelector((state)=>state.user.userCartId)
     const cartData=useSelector((state)=>state.cart)
@@ -54,7 +54,7 @@ const Detail = () => {
         refetch(); 
     }
 
-    const [newReview, setNewReview] = useState({ comment: '', rating: 0, name: user? `${user.name} ${user.lastname}` : 'Anónimo' });
+    const [newReview, setNewReview] = useState({ comment: '', rating: 0});
 
     const cleanReview = () => {setNewReview({ comment: '', rating: 0 })}
 
@@ -211,7 +211,8 @@ const Detail = () => {
                                                                     <List.Item.Meta
                                                                         avatar={<Avatar src={item.avatar} />}
                                                                         title={<div className={styles.NameAndRate}>
-                                                                        <h4>{`${user.name} ${user.lastName}`}</h4>
+                                                                        {}
+                                                                        <h4>{`${item.name} ${item.lastName}`}</h4>
                                                                         <p><Rate disabled value={item.rating} 
                                                                         style={{ fontSize: '15px', marginRight: '15px'}}/></p>
                                                                         </div>}

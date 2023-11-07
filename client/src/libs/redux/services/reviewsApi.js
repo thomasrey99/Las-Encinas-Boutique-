@@ -25,7 +25,6 @@ export const reviewsApi=createApi({
                 body: {
                     rating: newReview.rating,
                     comment: newReview.comment,
-                    name: newReview.name
                 }
             }),
             invalidatesTags:["reviews"]

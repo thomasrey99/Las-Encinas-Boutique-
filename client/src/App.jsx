@@ -28,7 +28,7 @@ import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 import { useState } from 'react';
 
-import Menu from './Components/menu/Menu';
+import Menu from './Components/menu/Menu'; 
 
 const App = () => {
 
@@ -39,7 +39,7 @@ const App = () => {
   const handleOPen=()=>{
     console.log("hola perro!")
     setIsOpen(!isOPen)
-  }
+  } 
 
   const location = useLocation();
 

@@ -1,7 +1,6 @@
 import style from './App.module.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
-import Landing from './VIEWS/Landing/Landing';
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
 import FormProducts from './VIEWS/FormProduct/FormProducts';
@@ -10,7 +9,6 @@ import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Login from './VIEWS/Forms/Login/login';
-import Register from './VIEWS/Forms/Register/Register';
 import Favorites from './Components/Favorites/favorites';
 import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación

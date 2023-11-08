@@ -1,3 +1,5 @@
+require("dotenv").config(); 
+const { VITE_URL_FRONT } = process.env;
 const mercadopago = require("mercadopago")
 const { productId, 
     allProducts, 
@@ -114,8 +116,8 @@ const createPreference = async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:5173/home",
-			"failure": "http://localhost:5173/home",
+			"success": `${VITE_URL_FRONT}`,
+			"failure": `${VITE_URL_FRONT}`,
 			"pending": ""
 		},
 		auto_return: "approved",

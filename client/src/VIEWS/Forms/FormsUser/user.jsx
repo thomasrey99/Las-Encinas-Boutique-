@@ -2,7 +2,11 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Validates from './validates';
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
-import { Form, Input, Button, InputNumber } from 'antd'
+import { Form, Input, Button, message } from 'antd';
+import style from './user.module.css';
+
+import { Form, Input, Button, message } from 'antd';
+import style from './user.module.css';
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useAuth } from "../../../firebase/authContext";
 import { Navigate, useNavigate } from "react-router-dom";

@@ -30,7 +30,7 @@
 }
 
 .buttonSubmit {
-    margin: 10px 0 15px 0;
+  margin: 10px 0 15px 0;
     background-color: #151717;
     border: none;
     color: white;
@@ -45,3 +45,4 @@
 .buttonSubmit:hover {
   background-color: rgb(65, 64, 64) !important;
 }
+

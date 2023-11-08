@@ -1,7 +1,6 @@
 import style from './App.module.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './VIEWS/Home/Home';
-import Landing from './VIEWS/Landing/Landing';
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
 import FormUser from './VIEWS/Forms/FormsUser/user';
@@ -9,7 +8,6 @@ import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Login from './VIEWS/Forms/Login/login';
-import Register from './VIEWS/Forms/Register/Register';
 import Favorites from './Components/Favorites/favorites';
 import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
@@ -37,7 +35,7 @@ const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
  
   const handleOPen=()=>{
-    console.log("hola perro!")
+    // console.log("hola perro!")
     setIsOpen(!isOPen)
   } 
 
@@ -64,7 +62,7 @@ const App = () => {
         {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='home' element={<Home />} />
+          {/* <Route path='home' element={<Home />} /> */}
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />

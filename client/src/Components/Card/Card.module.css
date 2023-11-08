@@ -18,8 +18,10 @@
     background-color: var(--color-grey-primary);
   }
   .card:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0.2rem 0.2rem 0.2rem #bbbbbb;
+    /* transform: translateY(-0.3rem); */
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgb(187, 141, 108);
+    transform: scale(1.1);
+    transition: 0.9s;
   }
 .link{text-decoration: none;}
   

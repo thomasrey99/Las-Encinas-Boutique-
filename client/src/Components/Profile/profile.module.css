@@ -1,0 +1,24 @@
+.profileContainer{
+    min-height: 100vh;
+    margin: 5vh 0;
+}
+.userCard{
+    width: 65vh;
+
+
+}
+.uploadImage {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Ajusta el margen superior según tus necesidades */
+  }
+  
+  .centerContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .butonUpdateProfile {
+    margin: 20px auto; /* Centra el botón en la parte inferior del formulario */
+  }

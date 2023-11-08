@@ -25,10 +25,10 @@ try {
 const postProductReview = async(req, res) =>{
     const { productId } = req.params;
     const { userId } = req.query;
-    const { rating, comment, name } = req.body;
+    const { rating, comment } = req.body;
 
 try {
-    const review = await postReviewController(userId, productId, rating, comment, name)
+    const review = await postReviewController(userId, productId, rating, comment)
     res.status(201).json(review)
 } catch (error) {
     res.status(400).json({ error: error.message });

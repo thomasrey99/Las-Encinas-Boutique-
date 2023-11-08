@@ -8,10 +8,6 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false, 
-        },
         rating: {
             type: DataTypes.INTEGER,
             allowNull: false,

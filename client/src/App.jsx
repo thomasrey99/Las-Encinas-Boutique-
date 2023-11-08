@@ -35,7 +35,7 @@ const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
  
   const handleOPen=()=>{
-    console.log("hola perro!")
+    // console.log("hola perro!")
     setIsOpen(!isOPen)
   } 
 
@@ -61,7 +61,7 @@ const App = () => {
         {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='home' element={<Home />} />
+          {/* <Route path='home' element={<Home />} /> */}
           <Route path='detail/:id' element={<Detail />} />
           <Route path='createProduct' element={<FormProducts />} />
           <Route path='registeruser' element={<FormUser />} />

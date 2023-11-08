@@ -1,4 +1,6 @@
 import style from "./NavBar.module.css";
+// import style from "./menu.module.css";
+import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
 import HamburguerMenu from "../HamburgerMenu/menu";
@@ -33,10 +35,8 @@ const NavBar = () => {
 
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  console.log("user actuallllllllll:",currentUser?.is_Admin)
+  // console.log("user actuallllllllll:",currentUser?.is_Admin)
 
-
-  
 
   user && getUserByUid(user.uid)
 
@@ -64,7 +64,7 @@ const NavBar = () => {
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
-          <img src={logo} className={style.img}/>
+          <NavLink to='/'><img src={logo} className={style.img}/></NavLink>   
           <img src={title} className={style.brand}/>
         </div>
         <div className={style.navItems}>

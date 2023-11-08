@@ -42,8 +42,6 @@ module.exports = (dataBase) => {
             type:DataTypes.BOOLEAN,
             defaultValue: false
         },
-       
-
         isBlocked:{
             type:DataTypes.BOOLEAN,
             defaultValue:false
@@ -51,6 +49,11 @@ module.exports = (dataBase) => {
         payment_code:{
             type:DataTypes.STRING,
             allowNull:true,
+        },
+        image: {
+            type: DataTypes.STRING,
+            defaultValue: "https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg",
+            allowNull: true,
         }
     },
     {

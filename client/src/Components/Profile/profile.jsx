@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
+import { useUpdateUserImageMutation } from "../../libs/redux/services/usersApi";
 import { Card, Form, Input, Button, Upload, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ImgCrop from 'antd-img-crop';
@@ -10,6 +11,8 @@ const Profile = () => {
 
     const user = useSelector(state => state.user.userLog)
     const [file, setFile] = useState(null);
+
+    const { data: userImage } = useUpdateUserImageMutation({});
 
     const [ updateProfile, setUpdateProfile ] = useState({
         image: '',

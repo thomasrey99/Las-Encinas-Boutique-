@@ -8,15 +8,7 @@ import styles from './profile.module.css'
 
 const Profile = () => {
 
-    // const [fileList, setFileList] = useState([]);
-
-
-    // const onChange = ({ fileList: newFileList }) => {
-    //     setFileList(newFileList.slice(-1)); 
-        
-    // };
     const user = useSelector(state => state.user.userLog)
-    console.log(user);
     const [file, setFile] = useState(null);
 
     const [ updateProfile, setUpdateProfile ] = useState({
@@ -27,6 +19,7 @@ const Profile = () => {
         email: user.email,
         phone: user.phone,
     });
+    console.log(updateProfile);
 
     const handleImageUpload = async (e) => {
         const file = e.file;
@@ -38,10 +31,15 @@ const Profile = () => {
                 formData.append('file', file);
                 formData.append('upload_preset', 'Las Encinas Boutique'); 
 
+                //Se sube la imagen
                 const response = await axios.post('https://api.cloudinary.com/v1_1/dkgeccpz4/image/upload', formData);
                 const imageUrl = response.data.secure_url;
 
                 setUpdateProfile({ ...updateProfile, image: imageUrl });
+
+                //Para previsualizar la imagen
+                const fileObj = {uid: file.uid, name: file.name, status: 'done', url: imageUrl,};
+                setFile(fileObj);
             } catch (error) {
                 console.error('Error al cargar la imagen', error);
             }
@@ -50,7 +48,11 @@ const Profile = () => {
 
     const onFinish = async (values) => {
         setUpdateProfile({ ...updateProfile, ...values });
-        console.log('Received values of form: ', values);
+    }
+
+    const removeFile = async () => {
+        setFile(null);
+        setUpdateProfile({ ...updateProfile, image: ''})
     }
 
     return(
@@ -62,8 +64,10 @@ const Profile = () => {
                             listType="picture-card"
                             fileList={file ? [file] : []}  
                             onChange={handleImageUpload}
-                            beforeUpload={file => { handleImageUpload(file); return false;}}>
+                            beforeUpload={file => { handleImageUpload(file); return false;}}
+                            onRemove={removeFile}>
                             {!file ? <Avatar size={64} icon={<UserOutlined />} /> : 'Cambiar Imagen'} 
+                            
                         </Upload>
                     </ImgCrop>
                 </div>
@@ -71,7 +75,6 @@ const Profile = () => {
                     name="profile"
                     initialValues={user}
                     onFinish={onFinish}>
-
                     <Form.Item
                         name="name"
                         rules={[{ required: true, message: 'Por favor ingresa tu nombre!' }]}>

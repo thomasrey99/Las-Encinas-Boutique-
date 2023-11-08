@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+import UserReview from './userReview'
 import { useGetFavProductQuery, useAddFavProductMutation, 
          useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi';
 import { useGetProductByIdQuery } from '../../libs/redux/services/productsApi';
@@ -23,8 +24,8 @@ const Detail = () => {
     const { id } = useParams();
     const  productId  = id;
     const user= useSelector((state)=>state.user.userLog)
-
-    const userId = user?user.uid:'';
+console.log(user.is_Admin);
+    const userId = user?.uid;
     const id_cart=useSelector((state)=>state.user.userCartId)
     const cartData=useSelector((state)=>state.cart)
     
@@ -174,18 +175,26 @@ const Detail = () => {
                                                         renderItem={(item) => (
                                                             <List.Item
                                                                 actions={[
-                                                                    <a key="comment-edit" 
-                                                                        onClick={()=> {
-                                                                            setIsModalVisibleEditReview(true);
-                                                                            setSelectedReviewId(item.id_review)
-                                                                            setUpdatedReview({... updateReview, comment: item.comment,
-                                                                            rating: item.rating});
-                                                                        }}><EditOutlined /></a>,
-                                                                    <a key="comment-delete" 
-                                                                        onClick={()=> {
-                                                                            setIsModalVisibleRemoveReview(true)
-                                                                            setSelectedReviewId(item.id_review)
-                                                                        }}><DeleteOutlined style={{color: 'red'}} /></a>
+                                                                    (userId===item.uid) ? 
+                                                                    (<div className={styles.iconsRyE}>
+                                                                        <a key="comment-edit" 
+                                                                    onClick={()=> {
+                                                                        setIsModalVisibleEditReview(true);
+                                                                        setSelectedReviewId(item.id_review)
+                                                                        setUpdatedReview({... updateReview, comment: item.comment,
+                                                                        rating: item.rating});
+                                                                    }}><EditOutlined /></a>
+                                                                    </div>)
+                                                                    : <div className={styles.iconsRyE}></div>,
+                                                                    (userId===item.uid || user.is_Admin) ? 
+                                                                    (<div className={styles.iconsRyE}>
+                                                                        <a key="comment-delete" 
+                                                                    onClick={()=> {
+                                                                        setIsModalVisibleRemoveReview(true)
+                                                                        setSelectedReviewId(item.id_review)
+                                                                    }}><DeleteOutlined style={{color: 'red'}} /></a>
+                                                                    </div>)
+                                                                    : <div className={styles.iconsRyE}></div>
                                                                 ]}
                                                             >
                                                                 {/* Eliminar comentario */}
@@ -200,7 +209,6 @@ const Detail = () => {
                                                                     onCancel={() => {
                                                                     setIsModalVisibleEditReview(false)
                                                                     setUpdatedReview({comment: '', rating: 0})}}>
-                                                                    <p></p>
                                                                     <Rate  onChange={(value) =>
                                                                     setUpdatedReview({...updateReview, rating: value})} 
                                                                     value={updateReview.rating} />
@@ -211,12 +219,12 @@ const Detail = () => {
                                                                     <List.Item.Meta
                                                                         avatar={<Avatar src={item.avatar} />}
                                                                         title={<div className={styles.NameAndRate}>
-                                                                        {}
-                                                                        <h4>{`${item.name} ${item.lastName}`}</h4>
-                                                                        <p><Rate disabled value={item.rating} 
-                                                                        style={{ fontSize: '15px', marginRight: '15px'}}/></p>
+                                                                        <div><UserReview id={item.uid}/></div>
+                                                                        <div><Rate disabled value={item.rating} 
+                                                                        style={{ fontSize: '15px'}}/></div>
                                                                         </div>}
-                                                                        description={item.comment}
+                                                                        description={<div className={styles.descriptionComment}>
+                                                                            {item.comment}</div>}
                                                                     />
                                                                     <p className={styles.date}>{item.date}</p>
                                                                 </Skeleton>

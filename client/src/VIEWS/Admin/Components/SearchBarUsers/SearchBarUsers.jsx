@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { usersByName } from "../../../../libs/redux/features/actions/userActions";
+import styles from './SearchBarUsers.module.css'
 
 const SearchBarUsers =()=>{
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const SearchBarUsers =()=>{
     return(
         <div>
             <input
+            className={styles.searchBar} 
             type="text"
             placeholder='Buscar por nombre'
             value={input}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
+const URL_SERVER = import.meta.env.VITE_URL_SERVER;   
 
 import { userByUid, updateUser, getAllUsers, getUsersByName } from '../userSlice';
 

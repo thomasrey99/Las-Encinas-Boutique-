@@ -8,8 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 #variables de enorno
 .env
+/server/.env
 
-node_modules
+node_modules/
 dist
 dist-ssr
 *.local

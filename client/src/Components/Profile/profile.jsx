@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { useUpdateUserImageMutation } from "../../libs/redux/services/usersApi";
+import { useUpdateUserMutation } from "../../libs/redux/services/usersApi";
 import { Card, Form, Input, Button, Upload, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import ImgCrop from 'antd-img-crop';
@@ -10,9 +10,9 @@ import styles from './profile.module.css'
 const Profile = () => {
 
     const user = useSelector(state => state.user.userLog)
+    const id = user.uid;
     const [file, setFile] = useState(null);
-
-    const { data: userImage } = useUpdateUserImageMutation({});
+    const [ updateUser ] = useUpdateUserMutation();
 
     const [ updateProfile, setUpdateProfile ] = useState({
         image: '',
@@ -21,6 +21,8 @@ const Profile = () => {
         address: user.address,
         email: user.email,
         phone: user.phone,
+        is_Admin: user.is_admin,
+        isBlocked: user.is_blocked
     });
     console.log(updateProfile);
 
@@ -51,6 +53,10 @@ const Profile = () => {
 
     const onFinish = async (values) => {
         setUpdateProfile({ ...updateProfile, ...values });
+        if (updateProfile.name !== '' && updateProfile.lastName !== '' && updateProfile.address !== '' 
+        && updateProfile.phone !== '' ) {
+            await updateUser({id, updateProfile})
+        }
     }
 
     const removeFile = async () => {

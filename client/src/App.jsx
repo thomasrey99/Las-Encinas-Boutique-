@@ -63,7 +63,7 @@ const App = () => {
         {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
           <Route path='/' element={<Home />} />
-          {/* <Route path='home' element={<Home />} /> */}
+          <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />

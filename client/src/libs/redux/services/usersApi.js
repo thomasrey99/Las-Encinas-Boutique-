@@ -22,15 +22,15 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ["users"]
         }),
-        updateUserImage:builder.mutation({
-            query:({id, image})=> ({
+        updateUser:builder.mutation({
+            query:({id, updateProfile})=> ({
                 url: `/users/${id}`,
                 method: "PUT",
-                body: image
+                body: updateProfile
             }),
             invalidatesTags: ["users"]
         }),
     })
 })
 
-export const {useGetAllUsersQuery, useCreateUsersMutation, useGetUserByIdQuery, useUpdateUserImageMutation} = usersApi
+export const {useGetAllUsersQuery, useCreateUsersMutation, useGetUserByIdQuery, useUpdateUserMutation} = usersApi

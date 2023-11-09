@@ -32,6 +32,10 @@
     font-size: 1.1rem;
     margin-bottom: 15%;
   }
+
+  .name:hover{
+    color: blue
+  }
   .raiting{
 
   }

@@ -20,6 +20,8 @@ export const Cart = () => {
 
     const id_cart=useSelector((state)=>state.user.userCartId)
 
+    const user=useSelector((state)=>state.user.userLog)
+
     const [mutate]=usePutCartMutation()
 
 
@@ -89,7 +91,7 @@ export const Cart = () => {
     }, [cart])
 
 
-
+console.log("usuario desde el carrito", user)
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>

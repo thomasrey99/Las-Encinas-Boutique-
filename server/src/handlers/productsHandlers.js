@@ -108,7 +108,6 @@ const createPreference = async (req, res) => {
 
     
     const {description, price, quantity}=req.body
-    console.log("esto llega para la preferencia", description, price, quantity)
     let preference = {
 		items: [
 			{

@@ -16,32 +16,32 @@ export const Cart = () => {
 
     const dispatch=useDispatch()
 
-    const cart=useSelector((state)=>state.cart)
+    const cart = useSelector((state) => state.cart)
 
     const id_cart=useSelector((state)=>state.user.userCartId)
 
     const user=useSelector((state)=>state.user.userLog)
 
-    const [mutate]=usePutCartMutation()
+    const [mutate] = usePutCartMutation()
 
+    const [preferenceId, setPreferenceId] = useState("")
 
-    const [preferenceId, setPreferenceId]=useState("")
-
-    const [cartData, setCartData]=useState({
+    const [cartData, setCartData] = useState({
         products:cart.products,
         product_quantity:cart.product_quantity,
         total_price:cart.total_price
     })
-    const [isBuy, setIsBuy]=useState(false)
 
-    const createPreference=async()=>{
-        let arrayDescription=[]
-        let description=""
-        if(cart.product_quantity>0){
-            cart.products.forEach(({name, quantity})=>{
+    const [isBuy, setIsBuy] = useState(false)
+
+    const createPreference = async() => {
+        let arrayDescription = []
+        let description = ""
+        if (cart.product_quantity>0) {
+            cart.products.forEach(({name, quantity}) => {
                 arrayDescription.push(`${name} x ${quantity}`)
             })
-            description=arrayDescription.join(", ")
+            description = arrayDescription.join(", ")
         }
 
         try {
@@ -50,42 +50,42 @@ export const Cart = () => {
                 price:cart.total_price,
                 quantity:1
             })
-            const {id}=response.data
-            return id
+            const {id} = response.data
+            return id;
         } catch (error) {
             throw new Error(error)
         }
     }
-    const handleBuy= async()=>{
+    const handleBuy = async() => {
 
         setIsBuy(true)
         
-        const id=await createPreference()
+        const id =  await createPreference()
 
         if(id){
             setPreferenceId(id)
         }
         
     }
-    const handleCancel=()=>{
+    const handleCancel = () => {
         setIsBuy(false)
         setPreferenceId("")
     }
-    const handleDelete=async(data)=>{
+    const handleDelete = async (data) => {
         dispatch(deleteProductCart(data))
     }
 
-    const handleDecrement=(name)=>{
+    const handleDecrement = (name) => {
         dispatch(decrementQuantity(name))
     }
-    const handleIncrement=(name)=>{
+    const handleIncrement = (name) => {
         dispatch(incrementQuantity(name))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setCartData(cart)
         mutate({dataUpdate: cart, id_cart: id_cart})
-        if(isBuy===true){
+        if(isBuy === true){
             handleBuy()
         }
     }, [cart])
@@ -98,7 +98,7 @@ console.log("usuario desde el carrito", user)
             {
                 cartData?cartData.products.length===0 ? <p>Carrito vacio</p>
                 :
-                cartData?.products.map(({name, image, price, quantity}, i)=>{
+                cartData?.products.map(({name, image, price, quantity}, i) => {
                     return (
                         <CardsCart key={i} name={name} image={image} price={price} quantity={quantity} onDelete={handleDelete} decrement={handleDecrement} increment={handleIncrement}/>
                     )
@@ -116,7 +116,7 @@ console.log("usuario desde el carrito", user)
                     <div className={style.itemsCont}>
                         <ul className={style.listItems}>
                             {
-                                cart.products?.map(({name, quantity, price}, index)=>{
+                                cart.products?.map(({name, quantity, price}, index) => {
                                     return (
                                         <li key={index} className={style.item}>
                                             <p>{name}</p>

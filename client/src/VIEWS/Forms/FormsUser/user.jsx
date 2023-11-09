@@ -14,7 +14,7 @@ const FormUser = () => {
     const userForm = useSelector(state => state.user)
     const {signup} = useAuth()
     const [mutate] = useCreateUsersMutation();
-
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         name: '',
         lastName: '',
@@ -86,7 +86,7 @@ const FormUser = () => {
            setError('')
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
-                Navigate('/home')
+                navigate('/home')
                 } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-email'){

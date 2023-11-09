@@ -1,16 +1,17 @@
 
 
-import React from 'react';
-import { Table} from 'antd';
+import React, { useEffect } from 'react';
+import { Table } from 'antd';
 import styles from "./UsersTable.module.css"
 import { useGetAllUsersQuery } from "../../../../libs/redux/services/usersApi"
 import { EditOutlined, StopOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
-import { getUserByUid } from '../../../../libs/redux/features/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
+import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
 
 
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const columns = [
   {
@@ -55,22 +56,31 @@ const columns = [
     },
   },
   {
-    title: 'Action',
+    title: 'Bloqueado',
+    dataIndex: 'isBlocked',
+    key: '5',
+    width: 150,
+    render: (text, record) => {
+      return text ? "Sí" : "No";
+    },
+  },
+  {
+    title: 'Editar',
     key: 'operation',
     fixed: 'right',
     width: 100,
     render: (record) => (
       <div>
-        
-        <Link to={`/editUserAdmin/${record.uid}`}> 
+
+        <Link to={`/editUserAdmin/${record.uid}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
-        
-        
-            
+
+
+
       </div>
-      
-      
+
+
     ),
   },
 ];
@@ -79,30 +89,30 @@ const columns = [
 
 
 const UsersTable = () => {
+  const users = useSelector(state => state.user.allUsers)
 
-  //start
- 
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getUsers())
+  },[])
 
-  //end
+  // const { data } = useGetAllUsersQuery()
+  // const users = data;
+  console.log("Esto son los usuariossssss:", users)
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.titleTable}>Lista de usuarios</h1>
+      <SearchBarUsers/>
+      <br></br>
+      
+      <Table 
+        columns={columns}
+        dataSource={users}
 
-  const funcion1 = ()=>{
-    alert("Se ha detenido el usuario");
-  }
-  
-    const { data } = useGetAllUsersQuery()
-    const users = data;
-    console.log("Esto son los usuarios:",users)
-    return(
-<div >
-        <h1 >Users Table</h1>
-<Table className={styles.container} 
-    columns={columns} 
-    dataSource={users}
-    
-  />
+      />
     </div>
-    )
-    
-  
-    };
+  )
+
+
+}; 
 export default UsersTable; 

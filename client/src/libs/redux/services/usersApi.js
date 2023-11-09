@@ -9,7 +9,10 @@ export const usersApi = createApi({
     endpoints: (builder) => ({
         getAllUsers:builder.query({
             query:(name) => `/users?name=${name}`,
-            providesTags: ["users"]
+            providesTags: ["users"],
+          
+
+
         }),
         createUsers:builder.mutation({
             query:(newUser)=>({
@@ -19,7 +22,19 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ["users"]
         }),
+        updateUsers: builder.mutation({
+            query: (updatedUser) => ({
+                url: `/users/${updatedUser._id}`,
+              method: 'PUT',
+              body: updatedUser
+              }),
+            invalidatesTags: ['users']
+          }),
+        
     })
 })
 
-export const {useGetAllUsersQuery, useCreateUsersMutation} = usersApi
+export const {useGetAllUsersQuery,
+              useCreateUsersMutation,
+              useUpdateUsersMutation
+            } = usersApi

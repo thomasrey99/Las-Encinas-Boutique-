@@ -1,10 +1,9 @@
-
 import './aboutUs.css'
 import { IoLogoLinkedin, IoLogoGithub } from 'react-icons/io5'
 import {MdOutlineMailOutline} from 'react-icons/md'
 import { GithubOutlined, LinkedinOutlined, MailOutlined } from '@ant-design/icons'
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Importa el archivo CSS de AOS
+import 'aos/dist/aos.css'; 
 import { useEffect } from 'react';
 
 
@@ -12,7 +11,7 @@ const coders = [
   {
     id: 1,
     fullName: "Cristian Puyo",
-    description:"",
+    description:"Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
     linkAvatar: "/public/cris.jpeg",
     linkedin: " https://www.linkedin.com/in/christian-dustin-puyo-torres-b08082253/",
     github: "#",
@@ -21,7 +20,7 @@ const coders = [
   {
     id: 2,
     fullName: "Liliana Rosada",
-    description:"",
+    description:"Analítica con alto nivel de persistencia, dedicada, responsable y comprometida para las relaciones interpersonales.",
     linkAvatar: "/public/lil.jpeg",
     linkedin: "https://www.linkedin.com/in/liliana-rosada-46114516a",
     github: "https://github.com/LILYCERON",
@@ -30,7 +29,7 @@ const coders = [
   {
     id: 3,
     fullName: "Javier Sosa",
-    description:"",
+    description:"Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
     linkAvatar: "/public/CP.webp",
     linkedin: "https://www.linkedin.com/in/pablo-javier-sosa-179a31195/",
     github: "https://github.com/JavierSosaAdm",
@@ -82,14 +81,14 @@ const aboutUs = () => {
 
   return (
     <div className='container'>
-      <h3 style={{fontFamily: 'var(--primary-font)'}}>Un equipo excelente</h3>
+      <h1 style={{fontFamily: 'var(--primary-font)'}}>Soluciones a tus Proyectos</h1>
       <div>
         <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center', margin: '0px 150px'}}>Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social.</p>
       </div>
       <div className='cards__container'>
         {coders.map((coder) => {
           return (
-            <div key={coder.id} className='card' data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1000">
+            <div key={coder.id} className='card' data-aos="zoom-in" data-aos-delay="500" data-aos-duration={coder.id}>
               <img className='card__image' src={`${coder.linkAvatar}`} width="200" height="200" />
               <h5 className='card__text'>{coder.fullName}</h5>
               <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center'}}>{coder.description}</p>
@@ -106,4 +105,4 @@ const aboutUs = () => {
   )
 }
 
-export default aboutUs
+export default aboutUs;

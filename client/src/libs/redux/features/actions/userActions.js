@@ -1,7 +1,7 @@
 import axios from 'axios';
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
-import { userByUid, updateUser } from '../userSlice';
+import { userByUid, updateUser, getAllUsers, getUsersByName } from '../userSlice';
 
 export const getUserByUid = (id)=>{
     
@@ -12,6 +12,29 @@ export const getUserByUid = (id)=>{
             } catch (error) {
                 console.log(error)
             }
+    }
+}
+
+export const usersByName = (name)=>{
+    
+    return async function(dispatch){
+            try {
+                const response = await axios.get(`${URL_SERVER}/users?name=${name}`);
+                return(dispatch(getUsersByName(response.data))) ; 
+            } catch (error) {
+                console.log(error)
+            }
+    }
+}
+
+export const getUsers = ()=>{
+    return async function(dispatch){
+        try {
+            const response = await axios.get(`${URL_SERVER}/users`)
+            return(dispatch(getAllUsers(response.data)))
+        }catch(error){
+            console.log(error.message)
+        }
     }
 }
 

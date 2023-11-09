@@ -146,7 +146,7 @@ const FormProducts = () => {
           </Select>
         </Form.Item>
 
-        <button type='submit' >Crear producto</button>
+        <button type='submit'>Crear producto</button>
       </form>
     </div>
   );

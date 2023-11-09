@@ -23,7 +23,7 @@ const updateCartHandler=async (req, res)=>{
         const {id_cart}=req.params
 
         const {products, product_quantity, total_price}=req.body
-
+        
         const data={
             products:products,
             product_quantity:product_quantity,

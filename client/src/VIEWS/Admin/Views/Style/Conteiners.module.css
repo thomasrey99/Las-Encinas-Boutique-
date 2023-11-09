@@ -5,8 +5,11 @@
   
   .Panel {
     width: 100%;
+    min-height:100dvh;
     display: flex;
     flex-direction: column;
-    margin-left: 20%;
+    margin-left: 19.5%;
     background-color: #EDE0D4;
+    padding-bottom: 5%;
   }
+

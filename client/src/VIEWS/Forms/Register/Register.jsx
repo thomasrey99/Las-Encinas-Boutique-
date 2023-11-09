@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../firebase/authContext";
 import { useNavigate } from "react-router-dom";
+import "../Login/login.css";
 
 
 const Register = ()=>{
@@ -16,8 +17,6 @@ const Register = ()=>{
     const {signup}= useAuth()
    
     
-
-
     const handleChange = ({target: {name, value}})=>{
         setUser({
             ...user,
@@ -46,12 +45,7 @@ const Register = ()=>{
                     setError("El correo electrónico ya está registrado!!!")
                 }
                 
-            }      
-            
-            
-            
-        
-
+            }
     }
 
     console.log("email:",user.email)
@@ -73,7 +67,7 @@ const Register = ()=>{
                 />
                 <br></br>
 
-                <button>Register</button>
+                <button className="button-submit">Register</button>
                 
             </form>
         </div>

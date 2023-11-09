@@ -1,15 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = {
+    userLog:null,
+    userCartId:"",
+    userByUid:{}
+    
+}
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        addUsers (state, {payload}){
-            state.allUsers = payload
+        addUser (state, {payload}){
+            
+            state.userLog=payload
+            if(payload!==null){
+                state.userCartId=payload.Cart.id_Cart
+            }else{
+                state.userCartId=""
+            }
+        },
+
+        userByUid: (state, action)=>{
+
+            state.userByUid = action.payload
+
+        },
+        
+        updateUser:(state, action)=>{
+          
+           
         }
     },
 })
-
+export const {addUser, userByUid, updateUser}=userSlice.actions
 export default userSlice.reducer

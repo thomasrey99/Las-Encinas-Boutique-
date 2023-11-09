@@ -53,9 +53,9 @@
     font-weight: bolder;
   }
 
-  input[type="text"],
-  input[type="number"],
-  textarea {
+  .InputText,
+  .InputNumber,
+  .TextArea {
     border: none;
     border-radius: 10px;
     padding: 10px;
@@ -64,9 +64,9 @@
     transition: box-shadow 0.3s, transform 0.3s;
   }
   
-  input[type="text"]:focus,
-  input[type="number"]:focus,
-  textarea:focus {
+  .InputText:focus,
+  .InputNumber:focus,
+  .TextArea:focus {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
   }

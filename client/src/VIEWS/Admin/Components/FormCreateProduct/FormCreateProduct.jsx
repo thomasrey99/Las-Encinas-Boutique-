@@ -116,22 +116,22 @@ const FormCreateProduct = () => {
 <div className={styles.Section}>
     <div className={styles.Element1}>
     <label className={styles.labels}>Nombre:</label>
-    <input type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
+    <input className={styles.InputText} type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
     </div>
 
     <div className={styles.Element1}>
     <label className={styles.labels}>Precio:</label>
-    <input type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
+    <input className={styles.InputNumber} type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
     </div>
 
     <div className={styles.Element1}>
     <label className={styles.labels}>Descripción:</label>
-    <textarea rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
+    <textarea className={styles.TextArea} rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
     </div>
 
     <div className={styles.Element1}>
     <label className={styles.labels}>Rate:</label>
-    <input type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
+    <input className={styles.InputNumber} type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
     </div>
 </div>
 
@@ -139,7 +139,7 @@ const FormCreateProduct = () => {
 
     <div className={styles.Element}>
     <label className={styles.labels}>Imagen:</label>
-    <input type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
+    <input className={styles.InputText} type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
     <input type="file" accept="image/*" onChange={handleImageUpload} />
     </div>
 

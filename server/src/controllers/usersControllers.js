@@ -1,11 +1,12 @@
-const { User, Cart } = require("../db");
-const { Op } = require("sequelize")
+const { User, Cart, Request } = require("../db");
+const { Op } = require("sequelize");
+
 
 
 //!CONTROLLER QUE TRAE TODOS LOS USUARIOS
 const getAllUsersController=async()=>{
     const users=await User.findAll({
-        include:Cart
+        include:[Cart, Request]
     })
     return users
 }
@@ -22,7 +23,7 @@ const getUserByNameController = async (name)=>{
 //!CONTROLLER QUE TRAE UN USUARIO MEDIANTE UN ID ESPECIFICO
 const getUserIdController = async (id) => {
     const user = await User.findByPk(id, {
-        include: Cart
+        include: [Cart, Request]
     });
     return user;
 }

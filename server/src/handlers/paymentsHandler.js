@@ -2,7 +2,7 @@ const axios=require("axios")
 
 const createPaymentHandler=async(req, res)=>{
 
-    const {data}=await req.json
+    const {data}=await req
 
     const id=data?.id
 

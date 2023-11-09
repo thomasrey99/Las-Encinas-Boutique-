@@ -1,4 +1,5 @@
 import style from "./NavBar.module.css";
+// import style from "./menu.module.css";
 import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
@@ -13,12 +14,13 @@ import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const getUserById=async(id)=>{
 
-  const responseUser=(await axios(`https://las-encinas-boutique-server.onrender.com/users/${id}`)).data
+  const responseUser=(await axios(`${URL_SERVER}/users/${id}`)).data
   const {id_Cart}=responseUser.Cart
-  const responseCart=(await axios(`https://las-encinas-boutique-server.onrender.com/cart/${id_Cart}`)).data
+  const responseCart=(await axios(`${URL_SERVER}/cart/${id_Cart}`)).data
   const response={
     user:responseUser,
     cart:responseCart
@@ -36,7 +38,7 @@ const NavBar = ({handleOPen, isOPen}) => {
   
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  console.log("user actuallllllllll:",currentUser?.is_Admin)
+  // console.log("user actuallllllllll:",currentUser?.is_Admin)
 
 
   user && getUserByUid(user.uid)
@@ -65,7 +67,7 @@ const NavBar = ({handleOPen, isOPen}) => {
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
-          <img src={logo} className={style.img}/>
+          <NavLink to='/'><img src={logo} className={style.img}/></NavLink>   
           <img src={title} className={style.brand}/>
         </div>
         <div className={style.navItems}>

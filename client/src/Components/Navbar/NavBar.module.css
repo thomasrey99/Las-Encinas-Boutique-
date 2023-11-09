@@ -11,10 +11,10 @@
     
 }
 
-.logCont{   
-   flex: 0 0 auto;
+.logCont{  
    display: flex;
-   flex-direction: row;
+   flex-direction: row;  
+   align-items: center;
 }
 .img{
     width: 4vw;
@@ -64,13 +64,14 @@
 }
 .brand {
     color: white;
-    height: 50px;
+    height: 60px;
     white-space: nowrap;
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 20px;
+    
   }
   
 

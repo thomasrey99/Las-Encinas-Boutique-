@@ -49,8 +49,22 @@
   margin-left: 60px;
 }
 
+.buttonCancel {
+  background-color: rgb(194, 70, 80);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 60px;
+}
+
 .button:hover {
-  background-color: #0056b3;
+  background-color: rgb(108, 75, 3);
+}
+
+.buttonCancel:hover {
+  background-color: rgb(163, 13, 13);
 }
 
 .button:disabled {

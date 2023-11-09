@@ -53,7 +53,7 @@
     font-weight: bolder;
   }
 
-  input[type="text"],
+  /* input[type="text"],
   input[type="number"],
   textarea {
     border: none;
@@ -69,7 +69,7 @@
   textarea:focus {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
-  }
+  } */
   
   .select1 {
     border: none;

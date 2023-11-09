@@ -1,3 +1,5 @@
+require("dotenv").config(); 
+const { VITE_URL_FRONT } = process.env;
 const mercadopago = require("mercadopago")
 const { productId, 
     allProducts, 
@@ -100,9 +102,13 @@ try {
 }
 
 const createPreference = async (req, res) => {
+    // mercadopago.configure({
+    //     access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
+    // })
     mercadopago.configure({
-        access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
+        access_token:"TEST-5558657561831122-110809-dbb1716773d1a6e1412fa93c7ebd6430-485385647"
     })
+    
     const {description, price, quantity}=req.body
     console.log("esto llega para la preferencia", description, price, quantity)
     let preference = {
@@ -114,8 +120,8 @@ const createPreference = async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:5173/home",
-			"failure": "http://localhost:5173/home",
+			"success": `${VITE_URL_FRONT}`,
+			"failure": `${VITE_URL_FRONT}`,
 			"pending": ""
 		},
 		auto_return: "approved",

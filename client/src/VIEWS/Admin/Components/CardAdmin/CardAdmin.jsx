@@ -1,8 +1,15 @@
-import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
-import { Card } from 'antd';
+import style from './CardAdmin.module.css'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+
+
 import { useSoftDeleteMutation } from '../../../../libs/redux/services/productsApi'
+
+import { Card } from 'antd';
+import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
+
+
+
 
 const { Meta } = Card;
 
@@ -22,6 +29,7 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
   return (
     <div>
         <Card
+        className={style.Card}
         style={{
           margin: "5% 0 0 0",
           width: "18em",

@@ -1,9 +1,11 @@
 .container{
- margin: 30px;
- color: rebeccapurple;
- 
+margin: auto; 
 }
 
 .marginIcon{
     margin: 10px;
+}
+
+.titleTable{
+    margin-left: 40%;
 }

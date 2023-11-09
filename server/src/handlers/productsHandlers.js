@@ -120,8 +120,8 @@ const createPreference = async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": `${VITE_URL_FRONT}`,
-			"failure": `${VITE_URL_FRONT}`,
+			"success": `${VITE_URL_FRONT}/home`,
+			"failure": `${VITE_URL_FRONT}/home`,
 			"pending": ""
 		},
 		auto_return: "approved",

@@ -27,7 +27,7 @@ const Card = (props) => {
   const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
   const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
   const [mutate]=usePutCartMutation()
-  console.log(productFav);
+  // console.log(productFav);
 
   const handlefavClick = async (event) => {
     event.stopPropagation();
@@ -51,8 +51,8 @@ const Card = (props) => {
     }
   }
 
-  console.log("info del carrito",cartData)
-  console.log("id del carrito", id_cart)
+  // console.log("info del carrito",cartData)
+  // console.log("id del carrito", id_cart)
   return (
     <div className={Style.productList}>
 

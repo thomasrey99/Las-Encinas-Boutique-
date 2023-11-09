@@ -4,7 +4,6 @@ const { getUserIdController,
         putUserController,
         deleteUserController,
         getUserByEmail,
-        putImageUserController
       } = require("../controllers/usersControllers");
 
 

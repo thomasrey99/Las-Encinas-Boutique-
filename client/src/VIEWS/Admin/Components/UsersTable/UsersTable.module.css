@@ -1,5 +1,12 @@
-.container{
-margin: auto; 
+.container {
+   
+    margin: auto;
+    width: 1100px;
+   
+    height: 800px;
+    
+    overflow: auto;
+   
 }
 
 .marginIcon{
@@ -7,5 +14,6 @@ margin: auto;
 }
 
 .titleTable{
+    margin-top: 50px;
     margin-left: 40%;
 }

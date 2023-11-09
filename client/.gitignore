@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 #variables de enorno
-.env
+
 
 node_modules
 dist

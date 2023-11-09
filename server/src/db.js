@@ -27,7 +27,7 @@ const {
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
 const dataBase=new Sequelize( 
-  `${DB_SERVER_DEPLOY}`,
+  `postgres://las_encinas_boutique_db_p6wh_user:h7j1ujd6TrrbveukfhSDaYIqAbIrUj0V@dpg-cl674ek72pts73fs7r00-a.oregon-postgres.render.com/las_encinas_boutique_db_p6wh`,
   {logging:false, dialectOptions:{ssl:{require:true}}}
  )
 

@@ -13,13 +13,13 @@ import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
-
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const getUserById=async(id)=>{
 
-  const responseUser=(await axios(`https://las-encinas-boutique-server.onrender.com/users/${id}`)).data
+  const responseUser=(await axios(`${URL_SERVER}/users/${id}`)).data
   const {id_Cart}=responseUser.Cart
-  const responseCart=(await axios(`https://las-encinas-boutique-server.onrender.com/cart/${id_Cart}`)).data
+  const responseCart=(await axios(`${URL_SERVER}/cart/${id_Cart}`)).data
   const response={
     user:responseUser,
     cart:responseCart

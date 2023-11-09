@@ -6,16 +6,12 @@ import CardsCart from "../../Components/cardsCart/cardsCart"
 import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios";
-
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 
 export const Cart = () => {
-    
-    const linkServer = 'http://localhost:3001';
-    const linkDeploy = 'https://las-encinas-boutique-server.onrender.com';
 
-    // initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
-    initMercadoPago('TEST-53970cc7-e336-401a-8d4e-5eb38077efa1')
+    initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
 
 
     const dispatch=useDispatch()
@@ -47,15 +43,10 @@ export const Cart = () => {
         }
 
         try {
-            const response=await axios.post(`${linkServer}/products/create_preference`, {
+            const response=await axios.post(`${URL_SERVER}/products/create_preference`, {
                 description: description,
                 price:cart.total_price,
                 quantity:1
-
-            // const response=await axios.post(`${linkDeploy}/products/create_preference`, {
-            //     description: description,
-            //     price:cart.total_price,
-            //     quantity:1
             })
             const {id}=response.data
             return id

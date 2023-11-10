@@ -3,10 +3,26 @@ const morgan = require("morgan")
 const cors = require("cors")
 const router = require("./routes/mainRouter")
 const mercadoPago = require("mercadopago")
-
+const {Server : SocketServer} = require('socket.io') 
+const http = require('http')
 //!instanciando el server
 
 const server=express()
+const app = http.createServer(server)//Envolvemos a server de express en un servidor http
+const io = new SocketServer(app,{
+  cors:{
+    origin: 'http://127.0.0.1:5173'
+  }
+}) // Creamos una instancia de SocketServer
+io.on('connection', socket =>{
+  console.log(`Client connected`);
+  socket.on('message',(data)=>{
+    console.log(data)
+    socket.broadcast.emit('message',data)     
+  })
+})
+
+//!configuraciones del servidor
 
 //!middlewares
 
@@ -30,6 +46,6 @@ server.use((req, res, next) => {
     next();
 });
 
-server.use(router)
+server.use(router) 
 
-module.exports=server
+module.exports=app

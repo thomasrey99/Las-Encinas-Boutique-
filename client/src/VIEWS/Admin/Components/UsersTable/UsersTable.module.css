@@ -6,6 +6,23 @@ margin: auto;
     margin: 10px;
 }
 
+.table{
+    min-width: 1000px;
+    min-height: 800px;
+}
+
 .titleTable{
     margin-left: 40%;
 }
+
+.check{
+    color: green;
+}
+
+.block{
+    color: red;
+}
+
+.tableCell {
+    text-align: center; /* Centrar el texto en las celdas */
+  }

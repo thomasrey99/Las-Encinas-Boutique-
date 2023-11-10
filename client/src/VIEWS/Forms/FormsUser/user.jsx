@@ -172,4 +172,3 @@ const formItemLayout = {
 };
 
 export default FormUser;
-

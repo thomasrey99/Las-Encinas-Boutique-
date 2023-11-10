@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import Validates from './validates';
+import { useSelector } from 'react-redux';
+import { Navigate } from "react-router-dom";
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
-import { Form, Input, Button, InputNumber } from 'antd'
-import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
-import { useAuth } from "../../../firebase/authContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
+import { useAuth } from "../../../firebase/authContext";
+import Validates from './validates';
+
+
 
 const FormUser = () => {
     const { Item } = Form
@@ -14,7 +15,7 @@ const FormUser = () => {
     const userForm = useSelector(state => state.user)
     const {signup} = useAuth()
     const [mutate] = useCreateUsersMutation();
-
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         name: '',
         lastName: '',
@@ -86,7 +87,7 @@ const FormUser = () => {
            setError('')
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
-                Navigate('/home')
+                navigate('/home')
                 } catch (error) {
                 console.log(error.code)
                 if(error.code === 'auth/invalid-email'){

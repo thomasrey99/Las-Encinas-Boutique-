@@ -18,7 +18,15 @@
 },
 "searchBar": {
     "Search-by-name": "Buscar por nombre"
+},
+"menu":{
+    "Profile": "Perfil",
+    "Favorite-products": "Productos favoritos",
+    "Homepage": "Pagina principal",
+    "Meet-us": "Conocenos",
+    "Log-off": "Cerrar sesión",
+    "Log-in": "Iniciar sesión",
+    "Administrator-Panel": "Panel de Administrador"
 }
-
 
 }

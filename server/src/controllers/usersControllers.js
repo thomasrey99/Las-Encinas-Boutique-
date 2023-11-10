@@ -1,17 +1,29 @@
-const { User, Cart } = require("../db");
+const { User, Cart, Request } = require("../db");
+const { Op } = require("sequelize");
+
+
 
 //!CONTROLLER QUE TRAE TODOS LOS USUARIOS
 const getAllUsersController=async()=>{
     const users=await User.findAll({
-        include:Cart
+        include:[Cart, Request]
     })
     return users
+}
+
+const getUserByNameController = async (name)=>{
+    const result = await User.findAll({
+        where : {
+            name: {[Op.iLike]: `%${name}%`}
+        } 
+    })
+    return result
 }
 
 //!CONTROLLER QUE TRAE UN USUARIO MEDIANTE UN ID ESPECIFICO
 const getUserIdController = async (id) => {
     const user = await User.findByPk(id, {
-        include: Cart
+        include: [Cart, Request]
     });
     return user;
 }
@@ -70,5 +82,6 @@ module.exports = {
     createNewUserController,
     putUserController,
     deleteUserController,
-    getUserByEmail
+    getUserByEmail,
+    getUserByNameController
 };

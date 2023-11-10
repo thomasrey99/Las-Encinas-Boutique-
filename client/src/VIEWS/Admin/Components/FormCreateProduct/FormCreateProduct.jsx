@@ -129,10 +129,10 @@ const FormCreateProduct = () => {
     <textarea rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
     </div>
 
-    <div className={styles.Element1}>
+    {/* <div className={styles.Element1}>
     <label className={styles.labels}>Rate:</label>
     <input type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
-    </div>
+    </div> */}
 </div>
 
 <div className={styles.Section}>

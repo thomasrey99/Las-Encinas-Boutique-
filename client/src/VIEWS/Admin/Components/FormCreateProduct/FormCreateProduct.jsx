@@ -22,8 +22,8 @@ const FormCreateProduct = () => {
 
   const [imageToCloud, setImageToCloud] = useState('');
 
-  const [localCategories, setLocalCategories] = useLocalStorage([]);
-  const [localTypes, setLocalTypes] = useLocalStorage([]);
+  const [localCategories, setLocalCategories] = useLocalStorage("categories", []);
+  const [localTypes, setLocalTypes] = useLocalStorage("types", []);
 
   const [state, setState] = useLocalStorage("state", {
     name: '',
@@ -120,6 +120,8 @@ const FormCreateProduct = () => {
       icon: 'error',
       confirmButtonColor: '#ae2012',
     })};
+
+    console.log(localTypes, localCategories);
 
   return (
     <div className={styles.Container}>

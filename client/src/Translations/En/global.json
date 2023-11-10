@@ -1,0 +1,14 @@
+{ "navBar":{
+    "not-costumer-yet?": "Not costumer yet?",
+    "Register": "Register"
+},
+"Filters":{
+    "Categories": "Categories",
+    "Order": "Order",
+    "Chocolate type": "Chocolate type",
+    "Minimmal": "Minimal",
+    "Maximal": "Maximal"
+
+}
+
+}

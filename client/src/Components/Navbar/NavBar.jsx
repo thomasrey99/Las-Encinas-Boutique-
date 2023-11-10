@@ -13,6 +13,7 @@ import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
+import { useTranslation} from "react-i18next";
 
 
 const getUserById=async(id)=>{
@@ -30,7 +31,8 @@ const getUserById=async(id)=>{
 const NavBar = ({handleOPen, isOPen}) => {
 
   const { user, logout } = useAuth();
-  
+  const { t, i18n } = useTranslation("global");
+
  
   const dispatch = useDispatch();
 
@@ -77,9 +79,11 @@ const NavBar = ({handleOPen, isOPen}) => {
             </div>
           </NavLink>
           <div className={style.navLinks}>
-              {!user&&<p>¿Aun no sos cliente? <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>Resgistrate</NavLink></p>}
+              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
               {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
           </div>
+          <button onClick={() => i18n.changeLanguage("es")}>es</button>
+          <button onClick={() => i18n.changeLanguage("en")}>en</button>
           <div className={menuStyle.menuCont}>
           <input
             type='checkbox'

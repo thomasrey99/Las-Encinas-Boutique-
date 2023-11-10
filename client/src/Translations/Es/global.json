@@ -1,0 +1,13 @@
+{ "navBar":{
+    "not-costumer-yet?": "Aún no sos cliente?",
+    "Register": "Registrate"
+},
+"Filters":{
+    "Categories": "Categorias",
+    "Order": "Orden",
+    "Chocolate type": "Tipo de chocolate",
+    "Minimmal": "Minimo",
+    "Maximal": "Maximo"
+
+}
+}

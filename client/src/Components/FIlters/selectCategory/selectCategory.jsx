@@ -4,6 +4,7 @@ import { useSelector, useDispatch} from "react-redux";
 import { useGetAllCategoriesQuery } from "../../../libs/redux/services/categoriesApi";
 import { addCategories } from "../../../libs/redux/features/categoriesSlice";
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SelectCategory = ({change}) => {
   
@@ -18,10 +19,11 @@ const SelectCategory = ({change}) => {
       dispatch(addCategories(data))
     }
   }, [data])
+  const { t } = useTranslation("global");
 
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='category'>Categorias</label>
+        <label htmlFor='category'>{t("Filters.Categories")}</label>
         <Select
           onChange={change}
           name="category"

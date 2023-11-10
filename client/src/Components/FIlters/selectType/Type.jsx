@@ -4,6 +4,7 @@ import { useGetAllTypesQuery } from '../../../libs/redux/services/typesApi';
 import { useSelector, useDispatch} from "react-redux";
 import { useEffect } from 'react';
 import { addTypes } from '../../../libs/redux/features/typesSlice';
+import { useTranslation } from 'react-i18next';
 
 const Type = ({change}) => {
 
@@ -18,10 +19,11 @@ const Type = ({change}) => {
       dispatch(addTypes(data))
     }
   }, [data])
+  const { t } = useTranslation("global");
 
   return (
     <Space wrap className={style.selectCont}>
-        <label htmlFor='type'>Tipo de Chocolate</label>
+        <label htmlFor='type'>{t("Filters.Chocolate type")}</label>
         <Select
           name="type"
           defaultValue={"Todos"}

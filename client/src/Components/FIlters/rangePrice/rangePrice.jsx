@@ -1,11 +1,13 @@
 import { InputNumber, Space } from 'antd';
 import style from "../Filters.module.css"
+import { useTranslation } from 'react-i18next';
 
 export const RangePrice = ({changeMin, changeMax}) => {
+    const { t } = useTranslation("global");
   return (
         <Space name="range price">
             <div className={style.selectCont}>
-                <label htmlFor='min'>Minimo</label>
+                <label htmlFor='min'>{t("Filters.Minimal")}</label>
                 <InputNumber
                 name='min'
                 min={0}
@@ -16,7 +18,7 @@ export const RangePrice = ({changeMin, changeMax}) => {
                 />
             </div>
             <div className={style.selectCont}>
-                <label htmlFor='max'>Maximo</label>
+                <label htmlFor='max'>{t("Filters.Maximal")}</label>
                 <InputNumber
                 name='max'
                 min={0}

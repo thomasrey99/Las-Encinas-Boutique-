@@ -30,7 +30,7 @@ const coders = [
     id: 3,
     fullName: "Javier Sosa",
     description:"Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
-    linkAvatar: "/public/CP.webp",
+    linkAvatar: "/public/Javi.jpg",
     linkedin: "https://www.linkedin.com/in/pablo-javier-sosa-179a31195/",
     github: "https://github.com/JavierSosaAdm",
     email: "javier.sosa.1911@mail.com"
@@ -88,7 +88,7 @@ const aboutUs = () => {
       <div className='cards__container'>
         {coders.map((coder) => {
           return (
-            <div key={coder.id} className='card' data-aos="zoom-in" data-aos-delay="500" data-aos-duration={coder.id}>
+            <div key={coder.id} className='card' data-aos="zoom-in" data-aos-delay="700" data-aos-duration={coder.id}>
               <img className='card__image' src={`${coder.linkAvatar}`} width="200" height="200" />
               <h5 className='card__text'>{coder.fullName}</h5>
               <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center'}}>{coder.description}</p>

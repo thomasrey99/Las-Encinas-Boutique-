@@ -104,8 +104,6 @@ try {
 const createPreference = async (req, res) => {
      mercadopago.configure({
         access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
-     mercadopago.configure({
-        access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
     })
 
 

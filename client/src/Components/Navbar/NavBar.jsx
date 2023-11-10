@@ -15,8 +15,8 @@ import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 import { useTranslation} from "react-i18next";
-const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const getUserById=async(id)=>{
 
@@ -85,20 +85,37 @@ const NavBar = ({handleOPen, isOPen}) => {
               {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
           </div>
           {/* <button onClick={() => i18n.changeLanguage("es")}>es</button>
-          <button onClick={() => i18n.changeLanguage("en")}>en</button> */}
-          <div class="wrapper">
-  <div class="option">
-    <input checked="" value="option1" name="btn" type="radio" class="input">
-    <div class="btn">
-      <span class="span">Español</span>
+          <button onClick={() => i18n.changeLanguage("en")}>en</button>   */}
+          <div className={style.wrapper}>
+      <div className={style.option}>
+        <input
+          checked={i18n.language === 'es'}
+          onChange={() => i18n.changeLanguage('es')}
+          type="radio"
+          name="language"
+          id="es"
+          className={style.input}
+        />
+        <label htmlFor="es" className={style.btn}>
+          <span className={style.span}>es</span>
+        </label>
+      </div>
+      <div className={style.option}>
+        <input
+          checked={i18n.language === 'en'}
+          onChange={() => i18n.changeLanguage('en')}
+          type="radio"
+          name="language"
+          id="en"
+          className={style.input}
+        />
+        <label htmlFor="en" className={style.btn}>
+          <span className={style.span}>en</span>
+        </label>
+      </div>
     </div>
-  </div>
-  <div class="option">
-    <input value="option2" name="btn" type="radio" class="input">
-    <div class="btn">
-      <span class="span">English</span>
-    </div>  </div>
-</div>
+
+
 
           <div className={menuStyle.menuCont}>
           <input

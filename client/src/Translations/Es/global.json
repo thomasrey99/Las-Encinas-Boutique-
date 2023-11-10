@@ -2,12 +2,23 @@
     "not-costumer-yet?": "Aún no sos cliente?",
     "Register": "Registrate"
 },
-"Filters":{
+"filters":{
     "Categories": "Categorias",
     "Order": "Orden",
     "Chocolate type": "Tipo de chocolate",
-    "Minimmal": "Minimo",
-    "Maximal": "Maximo"
+    "Minimum": "Minimo",
+    "Maximum": "Maximo"
 
+},
+"footer":{
+    "Location": "Ubicación",
+    "Social-Media": "Redes Sociales",
+    "Contact": "Contacto",
+    "Phone": "Teléfono"
+},
+"searchBar": {
+    "Search-by-name": "Buscar por nombre"
 }
+
+
 }

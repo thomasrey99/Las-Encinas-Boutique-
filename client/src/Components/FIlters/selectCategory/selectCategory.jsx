@@ -23,7 +23,7 @@ const SelectCategory = ({change}) => {
 
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='category'>{t("Filters.Categories")}</label>
+        <label htmlFor='category'>{t("filters.Categories")}</label>
         <Select
           onChange={change}
           name="category"

@@ -26,7 +26,7 @@ const Order = ({change}) => {
 
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='order'>{t("Filters.Order")}</label>
+        <label htmlFor='order'>{t("filters.Order")}</label>
         <Select
           onChange={change}
           name="order"

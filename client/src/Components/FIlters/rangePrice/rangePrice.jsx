@@ -7,7 +7,7 @@ export const RangePrice = ({changeMin, changeMax}) => {
   return (
         <Space name="range price">
             <div className={style.selectCont}>
-                <label htmlFor='min'>{t("Filters.Minimal")}</label>
+                <label htmlFor='min'>{t("filters.Minimum")}</label>
                 <InputNumber
                 name='min'
                 min={0}
@@ -18,7 +18,7 @@ export const RangePrice = ({changeMin, changeMax}) => {
                 />
             </div>
             <div className={style.selectCont}>
-                <label htmlFor='max'>{t("Filters.Maximal")}</label>
+                <label htmlFor='max'>{t("filters.Maximum")}</label>
                 <InputNumber
                 name='max'
                 min={0}

@@ -23,7 +23,7 @@ const Type = ({change}) => {
 
   return (
     <Space wrap className={style.selectCont}>
-        <label htmlFor='type'>{t("Filters.Chocolate type")}</label>
+        <label htmlFor='type'>{t("filters.Chocolate type")}</label>
         <Select
           name="type"
           defaultValue={"Todos"}

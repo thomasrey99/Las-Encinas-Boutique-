@@ -1,13 +1,12 @@
 import style from "./FilterAdmin.module.css"
 import ClearButton from "../../../../Components/FIlters/clearButton/ClearButton";
 import SelectCategory from "../../../../Components/FIlters/selectCategory/selectCategory";
-import Order from "../../../../Components/FIlters/selectOrder/Order";
 import Type from "../../../../Components/FIlters/selectType/Type";
+import SearchBarProducts from "../SearchBarProducts/SearchBarProducts";
 
 import { addFilter } from "../../../../libs/redux/features/filterSelice";
 
 import {useDispatch} from "react-redux";
-
 
 const FilterAdmin = () => {
 
@@ -19,12 +18,7 @@ const FilterAdmin = () => {
       value:value
     }))
   }
-  const handleChangeOrder=(value)=>{
-    dispatch(addFilter({
-      name:"order",
-      value:value
-    }))
-  }
+
   const handleChangeType=(value)=>{
     dispatch(addFilter({
       name:"type",
@@ -35,10 +29,10 @@ const FilterAdmin = () => {
   return (
     <div className={style.filterCont}>
       <div className={style.filterItem}>
-        <SelectCategory change={handleChangeCategory}/>
+        <SearchBarProducts/>
       </div>
       <div className={style.filterItem}>
-        <Order change={handleChangeOrder}/>
+        <SelectCategory change={handleChangeCategory}/>
       </div>
       <div className={style.filterItem}>
         <Type change={handleChangeType}/>

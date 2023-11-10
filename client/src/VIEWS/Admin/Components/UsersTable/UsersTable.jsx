@@ -1,5 +1,3 @@
-
-
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import styles from "./UsersTable.module.css"
@@ -8,6 +6,7 @@ import { EditOutlined, StopOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
 import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
+import {CheckOutlined, CloseOutlined} from '@ant-design/icons'
 
 
 
@@ -52,7 +51,9 @@ const columns = [
     key: '4',
     width: 150,
     render: (text, record) => {
-      return text ? "Sí" : "No";
+      return (<div className={styles.tableCell}>
+        {text ? <CheckOutlined className={styles.check} /> : <CloseOutlined className={styles.block}/>}
+      </div>)
     },
   },
   {
@@ -61,7 +62,9 @@ const columns = [
     key: '5',
     width: 150,
     render: (text, record) => {
-      return text ? "Sí" : "No";
+      return (<div className={styles.tableCell}>
+        {text ? <CheckOutlined className={styles.check} /> : <CloseOutlined className={styles.block}/>}
+      </div>)
     },
   },
   {
@@ -106,6 +109,7 @@ const UsersTable = () => {
       <br></br>
       
       <Table 
+        className={styles.tableContainer}
         columns={columns}
         dataSource={users}
 

@@ -1,4 +1,4 @@
-const {Request, User, Product}=require("../db")
+const {Request, User, Product, Payment}=require("../db")
 
 const getAllRequestController=async()=>{
     const response=await Request.findAll()
@@ -7,7 +7,6 @@ const getAllRequestController=async()=>{
 
 const createRequestController=async(data, id_user)=>{
 
-    console.log("esto llega al controller de la request", data, id_user)
     const newRequest=await Request.create(data)
     const user=await User.findByPk(id_user)
     if(user){
@@ -21,6 +20,17 @@ const createRequestController=async(data, id_user)=>{
                 }
             })
         );
+
+        const datapayment={
+            user_name:user.name,
+            user_email:user.email,
+            id_paymentMp:data.payment_id,
+            total_amount:data.total_amount
+        }
+        console.log("datos del pago: ", datapayment)
+        const newPayment= await Payment.create(datapayment)
+        
+        await newPayment.setUser(user)
     }
     return newRequest
 }

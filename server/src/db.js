@@ -6,6 +6,8 @@ const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
 const reviewModel=require("./models/Review")
+const paymentModel=require("./models/payment")
+
 require("dotenv").config(); 
 
 
@@ -16,20 +18,20 @@ const {
   DB_NAME,
   DB_DIALECT,
   DB_PORT,
-  DB_SERVER_DEPLOY  
+  DB_SERVER_DEPLOY
 } = process.env;  
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD LOCAL
-{/*const dataBase=new Sequelize( 
+const dataBase=new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}
-)*/}
+)
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
-const dataBase=new Sequelize( 
+/*const dataBase=new Sequelize( 
   `${DB_SERVER_DEPLOY}`,
   {logging:false, dialectOptions:{ssl:{require:true}}}
- )
+)*/
 
 userModel(dataBase)
 productModel(dataBase)
@@ -38,10 +40,11 @@ typeModel(dataBase)
 requestModel(dataBase)
 cartModel(dataBase)
 reviewModel(dataBase)
+paymentModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request, Cart, Category, Type, Review } = dataBase.models;
+const { User, Product, Request, Cart, Category, Type, Review, Payment } = dataBase.models;
 
 //*un producto puede tener una categoria y una categoria puede tener varios productos
 
@@ -83,9 +86,13 @@ Cart.belongsToMany(Product, {through:"Product_cart"})
 Product.belongsToMany(User, {through:"user_product"})
 User.belongsToMany(Product, {through:"user_product"})
 
-//Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
+//*Un usuario puede tener varios productos favoritos y un producto puede ser el favorito de varios usuarios
 User.belongsToMany(Product, { through: 'Favorites' });
 Product.belongsToMany(User, { through: 'Favorites' });
+
+//*Un usuario puede ejecutar varios pagos, pero un pago puede ser realizado por un unico usuario
+User.hasMany(Payment, {foreignKey:"uid"})
+Payment.belongsTo(User, {foreignKey:"uid"})
 
 //!REVIEWS
 

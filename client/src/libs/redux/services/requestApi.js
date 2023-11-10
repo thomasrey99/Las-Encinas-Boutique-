@@ -8,12 +8,12 @@ export const requestApi=createApi({
     reducerPath:"requestApi",
     endpoints:(builder)=>({
         getAllRequest:builder.query({
-            query:()=>"/payments",
+            query:()=>"/request",
             providesTags:["request"],
         }),
         createRequest:builder.mutation({
             query:(newRequest)=>({
-                url:"/payments",
+                url:"/request",
                 method:"POST",
                 body:newRequest
             }),

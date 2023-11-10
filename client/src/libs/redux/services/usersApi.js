@@ -10,8 +10,6 @@ export const usersApi = createApi({
         getAllUsers:builder.query({
             query:(name) => `/users?name=${name}`,
             providesTags: ["users"],
-          
-
 
         }),
         createUsers:builder.mutation({

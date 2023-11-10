@@ -1,5 +1,5 @@
 const {Request, user, products}=require("../db")
-const {createRequestController, getAllRequestController}=require("../controllers/paymentController")
+const {createRequestController, getAllRequestController}=require("../controllers/requestController")
 
 const getAllRequestHandler=async(req, res)=>{
     try {
@@ -9,7 +9,7 @@ const getAllRequestHandler=async(req, res)=>{
         return res.status(400).json(error)
     }
 }
-const createPaymentHandler=async(req, res)=>{
+const createRequestHandler=async(req, res)=>{
 
     const {id_user, products, address, payment_id, total_amount }=req.body
 
@@ -44,6 +44,6 @@ const createPaymentHandler=async(req, res)=>{
 }
 
 module.exports={
-    createPaymentHandler,
+    createRequestHandler,
     getAllRequestHandler
 }

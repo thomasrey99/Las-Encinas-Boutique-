@@ -1,11 +1,18 @@
 const { Op } = require("sequelize");
-const {Product, Category, Type}=require("../db")
+const {Product, Category, Type, User}=require("../db")
 
 //!TRAE UN PRODUCTO MEDIANTE UN ID ESPECIFICO
 
 const productId = async (id) => {
 
-    const product = await Product.findByPk(id)
+    const product = await Product.findByPk(id,
+        {
+            include: [{
+                model: User,
+                through: 'user_product' // Asegúrate de especificar el nombre correcto de la tabla intermedia
+            }]
+        }
+        )
     
     if(product){
         return product
@@ -74,13 +81,21 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
     //?verifica si hay parametros de filtrado, de lo contrario devuelve todos los productos
     if(Object.keys(whereClause).length===0){
         const response= await Product.findAll({
-            order:orderBy.length>0?orderBy:undefined
+            order:orderBy.length>0?orderBy:undefined,
+            include: [{
+                model: User,
+                through: 'user_product' // Asegúrate de especificar el nombre correcto de la tabla intermedia
+            }]
         })
         return response
     }else{
         const response=await Product.findAll({
             where:whereClause,
-            order:orderBy.length>0?orderBy:undefined
+            order:orderBy.length>0?orderBy:undefined,
+            include: [{
+                model: User,
+                through: 'user_product' // Asegúrate de especificar el nombre correcto de la tabla intermedia
+            }]
             
         })
         return response

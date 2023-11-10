@@ -82,8 +82,22 @@ const NavBar = ({handleOPen, isOPen}) => {
               {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
               {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
           </div>
-          <button onClick={() => i18n.changeLanguage("es")}>es</button>
-          <button onClick={() => i18n.changeLanguage("en")}>en</button>
+          {/* <button onClick={() => i18n.changeLanguage("es")}>es</button>
+          <button onClick={() => i18n.changeLanguage("en")}>en</button> */}
+          <div class="wrapper">
+  <div class="option">
+    <input checked="" value="option1" name="btn" type="radio" class="input">
+    <div class="btn">
+      <span class="span">Español</span>
+    </div>
+  </div>
+  <div class="option">
+    <input value="option2" name="btn" type="radio" class="input">
+    <div class="btn">
+      <span class="span">English</span>
+    </div>  </div>
+</div>
+
           <div className={menuStyle.menuCont}>
           <input
             type='checkbox'

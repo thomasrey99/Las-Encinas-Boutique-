@@ -9,6 +9,7 @@ import axios from "axios";
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 
+
 export const Cart = () => {
 
     initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
@@ -18,9 +19,10 @@ export const Cart = () => {
 
     const cart = useSelector((state) => state.cart)
 
+    const user=useSelector((state)=>state.user.userLog)
+
     const id_cart=useSelector((state)=>state.user.userCartId)
 
-    const user=useSelector((state)=>state.user.userLog)
 
     const [mutate] = usePutCartMutation()
 
@@ -46,9 +48,10 @@ export const Cart = () => {
 
         try {
             const response=await axios.post(`${URL_SERVER}/products/create_preference`, {
+                id_user:user.uid,
                 description: description,
                 price:cart.total_price,
-                quantity:1
+                quantity:1,
             })
             const {id} = response.data
             return id;

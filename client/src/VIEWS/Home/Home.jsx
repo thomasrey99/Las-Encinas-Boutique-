@@ -25,7 +25,7 @@ const Home = () => {
 
   const {name}=useSelector((state)=>state.filters)
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage-1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = productsFilter.slice(startIndex, endIndex);
   
@@ -99,3 +99,4 @@ const Home = () => {
 };
 
 export default Home;
+

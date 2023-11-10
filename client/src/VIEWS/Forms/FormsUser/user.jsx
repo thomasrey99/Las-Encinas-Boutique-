@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import Validates from './validates';
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
@@ -9,8 +9,9 @@ import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
 import { GoogleOutlined, InstagramOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useAuth } from "../../../firebase/authContext";
-import { Navigate, useNavigate } from "react-router-dom";
-import style from './user.module.css';
+import Validates from './validates';
+
+
 
 const FormUser = () => {
     const { Item } = Form

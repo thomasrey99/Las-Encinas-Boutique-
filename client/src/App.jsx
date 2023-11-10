@@ -75,7 +75,7 @@ const App = () => {
           <Route path='resetpassword' element={<FormResetPassword />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
-          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/profile' element={<Profile user={currentUser}/>}/>
           {/* Rutas protegidas del admin */}
 
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}

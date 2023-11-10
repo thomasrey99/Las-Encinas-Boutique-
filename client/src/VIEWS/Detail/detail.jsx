@@ -24,7 +24,7 @@ const Detail = () => {
     const { id } = useParams();
     const  productId  = id;
     const user= useSelector((state)=>state.user.userLog)
-console.log(user.is_Admin);
+    console.log(user.is_Admin);
     const userId = user?.uid;
     const id_cart=useSelector((state)=>state.user.userCartId)
     const cartData=useSelector((state)=>state.cart)

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     userLog:null,
     userCartId:"",
-    userByUid:{}
+    userByUid:{},
+    allUsers:[]
     
 }
 
@@ -11,6 +12,12 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        getAllUsers:(state, action) =>{
+            state.allUsers = action.payload
+        },
+        getUsersByName: (state, action) =>{
+            state.allUsers = action.payload
+        },
         addUser (state, {payload}){
             
             state.userLog=payload
@@ -27,11 +34,9 @@ export const userSlice = createSlice({
 
         },
         
-        updateUser:(state, action)=>{
-          
-           
-        }
+        updateUserState: (state, action) => {
+        },
     },
 })
-export const {addUser, userByUid, updateUser}=userSlice.actions
+export const {addUser, userByUid, updateUser, getAllUsers, getUsersByName }=userSlice.actions
 export default userSlice.reducer

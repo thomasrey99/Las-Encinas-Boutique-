@@ -15,7 +15,7 @@ const io = new SocketServer(app,{
   }
 }) // Creamos una instancia de SocketServer
 io.on('connection', socket =>{
-  console.log(`Client connected`);
+  console.log(socket.id);
   socket.on('message',(data)=>{
     console.log(data)
     socket.broadcast.emit('message',data)     

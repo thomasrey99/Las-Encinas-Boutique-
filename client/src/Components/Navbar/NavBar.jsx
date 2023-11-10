@@ -84,9 +84,20 @@ const NavBar = ({handleOPen, isOPen}) => {
               {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
               {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
           </div>
-          {/* <button onClick={() => i18n.changeLanguage("es")}>es</button>
-          <button onClick={() => i18n.changeLanguage("en")}>en</button>   */}
-          <div className={style.wrapper}>
+          <div className={menuStyle.menuCont}>
+          <input
+            type='checkbox'
+            name="checkbox"
+            checked={isOPen}
+            id={menuStyle.checkbox}
+          />
+          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
+            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
+          </label>
+        </div>
+      <div className={style.wrapper}>
       <div className={style.option}>
         <input
           checked={i18n.language === 'es'}
@@ -113,24 +124,10 @@ const NavBar = ({handleOPen, isOPen}) => {
           <span className={style.span}>en</span>
         </label>
       </div>
+        </div>         
     </div>
 
-
-
-          <div className={menuStyle.menuCont}>
-          <input
-            type='checkbox'
-            name="checkbox"
-            checked={isOPen}
-            id={menuStyle.checkbox}
-          />
-          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
-            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
-          </label>
-        </div>
-        </div>
+          
         
     </nav>
   );

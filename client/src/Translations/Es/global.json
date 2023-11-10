@@ -27,6 +27,14 @@
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
+},
+"banner": {
+    "title": "Disfrute de las mejores delicias de la región.",
+    "description1": "Ideales para agasajar con un regalo para alguien especial.",
+    "description2": "* Pedidos personalizados",
+    "description3": "* Tarjetas que expresan nuestros mejores deseos.",
+    "description4": "* Elaboración con materia prima de la más alta calidad.",
+    "description5": "* Atención en horario comercial de 9 a 13hs y de 16 a 21hs."
 }
 
 }

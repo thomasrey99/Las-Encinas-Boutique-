@@ -1,9 +1,11 @@
-import  { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import styles from '../../Views/Style/Forms.module.css'
 import axios from "axios"
+
 import { useCreateProductMutation } from '../../../../libs/redux/services/productsApi';
+import { useLocalStorage  } from "../../../../Hooks/useLocalStorage";
 
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,7 +21,11 @@ const FormCreateProduct = () => {
   const [mutate] = useCreateProductMutation();
 
   const [imageToCloud, setImageToCloud] = useState('');
-  const [state, setState] = useState({
+
+  const [localCategories, setLocalCategories] = useLocalStorage("categories", []);
+  const [localTypes, setLocalTypes] = useLocalStorage("types", []);
+
+  const [state, setState] = useLocalStorage("state", {
     name: '',
     image: '',
     price: '',
@@ -32,14 +38,22 @@ const FormCreateProduct = () => {
   const resetState = () => { setState({ name: '', image: '', price: 0, description: '', rating: 0, category: [], type:"" });};
 
   const handleChange = (name, value) => {
-    console.log(state);
-    console.log("nombre: ",name)
-    console.log("valor: ", value)
     setState({
       ...state,
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      // Si categories contiene datos, guárdalos en el estado local
+      setLocalCategories(categories);
+    }
+    if (types.length > 0) {
+      // Si categories contiene datos, guárdalos en el estado local
+      setLocalTypes(types);
+    }
+  }, [categories, types]);
 
   // Vista previa de imagen
   const previewFiles = (file) => {
@@ -107,6 +121,8 @@ const FormCreateProduct = () => {
       confirmButtonColor: '#ae2012',
     })};
 
+    console.log(localTypes, localCategories);
+
   return (
     <div className={styles.Container}>
       <form className={styles.Form} onSubmit={handleSubmit}>
@@ -116,17 +132,17 @@ const FormCreateProduct = () => {
 <div className={styles.Section}>
     <div className={styles.Element1}>
     <label className={styles.labels}>Nombre:</label>
-    <input type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
+    <input className={styles.InputText} type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
     </div>
 
     <div className={styles.Element1}>
     <label className={styles.labels}>Precio:</label>
-    <input type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
+    <input className={styles.InputNumber} type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
     </div>
 
     <div className={styles.Element1}>
     <label className={styles.labels}>Descripción:</label>
-    <textarea rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
+    <textarea className={styles.TextArea} rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
     </div>
 
     {/* <div className={styles.Element1}>
@@ -139,7 +155,7 @@ const FormCreateProduct = () => {
 
     <div className={styles.Element}>
     <label className={styles.labels}>Imagen:</label>
-    <input type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
+    <input className={styles.InputText} type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
     <input type="file" accept="image/*" onChange={handleImageUpload} />
     </div>
 
@@ -156,14 +172,14 @@ const FormCreateProduct = () => {
     <div className={styles.Element2}>
     <label className={styles.labels}>Categorías:</label>
     <select className={styles.select1} name="category" multiple value={state.category} onChange={(e) => handleChange("category", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
-    {categories?.map((c, i) => (<option value={c.name} key={i}>{c.name}</option>))}
+    {localCategories?.map((category, i) => (<option value={category.name} key={i}>{category.name}</option>))}
     </select>
     </div>
 
     <div className={styles.Element2}>
     <label className={styles.labels}>Tipo:</label>
     <select className={styles.select1} name="type" multiple value={state.type} onChange={(e) => handleChange("type", [...e.target.options].filter((option) => option.selected).map((option) => option.value))}>
-    {types?.map((t, i) => (<option value={t.name} key={i}>{t.name}</option>))}
+    {localTypes?.map((type, i) => (<option value={type.name} key={i}>{type.name}</option>))}
     </select>
     </div>
 

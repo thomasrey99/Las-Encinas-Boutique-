@@ -7,6 +7,7 @@ import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../l
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios";
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 
 export const Cart = () => {
@@ -16,8 +17,16 @@ export const Cart = () => {
 
     const dispatch=useDispatch()
 
+    initMercadoPago("TEST-d4fe7a19-dc73-4789-9253-4f723e555e54")
+
+
+    const dispatch=useDispatch()
+
     const cart = useSelector((state) => state.cart)
 
+    const id_cart=useSelector((state)=>state.user.userCartId)
+
+    const user=useSelector((state)=>state.user.userLog)
     const id_cart=useSelector((state)=>state.user.userCartId)
 
     const user=useSelector((state)=>state.user.userLog)
@@ -48,6 +57,8 @@ export const Cart = () => {
             const response=await axios.post(`${URL_SERVER}/products/create_preference`, {
                 id_user:user.uid,
                 description: description,
+                price:cart.total_price,
+                quantity:1
                 price:cart.total_price,
                 quantity:1
             })

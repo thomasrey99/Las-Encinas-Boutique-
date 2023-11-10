@@ -36,9 +36,9 @@ const NavBar = ({handleOPen, isOPen}) => {
   const dispatch = useDispatch();
 
   
-  const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
+  const totalItemsCart = useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  // console.log("user actuallllllllll:",currentUser?.is_Admin)
+  console.log("user actual:",currentUser)
 
 
   user && getUserByUid(user.uid)

@@ -3,6 +3,7 @@ import style from "./NavBar.module.css";
 import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
+
 import HamburgerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
@@ -13,7 +14,6 @@ import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect, useState } from "react";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
-
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const getUserById=async(id)=>{
@@ -63,7 +63,7 @@ const NavBar = ({handleOPen, isOPen}) => {
 
     getUserData();
   }, [dispatch, user]);
-
+  console.log("usuario registrado: ", currentUser)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>

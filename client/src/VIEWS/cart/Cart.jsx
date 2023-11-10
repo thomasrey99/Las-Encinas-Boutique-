@@ -46,6 +46,7 @@ export const Cart = () => {
 
         try {
             const response=await axios.post(`${URL_SERVER}/products/create_preference`, {
+                id_user:user.uid,
                 description: description,
                 price:cart.total_price,
                 quantity:1

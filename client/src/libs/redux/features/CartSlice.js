@@ -69,9 +69,14 @@ export const cartSlice=createSlice({
                 index===indexProduct?productIndex:product
                 )
             }
+        },
+        cleanCart (state){
+            state.products=[]
+            state.total_price=0
+            state.product_quantity=0
         }
     }
 })
 
-export const {addCart, addProductCart, deleteProductCart, decrementQuantity, incrementQuantity}=cartSlice.actions
+export const {addCart, addProductCart, deleteProductCart, decrementQuantity, incrementQuantity, cleanCart}=cartSlice.actions
 export default cartSlice.reducer

@@ -27,7 +27,7 @@ export const cartSlice=createSlice({
                     state.products[existingProductIndex].total_price =Number(state.products[existingProductIndex].quantity) * Number(price);
                 }
             } else {
-                state.products.push({ name:payload.name, price:Number(payload.price), quantity:1, total_price:Number(payload.price), image:payload.image, id:payload.id_product});
+                state.products.push({ name:payload.name, price:Number(payload.price), quantity:1, total_price:Number(payload.price), image:payload.image, id:payload.id});
                 state.product_quantity=Number(state.products.length)
             }
             state.total_price = state.products.reduce((total, product) => Number(total) + Number(product.total_price), 0);

@@ -63,8 +63,6 @@ const Card = (props) => {
     }
   }
 
-  console.log("info del carrito",cartData)
-  console.log("id del carrito", id_cart)
   return (
     <div className={Style.productList}>
 

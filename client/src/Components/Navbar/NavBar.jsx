@@ -3,15 +3,17 @@ import style from "./NavBar.module.css";
 import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
-import cart from "../../assets/carrito.png";
+import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect, useState } from "react";
-import { addCart } from "../../libs/redux/features/CartSlice";
+import { addCart, cleanCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
+import { useCreateRequestMutation } from "../../libs/redux/services/requestApi";
+
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const getUserById=async(id)=>{
@@ -28,12 +30,20 @@ const getUserById=async(id)=>{
 
 const NavBar = ({handleOPen, isOPen}) => {
 
+  const [mutate]=useCreateRequestMutation()
+
+  const [madeRequest, setMadeRequest]=useState(false)
+
+  const url = new URL(window.location.href);
+
+  let status=url.searchParams.get("status")
+
   const { user, logout } = useAuth();
   
  
   const dispatch = useDispatch();
 
-  
+  const cart=useSelector((state)=>state.cart)
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
   // console.log("user actuallllllllll:",currentUser?.is_Admin)
@@ -44,7 +54,9 @@ const NavBar = ({handleOPen, isOPen}) => {
   const handleOnClick = async () => {
     await logout();
   };
-  
+
+
+
   useEffect(() => {
     const getUserData = async () => {
       if (user) {
@@ -61,7 +73,24 @@ const NavBar = ({handleOPen, isOPen}) => {
 
     getUserData();
   }, [dispatch, user]);
+
+  useEffect(()=>{
+    if(status==="approved" && currentUser && cart?.products.length!==0 && !madeRequest){
+      const payment_id=url.searchParams.get("payment_id")
+      mutate({
+        payment_id:payment_id,
+        id_user:currentUser.uid,
+        products:cart.products,
+        address:currentUser.address,
+        total_amount:cart.total_price
+      })
+      dispatch(cleanCart())
+      setMadeRequest(true)
+    }
+  },[currentUser])
+
   console.log("usuario registrado: ", currentUser)
+
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
@@ -71,7 +100,7 @@ const NavBar = ({handleOPen, isOPen}) => {
         <div className={style.navItems}>
           <NavLink to={"/cart"}>
             <div className={style.cartIconCont}>
-              <img src={cart} className={style.cartIcon}/>
+              <img src={cartIcon} className={style.cartIcon}/>
               <p className={style.TotaItems}>{totalItemsCart}</p>
             </div>
           </NavLink>

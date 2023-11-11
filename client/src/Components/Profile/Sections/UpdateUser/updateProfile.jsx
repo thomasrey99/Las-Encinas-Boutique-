@@ -14,7 +14,7 @@ const UpdateProfile = () => {
     const { data: getUserById, isLoading, refetch } = useGetUserByIdQuery(id);
     const [ updateUser ] = useUpdateUserMutation();
 
-    const [ updateProfile, setUpdateProfile ] = useState({ image: '', name: '', lastName: '', address: '', email: '', phone: ''});
+    const [ updateProfile, setUpdateProfile ] = useState({ image: '', name: '', lastName: '', address: '',  phone: ''});
 
     // Cargo al estado con el usuario
     useEffect(() => {
@@ -22,7 +22,7 @@ const UpdateProfile = () => {
             setUpdateProfile({
                 image: getUserById?.image ||'https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg', 
                 name: getUserById.name, lastName: getUserById.lastName, address: user.address, 
-                email: getUserById.email, phone: getUserById.phone,
+                 phone: getUserById.phone,
             });
         } 
         refetch();
@@ -98,21 +98,10 @@ const UpdateProfile = () => {
 
     //Envío formulario
     const onFinish = async (values) => {
-        try {
-            const newEmail = values.email;
-            //await getIdToken(auth.currentUser);
-            await sendEmailVerification(newEmail);
-            await updateEmail(auth.currentUser, newEmail);
-            console.log('Correo electrónico actualizado exitosamente');
-        } catch (error) {
-            
-            console.error('Error al actualizar el correo electrónico', error);
-        }
-
+        
         const newProfile={ ...updateProfile, ...values };
         setUpdateProfile(newProfile);
 
-        
         await updateUser({id, updateProfile});
         refetch();
     }
@@ -137,13 +126,7 @@ const UpdateProfile = () => {
         }
         return Promise.resolve();
     }
-    
-    // const validateEmail = (rule, value) => {
-    //     if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
-    //         return Promise.reject('El correo electrónico no es válido.');
-    //     }
-    //     return Promise.resolve();
-    // }
+
     return(
         <div style={{}}>
             <div className={styles.uploadImage}>

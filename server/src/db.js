@@ -26,7 +26,6 @@ const dataBase=new Sequelize(
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}
 )
-)
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
 /*const dataBase=new Sequelize( 
@@ -69,18 +68,18 @@ Cart.belongsTo(User)
 
 //*un usuario puede hacer varios pedidos y un pedido pertenece a un solo usuario
 
-User.hasMany(Request, {foreignKey:"uid"})
-Request.belongsTo(User, {foreignKey:"uid"})
+User.hasMany(Request, {foreignKey:"uid", onDelete: 'CASCADE'})
+Request.belongsTo(User, {foreignKey:"uid", onDelete: 'CASCADE'})
 
 //*un producto puede tener varias ordenes y una orden puede tener varios productos
 
-Product.belongsToMany(Request , { through: 'product_request' });
-Request.belongsToMany(Product , { through: 'product_request' });
+Product.belongsToMany(Request , { through: 'product_request', onDelete: 'CASCADE' });
+Request.belongsToMany(Product , { through: 'product_request', onDelete: 'CASCADE' });
 
 //*un producto puede estar en varios carritos y un carrito puede tener varios productos
 
-Product.belongsToMany(Cart, {through:"Product_cart"})
-Cart.belongsToMany(Product, {through:"Product_cart"})
+Product.belongsToMany(Cart, {through:"Product_cart", onDelete: 'CASCADE'})
+Cart.belongsToMany(Product, {through:"Product_cart", onDelete: 'CASCADE'})
 
 //*un producto puede ser comprado por varios usuarios y un usuario puede comprar varios productos
 
@@ -92,8 +91,8 @@ User.belongsToMany(Product, { through: 'Favorites' });
 Product.belongsToMany(User, { through: 'Favorites' });
 
 //*Un usuario puede ejecutar varios pagos, pero un pago puede ser realizado por un unico usuario
-User.hasMany(Payment, {foreignKey:"uid"})
-Payment.belongsTo(User, {foreignKey:"uid"})
+User.hasMany(Payment, {foreignKey:"uid", onDelete: 'CASCADE'})
+Payment.belongsTo(User, {foreignKey:"uid", onDelete: 'CASCADE'})
 
 //!REVIEWS
 

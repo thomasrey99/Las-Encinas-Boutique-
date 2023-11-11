@@ -6,6 +6,7 @@ import Type from "./selectType/Type";
 import RangePrice from "./rangePrice/rangePrice";
 import { addFilter } from "../../libs/redux/features/filterSelice";
 import { useSelector, useDispatch} from "react-redux";
+import { Row, Col } from 'antd';
 
 
 const Filters = () => {
@@ -61,14 +62,34 @@ const Filters = () => {
     }
   }
   // console.log(filters)
-
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 12,
+      },
+      sm: {
+        span: 8,
+      },
+    },
+    wapperCol: {
+      xs: {
+        span: 4,
+      },
+      sm: {
+        span: 20,
+      },
+    },
+  };
   return (
         <div className={style.filterCont}>
-          <SelectCategory change={handleChangeCategory}/>
-          <Order change={handleChangeOrder}/>
-          <Type change={handleChangeType}/>
-          <RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/>
-          <ClearButton/>
+          
+            <Row gutter={[20, 20]}>
+              <Col   ><SelectCategory change={handleChangeCategory}/></Col>
+              <Col   ><Order change={handleChangeOrder}/></Col>
+              <Col   ><Type change={handleChangeType}/></Col>
+              <Col   ><RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/></Col>
+              <Col   ><ClearButton/></Col>
+            </Row>
         </div>
   )
 }

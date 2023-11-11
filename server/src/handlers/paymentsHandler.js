@@ -1,49 +1,54 @@
-const {Request, user, products}=require("../db")
-const {createRequestController, getAllRequestController}=require("../controllers/paymentController")
+const {getAllPaymentsController, getPaymentByIdController, deletePaymentController}=require("../controllers/paymentsController")
 
-const getAllRequestHandler=async(req, res)=>{
+const getAllPaymentsHandler=async(req, res)=>{
     try {
-        const response=await getAllRequestController()
+        const response=await getAllPaymentsController()
+
         return res.status(200).json(response)
+
     } catch (error) {
-        return res.status(400).json(error)
+        
+        return res.status(400).json({message:error})
+
     }
 }
-const createPaymentHandler=async(req, res)=>{
 
-    const {id_user, products, address, payment_id, total_amount }=req.body
+const getPaymentByIdHandler=async(req, res)=>{
+
+    const {id_payment}=req.params
 
     try {
-        const existRequest=await Request.findOne({
-            where:{
-                payment_id:payment_id
-            }
-        })
-        if(existRequest){
-            return res.status(204).json({message:"ya existe una request con este id"})
-        }else{
-            const date=new Date()
+        
+        const response=await getPaymentByIdController(id_payment)
 
-            const data={
-                products:products,
-                address:address,
-                payment_id:payment_id,
-                total_amount:total_amount,
-                date:date
-            }
-            const response=await createRequestController(data, id_user)
-
-            return res.status(201).json(response)
-        }
+        return res.status(200).json(response)
 
     } catch (error) {
+        
+        return res.status(400).json({message:error})
+        
+    }
+}
 
-        return res.status(400).json(error)
+const deletePaymentHandler=async (req, res)=>{
 
+    const {id_payment}=req.params
+
+    try {
+        
+        const response=deletePaymentController(id_payment)
+
+        return res.status(200).json(response)
+
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+        
     }
 }
 
 module.exports={
-    createPaymentHandler,
-    getAllRequestHandler
+    getAllPaymentsHandler,
+    getPaymentByIdHandler,
+    deletePaymentHandler
 }

@@ -107,7 +107,8 @@ const createPreference = async (req, res) => {
     })
 
     
-    const {description, price, quantity}=req.body
+    const {description, price, quantity, id_user}=req.body
+    
     let preference = {
 		items: [
 			{
@@ -121,6 +122,7 @@ const createPreference = async (req, res) => {
 			"failure": `${VITE_URL_FRONT}/home`,
 			"pending": ""
 		},
+        external_reference:`${id_user}`,
 		auto_return: "approved",
 	};
 
@@ -144,3 +146,4 @@ module.exports = {
     createPreference,
     patchProduct
 }
+

@@ -3,17 +3,33 @@ const { getUserIdController,
         createNewUserController, 
         putUserController,
         deleteUserController,
+<<<<<<< HEAD
         getUserByEmail
+=======
+        getUserByEmail,
+        getUserByNameController
+>>>>>>> develop
       } = require("../controllers/usersControllers");
 
 
 //!HANDLER QUE MANEJA LA PETICION GET A /USERS, PARA TRAER TODOS LOS USUARIOS (SOLO LA VA A UTILIAR EL PERFIL DE ADMIN)
 const getAllUsers=async (req, res)=>{
     const {email} = req.query
+<<<<<<< HEAD
+=======
+    const {name} = req.query
+    console.log(req.query)
+>>>>>>> develop
     try {
         if(email){
             const result = await getUserByEmail(email)
             return res.status(200).json(result)
+<<<<<<< HEAD
+=======
+        }else if(name){
+            const result = await getUserByNameController(name)
+            return res.status(200).json(result);
+>>>>>>> develop
         }else{
             const result=await getAllUsersController()
             return res.status(200).json(result)

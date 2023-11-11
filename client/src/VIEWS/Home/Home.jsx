@@ -18,8 +18,8 @@ const Home = () => {
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
-  const productsData = useSelector((state) => state.items.allProducts);
-  const productsFilter=productsData?.filter((product) => product.is_Delete ===false)
+  const products = useSelector((state) => state.items.allProducts);
+  const productsFilter=products?.filter((product) => product.is_Delete ===false)
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
 
@@ -27,10 +27,8 @@ const Home = () => {
 
   const startIndex = (currentPage-1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const products = productsFilter?.slice(startIndex, endIndex);
-  const productsToDisplay = products
-
-  console.log("todos los productos", productsToDisplay)
+  const productsToDisplay = productsFilter.slice(startIndex, endIndex);
+  
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -45,7 +43,7 @@ const Home = () => {
         <Pagination
           current={currentPage}
           pageSize={itemsPerPage}
-          total={products.length}
+          total={productsFilter.length}
           onChange={paginate}
         />
       </div>

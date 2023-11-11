@@ -7,7 +7,11 @@ import { GoogleCircleFilled } from "@ant-design/icons";
 import logo from "../../../assets/las_encinas_logo.png";
 import "./login.css";
 const { TextArea } = Input;
+<<<<<<< HEAD
 
+=======
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
+>>>>>>> develop
 const Login = () => {
 
     const navigate = useNavigate();
@@ -29,7 +33,11 @@ const Login = () => {
         // La respuesta de la solicitud debe incluir el estado de bloqueo del usuario
     
         
+<<<<<<< HEAD
         fetch(`http://localhost:3001/users?email=${form.email}`)
+=======
+        fetch(`${URL_SERVER}/users?email=${form.email}`)
+>>>>>>> develop
           .then((response) => response.json())
           .then((data) => {
             setForm({

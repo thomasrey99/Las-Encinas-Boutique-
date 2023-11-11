@@ -1,15 +1,16 @@
 import axios from "axios"
 import  { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import styles from './FormEditProduct.module.css'
-
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import styles from '../../Views/Style/Forms.module.css'
+import Swal from 'sweetalert2';
 
 import { useUpdateProductMutation , useGetProductByIdQuery } from '../../../../libs/redux/services/productsApi';
 
 const FormEditProduct = () => {
 
   const { id } = useParams()
+  const navigate = useNavigate();
 
   const types=useSelector((state)=>state.types.allTypes)
 
@@ -97,23 +98,42 @@ const FormEditProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (id) { // Asegúrate de que el id no sea undefined
         const categoryString = state.category.join(",");
         const typeString = state.type.join(",");
         const dataToSend = { ...state, category: categoryString, type: typeString };
         console.log(id);
-        await mutate({
-            id: id,
-            updatedProduct: dataToSend,
-          });          
+        await mutate({id: id, updatedProduct: dataToSend,});          
         resetState();
-      } else {
-        console.error("ID no definido");
-      }
+        showSuccessAlert();
     } catch (error) {
-      console.log({ error: error.message, details: error.details });
-      alert("Error al crear producto: " + error);
+      showErrorAlert(error)
     }
+  };
+
+  const showSuccessAlert = () => {
+    Swal.fire({
+      title: '¡Muy bien!',
+      text: 'Producto editado exitosamente',
+      icon: 'success',
+      confirmButtonText: "Volver",
+      confirmButtonColor: '#588157',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/productsAdmin'); // Realiza la redirección utilizando useNavigate
+      }
+    });
+  };
+  const showErrorAlert = (error) => {
+    Swal.fire({
+      title: '¡Error!',
+      text: {error},
+      icon: 'error',
+      confirmButtonColor: '#ae2012',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/productsAdmin'); // Realiza la redirección utilizando useNavigate
+      }
+    });
   };
 
 return (
@@ -125,22 +145,22 @@ return (
             <div className={styles.Section}>
                 <div className={styles.Element1}>
                 <label className={styles.labels}>Nombre:</label>
-                <input type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
+                <input className={styles.InputText} type="text" name="name" value={state.name} onChange={(e) => handleChange("name", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
                 <label className={styles.labels}>Precio:</label>
-                <input type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
+                <input className={styles.InputNumber} type="number" min="1" name="price" value={state.price} onChange={(e) => handleChange("price", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
                 <label className={styles.labels}>Descripción:</label>
-                <textarea rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
+                <textarea className={styles.TextArea} rows="4" name="description" value={state.description} onChange={(e) => handleChange("description", e.target.value)}/>
                 </div>
 
                 <div className={styles.Element1}>
                 <label className={styles.labels}>Rate:</label>
-                <input type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
+                <input className={styles.InputNumber} type="number" name="raiting" value={state.raiting} onChange={(e) => handleChange("raiting", e.target.value)} />
                 </div>
             </div>
 
@@ -148,7 +168,7 @@ return (
 
                 <div className={styles.Element}>
                 <label className={styles.labels}>Imagen:</label>
-                <input type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
+                <input className={styles.InputText} type="text" name="image" value={state.image} onChange={(e) => handleChange("image", e.target.value)} />
                 <input type="file" accept="image/*" onChange={handleImageUpload} />
                 </div>
 
@@ -180,7 +200,7 @@ return (
             
             <div className={styles.Section}>
             <button className={styles.button1} type="submit">Actualizar producto</button>
-            <Link to="/productsAdmin"><button>Volver</button></Link>
+            <Link to="/productsAdmin"><button className={styles.button1}>Volver</button></Link>
             </div>
             
         </form>

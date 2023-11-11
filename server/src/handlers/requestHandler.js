@@ -1,5 +1,5 @@
 const {Request, user, products}=require("../db")
-const {createRequestController, getAllRequestController}=require("../controllers/requestController")
+const {createRequestController, getAllRequestController, putRequestByIdController, getRequestByIdController, deleteRequestController}=require("../controllers/requestController")
 
 const getAllRequestHandler=async(req, res)=>{
     try {
@@ -42,8 +42,68 @@ const createRequestHandler=async(req, res)=>{
 
     }
 }
+const getRequestByIdHandler=async(req, res)=>{
+    const{id_request}=req.params
+
+    try {
+        
+        const response= await getRequestByIdController(id_request)
+
+        return res.status(200).json(response)
+
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+
+    }
+
+}
+
+const putRequestByIdHandler=async(req, res)=>{
+
+    const {id_request}=req.params
+
+    const {status}=req.body
+
+    try {
+        
+        const data={
+            status:status
+        }
+
+        const response=await putRequestByIdController(data, id_request)
+
+        return res.status(200).json(response)
+
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+
+    }
+}
+
+const deleteRequestHandler=async(req, res)=>{
+    
+    const {id_request}=req.params
+
+    try {
+        
+        const response=await deleteRequestController(id_request)
+
+        return res.status(200).json(response)
+
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+
+    }
+
+}
 
 module.exports={
     createRequestHandler,
-    getAllRequestHandler
+    getAllRequestHandler,
+    getRequestByIdHandler,
+    putRequestByIdHandler,
+    deleteRequestHandler
 }

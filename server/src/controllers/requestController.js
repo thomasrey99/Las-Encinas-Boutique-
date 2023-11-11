@@ -5,6 +5,13 @@ const getAllRequestController=async()=>{
     return response
 }
 
+const getRequestByIdController=async(id_request)=>{
+    
+    const request=await Request.findByPk(id_request)
+
+    return request
+}
+
 const createRequestController=async(data, id_user)=>{
 
     const newRequest=await Request.create(data)
@@ -34,8 +41,36 @@ const createRequestController=async(data, id_user)=>{
     }
     return newRequest
 }
+const putRequestByIdController=async(data, id_request)=>{
+
+    const request=await Request.findByPk(id_request)
+
+    if(request){
+        
+        console.log("datos de la request", request)
+
+        const requestUpdate=await request.update(data)
+        
+        return requestUpdate
+
+    }
+
+}
+
+const deleteRequestController=async(id_request)=>{
+
+    const requestDelete=await Request.findByPk(id_request)
+
+    await requestDelete.destroy()
+
+    return requestDelete
+
+}
 
 module.exports={
     createRequestController,
-    getAllRequestController
+    getAllRequestController,
+    getRequestByIdController,
+    putRequestByIdController,
+    deleteRequestController
 }

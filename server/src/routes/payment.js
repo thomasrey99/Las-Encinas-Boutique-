@@ -1,8 +1,9 @@
 const {Router}=require("express")
-const { createPaymentHandler } = require("../handlers/paymentsHandler")
+const { createPaymentHandler, getAllRequestHandler } = require("../handlers/paymentsHandler")
 
 const paymentsRouter=Router()
 
+paymentsRouter.get("/", getAllRequestHandler)
 paymentsRouter.post("/", createPaymentHandler)
 
 module.exports=paymentsRouter

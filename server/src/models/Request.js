@@ -7,17 +7,25 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        products:{
+            type:DataTypes.JSON,
+            allowNull:false
+        },
         date: {
             type: DataTypes.DATE,
             allowNull: false,
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue:"pending"
         },
         address: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        payment_id:{
+            type:DataTypes.STRING,
+            allowNull:false
         },
         total_amount:{
             type: DataTypes.NUMERIC,

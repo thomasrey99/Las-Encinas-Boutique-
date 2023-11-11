@@ -15,7 +15,7 @@ import cajonerra2 from "./image/cajonerra2.jpg";
 
 
 const Home = () => {
-  const whatsappLink = `https://wa.me/+5493816771213`;  
+  const whatsappLink = `https://wa.me/+5493816771213?text=Hola! Cómo te va? Me pasarías info por favor?`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);

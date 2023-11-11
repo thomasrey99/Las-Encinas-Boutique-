@@ -40,7 +40,8 @@
 .resumeCont{
     width: 25vw;
     height: 50vh;
-    border: 5px solid chocolate;
+    border: 5px solid rgb(200, 174, 125);
+    
     border-radius: 20px;
     
 }
@@ -132,14 +133,14 @@
     height: 100%;
     border: none;
     border-radius: 10px;
-    background: black;
+    background: rgba(0, 0, 0, 0.402);
     color: white;
     cursor: pointer;
     font-size: 23px;
 }
 
 .buyButton:hover{
-    background-color: rgba(27, 27, 230, 0.815);
+    background-color: rgb(234, 198, 150);
     transition: 0.8s;
 }
 .buyButton:disabled{

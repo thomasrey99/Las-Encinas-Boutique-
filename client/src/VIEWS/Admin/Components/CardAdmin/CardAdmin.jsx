@@ -1,8 +1,12 @@
-import { EditOutlined, DeleteOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { Card } from 'antd';
+import style from './CardAdmin.module.css'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+
+
 import { useSoftDeleteMutation } from '../../../../libs/redux/services/productsApi'
+
+import { Card } from 'antd';
+import { EditOutlined,CheckCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -21,7 +25,7 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
   const [softDelete, { data, isLoading, isError, error, }] = useSoftDeleteMutation()
   const descriptionEdit = description.slice(0, 35)
 
-  const handleDelete = () => {
+  const handleDelete=()=> {
     const body = {
       id_product: id_product,
       is_Delete: true
@@ -38,7 +42,8 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
 
   return (
     <div>
-      <Card
+        <Card
+        className={style.Card}
         style={{
           margin: "5% 0 0 0",
           width: "18em",
@@ -46,7 +51,6 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
           color: is_Delete ? "darkred" : "black", // Texto oscuro si es eliminado
           boxShadow: is_Delete ? "0 0 10px rgba(255, 0, 0, 0.8)" : "none", // Sombra roja si es eliminado
         }}
-
         cover={
           <img
             alt={name}
@@ -57,22 +61,23 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
               position: "static",
               top: "0",
               left: "0"
-            }}
+              }}
           />
         }
         actions={[
           <ActivateButton handleClick={handleActivate} isDelete={is_Delete} />,
+          <span onClick={handleEditClick}><EditOutlined key="edit" /></span>,
+          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink >,
           <DeleteButton handleClick={handleDelete} isDelete={is_Delete} />,
-          <NavLink to={`/editProductAdmin/${id_product}`}><EditOutlined key="edit" /></NavLink >
         ]}
       >
-        <Meta
-          style={{ minHeight: "6em" }}
+        <Meta 
+          style={{minHeight: "6em"}}
           title={name}
           description={descriptionEdit + "..."}
         />
       </Card>
-    </div>
+      </div>
   )
 }
 

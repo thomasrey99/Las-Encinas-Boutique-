@@ -1,8 +1,16 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+<<<<<<< HEAD
 
 export const reviewsApi=createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:"https://las-encinas-boutique-server.onrender.com"
+=======
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
+
+export const reviewsApi=createApi({
+    baseQuery:fetchBaseQuery({
+        baseUrl:URL_SERVER
+>>>>>>> develop
     }),
     reducerPath:"reviewsApi",
     endpoints:(builder)=>({

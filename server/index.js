@@ -9,7 +9,11 @@ const PORT=3001
 
 const startServer=async()=>{
   try {
+<<<<<<< HEAD
     await dataBase.sync({ alter:true});
+=======
+    await dataBase.sync({ alter :true});
+>>>>>>> develop
     await fetchCategories();
     await fetchTypes();
     server.listen(PORT, () => {

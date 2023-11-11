@@ -51,8 +51,11 @@ const Card = (props) => {
     }
   }
 
+<<<<<<< HEAD
   console.log("info del carrito",cartData)
   console.log("id del carrito", id_cart)
+=======
+>>>>>>> develop
   return (
     <div className={Style.productList}>
 

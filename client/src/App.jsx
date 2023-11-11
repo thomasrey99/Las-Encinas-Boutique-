@@ -1,16 +1,22 @@
 import style from './App.module.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 import Home from './VIEWS/Home/Home';
 import Landing from './VIEWS/Landing/Landing';
+=======
+import Home from "./VIEWS/Home/Home"
+>>>>>>> develop
 import Detail from './VIEWS/Detail/detail';
 import NavBar from './Components/Navbar/NavBar';
-import FormProducts from './VIEWS/FormProduct/FormProducts';
 import FormUser from './VIEWS/Forms/FormsUser/user';
 import AboutUs from './VIEWS/AboutUs/aboutUs';
 import ErrorPage from './Components/ErrorPage/errorPage';
 import Footer from './Components/Footer/footer';
 import Login from './VIEWS/Forms/Login/login';
+<<<<<<< HEAD
 import Register from './VIEWS/Forms/Register/Register';
+=======
+>>>>>>> develop
 import Favorites from './Components/Favorites/favorites';
 import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
@@ -24,11 +30,19 @@ import Orders from './VIEWS/Admin/Views/Orders/Orders';
 import Clients from './VIEWS/Admin/Views/Clients/Clients';
 import EditUsers from './VIEWS/Admin/Views/Clients/EditUsers';
 import EditProducts from './VIEWS/Admin/Views/Products/EditProducts'
+<<<<<<< HEAD
+=======
+import CreateProducts from './VIEWS/Admin/Views/Products/CreateProducts';
+>>>>>>> develop
 import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 import { useState } from 'react';
 
+<<<<<<< HEAD
 import Menu from './Components/menu/Menu';
+=======
+import Menu from './Components/menu/Menu'; 
+>>>>>>> develop
 
 const App = () => {
 
@@ -37,9 +51,15 @@ const App = () => {
   const currentUser = useSelector(state => state.user.userLog)
  
   const handleOPen=()=>{
+<<<<<<< HEAD
     console.log("hola perro!")
     setIsOpen(!isOPen)
   }
+=======
+    // console.log("hola perro!")
+    setIsOpen(!isOPen)
+  } 
+>>>>>>> develop
 
   const location = useLocation();
 
@@ -50,6 +70,10 @@ const App = () => {
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
   location.pathname !== '/ordersAdmin' &&
+<<<<<<< HEAD
+=======
+  location.pathname !== '/createProduct' &&
+>>>>>>> develop
   !location.pathname.startsWith('/editProductAdmin/') &&
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
@@ -65,7 +89,10 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
+<<<<<<< HEAD
           <Route path='createProduct' element={<FormProducts />} />
+=======
+>>>>>>> develop
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
           {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
@@ -77,7 +104,11 @@ const App = () => {
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
           {/* Rutas protegidas del admin */}
+<<<<<<< HEAD
                      
+=======
+
+>>>>>>> develop
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
@@ -85,6 +116,10 @@ const App = () => {
           {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
+<<<<<<< HEAD
+=======
+          {currentUser?.is_Admin === true ? <Route path='/createProduct' element={<CreateProducts />} /> : <Route path='/createProduct' element={<ErrorPage />} />}
+>>>>>>> develop
 
         </Routes>
         {isOPen&&<Menu handleOPen={handleOPen}/>}

@@ -13,6 +13,10 @@ import { categoriesApi } from "./services/categoriesApi";
 import { favoritesApi } from "./services/favoritesApi";
 import { cartApi } from "./services/CartApi";
 import { reviewsApi } from "./services/reviewsApi";
+<<<<<<< HEAD
+=======
+import { requestApi } from "./services/requestApi";
+>>>>>>> develop
 
 export const store = configureStore({
     reducer: {
@@ -28,11 +32,20 @@ export const store = configureStore({
       [categoriesApi.reducerPath]:categoriesApi.reducer,
       [favoritesApi.reducerPath]: favoritesApi.reducer,
       [cartApi.reducerPath]:productsApi.reducer,
+<<<<<<< HEAD
       [reviewsApi.reducerPath]:reviewsApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(productsApi.middleware, usersApi.middleware, categoriesApi.middleware, typesApi.middleware,
         favoritesApi.middleware, cartApi.middleware, reviewsApi.middleware),
+=======
+      [reviewsApi.reducerPath]:reviewsApi.reducer,
+      [requestApi.reducerPath]:requestApi.reducer
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(productsApi.middleware, usersApi.middleware, categoriesApi.middleware, typesApi.middleware,
+        favoritesApi.middleware, cartApi.middleware, reviewsApi.middleware, requestApi.middleware),
+>>>>>>> develop
   });
   
   setupListeners(store.dispatch);

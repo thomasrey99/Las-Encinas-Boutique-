@@ -6,7 +6,11 @@ const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
 const reviewModel=require("./models/Review")
+<<<<<<< HEAD
 require("dotenv").config();
+=======
+require("dotenv").config(); 
+>>>>>>> develop
 
 
 const {
@@ -16,6 +20,7 @@ const {
   DB_NAME,
   DB_DIALECT,
   DB_PORT,
+<<<<<<< HEAD
   DB_SERVER_DEPLOY
 } = process.env; 
 
@@ -24,6 +29,23 @@ const dataBase=new Sequelize(
   {logging:false, dialectOptions:{ssl:{require:true}}}
 )
 
+=======
+  DB_SERVER_DEPLOY  
+} = process.env;  
+
+// ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD LOCAL
+const dataBase=new Sequelize(  
+  `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  {logging:false}
+)
+
+// ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
+// const dataBase=new Sequelize(      
+//   `${DB_SERVER_DEPLOY}`, 
+//   {logging:false, dialectOptions:{ssl:{require:true}}}   
+//  )
+
+>>>>>>> develop
 userModel(dataBase)
 productModel(dataBase)
 categoryModel(dataBase)

@@ -164,7 +164,11 @@ const FormEditUser = () => {
           onChange={handleChange}
         >
           <option value={true}>Administrador</option>
+<<<<<<< HEAD
           <option value={false}>Usuario</option>
+=======
+          <option value={false}>Cliente</option>
+>>>>>>> develop
         </select>
 
         <label className={styles.label}>Bloquear usuario</label>
@@ -178,8 +182,14 @@ const FormEditUser = () => {
           <option value={false}>No</option>
         </select>
 
+<<<<<<< HEAD
         <button className={styles.button} type="submit">Guardar</button>
         <button className={styles.button} onClick={handleCancel}>Cancelar</button>
+=======
+       
+        <button className={styles.buttonCancel} onClick={handleCancel}>Cancelar</button>
+        <button className={styles.button} type="submit">Guardar</button>
+>>>>>>> develop
       </form>
     </div>
   );

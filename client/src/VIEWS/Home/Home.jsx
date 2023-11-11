@@ -11,15 +11,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
+import { getUserByUid } from "../../libs/redux/features/actions/userActions.js";
+import { useEffect } from "react";
 
 
 
 const Home = () => {
+<<<<<<< HEAD
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const productsData = useSelector((state) => state.items.allProducts);
   const productsFilter=productsData?.filter((product) => product.is_Delete ===false)
+=======
+  const { user, logout } = useAuth();
+  console.log("Este es el user del home:",user)
+  useEffect(()=>{
+    user && dispatch(getUserByUid(user.uid))
+  },[])
+  const whatsappLink = `https://wa.me/+5493816771213`;  
+  const {Title, Text} = Typography;
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.items.allProducts);
+  const productsFilter=products?.filter((product) => product.is_Delete ===false)
+>>>>>>> develop
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
 
@@ -27,10 +42,15 @@ const Home = () => {
 
   const startIndex = (currentPage-1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+<<<<<<< HEAD
   const products = productsFilter?.slice(startIndex, endIndex);
   const productsToDisplay = products
 
   console.log("todos los productos", productsToDisplay)
+=======
+  const productsToDisplay = productsFilter.slice(startIndex, endIndex);
+  
+>>>>>>> develop
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
@@ -45,7 +65,11 @@ const Home = () => {
         <Pagination
           current={currentPage}
           pageSize={itemsPerPage}
+<<<<<<< HEAD
           total={products.length}
+=======
+          total={productsFilter.length}
+>>>>>>> develop
           onChange={paginate}
         />
       </div>

@@ -9,8 +9,13 @@ const CardsCart = ({name, image, price, quantity, onDelete, decrement, increment
               <button className={style.deleteButton} onClick={()=>onDelete({name:name, price:price, quantity:quantity})}>Eliminar</button>
             </div>
             <div className={style.incrementDecrement}>
+<<<<<<< HEAD
               <button disabled={quantity===10} onClick={()=>increment({name:name})}>+</button>
               <button disabled={quantity===1} onClick={()=>decrement({name:name})}>-</button>
+=======
+              <button disabled={quantity===1} onClick={()=>decrement({name:name})}>-</button>
+              <button disabled={quantity===10} onClick={()=>increment({name:name})}>+</button>
+>>>>>>> develop
             </div>
             <p className={style.total}>{price} x {quantity}</p>
         </div>

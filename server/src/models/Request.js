@@ -7,6 +7,7 @@ module.exports = (dataBase) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+<<<<<<< HEAD
         // uid: {
         //     type: DataTypes.UUID,
         //     allowNull: false,
@@ -14,6 +15,11 @@ module.exports = (dataBase) => {
         id_send: {
             type: DataTypes.UUID,
             allowNull: false,
+=======
+        products:{
+            type:DataTypes.JSON,
+            allowNull:false
+>>>>>>> develop
         },
         date: {
             type: DataTypes.DATE,
@@ -21,19 +27,15 @@ module.exports = (dataBase) => {
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue:"pending"
         },
         address: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        payment: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        shipping_detail:{
-            type: DataTypes.STRING,
-            allowNull: false,
+        payment_id:{
+            type:DataTypes.STRING,
+            allowNull:false
         },
         total_amount:{
             type: DataTypes.NUMERIC,

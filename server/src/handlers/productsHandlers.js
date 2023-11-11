@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+require("dotenv").config(); 
+const { VITE_URL_FRONT } = process.env;
+>>>>>>> develop
 const mercadopago = require("mercadopago")
 const { productId, 
     allProducts, 
@@ -100,11 +105,21 @@ try {
 }
 
 const createPreference = async (req, res) => {
+<<<<<<< HEAD
     mercadopago.configure({
         access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
     })
     const {description, price, quantity}=req.body
     console.log("esto llega para la preferencia", description, price, quantity)
+=======
+     mercadopago.configure({
+        access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
+    })
+
+
+    
+    const {description, price, quantity, id_user}=req.body
+>>>>>>> develop
     let preference = {
 		items: [
 			{
@@ -114,10 +129,11 @@ const createPreference = async (req, res) => {
 			}
 		],
 		back_urls: {
-			"success": "http://localhost:5173/home",
-			"failure": "http://localhost:5173/home",
+			"success": `${VITE_URL_FRONT}/home`,
+			"failure": `${VITE_URL_FRONT}/home`,
 			"pending": ""
 		},
+        external_reference:`${id_user}`,
 		auto_return: "approved",
 	};
 
@@ -140,4 +156,8 @@ module.exports = {
     deleteProduct,
     createPreference,
     patchProduct
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

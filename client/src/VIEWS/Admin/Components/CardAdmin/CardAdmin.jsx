@@ -38,10 +38,10 @@ const CardAdmin = ({ image, name, description, id_product, is_Delete }) => {
     softDelete(body)
   }
 
-
   return (
     <div>
         <Card
+        className={style.Card}
         style={{
           margin: "5% 0 0 0",
           width: "18em",

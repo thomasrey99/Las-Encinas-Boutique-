@@ -29,6 +29,9 @@
     "Log-in": "Log in",
     "Administrator-Panel": "Administrator Panel"
 },
+"home":{
+    "error": "No products found"
+},
 "banner": {
     "title": "Enjoy the best delicacies of the region.",
     "description1": "Ideal to entertain with a gift for someone special.",
@@ -50,7 +53,7 @@
     "3": "Full Stack Web Developer, oriented to Front-end with React, in e-commerce projects structured to market trends based on demand.",
     "4": "Experience in developing interactive and scalable web applications. Specialized in JavaScript, React, Node.js, Express.js, Sequelize and PostgreSQL.",
     "5": "Fullstack web developer with specialization in frontend. Passionate about creating pleasant and functional user experiences.",
-    "6": "",
+    "6": "Decisive and passionate programmer. Always learning. Innovative, adaptive, eager to integrate latest technologies. Focused on results.",
     "7": "Full Stack developer passionate about technology in constant search of solutions based on experience, creativity and willingness to contribute to your team."
 }
 

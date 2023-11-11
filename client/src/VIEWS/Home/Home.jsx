@@ -70,7 +70,7 @@ const Home = () => {
           ))}
         </div>
         {productsToDisplay.length === 0 && (
-          <p className={styles.errorSearch}>No se encontraron productos</p>
+          <p className={styles.errorSearch}>{t("home.error")}</p>
         )}
       </div>
       <div className={styles.content}>

@@ -29,6 +29,9 @@
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
 },
+"home":{
+    "error": "No se encontraron productos"
+},
 "banner": {
     "title": "Disfrute de las mejores delicias de la región.",
     "description1": "Ideales para agasajar con un regalo para alguien especial.",
@@ -51,7 +54,7 @@
     "3": "Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
     "4": "Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
     "5": "Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
-    "6": "",
+    "6": "Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
     "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
 }
 

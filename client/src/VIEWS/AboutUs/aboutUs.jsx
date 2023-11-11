@@ -15,8 +15,8 @@ const coders = [
     description:"Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
     linkAvatar: "/public/cris.jpeg",
     linkedin: " https://www.linkedin.com/in/christian-dustin-puyo-torres-b08082253/",
-    github: "#",
-    email: "#"
+    github: "https://github.com/ChristianPuyo",
+    email: "christianpuyotorres@gmail.com"
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const coders = [
     fullName: "Nahim Mora",
     description:"Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
     linkAvatar: "/public/Nahim.jpg",
-    linkedin: "in/fernando-nahim-mora-developer",
+    linkedin: "https://www.linkedin.com/in/fernando-nahim-mora-developer",
     github: "https://github.com/NahimMora",
     email: "nahimprogramming@gmail.com"
   },
@@ -57,11 +57,11 @@ const coders = [
   {
     id: 6,
     fullName: "Thomas Rey",
-    description:"",
+    description:"Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
     linkAvatar: "/public/Thomy.jpg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/thomas-rey-39099021b/",
     github: "https://github.com/thomasrey99",
-    email: "#"
+    email: "thomas_rey1999@outlook.com"
   },
   {
     id: 7,

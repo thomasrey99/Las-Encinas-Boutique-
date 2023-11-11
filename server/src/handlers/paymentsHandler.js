@@ -1,25 +1,54 @@
-const axios=require("axios")
+const {getAllPaymentsController, getPaymentByIdController, deletePaymentController}=require("../controllers/paymentsController")
 
-const createPaymentHandler=async(req, res)=>{
+const getAllPaymentsHandler=async(req, res)=>{
+    try {
+        const response=await getAllPaymentsController()
 
-    const {data}=await req
+        return res.status(200).json(response)
 
-    const id=data?.id
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+
+    }
+}
+
+const getPaymentByIdHandler=async(req, res)=>{
+
+    const {id_payment}=req.params
 
     try {
-        if(id!==undefined){
+        
+        const response=await getPaymentByIdController(id_payment)
 
-            const paymentInfo=(axios(`https://api.mercadopago.com/v1/payments/${id}`)).data
+        return res.status(200).json(response)
 
-            console.log("informacion del pago", paymentInfo)
-
-            return res.status(200).json(paymentInfo)
-        }
     } catch (error) {
-        return res.status(400).json(error)
+        
+        return res.status(400).json({message:error})
+        
+    }
+}
+
+const deletePaymentHandler=async (req, res)=>{
+
+    const {id_payment}=req.params
+
+    try {
+        
+        const response=deletePaymentController(id_payment)
+
+        return res.status(200).json(response)
+
+    } catch (error) {
+        
+        return res.status(400).json({message:error})
+        
     }
 }
 
 module.exports={
-    createPaymentHandler
+    getAllPaymentsHandler,
+    getPaymentByIdHandler,
+    deletePaymentHandler
 }

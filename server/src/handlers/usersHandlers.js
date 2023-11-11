@@ -12,7 +12,7 @@ const { getUserIdController,
 const getAllUsers=async (req, res)=>{
     const {email} = req.query
     const {name} = req.query
-    console.log(req.query)
+
     try {
         if(email){
             const result = await getUserByEmail(email)

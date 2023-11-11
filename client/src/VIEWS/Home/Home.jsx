@@ -11,10 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
+import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
+import { useEffect } from "react";
 
 
 
 const Home = () => {
+  const { user} = useAuth();
+  console.log("Este es el user del home:",user)
+  useEffect(()=>{
+    user && dispatch(getUserLog(user.uid))
+
+  },[])
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();

@@ -106,9 +106,9 @@ const createPreference = async (req, res) => {
         access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
     })
 
-
     
     const {description, price, quantity, id_user}=req.body
+    
     let preference = {
 		items: [
 			{

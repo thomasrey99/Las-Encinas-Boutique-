@@ -18,8 +18,26 @@ export const requestApi=createApi({
                 body:newRequest
             }),
             invalidatesTags:["request"]
+        }),
+        getRequestById:builder.query({
+            query:(id_request)=>`request/${id_request}`,
+        }),
+        updateRequest:builder.mutation({
+            query:({data, id_request})=>({
+                url:`request/${id_request}`,
+                method:"PUT",
+                body:data
+            }),
+            invalidatesTags:["request"]
+        }),
+        deleteRequest:builder.mutation({
+            query:(id_request)=>({
+                url:`request/${id_request}`,
+                method:"DELETE"
+            }),
+            invalidatesTags:["request"]
         })
     })
 })
 
-export const {useCreateRequestMutation, useGetAllRequestQuery}=requestApi
+export const {useCreateRequestMutation, useGetAllRequestQuery, useDeleteRequestMutation, useGetRequestByIdQuery, useUpdateRequestMutation}=requestApi

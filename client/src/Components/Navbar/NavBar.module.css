@@ -72,7 +72,27 @@
     justify-content: center;
     margin-left: 20px;
   }
-  
+
+.languageButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.languageButtons button {
+  margin-right: 30px; 
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+}
+
+.languageButtons img {
+  width: 3rem; 
+  height: auto; 
+}
+
+/*   
   .wrapper {
     --font-color-dark: #fefefe;
     --font-color-light: #111;
@@ -128,5 +148,5 @@
   .input:checked + .btn .span {
     color: var(--font-color-light);
   }
-  
+   */
 

@@ -5,6 +5,7 @@ import { GithubOutlined, LinkedinOutlined, MailOutlined } from '@ant-design/icon
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 const coders = [
@@ -38,8 +39,8 @@ const coders = [
   {
     id: 4,
     fullName: "Nahim Mora",
-    description:"",
-    linkAvatar: "/public/Nah.webp",
+    description:"Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
+    linkAvatar: "/public/Nahim.jpg",
     linkedin: "in/fernando-nahim-mora-developer",
     github: "https://github.com/NahimMora",
     email: "nahimprogramming@gmail.com"
@@ -47,8 +48,8 @@ const coders = [
   {
     id: 5,
     fullName: "Mateo Leon",
-    description:"",
-    linkAvatar: "/public/CP.webp",
+    description:"Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
+    linkAvatar: "/public/Matty.jpg",
     linkedin: " https://www.linkedin.com/in/mateo-le%C3%B3n-097b57268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", 
     github: "https://github.com/MateoLeon505",
     email: "mateolt505@gmail.com "
@@ -57,7 +58,7 @@ const coders = [
     id: 6,
     fullName: "Thomas Rey",
     description:"",
-    linkAvatar: "/public/CP.webp",
+    linkAvatar: "/public/Thomy.jpg",
     linkedin: "#",
     github: "https://github.com/thomasrey99",
     email: "#"
@@ -75,15 +76,18 @@ const coders = [
 ]
 
 const aboutUs = () => {
+  
+  const { t  } = useTranslation("global");
+  
   useEffect(() => {
     AOS.init(); 
   }, []);
-
+  
   return (
     <div className='container'>
-      <h1 style={{fontFamily: 'var(--primary-font)'}}>Soluciones a tus Proyectos</h1>
+      <h1 style={{fontFamily: 'var(--primary-font)'}}>{t("about.title")}</h1>
       <div>
-        <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center', margin: '0px 150px'}}>Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social.</p>
+        <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center', margin: '0px 150px'}}>{t("about.description")}</p>
       </div>
       <div className='cards__container'>
         {coders.map((coder) => {
@@ -91,9 +95,9 @@ const aboutUs = () => {
             <div key={coder.id} className='card' data-aos="zoom-in" data-aos-delay="700" data-aos-duration={coder.id}>
               <img className='card__image' src={`${coder.linkAvatar}`} width="200" height="200" />
               <h5 className='card__text'>{coder.fullName}</h5>
-              <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center'}}>{coder.description}</p>
+              <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center'}}>{t("coder." + coder.id)}</p>
               <div className='card__links'>
-                <a href={`${coder.github}`}><GithubOutlined /></a>
+                <a href={`${coder.github}`} ><GithubOutlined target="_blank"/></a>
                 <a href={`mailto:${coder.email}`}><MailOutlined /></a>
                 <a href={`${coder.linkedin}`}><LinkedinOutlined /></a>
               </div>

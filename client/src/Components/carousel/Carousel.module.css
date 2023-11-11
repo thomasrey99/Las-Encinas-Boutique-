@@ -32,6 +32,9 @@
 .title{
     font-family: var(--primary-font);
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .enter{
     text-decoration: none;

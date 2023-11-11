@@ -8,6 +8,8 @@ import HamburgerMenu from "../HamburgerMenu/menu";
 import cart from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
+import flagUsa from "../../assets/Usa.png";
+import flagArg from "../../assets/Arg.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
@@ -97,7 +99,11 @@ const NavBar = ({handleOPen, isOPen}) => {
             <div className={menuStyle.bars} id={menuStyle.bar3}></div>
           </label>
         </div>
-      <div className={style.wrapper}>
+        <div className={style.languageButtons}>
+        <button onClick={() => i18n.changeLanguage("es")}><img src={flagArg} alt="Argentina Flag" /></button>
+          <button onClick={() => i18n.changeLanguage("en")}><img src={flagUsa} alt="US Flag" /></button>
+        </div>
+      {/* <div className={style.wrapper}>
       <div className={style.option}>
         <input
           checked={i18n.language === 'es'}
@@ -124,7 +130,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           <span className={style.span}>en</span>
         </label>
       </div>
-        </div>         
+        </div>          */}
     </div>
 
           

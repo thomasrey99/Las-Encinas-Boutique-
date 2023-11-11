@@ -7,7 +7,8 @@
     "Order": "Orden",
     "Chocolate type": "Tipo de chocolate",
     "Minimum": "Minimo",
-    "Maximum": "Maximo"
+    "Maximum": "Maximo",
+    "Clear": "Limpiar"
 
 },
 "footer":{
@@ -35,6 +36,23 @@
     "description3": "* Tarjetas que expresan nuestros mejores deseos.",
     "description4": "* Elaboración con materia prima de la más alta calidad.",
     "description5": "* Atención en horario comercial de 9 a 13hs y de 16 a 21hs."
+},
+"carousel":{
+    "slogan": "El arte de endulzar tus momentos!"
+},
+"about":{
+    "title": "Soluciones a tus Proyectos",
+    "description": "Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social."
+    
+},
+"coder": {
+    "1": "Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
+    "2": "Analítica con alto nivel de persistencia, dedicada, responsable y comprometida para las relaciones interpersonales.",
+    "3": "Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
+    "4": "Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
+    "5": "Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
+    "6": "",
+    "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
 }
 
 }

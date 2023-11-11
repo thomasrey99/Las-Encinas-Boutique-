@@ -21,6 +21,7 @@ const Home = () => {
   console.log("Este es el user del home:",user)
   useEffect(()=>{
     user && dispatch(getUserLog(user.uid))
+
   },[])
   const whatsappLink = `https://wa.me/+5493816771213`;  
   const {Title, Text} = Typography;

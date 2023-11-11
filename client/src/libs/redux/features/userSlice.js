@@ -39,6 +39,7 @@ export const userSlice = createSlice({
             state.userLog = action.payload 
             
 
+
         },
         
         updateUser:(state, action)=>{

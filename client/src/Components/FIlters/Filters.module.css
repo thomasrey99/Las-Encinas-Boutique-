@@ -1,8 +1,9 @@
 .filterCont{
     width: 100vw;
-    height: 120px;
-    display: flex;
-    flex-direction: row;
+    /* height: 120px; */
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    /* flex-direction: row; */
     align-items: end;
     justify-content: center;
     padding: 20px;
@@ -16,5 +17,15 @@
     justify-content: center;
     font-family: var(--primary-font);
     gap: 10px;
+    /* grid-template-columns: auto auto auto auto auto; */
+}
+
+.col1 {
+    display: flex !important;
+    width: 100%;
+}
+.col2{
+    display: flex !important;
+    align-items: flex-end !important;
 }
 

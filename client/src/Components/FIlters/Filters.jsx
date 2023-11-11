@@ -62,36 +62,19 @@ const Filters = () => {
     }
   }
   // console.log(filters)
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 12,
-      },
-      sm: {
-        span: 8,
-      },
-    },
-    wapperCol: {
-      xs: {
-        span: 4,
-      },
-      sm: {
-        span: 20,
-      },
-    },
-  };
+  
   return (
         <div className={style.filterCont}>
           
-            <Row gutter={[20, 20]}>
-              <Col   ><SelectCategory change={handleChangeCategory}/></Col>
-              <Col   ><Order change={handleChangeOrder}/></Col>
-              <Col   ><Type change={handleChangeType}/></Col>
-              <Col   ><RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/></Col>
-              <Col   ><ClearButton/></Col>
+            <Row gutter={[35, 35]} >
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><SelectCategory change={handleChangeCategory}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><Order change={handleChangeOrder}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><Type change={handleChangeType}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/></Col>
+              <Col xs={24} sm={12} md={4} lg={4} className={style.col2}><ClearButton/></Col>
             </Row>
         </div>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

@@ -28,17 +28,17 @@ const dataBase=new Sequelize(
 )
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
-<<<<<<< HEAD
+
 // const dataBase=new Sequelize( 
 //   `${DB_SERVER_DEPLOY}`,
 //   {logging:false, dialectOptions:{ssl:{require:true}}}
 //  )
-=======
+
 /*const dataBase=new Sequelize( 
   `${DB_SERVER_DEPLOY}`,
   {logging:false, dialectOptions:{ssl:{require:true}}}
 )*/
->>>>>>> da71f9adbb4de65100df2eb1a19652036bd9e779
+
 
 userModel(dataBase)
 productModel(dataBase)

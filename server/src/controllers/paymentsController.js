@@ -9,7 +9,18 @@ const getPaymentByIdController=async(id_payment)=>{
     return response
 }
 
+const deletePaymentController=async(id_payment)=>{
+
+    const paymentDelete=await Payment.findByPk(id_payment)
+
+    await paymentDelete.destroy()
+
+    return paymentDelete
+
+}
+
 module.exports={
     getAllPaymentsController,
-    getPaymentByIdController
+    getPaymentByIdController,
+    deletePaymentController
 }

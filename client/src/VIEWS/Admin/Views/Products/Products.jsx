@@ -7,11 +7,15 @@ import Style from './Products.module.css';
 import { NavLink } from 'react-router-dom';
 import CardAdmin from '../../Components/CardAdmin/CardAdmin';
 import { useSelector } from 'react-redux';
+import FilterAdmin from '../../Components/FilterAdmin/FilterAdmin';
+import { useGetAllProductsQuery } from '../../../../libs/redux/services/productsApi';
 
 
 const Products = () => {
 
-  const products=useSelector((state)=>state.items.allProducts) 
+  const filters = useSelector((state)=>state.filters)
+
+  const { data } = useGetAllProductsQuery(filters)
 
   const [showAll, setShowAll] = useState(false);       
 
@@ -19,6 +23,8 @@ const Products = () => {
     setShowAll(!showAll);
   }
   const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
+
+  console.log(data);
 
   return (
     <div className={Conteiner.Container}>
@@ -33,8 +39,10 @@ const Products = () => {
           </NavLink>
         </div>
 
+        <FilterAdmin/>
+
         <div className={Style.Prod}>
-            <h2>Productos mas vendidos</h2>
+            <h2>Productos</h2>
             <span onClick={handleClick} className={Style.SeeMoreText}>
             {seeMoreText}
             </span>
@@ -42,10 +50,10 @@ const Products = () => {
 
         <div className={Style.Cards}>
           {showAll
-            ? products?.map((p) => (
+            ? data?.map((p) => (
               <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
               ))
-            : products.slice(0, 8).map((p) => (
+            : data?.slice(0, 8).map((p) => (
               <CardAdmin name={p.name} id_product={p.id_product} image={p.image} description={p.description}  is_Delete={p.is_Delete}/>
             ))}
         </div>

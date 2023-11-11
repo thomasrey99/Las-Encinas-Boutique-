@@ -109,6 +109,9 @@ const createPreference = async (req, res) => {
 
     
     const {description, price, quantity, id_user}=req.body
+
+    
+    const {description, price, quantity, id_user}=req.body
     let preference = {
 		items: [
 			{

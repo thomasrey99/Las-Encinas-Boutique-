@@ -28,6 +28,7 @@ export const cartSlice=createSlice({
                 }
             } else {
                 state.products.push({ name:payload.name, price:Number(payload.price), quantity:1, total_price:Number(payload.price), image:payload.image, id:payload.id});
+                state.products.push({ name:payload.name, price:Number(payload.price), quantity:1, total_price:Number(payload.price), image:payload.image, id:payload.id});
                 state.product_quantity=Number(state.products.length)
             }
             state.total_price = state.products.reduce((total, product) => Number(total) + Number(product.total_price), 0);

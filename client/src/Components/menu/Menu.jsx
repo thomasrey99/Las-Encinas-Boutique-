@@ -4,8 +4,11 @@ import { useAuth } from "../../firebase/authContext";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
 import { addCart } from "../../libs/redux/features/CartSlice";
+import { useTranslation } from "react-i18next";
 
 const Menu = ({handleOPen}) => {
+
+  const { t } = useTranslation("global");
   
   const dispatch=useDispatch()
 

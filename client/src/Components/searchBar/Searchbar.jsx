@@ -5,9 +5,11 @@ import { addProducts } from "../../libs/redux/features/productsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useGetAllProductsQuery } from "../../libs/redux/services/productsApi"
 import { addFilter } from "../../libs/redux/features/filterSelice"
+import { useTranslation } from "react-i18next"
 
 const Searchbar = () => {
 
+  const { t } = useTranslation("global");
 
 
   const dispatch=useDispatch()
@@ -55,7 +57,7 @@ const Searchbar = () => {
         </div>*/}
         <div className={style.searchbarCont}>
             <div className={style.searchBar}>
-                <input type='text' placeholder='Buscar por nombre' name="search" value={name} onChange={handleChange}/>
+                <input type='text' placeholder={t("searchBar.Search-by-name")} name="search" value={name} onChange={handleChange}/>
                 <button onClick={handleSearch}><img src={searchIcon}/></button>
             </div>
         </div>

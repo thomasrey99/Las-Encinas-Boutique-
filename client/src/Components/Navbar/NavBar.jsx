@@ -9,12 +9,16 @@ import HamburgerMenu from "../HamburgerMenu/menu";
 import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
+import flagUsa from "../../assets/Usa.png";
+import flagArg from "../../assets/Arg.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
 import { useEffect, useState } from "react";
 import { addCart, cleanCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
+import { useTranslation} from "react-i18next";
+
 import { useCreateRequestMutation } from "../../libs/redux/services/requestApi";
 
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
@@ -42,7 +46,8 @@ const NavBar = ({handleOPen, isOPen}) => {
   let status=url.searchParams.get("status")
 
   const { user, logout } = useAuth();
-  
+  const { t, i18n } = useTranslation("global");
+
  
   const dispatch = useDispatch();
 
@@ -97,8 +102,8 @@ const NavBar = ({handleOPen, isOPen}) => {
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
-          <NavLink to='/'><img src={logo} className={style.img}/></NavLink>   
-          <img src={title} className={style.brand}/>
+          <NavLink to='/home'><img src={logo} className={style.img}/></NavLink>   
+          <NavLink to='/home'><img src={title} className={style.brand}/></NavLink>
         </div>
         <div className={style.navItems}>
           <NavLink to={"/cart"}>
@@ -108,8 +113,8 @@ const NavBar = ({handleOPen, isOPen}) => {
             </div>
           </NavLink>
           <div className={style.navLinks}>
-              {!user&&<p>¿Aun no sos cliente? <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>Resgistrate</NavLink></p>}
-              {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
+              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
+              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
           </div>
           <div className={menuStyle.menuCont}>
           <input
@@ -124,11 +129,44 @@ const NavBar = ({handleOPen, isOPen}) => {
             <div className={menuStyle.bars} id={menuStyle.bar3}></div>
           </label>
         </div>
+        <div className={style.languageButtons}>
+        <button onClick={() => i18n.changeLanguage("es")}><img src={flagArg} alt="Argentina Flag" /></button>
+          <button onClick={() => i18n.changeLanguage("en")}><img src={flagUsa} alt="US Flag" /></button>
         </div>
+      {/* <div className={style.wrapper}>
+      <div className={style.option}>
+        <input
+          checked={i18n.language === 'es'}
+          onChange={() => i18n.changeLanguage('es')}
+          type="radio"
+          name="language"
+          id="es"
+          className={style.input}
+        />
+        <label htmlFor="es" className={style.btn}>
+          <span className={style.span}>es</span>
+        </label>
+      </div>
+      <div className={style.option}>
+        <input
+          checked={i18n.language === 'en'}
+          onChange={() => i18n.changeLanguage('en')}
+          type="radio"
+          name="language"
+          id="en"
+          className={style.input}
+        />
+        <label htmlFor="en" className={style.btn}>
+          <span className={style.span}>en</span>
+        </label>
+      </div>
+        </div>          */}
+    </div>
+
+          
         
     </nav>
   );
 };
 
 export default NavBar;
-

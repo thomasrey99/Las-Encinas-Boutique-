@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
@@ -157,7 +157,7 @@ const formItemLayout = {
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
                     
-                <Button type="primary" htmlType="submit" className="button-submit" >Registrar</Button>
+                <Button type="primary" htmlType="submit" className={style.buttonSubmit} >Registrar</Button>
                 <div className={style.divButtons}>
                 </div>
 

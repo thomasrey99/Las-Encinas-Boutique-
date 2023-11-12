@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
 import { Navigate, useNavigate } from "react-router-dom";
-=======
-import { useNavigate } from "react-router-dom";
->>>>>>> 8aa2ecc3697528349f2e606d957668548dc1a653
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';

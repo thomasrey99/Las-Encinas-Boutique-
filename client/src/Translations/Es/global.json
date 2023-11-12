@@ -1,6 +1,7 @@
 { "navBar":{
     "not-costumer-yet?": "Aún no sos cliente?",
-    "Register": "Registrate"
+    "Register": "Registrate",
+    "Hello": "Hola de nuevo"
 },
 "filters":{
     "Categories": "Categorias",
@@ -11,6 +12,12 @@
     "Clear": "Limpiar"
 
 },
+"types": {
+    "All": "Todos",
+    "White_chocolate": "Chocolate blanco",
+    "Chocolate_w_ milk": "Chocolate con leche",
+    "Semisweet": "Chocolate semi-amargo"
+  },
 "footer":{
     "Location": "Ubicación",
     "Social-Media": "Redes Sociales",
@@ -45,8 +52,7 @@
 },
 "about":{
     "title": "Soluciones a tus Proyectos",
-    "description": "Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social."
-    
+    "description": "Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social."    
 },
 "coder": {
     "1": "Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
@@ -57,5 +63,4 @@
     "6": "Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
     "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
 }
-
 }

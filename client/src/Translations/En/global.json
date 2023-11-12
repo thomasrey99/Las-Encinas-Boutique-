@@ -1,6 +1,7 @@
 { "navBar":{
     "not-costumer-yet?": "Not costumer yet?",
-    "Register": "Register"
+    "Register": "Register",
+    "Hello": "Welcome back"
 },
 "filters":{
     "Categories": "Categories",
@@ -11,6 +12,12 @@
     "Clear": "Clear"
 
 },
+"types": {
+    "All": "All",
+    "White_chocolate": "White Chocolate",
+    "Chocolate_w_ milk": "Chocolate with Milk",
+    "Semisweet": "Semisweet Chocolate"
+  },
 "footer":{
     "Location": "Location",
     "Social-Media": "Social media",
@@ -56,6 +63,4 @@
     "6": "Decisive and passionate programmer. Always learning. Innovative, adaptive, eager to integrate latest technologies. Focused on results.",
     "7": "Full Stack developer passionate about technology in constant search of solutions based on experience, creativity and willingness to contribute to your team."
 }
-
-
 }

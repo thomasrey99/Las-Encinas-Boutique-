@@ -114,7 +114,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           </NavLink>
           <div className={style.navLinks}>
               {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
-              {user&&<p>{`Hola de nuevo ${currentUser?.name}`}</p>}
+              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
           </div>
           <div className={menuStyle.menuCont}>
           <input

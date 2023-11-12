@@ -75,7 +75,7 @@ const coders = [
   }
 ]
 
-const aboutUs = () => {
+const AboutUs = () => {
   
   const { t  } = useTranslation("global");
   
@@ -109,4 +109,4 @@ const aboutUs = () => {
   )
 }
 
-export default aboutUs;
+export default AboutUs;

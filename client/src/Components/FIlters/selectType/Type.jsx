@@ -7,19 +7,16 @@ import { addTypes } from '../../../libs/redux/features/typesSlice';
 import { useTranslation } from 'react-i18next';
 
 const Type = ({change}) => {
-
   const dispatch=useDispatch()
-
   const types=useSelector((state)=>state.types.allTypes)
-
-  const {data}=useGetAllTypesQuery()
+  const {data}=useGetAllTypesQuery()  
+  const { t } = useTranslation("global");
 
   useEffect(()=>{
     if(data && data.length>0){
       dispatch(addTypes(data))
     }
   }, [data])
-  const { t } = useTranslation("global");
 
   return (
     <Space wrap className={style.selectCont}>

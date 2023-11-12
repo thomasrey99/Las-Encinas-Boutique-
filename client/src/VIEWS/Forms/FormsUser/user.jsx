@@ -157,7 +157,7 @@ const formItemLayout = {
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
                     
-                <Button type="primary" htmlType="submit" className="button-submit" >Registrar</Button>
+                <Button type="primary" htmlType="submit" className={style.buttonSubmit} >Registrar</Button>
                 <div className={style.divButtons}>
                 </div>
 

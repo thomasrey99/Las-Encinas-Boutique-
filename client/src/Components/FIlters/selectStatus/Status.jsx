@@ -1,9 +1,7 @@
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css";
-import { useSelector } from "react-redux";
-const Status = ({change}) => {
 
-    const products = useSelector((state) => state.items.allProducts)
+const Status = ({change}) => {
    
     return (
         <Space wrap className={style.selectCont}>

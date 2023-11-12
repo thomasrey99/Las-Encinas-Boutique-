@@ -8,7 +8,7 @@ const initialState={
     maxPrice:"",
     order:"",
     type:"",
-    is_Delete:false,
+    is_Delete:"",
 }
 
 export const filterSlice=createSlice({
@@ -46,9 +46,12 @@ export const filterSlice=createSlice({
             state.order = "";
             state.type = "";
             state.is_Delete = "";
+        },
+        statusFilter(state) {
+            state.is_Delete =""
         }
     }
 })
 
-export const {addFilter, clearFilter}=filterSlice.actions
+export const {addFilter, clearFilter,statusFilter}=filterSlice.actions
 export default filterSlice.reducer

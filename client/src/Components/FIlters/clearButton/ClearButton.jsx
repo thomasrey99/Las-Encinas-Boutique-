@@ -14,7 +14,7 @@ const ClearButton = () => {
   }
   console.log("filtros desde el clear button", filters)
   return (
-    <Button type="primary" onClick={clearAction} style={{color: 'orangered', borderColor: 'orangered'}} ghost>
+    <Button type="primary" onClick={clearAction} style={{color: 'orangered', borderColor: 'orangered', width:"100px"}} ghost>
       <span style={{ fontWeight: 'bold' }}>{t("filters.Clear")}</span>
     </Button>
   )

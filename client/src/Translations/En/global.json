@@ -3,6 +3,10 @@
     "Register": "Register",
     "Hello": "Welcome back"
 },
+"order":{
+    "highest-price": "highest price",
+    "Lowest-price": "Lowest-price"
+},
 "filters":{
     "Categories": "Categories",
     "Order": "Order",

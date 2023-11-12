@@ -32,9 +32,8 @@ const Order = ({change}) => {
           name="order"
           defaultValue={"a-z"}
           style={{
-            width: "15vw",
-          }}
-          
+            width: "12vw",
+          }}          
           options={order.map((o) => ({
             label: o.label,
             value: o.value

@@ -14,12 +14,13 @@ const SelectCategory = ({change}) => {
 
   const {data}=useGetAllCategoriesQuery()
 
+  const { t } = useTranslation("global");
   useEffect(()=>{
     if(data && data.length>0){
       dispatch(addCategories(data))
     }
   }, [data])
-  const { t } = useTranslation("global");
+  
 
     return (
       <Space wrap className={style.selectCont}>
@@ -29,7 +30,7 @@ const SelectCategory = ({change}) => {
           name="category"
           defaultValue={"Todas"}
           style={{
-            width: "15vw",
+            width: "12vw",
           }}
           options={categories.map((category) => ({
             label: category.name,

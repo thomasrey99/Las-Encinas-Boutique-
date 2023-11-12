@@ -25,7 +25,7 @@ const Type = ({change}) => {
           name="type"
           defaultValue={"Todos"}
           style={{
-            width: "15vw",
+            width: "12vw",
           }}
           onChange={change}
           options={types?.map((type) => ({

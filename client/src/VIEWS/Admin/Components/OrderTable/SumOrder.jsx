@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
+import { getUserLog } from '../../../../libs/redux/features/actions/userActions';
 
-const SumOrder = () => {
-    const users = useSelector(state => state.user.userLog)
-    console.log(userLog);
+
+const Sumorder = () => {
+    const dispatch = useDispatch();
+    const allRequests = useSelector(state => state.request.AllRequest)
+    console.log(allRequests);
+
+    
     const OrdersPlaced = 5;
     const BackOrders = 2;
     const CancelledOrders = 1;
@@ -21,4 +27,4 @@ const SumOrder = () => {
     )
 }
 
-export default SumOrder;
+export default Sumorder;

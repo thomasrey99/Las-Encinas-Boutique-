@@ -6,7 +6,9 @@ import { EditOutlined, StopOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
 import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
-import {CheckOutlined, CloseOutlined} from '@ant-design/icons'
+import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
+
+
 
 
 
@@ -74,16 +76,10 @@ const columns = [
     width: 100,
     render: (record) => (
       <div>
-
         <Link to={`/editUserAdmin/${record.uid}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
-
-
-
       </div>
-
-
     ),
   },
 ];
@@ -92,16 +88,17 @@ const columns = [
 
 
 const UsersTable = () => {
-  const users = useSelector(state => state.user.allUsers)
-
-  const dispatch = useDispatch()
+  const users = useSelector(state => state.user.allUsers);
+  const dispatch = useDispatch();
+  
   useEffect(()=>{
     dispatch(getUsers())
   },[])
 
+  
   // const { data } = useGetAllUsersQuery()
   // const users = data;
-  console.log("Esto son los usuariossssss:", users)
+  // console.log("Esto son los usuariossssss:", users)
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de usuarios</h1>

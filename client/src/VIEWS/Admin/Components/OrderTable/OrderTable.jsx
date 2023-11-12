@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import styles from "../UsersTable/UsersTable.module.css";
-import { useGetAllUsersQuery } from "../../../../libs/redux/services/usersApi"
 import { EditOutlined, StopOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
 import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
 import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import SumOrder from './SumOrder';
+import Sumorder from './Sumorder';
+import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 
 const columns = [
   {
@@ -44,26 +44,17 @@ const columns = [
     width: 150,
   },
   {
-    title: 'Administrador',
-    dataIndex: 'is_Admin',
+    title: 'Pedidos',
+    dataIndex: 'order',
     key: '4',
     width: 150,
-    render: (text, record) => {
-      return (<div className={styles.tableCell}>
-        {text ? <CheckOutlined className={styles.check} /> : <CloseOutlined className={styles.block}/>}
-      </div>)
-    },
-  },
-  {
-    title: 'Bloqueado',
-    dataIndex: 'isBlocked',
-    key: '5',
-    width: 150,
-    render: (text, record) => {
-      return (<div className={styles.tableCell}>
-        {text ? <CheckOutlined className={styles.check} /> : <CloseOutlined className={styles.block}/>}
-      </div>)
-    },
+    render: () => {
+      <div>
+        <Link>
+          
+        </Link>
+      </div>
+    }
   },
   {
     title: 'Editar',
@@ -72,16 +63,10 @@ const columns = [
     width: 100,
     render: (record) => (
       <div>
-
         <Link to={`/editUserAdmin/${record.uid}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
-
-
-
       </div>
-
-
     ),
   },
 ];
@@ -90,28 +75,21 @@ const columns = [
 
 
 const OrderTable = () => {
-  const users = useSelector(state => state.user.allUsers)
-
+  const order = useSelector(state => state.request.allRequest);
+  const { data } = useGetAllRequestQuery()
   const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(getUsers())
-  },[])
 
-  // const { data } = useGetAllUsersQuery()
-  // const users = data;
-  console.log("Esto son los usuariossssss:", users)
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de usuarios</h1>
-        <SumOrder/>
+        <Sumorder/>
         <SearchBarUsers/>
       <br></br>
       
       <Table 
         className={styles.tableContainer}
         columns={columns}
-        dataSource={users}
-
+        dataSource = {data}
       />
     </div>
   )

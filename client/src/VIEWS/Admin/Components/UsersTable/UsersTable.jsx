@@ -109,11 +109,7 @@ const UsersTable = () => {
       <br></br>
       
       <Table 
-<<<<<<< HEAD
-        className={styles.table}
-=======
         className={styles.tableContainer}
->>>>>>> 8aa2ecc3697528349f2e606d957668548dc1a653
         columns={columns}
         dataSource={users}
 

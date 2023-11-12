@@ -14,29 +14,6 @@
     
     height: 500px;  
 }
-<<<<<<< HEAD
-
-.table{
-    min-width: 1000px;
-    min-height: 800px;
-}
-
-.titleTable{
-    margin-left: 40%;
-}
-
-.check{
-    color: green;
-}
-
-.block{
-    color: red;
-}
-
-.tableCell {
-    text-align: center; /* Centrar el texto en las celdas */
-  }
-=======
   
   /* Establece el ancho de las celdas para que no cambien */
   .tableContainer table {
@@ -70,4 +47,3 @@
     .tableCell {
         text-align: center; /* Centrar el texto en las celdas */
       }
->>>>>>> 8aa2ecc3697528349f2e606d957668548dc1a653

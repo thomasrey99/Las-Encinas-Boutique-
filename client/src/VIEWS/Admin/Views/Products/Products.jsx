@@ -24,7 +24,7 @@ const Products = () => {
   }
   const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
 
-  console.log(data);
+  console.log('esto es la data', data);
 
   return (
     <div className={Conteiner.Container}>

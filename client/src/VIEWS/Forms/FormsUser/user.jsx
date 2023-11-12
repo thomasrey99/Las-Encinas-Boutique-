@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useCreateUsersMutation } from '../../../libs/redux/services/usersApi';
 import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
@@ -93,7 +93,7 @@ const FormUser = () => {
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
                 navigate('/home')
                 } catch (error) {
-                console.log(error.code)
+                // console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
                 } else if(error.code === 'auth/weak-password'){
@@ -104,7 +104,7 @@ const FormUser = () => {
                 
         }
     };    
-console.log(form);
+// console.log(form);
 const formItemLayout = {
     labelCol: {
       xs: {
@@ -161,7 +161,7 @@ const formItemLayout = {
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
                     
-                <Button type="primary" htmlType="submit" className="button-submit" >Registrar</Button>
+                <Button type="primary" htmlType="submit" className={style.buttonSubmit} >Registrar</Button>
                 <div className={style.divButtons}>
                 </div>
 

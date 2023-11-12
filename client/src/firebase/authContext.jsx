@@ -25,7 +25,7 @@ export function AuthProvider({children}){
     const signup = async(email, password, name, lastName, phone, address)=>{
         try {
             const userCreated = await createUserWithEmailAndPassword(auth, email, password)
-            console.log("User createdeeeeeeeeeeeeeeeeee:",userCreated)
+            // console.log("User createdeeeeeeeeeeeeeeeeee:",userCreated)
             await mutate({
                 uid: userCreated.user.uid, 
                 email: userCreated.user.email,
@@ -35,7 +35,7 @@ export function AuthProvider({children}){
                 phone: phone,
                 address: address 
             })
-                console.log(user);
+                // console.log(user);
                 
             } catch (error) {
             throw error
@@ -45,7 +45,7 @@ export function AuthProvider({children}){
     const login = async(email, password)=>{
         try {
             const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-            console.log("User credentials:",userCredentials)
+            // console.log("User credentials:",userCredentials)
         } catch (error) {
              throw error
          }
@@ -56,9 +56,9 @@ export function AuthProvider({children}){
     const loginWithGoogle = async() => {
         try {
             const googleProvider = new GoogleAuthProvider()
-            console.log("Este es el google provider:", googleProvider)
+            // console.log("Este es el google provider:", googleProvider)
             const userCreated = await signInWithPopup(auth, googleProvider)
-            console.log("Este es el signInWithPopup:", userCreated )
+            // console.log("Este es el signInWithPopup:", userCreated )
             await mutate({uid: userCreated.user.uid, email: userCreated.user.email})
         } catch (error) {
             throw error
@@ -78,7 +78,7 @@ export function AuthProvider({children}){
     useEffect(()=>{
         onAuthStateChanged(auth, currentUser =>{
             setUser(currentUser)
-            console.log("current user:",currentUser)
+            // console.log("current user:",currentUser)
         })
 
     }, [])

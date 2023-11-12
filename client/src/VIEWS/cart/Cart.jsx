@@ -21,7 +21,7 @@ export const Cart = () => {
 
     const user=useSelector((state)=>state.user.userLog)
 
-    const id_cart=useSelector((state)=>state.user.userCartId)
+    const id_cart = useSelector((state) => state.user.userCartId)
 
 
     const [mutate] = usePutCartMutation()

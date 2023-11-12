@@ -10,7 +10,7 @@ const Favorites = () => {
 
     const navigate = useNavigate();
     const user = useSelector(state => state.user.userLog)
-    console.log(user);
+    // console.log(user);
     const userId = user.uid;
     const { data: getAllFavProducts, isError, isLoading, refetch } = useGetAllFavProductsQuery(userId);
 

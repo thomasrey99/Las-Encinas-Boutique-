@@ -89,7 +89,7 @@ const FormUser = () => {
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
                 navigate('/home')
                 } catch (error) {
-                console.log(error.code)
+                // console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
                 } else if(error.code === 'auth/weak-password'){
@@ -100,7 +100,7 @@ const FormUser = () => {
                 
         }
     };    
-console.log(form);
+// console.log(form);
 const formItemLayout = {
     labelCol: {
       xs: {

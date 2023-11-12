@@ -23,8 +23,8 @@ const FormEditUser = () => {
     address: '',
     email: '',
     phone: '',
-    is_Admin: Boolean,
-    isBlocked: Boolean
+    is_Admin: '',
+    isBlocked: ''
 
   });
 

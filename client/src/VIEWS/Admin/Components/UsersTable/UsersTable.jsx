@@ -1,5 +1,3 @@
-
-
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import styles from "./UsersTable.module.css"
@@ -111,7 +109,11 @@ const UsersTable = () => {
       <br></br>
       
       <Table 
+<<<<<<< HEAD
         className={styles.table}
+=======
+        className={styles.tableContainer}
+>>>>>>> 8aa2ecc3697528349f2e606d957668548dc1a653
         columns={columns}
         dataSource={users}
 

@@ -8,7 +8,7 @@ export const cartApi=createApi({
     reducerPath:"cartApi",
     endpoints:(builder)=>({
         getCart:builder.query({
-            query:(id)=>`cart/${id}`,
+            query:(id)=>`/cart/${id}`,
             providesTags:["cart"]
         }),
         putCart:builder.mutation({

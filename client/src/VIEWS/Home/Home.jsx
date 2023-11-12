@@ -11,11 +11,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsAppOutlined, WechatOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
+import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
+import { useEffect } from "react";
 
 
 
 const Home = () => {
-  const whatsappLink = `https://wa.me/+5493816771213`;  
+  const { user} = useAuth();
+  console.log("Este es el user del home:",user)
+  useEffect(()=>{
+    user && dispatch(getUserLog(user.uid))
+
+  },[])
+  const whatsappLink = `https://wa.me/+5493816771213?text=Hola! Cómo te va? Me pasarías info por favor?`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);

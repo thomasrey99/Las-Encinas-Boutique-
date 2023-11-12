@@ -59,7 +59,7 @@ const Login = () => {
                 await login(form.email, form.password);
                 navigate('/home')
             } catch (error) {
-                console.log(error.code)
+                // console.log(error.code)
                 if(error.code === 'auth/invalid-login-credentials'){
                     setError("La contraseña o el E-mail son incorrectos.")
     
@@ -83,7 +83,7 @@ const Login = () => {
         
     }
   
-  console.log(form);
+  // console.log(form);
 
   const formItemLayout = {
     labelCol: {

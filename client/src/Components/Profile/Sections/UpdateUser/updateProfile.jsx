@@ -22,7 +22,7 @@ const UpdateProfile = () => {
             setUpdateProfile({
                 image: getUserById?.image ||'https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg', 
                 name: getUserById.name, lastName: getUserById.lastName, address: user.address, 
-                 phone: getUserById.phone,
+                phone: getUserById.phone,
             });
         } 
         refetch();
@@ -115,14 +115,14 @@ const UpdateProfile = () => {
 
     const validatePhone = (rule, value) => {
         if (!/^\d{10}$/.test(value)) {
-            return Promise.reject('El teléfono debe tener 10 dígitos.');
+            return Promise.reject('Teléfono inválido.');
         }
         return Promise.resolve();
     }
     
     const validateAddress = (rule, value) => {
         if (!/^[A-Z][a-z]*[^.!]*$/.test(value)) {
-            return Promise.reject('La dirección no admite puntos ni signos de exclamación, el nombre de la calle comienza con mayúscula y termina con minúsculas.');
+            return Promise.reject('Dirección inválida.');
         }
         return Promise.resolve();
     }

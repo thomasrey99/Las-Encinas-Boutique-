@@ -82,9 +82,9 @@ const aboutUs = () => {
               <h5 className='card__text'>{coder.fullName}</h5>
               <p style={{fontFamily: 'var(--primary-font)', textAlign: 'center'}}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, consequatur!</p>
               <div className='card__links'>
-                <a href={`${coder.github}`}><GithubOutlined /></a>
-                <a href={`mailto:${coder.email}`}><MailOutlined /></a>
-                <a href={`${coder.linkedin}`}><LinkedinOutlined /></a>
+                <a href={`${coder.github}`} target="_blank" rel="noopener noreferrer"><GithubOutlined /></a>
+                <a href={`mailto:${coder.email}`} target="_blank" rel="noopener noreferrer"><MailOutlined /></a>
+                <a href={`${coder.linkedin}`} target="_blank" rel="noopener noreferrer"><LinkedinOutlined /></a>
               </div>
             </div>
           )

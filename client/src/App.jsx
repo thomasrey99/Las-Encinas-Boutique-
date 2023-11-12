@@ -25,8 +25,9 @@ import CreateProducts from './VIEWS/Admin/Views/Products/CreateProducts';
 import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 import { useState } from 'react';
-
 import Menu from './Components/menu/Menu'; 
+import Chat from './VIEWS/Chat/Chat';
+import Landing from './VIEWS/Landing/Landing';
 
 const App = () => {
 
@@ -42,8 +43,8 @@ const App = () => {
   const location = useLocation();
 
   const validate =
+  location.pathname !== '/' && 
   location.pathname !== '/controlAdmin' && 
-
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
@@ -61,8 +62,8 @@ const App = () => {
       <AuthProvider>
         {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='home' element={<Home />} />
+          <Route exact path='/' element={<Landing />} />
+          <Route path='/home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
@@ -74,6 +75,7 @@ const App = () => {
           <Route path='resetpassword' element={<FormResetPassword />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
+          <Route path="/chat" element={<Chat/>}/>
           {/* Rutas protegidas del admin */}
 
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}

@@ -1,0 +1,70 @@
+{ "navBar":{
+    "not-costumer-yet?": "Not costumer yet?",
+    "Register": "Register",
+    "Hello": "Welcome back"
+},
+"order":{
+    "highest-price": "highest price",
+    "Lowest-price": "Lowest-price"
+},
+"filters":{
+    "Categories": "Categories",
+    "Order": "Order",
+    "Chocolate type": "Type of chocolate",
+    "Minimum": "Minimum",
+    "Maximum": "Maximum",
+    "Clear": "Clear"
+
+},
+"types": {
+    "All": "All",
+    "White_chocolate": "White Chocolate",
+    "Chocolate_w_ milk": "Chocolate with Milk",
+    "Semisweet": "Semisweet Chocolate"
+  },
+"footer":{
+    "Location": "Location",
+    "Social-Media": "Social media",
+    "Contact": "Contact",
+    "Phone": "Phone"
+},
+"searchBar": {
+    "Search-by-name": "Search by name"
+},
+"menu":{
+    "Profile": "Profile",
+    "Favorite-products": "Favorite products",
+    "Homepage": "Homepage",
+    "Meet-us": "Meet us",
+    "Log-off": "Log off",
+    "Log-in": "Log in",
+    "Administrator-Panel": "Administrator Panel"
+},
+"home":{
+    "error": "No products found"
+},
+"banner": {
+    "title": "Enjoy the best delicacies of the region.",
+    "description1": "Ideal to entertain with a gift for someone special.",
+    "description2": "* Custom orders",
+    "description3": "* Cards that express our best wishes.",
+    "description4": "* Preparation with raw materials of the highest quality.",
+    "description5": "* Attention during business hours from 9 a.m. to 1 p.m. and from 4 p.m. to 9 p.m."
+},
+"carousel":{
+    "slogan": "The art of sweetening your moments!"
+},
+"about":{
+    "title": "Solutions to your Projects",
+    "description": "An exceptional team of 7 fullstack developers is forged through inspiration, passion and a deep mastery of knowledge, destined to serve every entrepreneur. We are dedicated and highly committed to project execution, and our team is made up of professionals with solid communication skills, work experience and outstanding social aptitude."
+},
+"coder": {
+    "1": "Full stack web developer with a solid background in React, Redux, Nodejs, JavaScript.",
+    "2": "Analytical with a high level of persistence, dedicated, responsible and committed to interpersonal relationships.",
+    "3": "Full Stack Web Developer, oriented to Front-end with React, in e-commerce projects structured to market trends based on demand.",
+    "4": "Experience in developing interactive and scalable web applications. Specialized in JavaScript, React, Node.js, Express.js, Sequelize and PostgreSQL.",
+    "5": "Fullstack web developer with specialization in frontend. Passionate about creating pleasant and functional user experiences.",
+    "6": "Decisive and passionate programmer. Always learning. Innovative, adaptive, eager to integrate latest technologies. Focused on results.",
+    "7": "Full Stack developer passionate about technology in constant search of solutions based on experience, creativity and willingness to contribute to your team."
+}
+}

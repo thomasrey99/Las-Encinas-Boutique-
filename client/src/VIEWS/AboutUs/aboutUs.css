@@ -1,10 +1,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
     gap: 20px;
     justify-content: center;
     align-items: center;
+    background-color:  #EDE0D4;
 }
 
 .cards__container {
@@ -15,8 +15,11 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: 'center';
-    gap: 50px;
-    
+    gap: 50px;    
+}
+
+h1 {
+    margin-top: 4%;
 }
 
 .card {
@@ -29,6 +32,8 @@
     gap: 20px;  
     width: 25%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #e1d8cb;
+    
 }
 
 .card__image {

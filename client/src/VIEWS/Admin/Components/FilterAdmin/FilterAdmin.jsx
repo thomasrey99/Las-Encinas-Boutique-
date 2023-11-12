@@ -3,6 +3,7 @@ import ClearButton from "../../../../Components/FIlters/clearButton/ClearButton"
 import SelectCategory from "../../../../Components/FIlters/selectCategory/selectCategory";
 import Type from "../../../../Components/FIlters/selectType/Type";
 import SearchBarProducts from "../SearchBarProducts/SearchBarProducts";
+import Status from "../../../../Components/FIlters/selectStatus/Status"
 
 import { addFilter } from "../../../../libs/redux/features/filterSelice";
 
@@ -26,6 +27,13 @@ const FilterAdmin = () => {
     }))
   }
 
+  const handleChangeStatus=(value)=>{
+    dispatch(addFilter({
+      name:"status",
+      value:value
+    }))
+  }
+
   return (
     <div className={style.filterCont}>
       <div className={style.filterItem}>
@@ -36,6 +44,9 @@ const FilterAdmin = () => {
       </div>
       <div className={style.filterItem}>
         <Type change={handleChangeType}/>
+      </div>
+      <div className={style.filterItem}>
+        <Status change={handleChangeStatus}/>
       </div>
       <div className={style.filterItem}>
         <ClearButton/>

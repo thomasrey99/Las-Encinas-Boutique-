@@ -1,14 +1,15 @@
 import React from 'react'
 import Style from './TextCardAdmin.module.css'
+import { NavLink } from 'react-router-dom'
 
 
-const TextCardAdmin = ({name, info}) => {
+const TextCardAdmin = ({name, info, to}) => {
 
   return (
-    <div className={Style.Card}>
-        <p>{name}</p>
-        <p className={Style.p1} style={{fontSize: "200%", color: "#582f0e"}} >{info}</p>
-    </div>
+    <NavLink to={`/${to}`} style={{textDecoration: "none", color:"black", fontWeight: "bold"}} className={Style.Card}>
+        <p className={Style.p1}>{name}</p>
+        <p className={Style.p2} style={{fontSize: "200%", color: "#582f0e"}} >{info}</p>
+    </NavLink>
   )
 }
 

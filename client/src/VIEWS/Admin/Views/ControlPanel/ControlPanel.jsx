@@ -29,9 +29,9 @@ const ControlPanel = () => {
         <div className={Style.SubHeader}>
           <div className={Style.InfoCards}>
             <div className={Style.CardsInfo}>
-              <TextCardAdmin name={"Venta mensual"} info={"$1.200.000"} />
-              <TextCardAdmin name={"Pedidos mesuales"} info={"3.454"} />
-              <TextCardAdmin name={"Ventas realizadas"} info={"1.154"} />
+              <TextCardAdmin name={"Venta mensual"} info={"$1.200.000"} to={"paymentsAdmin"} />
+              <TextCardAdmin name={"Pedidos mesuales"} info={"3.454"} to={"ordersAdmin"}/>
+              <TextCardAdmin name={"Productos activos"} info={"45"} to={"productsAdmin"}/>
             </div>
             <div className={Style.Grafics}>
               
@@ -57,7 +57,7 @@ const ControlPanel = () => {
               />
             </div>
           </div>
-          <div className={Style.BestCard}>
+          {window.innerWidth > 768 ? <div className={Style.BestCard}>
             <h2>Producto estrella ⭐</h2>
             <div>
               {products.slice(0, 1).map((p) => (
@@ -69,7 +69,7 @@ const ControlPanel = () => {
                 />
               ))}
             </div>
-          </div>
+          </div> : <></>}
         </div>
       </div>
     </div>

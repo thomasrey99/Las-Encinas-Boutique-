@@ -1,8 +1,8 @@
 .Card{
     display: flex;
     flex-direction: column;
-    margin: 5%;
-    width: 30%;
+    margin: 3% 1% 0 1%;
+    min-width: 30%;
     border-radius: 10px;
     background-color: white;
     border: solid 1px black;
@@ -10,8 +10,15 @@
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.p1 {
+.p2 {
     margin: 5%;
     font-weight: bold;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Card:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: 0.5s; /* Asegúrate de especificar la duración en segundos con "s" al final */
 }

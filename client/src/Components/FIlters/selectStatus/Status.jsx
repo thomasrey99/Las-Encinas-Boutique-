@@ -1,13 +1,10 @@
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css";
 import { useSelector } from "react-redux";
-const Status = () => {
-
-    
+const Status = ({change}) => {
 
     const products = useSelector((state) => state.items.allProducts)
-    console.log(products)
-
+   
     return (
         <Space wrap className={style.selectCont}>
             <label htmlFor='status'>Estado del producto</label>
@@ -17,6 +14,7 @@ const Status = () => {
                 style={{
                     width: "15vw",
                 }}
+                onChange={change}
                 options={[
                     {
                         value: 'Todos',

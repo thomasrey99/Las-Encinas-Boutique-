@@ -2,7 +2,7 @@ const server = require("./src/app")
 const { dataBase } = require('./src/db.js');
 const fetchCategories = require("./src/utils/fetchCategories");
 const fetchTypes = require("./src/utils/fetchTypes");
-const PORT=3001
+const PORT=3001 
 
 
 //!inicializando el servidor y sincronizando la base de datos

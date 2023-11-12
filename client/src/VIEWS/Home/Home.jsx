@@ -8,7 +8,7 @@ import Filters from "../../Components/FIlters/Filters.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { WhatsAppOutlined } from "@ant-design/icons";
+import { WhatsAppOutlined, WechatOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 import { useTranslation } from "react-i18next";
@@ -103,6 +103,12 @@ const Home = () => {
       <hr />
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
         <WhatsAppOutlined className={styles["whatsapp-icon"]} />
+      </a>
+      <hr></hr>
+      <hr></hr>
+
+      <a href='/chat' target="_blank" rel="noopener noreferrer">
+        <WechatOutlined className={styles.chatIcon} />
       </a>
     </div>
   );

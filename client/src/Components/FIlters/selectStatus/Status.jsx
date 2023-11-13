@@ -1,7 +1,7 @@
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css";
 
-const Status = ({change}) => {
+const Status = ({change, width}) => {
    
     return (
         <Space wrap className={style.selectCont}>
@@ -10,7 +10,7 @@ const Status = ({change}) => {
                 name="status"
                 defaultValue={"Todos"}
                 style={{
-                    width: "15vw",
+                    width: width,
                 }}
                 onChange={change}
                 options={[

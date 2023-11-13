@@ -34,9 +34,6 @@ const Products = () => {
           <NavLink to="/createProduct" className={`${Style.button} ${Style.marron}`}>
             Crear producto
           </NavLink>
-          <NavLink to="/createProduct" className={`${Style.button} ${Style.marron}`}>
-            Agregar promoción
-          </NavLink>
         </div>
 
         <FilterAdmin/>

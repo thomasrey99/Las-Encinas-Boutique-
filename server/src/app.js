@@ -11,7 +11,7 @@ const server=express()
 const app = http.createServer(server)//Envolvemos a server de express en un servidor http
 const io = new SocketServer(app,{
   cors:{
-    origin: 'http://127.0.0.1:5173'
+    origin: '*'
   }
 }) // Creamos una instancia de SocketServer
 io.on('connection', socket =>{

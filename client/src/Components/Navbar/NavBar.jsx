@@ -6,8 +6,7 @@ import { NavLink } from "react-router-dom";
 import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
-import flagUsa from "../../assets/Usa.png";
-import flagArg from "../../assets/Arg.png";
+import langLogo from "../../assets/translateLogo.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
@@ -126,38 +125,21 @@ const NavBar = ({handleOPen, isOPen}) => {
             <div className={menuStyle.bars} id={menuStyle.bar3}></div>
           </label>
         </div>
-        <div className={style.languageButtons}>
-        <button onClick={() => i18n.changeLanguage("es")}><img src={flagArg} alt="Argentina Flag" /></button>
-          <button onClick={() => i18n.changeLanguage("en")}><img src={flagUsa} alt="US Flag" /></button>
+        <div className={style.languageSelect}>
+          <div>
+        <img src={langLogo} className={style.translateLogo}/>
+          </div>
+          <div>
+        <select
+          className={style.cssSelect}
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+          </div>
         </div>
-      {/* <div className={style.wrapper}>
-      <div className={style.option}>
-        <input
-          checked={i18n.language === 'es'}
-          onChange={() => i18n.changeLanguage('es')}
-          type="radio"
-          name="language"
-          id="es"
-          className={style.input}
-        />
-        <label htmlFor="es" className={style.btn}>
-          <span className={style.span}>es</span>
-        </label>
-      </div>
-      <div className={style.option}>
-        <input
-          checked={i18n.language === 'en'}
-          onChange={() => i18n.changeLanguage('en')}
-          type="radio"
-          name="language"
-          id="en"
-          className={style.input}
-        />
-        <label htmlFor="en" className={style.btn}>
-          <span className={style.span}>en</span>
-        </label>
-      </div>
-        </div>          */}
     </div>
 
           

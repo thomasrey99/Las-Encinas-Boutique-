@@ -7,7 +7,7 @@ const Sumorder = () => {
     const order = useSelector(state => state.request.allRequest);
     const { data } = useGetAllRequestQuery();
     
-    console.log(data);
+    
     
     const OrdersPlaced = () => {
         data.map((order) => {

@@ -8,17 +8,17 @@ const Search = () => {
     const allRequests = useSelector(state => state.request);
     const { data } = useGetAllRequestQuery();
     const [input, setInput] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    ;
     
 
-console.log(data);
+
     const handleChange = (e)=>{
         setInput(e.target.value)
     }
 
-    useEffect(()=>{
-        data.filter(dom => dom.address === input)
-    }, [])
+    // useEffect(()=>{
+    //     data.filter(dom => dom.address === input)
+    // }, [])
     
     return (
         <div>

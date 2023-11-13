@@ -68,18 +68,16 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
-          {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
-          ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />
           <Route path='about' element={<AboutUs />} />
           <Route path='login' element={<Login/>} />
           <Route path='resetpassword' element={<FormResetPassword />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
-          <Route path="/chat" element={<Chat/>}/>
           <Route path='/profile' element={<Profile user={currentUser}/>}/>
+          {/* Rutas protegidas para el cliente, lo obligan a logearse */}
+          <Route path='/chat' element={<ProtectedRoute><Chat /></ProtectedRoute>} />
           {/* Rutas protegidas del admin */}
-
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}

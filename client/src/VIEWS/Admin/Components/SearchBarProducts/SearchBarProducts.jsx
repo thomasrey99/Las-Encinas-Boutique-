@@ -7,7 +7,7 @@ import { useLocalStorage } from "../../../../Hooks/useLocalStorage"
 
 import { Input , Space } from 'antd';
 
-const SearchBarProducts = () => {
+const SearchBarProducts = ({width}) => {
 
   const dispatch=useDispatch()
 
@@ -37,7 +37,7 @@ const SearchBarProducts = () => {
         value={name} 
         onChange={handleChange}
         style={{
-            width: "15vw",
+            width: width
           }}
         />
   </Space>

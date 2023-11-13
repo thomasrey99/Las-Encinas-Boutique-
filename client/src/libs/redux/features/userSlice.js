@@ -29,16 +29,22 @@ export const userSlice = createSlice({
 
         userByUid: (state, action)=>{ 
 
-            state.userLog = action.payload 
+            
             state.userByUid = action.payload 
 
         },
         
-        updateUser:(state, action)=>{
-          
-           
-        }
+        userLog: (state, action)=>{ 
+
+            state.userLog = action.payload 
+            
+
+
+        }, 
+        
+        updateUserState: (state, action) => {
+        },
     },
 })
-export const {addUser, userByUid, updateUser, getAllUsers, getUsersByName}=userSlice.actions
+export const {addUser, userByUid, updateUser, getAllUsers, getUsersByName, userLog}=userSlice.actions
 export default userSlice.reducer

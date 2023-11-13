@@ -25,10 +25,10 @@ try {
 
 //!HANDLER QUE MANEJA LA PETICION GET DE /PRODUCTS, TRAE NAME, CATEGORY, MINPRICE Y MAXPRICE POR QUERY PARA POSIBLES FILTROS
 const getAllProducts = async ( req, res ) => {
-    const {name, minPrice, maxPrice, category, type, order}=req.query
+    const {name, minPrice, maxPrice, category, type, order, is_Delete }=req.query
     try {
         
-        const result = await allProducts(name, minPrice, maxPrice, category,type, order)
+        const result = await allProducts(name, minPrice, maxPrice, category,type, order, is_Delete)
         return res.status(200).json(result)
     } catch (error) {
         return res.status(400).json({ error: error.message });
@@ -106,9 +106,9 @@ const createPreference = async (req, res) => {
         access_token:"TEST-660730855105859-110520-92b6b5e11789fb102cda49503b4995c6-1501138541"
     })
 
-
     
     const {description, price, quantity, id_user}=req.body
+    
     let preference = {
 		items: [
 			{

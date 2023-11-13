@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser'
 import mercadopago from 'mercadopago';
 import { MercadoPagoResponse } from 'mercadopago';
 import { json, useLocation } from 'react-router-dom';
-
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
@@ -30,13 +30,13 @@ const Product = () => {
 
 
         try {
-            const response = await axios.post("http://localhost:3001/products/create_preference", {
+            const response = await axios.post(`${URL_SERVER}/products/create_preference`, {
                 description: 'air jordan',
                 price: 100,
                 quantity: 1,
                 currency_id: 'ARS'
             });
-            console.log('response.data', response.data)
+            // console.log('response.data', response.data)
             const { id } = response.data.id;
             return id;
         } catch (error) {
@@ -54,7 +54,7 @@ const Product = () => {
 
 
     const handleAdminMail = () => {
-        console.log('init email')
+        // console.log('init email')
         const serviceId = "service_zigdlws"
         const templateAdminId = "template_8gadd5r"
         const templateClientId = "template_gs77yab"

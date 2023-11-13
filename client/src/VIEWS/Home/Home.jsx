@@ -8,21 +8,25 @@ import Filters from "../../Components/FIlters/Filters.jsx";
 import { setCurrentPage } from "../../libs/redux/features/productsSlice.js";
 import styles from "./home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { WhatsAppOutlined } from "@ant-design/icons";
+import { WhatsAppOutlined, WechatOutlined } from "@ant-design/icons";
 import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
-import { getUserByUid } from "../../libs/redux/features/actions/userActions.js";
+import { useTranslation } from "react-i18next";
+import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 
 const Home = () => {
-  const { user, logout } = useAuth();
+  const { t} = useTranslation("global");
+  const { user} = useAuth();
   console.log("Este es el user del home:",user)
   useEffect(()=>{
-    user && dispatch(getUserByUid(user.uid))
+    user && dispatch(getUserLog(user.uid))
+
   },[])
-  const whatsappLink = `https://wa.me/+5493816771213`;  
+  const whatsappLink = `https://wa.me/+5493816771213?text=Hola! Cómo te va? Me pasarías info por favor?`;  
   const {Title, Text} = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
@@ -75,20 +79,20 @@ const Home = () => {
           ))}
         </div>
         {productsToDisplay.length === 0 && (
-          <p className={styles.errorSearch}>No se encontraron productos</p>
+          <p className={styles.errorSearch}>{t("home.error")}</p>
         )}
       </div>
       <div className={styles.content}>
         <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
 
         <div className={styles.contentBanner}>
-            <Title className={styles.h1} level={1}>Disfrute de las mejores delicias de la región.</Title>
-            <Title className={styles.h3} level={3}>Ideales para agasajar con un regalo para alguien especial.</Title>
+            <Title className={styles.h1} level={1}>{t("banner.title")}</Title>
+            <Title className={styles.h3} level={3}>{t("banner.description1")}</Title>
             <Space direction='vertical'>
-                <Text className={styles.text} type='secondary' >* Pedidos personalizados</Text>
-                <Text className={styles.text} type='secondary' >*  Tarjetas que expresan nuestros mejores deseos.</Text>
-                <Text className={styles.text} type='secondary' >* Elaboración con materia prima de la más alta calidad.</Text> 
-                <Text className={styles.text} type='secondary' >* Atención en horario comercial de 9 a 13hs y de 16 a 21hs.</Text>
+                <Text className={styles.text} type='secondary' >{t("banner.description2")}</Text>
+                <Text className={styles.text} type='secondary' >{t("banner.description3")}</Text>
+                <Text className={styles.text} type='secondary' >{t("banner.description4")}</Text> 
+                <Text className={styles.text} type='secondary' >{t("banner.description5")}</Text>
 
             </Space>
         </div>
@@ -101,6 +105,9 @@ const Home = () => {
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
         <WhatsAppOutlined className={styles["whatsapp-icon"]} />
       </a>
+      <hr></hr>
+      <hr></hr>
+      <Link to="/chat"><WechatOutlined className={styles.chatIcon} /></Link>
     </div>
   );
 };

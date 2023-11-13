@@ -33,12 +33,12 @@ const Menu = ({handleOPen}) => {
     <section className={style.menuCont}>
         <div className={style.itemsCont}>
             <ul className={style.itemsList}>
-                <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>Perfil</NavLink></li>
-                <li><NavLink to={"/favorites"} className={style.link} onClick={handleOPen}>Productos favoritos</NavLink></li>
-                <li><NavLink to={"/about"} className={style.link} onClick={handleOPen}>Conócenos</NavLink></li>
-                {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.link}>Cerrar Sesión</NavLink>:<NavLink to={"/login"} className={style.link} onClick={handleOPen}>Inicia sesión</NavLink>}
-                <li>{((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"}  className={style.link} onClick={handleOPen}>Panel de Administrador</NavLink>}</li>
-                {/* <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>Pagina principal</NavLink></li> */}
+                <li><NavLink to={"/profile"} className={style.link} onClick={handleOPen}>{t("menu.Profile")}</NavLink></li>
+                <li><NavLink to={"/favorites"} className={style.link} onClick={handleOPen}>{t("menu.Favorite-products")}</NavLink></li>
+                <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>{t("menu.Homepage")}</NavLink></li>
+                <li><NavLink to={"/about"} className={style.link} onClick={handleOPen}>{t("menu.Meet-us")}</NavLink></li>
+                {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.link}>{t("menu.Log-off")}</NavLink>:<NavLink to={"/login"} className={style.link} onClick={handleOPen}>{t("menu.Log-in")}</NavLink>}
+                <li>{((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"}  className={style.link} onClick={handleOPen}>{t("menu.Administrator-Panel")}</NavLink>}</li>
             </ul>
         </div>
     </section>

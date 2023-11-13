@@ -1,15 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
-import { getUserLog } from '../../../../libs/redux/features/actions/userActions';
+// import { getUserLog } from '../../../../libs/redux/features/actions/userActions';
 
 
 const Sumorder = () => {
-    const dispatch = useDispatch();
-    const allRequests = useSelector(state => state.request.AllRequest)
-    console.log(allRequests);
-
+    const order = useSelector(state => state.request.allRequest);
+    const { data } = useGetAllRequestQuery();
     
-    const OrdersPlaced = 5;
+    console.log(data);
+    
+    const OrdersPlaced = () => {
+        data.map((order) => {
+            order.products.map((cant) => {
+               return cant.quantity
+            })
+        })
+    };
+
+
+
+
     const BackOrders = 2;
     const CancelledOrders = 1;
     const PromotionalStock = CancelledOrders;

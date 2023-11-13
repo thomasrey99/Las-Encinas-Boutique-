@@ -10,54 +10,63 @@ import { Link } from 'react-router-dom';
 import Sumorder from './Sumorder';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 
-const columns = [
+  
+
+
+
+const OrderTable = () => {
+  const order = useSelector(state => state.request.allRequest);
+  const { data } = useGetAllRequestQuery();
+  const dispatch = useDispatch();
+
+  
+
+  const columns = [
   {
-    title: 'Nombres',
-    width: 100,
-    dataIndex: 'name',
-    key: 'name',
-    fixed: 'left',
-  },
-  {
-    title: 'Apellidos',
-    width: 100,
-    dataIndex: 'lastName',
-    key: 'lastName',
-    fixed: 'left',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-    key: '1',
+    title: 'Pedidos',
+    dataIndex: 'products',
+    key: 'products',
     width: 150,
+    render: (products) => (
+      <div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <span>{product.name}</span>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: 'Estado',
+    width: 100,
+    dataIndex: 'status',
+    key: 'status',
+    fixed: 'left',
+  },
+  {
+    title: 'Cantidad',
+    dataIndex: 'products',
+    key: 'products',
+    width: 30,
+    render: (products) => (
+      <div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <span>{product.quantity}</span>
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
     title: 'Dirección',
     dataIndex: 'address',
     key: '2',
     width: 150,
-  },
+  }, 
   {
-    title: 'Teléfono',
-    dataIndex: 'phone',
-    key: '3',
-    width: 150,
-  },
-  {
-    title: 'Pedidos',
-    dataIndex: 'order',
-    key: '4',
-    width: 150,
-    render: () => {
-      <div>
-        <Link>
-          
-        </Link>
-      </div>
-    }
-  },
-  {
-    title: 'Editar',
+    title: 'Cliente',
     key: 'operation',
     fixed: 'right',
     width: 100,
@@ -72,18 +81,11 @@ const columns = [
 ];
 
 
-
-
-const OrderTable = () => {
-  const order = useSelector(state => state.request.allRequest);
-  const { data } = useGetAllRequestQuery()
-  const dispatch = useDispatch()
-
   return (
     <div className={styles.container}>
-      <h1 className={styles.titleTable}>Lista de usuarios</h1>
-        <Sumorder/>
-        <SearchBarUsers/>
+      <h1 className={styles.titleTable}>Lista de Pedidos</h1>
+        {/* <Sumorder/> */}
+        {/* <SearchBarUsers/> */}
       <br></br>
       
       <Table 

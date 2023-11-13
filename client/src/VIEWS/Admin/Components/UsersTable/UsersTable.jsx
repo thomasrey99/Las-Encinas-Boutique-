@@ -95,10 +95,6 @@ const UsersTable = () => {
     dispatch(getUsers())
   },[])
 
-  
-  // const { data } = useGetAllUsersQuery()
-  // const users = data;
-  // console.log("Esto son los usuariossssss:", users)
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de usuarios</h1>

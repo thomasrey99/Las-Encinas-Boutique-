@@ -9,13 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Orders = () => {
   const order = useSelector(state => state.request.allRequest);
-  const { data } = useGetAllRequestQuery()
-  const dispatch = useDispatch()
-  
-  
-  
+  const { data } = useGetAllRequestQuery();
+  const dispatch = useDispatch();
 
-  console.log(data);
 
   return (
     <div className={Conteiner.Container}>

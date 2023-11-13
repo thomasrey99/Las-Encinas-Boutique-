@@ -23,9 +23,9 @@ const productId = async (id) => {
 } 
 
 //!RECIBE POR PARAMETRO "NAME", SI NAME EXISTE (SE ESTA REALIZANDO UNA BUSQUEDA) DEVUELVE LOS PRODUCTOS QUE COINCIDEN CON EL NOMBRE, SI NO EXISTE "NAME", DEVUELVE TODOS LOS PRODUCTOS
-const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
+const allProducts = async (name, minPrice, maxPrice, category, type, order, is_Delete) => {
 
-    console.log(name, minPrice, maxPrice, type, order, category)
+    console.log(name, minPrice, maxPrice, type, order, category, is_Delete)
     //?coincidencias de busqueda
     const whereClause={}
 
@@ -44,6 +44,10 @@ const allProducts = async (name, minPrice, maxPrice, category, type, order) => {
 
     if(type){
         whereClause.type=type
+    }
+
+    if(is_Delete){
+        whereClause.is_Delete=is_Delete
     }
 
     if(minPrice && maxPrice){

@@ -3,8 +3,9 @@ import ClearButton from "../../../../Components/FIlters/clearButton/ClearButton"
 import SelectCategory from "../../../../Components/FIlters/selectCategory/selectCategory";
 import Type from "../../../../Components/FIlters/selectType/Type";
 import SearchBarProducts from "../SearchBarProducts/SearchBarProducts";
+import Status from "../../../../Components/FIlters/selectStatus/Status"
 
-import { addFilter } from "../../../../libs/redux/features/filterSelice";
+import { addFilter, statusFilter } from "../../../../libs/redux/features/filterSelice";
 
 import {useDispatch} from "react-redux";
 
@@ -13,20 +14,31 @@ import { useEffect, useState } from "react";
 
 const FilterAdmin = () => {
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-  const handleChangeCategory=(value)=>{
+  const handleChangeCategory = (value) => {
     dispatch(addFilter({
-      name:"category",
-      value:value
+      name: "category",
+      value: value
     }))
   }
 
-  const handleChangeType=(value)=>{
+  const handleChangeType = (value) => {
     dispatch(addFilter({
-      name:"type",
-      value:value
+      name: "type",
+      value: value
     }))
+  }
+
+  const handleChangeStatus = (value) => {
+    if (value === 'Todos') {
+      dispatch(statusFilter())
+    } else {
+      dispatch(addFilter({
+        name: "status",
+        value: value
+      }))
+    }
   }
 
   // ZONA DE RENDERIZADO RESPONSIVE 
@@ -55,7 +67,7 @@ const FilterAdmin = () => {
         <br/>
       <Row>
         <Col span={12}><SearchBarProducts width={"30vh"}/></Col>
-        <Col span={12}><SelectCategory change={handleChangeCategory} width={"30vh"}/></Col>
+        <Col span={12}><Status change={handleChangeStatus} width={"30vh"}/></Col>
       </Row>
         <br/>
       <Row>
@@ -66,18 +78,22 @@ const FilterAdmin = () => {
       <div style={{display: "flex", justifyContent:"center"}}><ClearButton/></div>
       </div>
       ) : (
+        <>
         <Row>
           <Col span={6}><SearchBarProducts width={"22vh"}/></Col>
-          <Col span={6}><SelectCategory change={handleChangeCategory} width={"22vh"}/></Col>
+          <Col span={6}><Status change={handleChangeStatus} width={"22vh"}/></Col>
           <Col span={6}><SelectCategory change={handleChangeCategory} width={"22vh"}/></Col>
           <Col span={6}><Type change={handleChangeType} width={"22vh"}/></Col>
         </Row>
+        <br/>
+        <div style={{display: "flex", justifyContent:"center"}}><ClearButton/></div>
+        </>
       )
       
     }
     </div>
   )
-  
+
 }
 
 export default FilterAdmin

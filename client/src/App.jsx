@@ -13,6 +13,7 @@ import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 import {Cart} from "./VIEWS/cart/Cart"
+import Profile from './Components/Profile/profile';
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -73,6 +74,7 @@ const App = () => {
           <Route path='resetpassword' element={<FormResetPassword />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/profile' element={<Profile user={currentUser}/>}/>
           {/* Rutas protegidas para el cliente, lo obligan a logearse */}
           <Route path='/chat' element={<ProtectedRoute><Chat /></ProtectedRoute>} />
           {/* Rutas protegidas del admin */}

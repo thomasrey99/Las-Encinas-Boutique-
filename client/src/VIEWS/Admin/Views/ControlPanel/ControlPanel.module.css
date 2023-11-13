@@ -1,8 +1,9 @@
-.Header{
-  background-color: white;
-  border: 1px black solid;
+.SubHeader{
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .h31 {
@@ -10,25 +11,21 @@
   font-weight: bolder;
 }
 
-.SubHeader{
-  display: flex;
-  flex-direction: row;
-}
-
 .InfoCards{
-  width: 100%;
+  width: 80%;
 }
 
 .CardsInfo{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 2% 0 2%;
 }
 
 .BestCard{
   display: flex;
   width: 25em;
-  margin: 3%;
+  margin: 5%;
   border: 1px solid black;
   flex-direction: column;
   align-items: center;
@@ -40,11 +37,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 3% 0 5% 3%;
+  margin: 5% 0 5% 0%;
 }
 
 .h2Ventas {
-  margin: 3% 0 0 3% ;
+  margin: 3% ;
 }
 
 .SeeMoreText {
@@ -54,5 +51,24 @@
 
   &:hover {
     color: #9c7652;
+  }
+}
+
+@media (max-width: 768px) {
+  .SubHeader{
+    flex-direction: column;
+  }
+  
+  .InfoCards {
+    width: 88vh;
+    align-items: center;
+  }
+}
+
+@media (max-width: 690px) {
+  .CardsInfo{
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 0 auto;
   }
 }

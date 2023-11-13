@@ -3,9 +3,6 @@ import style from "./NavBar.module.css";
 import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
-
-
-import HamburgerMenu from "../HamburgerMenu/menu";
 import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";

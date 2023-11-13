@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { addTypes } from '../../../libs/redux/features/typesSlice';
 import { useTranslation } from 'react-i18next';
 
-const Type = ({change}) => {
+const Type = ({change, width}) => {
   const dispatch=useDispatch()
   const types=useSelector((state)=>state.types.allTypes)
   const {data}=useGetAllTypesQuery()  
@@ -25,7 +25,7 @@ const Type = ({change}) => {
           name="type"
           defaultValue={"Todos"}
           style={{
-            width: "12vw",
+            width: width,
           }}
           onChange={change}
           options={types?.map((type) => ({

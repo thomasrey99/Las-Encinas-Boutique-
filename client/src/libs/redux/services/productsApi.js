@@ -9,7 +9,7 @@ export const productsApi=createApi({
     reducerPath:"productsApi",
     endpoints:(builder)=>({
         getAllProducts:builder.query({
-            query:({name, minPrice, maxPrice, category, order, type}) => `/products?name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&type=${type}&order=${order}`,
+            query:({name, minPrice, maxPrice, category, order, type, is_Delete}) => `/products?name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&type=${type}&order=${order}&is_Delete=${is_Delete}`,
             providesTags:["products"]
         }),
         createProduct:builder.mutation({

@@ -6,7 +6,7 @@ import { addCategories } from "../../../libs/redux/features/categoriesSlice";
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const SelectCategory = ({change}) => {
+const SelectCategory = ({change, width}) => {
   
   const dispatch=useDispatch()
 
@@ -30,7 +30,7 @@ const SelectCategory = ({change}) => {
           name="category"
           defaultValue={"Todas"}
           style={{
-            width: "12vw",
+            width: width,
           }}
           options={categories.map((category) => ({
             label: category.name,

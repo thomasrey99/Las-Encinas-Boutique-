@@ -20,7 +20,7 @@ const order=[
     }
 ]
 
-const Order = ({change}) => {
+const Order = ({change, width}) => {
   const { t } = useTranslation("global");
     
 
@@ -32,7 +32,7 @@ const Order = ({change}) => {
           name="order"
           defaultValue={"a-z"}
           style={{
-            width: "12vw",
+            width: width,
           }}          
           options={order.map((o) => ({
             label: o.label,

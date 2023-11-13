@@ -40,7 +40,7 @@ export const userSlice = createSlice({
             
 
 
-        },
+        }, 
         
         updateUserState: (state, action) => {
         },

@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser'
 import mercadopago from 'mercadopago';
 import { MercadoPagoResponse } from 'mercadopago';
 import { json, useLocation } from 'react-router-dom';
-
+const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 const Product = () => {
     const [preferenceId, setPreferenceId] = useState(null);
@@ -30,7 +30,7 @@ const Product = () => {
 
 
         try {
-            const response = await axios.post("http://localhost:3001/products/create_preference", {
+            const response = await axios.post(`${URL_SERVER}/products/create_preference`, {
                 description: 'air jordan',
                 price: 100,
                 quantity: 1,

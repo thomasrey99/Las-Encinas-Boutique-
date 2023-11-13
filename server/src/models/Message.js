@@ -15,6 +15,10 @@ module.exports = (dataBase) => {
         text: {
             type: DataTypes.STRING,
             allowNull: true 
+        },
+        timestamp:{
+            type:DataTypes.DATE, 
+            allowNull: true 
         }
     },
     {

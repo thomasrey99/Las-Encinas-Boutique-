@@ -9,11 +9,12 @@ const {
 
 
 const postNewMessage = async (req, res) =>{
-    const {userName, text, uid} = req.body
+    const {userName, text, timestamp, uid} = req.body
     try {
         const data = {
             userName,
             text, 
+            timestamp,
             uid
         }
         const newMessage = await createNewMessageController(data)

@@ -16,6 +16,7 @@
     "@mercadopago/sdk-react": "^0.0.15",
     "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.10.2",
+    "antd-img-crop": "^4.15.0",
     "aos": "^2.3.4",
     "axios": "^1.6.0",
     "chart.js": "^4.4.0",

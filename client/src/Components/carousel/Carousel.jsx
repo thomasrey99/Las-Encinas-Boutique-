@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import styles from "./Carousel.module.css"
 import { Spin, Alert, Carousel } from 'antd';
 
 const CarouselImg = () => {
+    const { t  } = useTranslation("global");
   return (
     <div className={styles.carouselContainer}>
         <Carousel autoplay dots= {true}>
@@ -19,8 +21,8 @@ const CarouselImg = () => {
             </div>
             </Carousel>
             <div className={styles.landingCont}>
-                <h1 className={styles.title}>Explora nuestras ofertas</h1>
-                <a href="#" className={styles.enter}>Comenzar</a>
+                <h1 className={styles.title}>{t("carousel.slogan")}</h1>
+                {/* <a href="#" className={styles.enter}>Comenzar</a> */}
             </div>
         </div>
   )

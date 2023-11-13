@@ -72,8 +72,8 @@ const deleteUserController = async(id) =>{
     await findUserById.destroy();
 
     return findUserById;
-
 }
+
 
 
 

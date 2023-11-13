@@ -1,5 +1,6 @@
 import { Select, Space } from 'antd';
 import style from "../Filters.module.css"
+import { useTranslation } from 'react-i18next';
 const order=[
     {
         label:"a-z",
@@ -19,20 +20,20 @@ const order=[
     }
 ]
 
-const Order = ({change}) => {
+const Order = ({change, width}) => {
+  const { t } = useTranslation("global");
     
 
     return (
       <Space wrap className={style.selectCont}>
-        <label htmlFor='order'>Ordenar</label>
+        <label htmlFor='order'>{t("filters.Order")}</label>
         <Select
           onChange={change}
           name="order"
           defaultValue={"a-z"}
           style={{
-            width: "15vw",
-          }}
-          
+            width: width,
+          }}          
           options={order.map((o) => ({
             label: o.label,
             value: o.value

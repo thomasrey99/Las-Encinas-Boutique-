@@ -6,6 +6,7 @@ const categoryModel=require("./models/Category")
 const typeModel=require("./models/Type")
 const cartModel=require("./models/Cart")
 const reviewModel=require("./models/Review")
+const messageModel=require("./models/Message");
 const paymentModel=require("./models/payment")
 
 require("dotenv").config(); 
@@ -24,7 +25,7 @@ const {
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD LOCAL
 const dataBase=new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
-  {logging:false}
+  {logging:false}  
 )
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
@@ -40,16 +41,22 @@ typeModel(dataBase)
 requestModel(dataBase)
 cartModel(dataBase)
 reviewModel(dataBase)
+messageModel(dataBase)
 paymentModel(dataBase)
 
 //!RELACIONES
 
-const { User, Product, Request, Cart, Category, Type, Review, Payment } = dataBase.models;
+const { User, Product, Request, Cart, Category, Type, Review, Payment, Message } = dataBase.models;
+
 
 //*un producto puede tener una categoria y una categoria puede tener varios productos
 
 Category.hasMany(Product, {foreignKey:"id_category"})
 Product.belongsTo(Category, {foreignKey:"id_category"})
+
+//*un usuario puede tener muchos mensajes y un mensaje pertenece a un solo usuario
+User.hasMany(Message, {foreignKey: "uid"})
+Message.belongsTo(User, { foreignKey: 'uid' })
 
 //*un producto puede tener un tipo y un tipo puede tener varios productos
 
@@ -105,6 +112,6 @@ Review.belongsTo(Product, { foreignKey: 'id_product' });
 Review.belongsTo(User, { foreignKey: 'uid' });
 
 module.exports={
-  ...dataBase.models,
+  ...dataBase.models, 
   dataBase
 }

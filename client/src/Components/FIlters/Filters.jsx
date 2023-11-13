@@ -6,6 +6,7 @@ import Type from "./selectType/Type";
 import RangePrice from "./rangePrice/rangePrice";
 import { addFilter } from "../../libs/redux/features/filterSelice";
 import { useSelector, useDispatch} from "react-redux";
+import { Row, Col } from 'antd';
 
 
 const Filters = () => {
@@ -60,17 +61,20 @@ const Filters = () => {
       }))
     }
   }
-  console.log(filters)
-
+  // console.log(filters)
+  
   return (
         <div className={style.filterCont}>
-          <SelectCategory change={handleChangeCategory}/>
-          <Order change={handleChangeOrder}/>
-          <Type change={handleChangeType}/>
-          <RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/>
-          <ClearButton/>
+          
+            <Row gutter={[35, 35]} >
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><SelectCategory change={handleChangeCategory} width={"12vw"}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><Order change={handleChangeOrder} width={"12vw"}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><Type change={handleChangeType} width={"12vw"}/></Col>
+              <Col xs={24} sm={12} md={5} lg={5} className={style.col1} ><RangePrice changeMax={handleMaxPrice} changeMin={handleMinPrice}/></Col>
+              <Col xs={24} sm={12} md={4} lg={4} className={style.col2}><ClearButton/></Col>
+            </Row>
         </div>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

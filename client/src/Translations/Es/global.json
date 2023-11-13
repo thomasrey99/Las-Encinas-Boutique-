@@ -1,0 +1,70 @@
+{ "navBar":{
+    "not-costumer-yet?": "Aún no sos cliente?",
+    "Register": "Registrate",
+    "Hello": "Hola de nuevo"
+},
+"order":{
+    "highets-price": "Mayor precio",
+    "Lower-price": "Menor precio"
+    },
+"filters":{
+    "Categories": "Categorias",
+    "Order": "Orden",
+    "Chocolate type": "Tipo de chocolate",
+    "Minimum": "Minimo",
+    "Maximum": "Maximo",
+    "Clear": "Limpiar"
+
+},
+"types": {
+    "All": "Todos",
+    "White_chocolate": "Chocolate blanco",
+    "Chocolate_w_ milk": "Chocolate con leche",
+    "Semisweet": "Chocolate semi-amargo"
+  },
+"footer":{
+    "Location": "Ubicación",
+    "Social-Media": "Redes Sociales",
+    "Contact": "Contacto",
+    "Phone": "Teléfono"
+},
+"searchBar": {
+    "Search-by-name": "Buscar por nombre"
+},
+"menu":{
+    "Profile": "Perfil",
+    "Favorite-products": "Productos favoritos",
+    "Homepage": "Pagina principal",
+    "Meet-us": "Conocenos",
+    "Log-off": "Cerrar sesión",
+    "Log-in": "Iniciar sesión",
+    "Administrator-Panel": "Panel de Administrador"
+},
+"home":{
+    "error": "No se encontraron productos"
+},
+"banner": {
+    "title": "Disfrute de las mejores delicias de la región.",
+    "description1": "Ideales para agasajar con un regalo para alguien especial.",
+    "description2": "* Pedidos personalizados",
+    "description3": "* Tarjetas que expresan nuestros mejores deseos.",
+    "description4": "* Elaboración con materia prima de la más alta calidad.",
+    "description5": "* Atención en horario comercial de 9 a 13hs y de 16 a 21hs."
+},
+"carousel":{
+    "slogan": "El arte de endulzar tus momentos!"
+},
+"about":{
+    "title": "Soluciones a tus Proyectos",
+    "description": "Un equipo excepcional de 7 desarrolladores fullstack se forja a través de la inspiración, pasión y un profundo dominio del conocimiento, destinado a servir a cada emprendedor. Estamos dedicados y altamente comprometidos con la ejecución de proyectos, y nuestro equipo está conformado por profesionales con sólidas habilidades de comunicación, experiencia laboral y una destacada aptitud social."    
+},
+"coder": {
+    "1": "Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
+    "2": "Analítica con alto nivel de persistencia, dedicada, responsable y comprometida para las relaciones interpersonales.",
+    "3": "Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
+    "4": "Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
+    "5": "Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
+    "6": "Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
+    "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
+}
+}

@@ -7,7 +7,8 @@ const initialState={
     minPrice:"",
     maxPrice:"",
     order:"",
-    type:""
+    type:"",
+    is_Delete:"",
 }
 
 export const filterSlice=createSlice({
@@ -32,6 +33,9 @@ export const filterSlice=createSlice({
             }
             if(payload.name==="type"){
                 state.type=payload.value
+            } 
+            if(payload.name==="status"){
+                state.is_Delete=payload.value
             }
         },
         clearFilter(state) {
@@ -41,9 +45,13 @@ export const filterSlice=createSlice({
             state.maxPrice = "";
             state.order = "";
             state.type = "";
+            state.is_Delete = "";
+        },
+        statusFilter(state) {
+            state.is_Delete =""
         }
     }
 })
 
-export const {addFilter, clearFilter}=filterSlice.actions
+export const {addFilter, clearFilter,statusFilter}=filterSlice.actions
 export default filterSlice.reducer

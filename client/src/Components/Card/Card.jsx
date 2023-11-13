@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 import Style from './Card.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useGetAllFavProductsQuery, useGetFavProductQuery, 
@@ -20,25 +20,37 @@ const Card = (props) => {
   const cartData=useSelector((state)=>state.cart)
   const id_cart=useSelector((state)=>state.user.userCartId)
   const currentUser= useSelector((state)=>state.user.userLog)
-  const userId =  currentUser ? currentUser.uid : null;
+  const userId =  currentUser?.uid;
+  console.log(currentUser);
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();
   const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
   const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
   const [mutate]=usePutCartMutation()
-  console.log(productFav);
+  // console.log(productFav);
+
+  useEffect(() => {
+    if (userId) {
+        refetch();
+    }
+},[productFav, userId])
 
   const handlefavClick = async (event) => {
     event.stopPropagation();
 
-    if (productFav) {
-      await removeFavProduct({userId, productId});
-    } else {
-      await addFavProduct({userId, productId});
+    if(user===null){
+      alert("Tienes que registrarte para agregar productos a favoritos")
+      navigate("/login")
+    }else{
+      if (productFav) {
+        await removeFavProduct({userId, productId});
+      } else {
+        await addFavProduct({userId, productId});
+      }
+      refetch(); 
+      refresh();
     }
-    refetch(); 
-    refresh();
   }
 
   const handleProductCart=async (product)=>{

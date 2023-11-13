@@ -40,4 +40,10 @@ export const requestApi=createApi({
     })
 })
 
-export const {useCreateRequestMutation, useGetAllRequestQuery, useDeleteRequestMutation, useGetRequestByIdQuery, useUpdateRequestMutation}=requestApi
+export const {
+    useCreateRequestMutation, 
+    useGetAllRequestQuery,
+    useDeleteRequestMutation,
+    useGetRequestByIdQuery,
+    useUpdateRequestMutation
+} = requestApi

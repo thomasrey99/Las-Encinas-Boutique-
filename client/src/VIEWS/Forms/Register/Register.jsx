@@ -32,10 +32,10 @@ const Register = ()=>{
             try {
                 const userCredentials=await signup(user.email, user.password);
                 const uid=userCredentials.user.uid
-                console.log("identificador del usuario",uid)
+                // console.log("identificador del usuario",uid)
                 navigate('/home')
             } catch (error) {
-                console.log(error.code)
+                // console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
 
@@ -48,8 +48,8 @@ const Register = ()=>{
             }
     }
 
-    console.log("email:",user.email)
-    console.log("password", user.password)
+    // console.log("email:",user.email)
+    // console.log("password", user.password)
     return(
         <div>
             {error && <p>{error}</p>}

@@ -14,6 +14,7 @@ import cajonerra2 from "./image/cajonerra2.jpg";
 import { useTranslation } from "react-i18next";
 import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -106,10 +107,7 @@ const Home = () => {
       </a>
       <hr></hr>
       <hr></hr>
-
-      <a href='/chat' target="_blank" rel="noopener noreferrer">
-        <WechatOutlined className={styles.chatIcon} />
-      </a>
+      <Link to="/chat"><WechatOutlined className={styles.chatIcon} /></Link>
     </div>
   );
 };

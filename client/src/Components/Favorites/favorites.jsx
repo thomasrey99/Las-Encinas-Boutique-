@@ -15,14 +15,26 @@ const Favorites = () => {
     const { data: getAllFavProducts, isError, isLoading, refetch } = useGetAllFavProductsQuery(userId);
 
     useEffect(() => {
-        refetch();
-    },[getAllFavProducts])
+        if (userId) {
+            refetch();
+        }
+    },[getAllFavProducts, userId])
 
     return(
         <div className={styles.container}>
-            { isLoading? <Spin tip="Cargando" className={styles.alert}><div className="content"/></Spin>  
+            { !userId? <Alert message="Por favor, inicie sesión para ver sus favoritos."
+                type="info"
+                description={
+                    <div>
+                        <p>Debes iniciar sesión para ver tus productos favoritos.</p>
+                        <Button type="primary" onClick={()=>navigate('/login')}>Iniciar sesión</Button>
+                    </div>
+                }
+                showIcon
+                className={styles.alert}/>
+            : isLoading? <Spin tip="Cargando" className={styles.alert}><div className="content"/></Spin>  
             : isError ? <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles.alert}/>
-            :getAllFavProducts && getAllFavProducts.length > 0 ?
+            :Array.isArray(getAllFavProducts) && getAllFavProducts.length > 0 ?
                 getAllFavProducts.map(props => (
                             <div key={props.id_product}>
                               <Card key={props.id_product}

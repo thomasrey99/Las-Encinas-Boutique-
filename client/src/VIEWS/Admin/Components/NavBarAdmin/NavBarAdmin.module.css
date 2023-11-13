@@ -34,9 +34,11 @@
   width: 100%;
 }
 
-.Items {
+.Item {
   display: flex;
   align-items: center;
+  margin: 0 5% 0 5%;
+  width: 100%;
 }
 
 .NavBar a {
@@ -50,4 +52,39 @@
 .NavBar a:hover {
   color: #9c7652; /* Color marrón claro al pasar el ratón */
   transform: scale(1.1); /* Aumentar el tamaño al pasar el ratón */
+}
+
+@media (max-width: 768px) {
+  .NavBar {
+    justify-content: center;
+    text-align: center;
+    width: 12vh;
+  }
+
+  .NavBar img {
+    margin: 5%;
+  }
+
+  .Items {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: space-around;
+  }
+
+  .Item {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5%;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .NavBar {
+    justify-content: center;
+    text-align: center;
+    width: 10vh;
+  }
 }

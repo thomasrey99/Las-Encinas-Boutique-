@@ -32,7 +32,7 @@ const Menu = ({handleOPen}) => {
     <section className={style.menuCont}>
         <div className={style.itemsCont}>
             <ul className={style.itemsList}>
-                <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>{t("menu.Profile")}</NavLink></li>
+                <li><NavLink to={"/profile"} className={style.link} onClick={handleOPen}>{t("menu.Profile")}</NavLink></li>
                 <li><NavLink to={"/favorites"} className={style.link} onClick={handleOPen}>{t("menu.Favorite-products")}</NavLink></li>
                 <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>{t("menu.Homepage")}</NavLink></li>
                 <li><NavLink to={"/about"} className={style.link} onClick={handleOPen}>{t("menu.Meet-us")}</NavLink></li>

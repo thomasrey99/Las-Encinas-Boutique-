@@ -6,6 +6,7 @@ import ShoppingHistory from "./Sections/ShoppingHistory/shoppingHistory";
 import FormUpdateEmail from "./Sections/UpdateEmail/updateEmail";
 import FormUpdatePassword from "./Sections/UpdatePassword/updatePassword";
 import UpdateProfile from "./Sections/UpdateUser/updateProfile";
+import RequestDetail from './Sections/ShoppingHistory/RequestDetail/requestDetail';
 import { Card, Spin, Tabs } from 'antd';
 const { TabPane } = Tabs;
 //import { UserOutlined } from '@ant-design/icons';
@@ -34,6 +35,9 @@ const Profile = () => {
                         </TabPane>
                         <TabPane tab="Compras" key="3">
                             <ShoppingHistory/>
+                        </TabPane>
+                        <TabPane tab="Detalle pedido" key="4">
+                            <RequestDetail/>
                         </TabPane>
                     </Tabs>
                 </Card>

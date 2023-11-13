@@ -2,11 +2,6 @@
     width: 100%;
 }
 
-.idRequest{
-    position: absolute;
-    left: 2vh;
-}
-
 .productCard {
     display: flex;
     align-items: center;

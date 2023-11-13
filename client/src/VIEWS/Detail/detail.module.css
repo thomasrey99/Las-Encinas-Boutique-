@@ -4,6 +4,7 @@
     min-height: 100vh;
     margin: auto;
     margin-top: 4vh;
+    margin-bottom: 2vh;
 }
 .loading{
     margin-top: 40vh;
@@ -79,8 +80,9 @@
 
 }
 .NameAndRate{
-    margin-left: 3%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
 }
 .NameAndRate > *{
     margin-right: 5%;
@@ -92,4 +94,12 @@
     font-size: 0.7rem;
     text-align: right;
     color:darkgrey;
+}
+.descriptionComment{
+    margin: 0.5% 0;
+    text-align: justify;
+    max-width: 95%;
+}
+.iconsRyE{
+    width: 5vh;
 }

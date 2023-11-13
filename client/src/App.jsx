@@ -13,6 +13,7 @@ import { AuthProvider } from './firebase/authContext';
 import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas que necesitan autenticación
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 import {Cart} from "./VIEWS/cart/Cart"
+import Profile from './Components/Profile/profile';
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -25,9 +26,9 @@ import CreateProducts from './VIEWS/Admin/Views/Products/CreateProducts';
 import { useSelector } from 'react-redux';
 import PageUserBlocked from './Components/PageUserBlocked/PageUserBlocked';
 import { useState } from 'react';
-
 import Menu from './Components/menu/Menu'; 
 import Chat from './VIEWS/Chat/Chat';
+import Landing from './VIEWS/Landing/Landing';
 
 const App = () => {
 
@@ -43,8 +44,8 @@ const App = () => {
   const location = useLocation();
 
   const validate =
+  location.pathname !== '/' && 
   location.pathname !== '/controlAdmin' && 
-
   location.pathname !== '/productsAdmin' &&
   location.pathname !== '/paymentsAdmin' &&
   location.pathname !== '/clientsAdmin' &&
@@ -62,8 +63,8 @@ const App = () => {
       <AuthProvider>
         {validate && <NavBar handleOPen={handleOPen} isOPen={isOPen}/>}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='home' element={<Home />} />
+          <Route exact path='/' element={<Landing />} />
+          <Route path='/home' element={<Home />} />
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
@@ -76,6 +77,7 @@ const App = () => {
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
           <Route path="/chat" element={<Chat/>}/>
+          <Route path='/profile' element={<Profile user={currentUser}/>}/>
           {/* Rutas protegidas del admin */}
 
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}

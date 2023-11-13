@@ -1,9 +1,10 @@
 // import { useEffect } from "react";
 // import { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { useGetUserByIdQuery , useUpdateUserMutation } from "../../libs/redux/services/usersApi";
+import { useGetUserByIdQuery } from "../../libs/redux/services/usersApi";
 import ShoppingHistory from "./Sections/ShoppingHistory/shoppingHistory";
 import FormUpdateEmail from "./Sections/UpdateEmail/updateEmail";
+import FormUpdatePassword from "./Sections/UpdatePassword/updatePassword";
 import UpdateProfile from "./Sections/UpdateUser/updateProfile";
 import { Card, Spin, Tabs } from 'antd';
 const { TabPane } = Tabs;
@@ -29,6 +30,7 @@ const Profile = () => {
                         </TabPane>
                         <TabPane tab="Seguridad" key="2">
                             <FormUpdateEmail/>
+                            <FormUpdatePassword/>
                         </TabPane>
                         <TabPane tab="Compras" key="3">
                             <ShoppingHistory/>

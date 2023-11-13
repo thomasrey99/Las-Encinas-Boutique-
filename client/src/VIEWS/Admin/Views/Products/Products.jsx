@@ -24,7 +24,7 @@ const Products = () => {
   }
   const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
 
-  console.log(data);
+  console.log('esto es la data', data);
 
   return (
     <div className={Conteiner.Container}>
@@ -33,9 +33,6 @@ const Products = () => {
         <div className={Style.buttons}>
           <NavLink to="/createProduct" className={`${Style.button} ${Style.marron}`}>
             Crear producto
-          </NavLink>
-          <NavLink to="/createProduct" className={`${Style.button} ${Style.marron}`}>
-            Agregar promoción
           </NavLink>
         </div>
 

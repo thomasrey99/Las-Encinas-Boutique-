@@ -27,7 +27,7 @@ const Card = (props) => {
   const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
   const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
   const [mutate]=usePutCartMutation()
-  console.log(productFav);
+  // console.log(productFav);
 
   const handlefavClick = async (event) => {
     event.stopPropagation();

@@ -1,16 +1,14 @@
 .SubHeader{
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .h31 {
   color: #582f0e;
   font-weight: bolder;
-}
-
-.SubHeader{
-  display: flex;
-  flex-direction: row;
 }
 
 .InfoCards{
@@ -20,8 +18,8 @@
 .CardsInfo{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-left: 1%;
+  justify-content: space-between;
+  margin: 0 2% 0 2%;
 }
 
 .BestCard{
@@ -39,11 +37,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 5% 0 5% 3%;
+  margin: 5% 0 5% 0%;
 }
 
 .h2Ventas {
-  margin: 3% 0 0 3% ;
+  margin: 3% ;
 }
 
 .SeeMoreText {
@@ -64,5 +62,13 @@
   .InfoCards {
     width: 88vh;
     align-items: center;
+  }
+}
+
+@media (max-width: 530px) {
+  .CardsInfo{
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 0 auto;
   }
 }

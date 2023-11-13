@@ -28,6 +28,22 @@ const NavBar = () => {
     dispatch(addProducts(data));
   }, [data]);
 
+// ZONA DE RENDERIZADO RESPONSIVE 
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className={Style.NavBar}>
       <img src={icon} alt="Las encinas boutic" />
@@ -36,7 +52,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
                 <NavLink to={"/home"}><HomeOutlined style={{ marginRight: "5%", fontSize: '30px', color: 'white' }} /></NavLink>
             ) : (
               <>
@@ -49,7 +65,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
                 <NavLink to={"/controlAdmin"}><ControlOutlined style={{ fontSize: '30px', color: 'white' }} /></NavLink>
             ) : (
               <>
@@ -62,7 +78,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
               <NavLink to={"/productsAdmin"} ><ShoppingOutlined style={{ fontSize: '24px', color: 'white' }} /></NavLink>
             ) : (
               <>
@@ -75,7 +91,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
                 <NavLink to={"/ordersAdmin"}><ShoppingCartOutlined style={{ marginRight: "5%", fontSize: '24px', color: 'white' }} /></NavLink>
             ) : (
               <>
@@ -88,7 +104,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
               <NavLink to={"/clientsAdmin"}><UserOutlined style={{ fontSize: '24px', color: 'white' }} /></NavLink>
             ) : (
               <>
@@ -101,7 +117,7 @@ const NavBar = () => {
 
         <li>
           <div className={Style.Item}>
-            {window.innerWidth < 768 ? (
+            {windowWidth < 768 ? (
                 <NavLink to={"/paymentsAdmin"}><DollarOutlined style={{ fontSize: '24px', color: 'white' }} /></NavLink>
             ) : (
               <>

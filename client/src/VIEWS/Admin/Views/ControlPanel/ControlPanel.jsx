@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Style from './ControlPanel.module.css';
 import Conteiner from '../Style/Conteiners.module.css';
 import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin';
@@ -6,6 +6,7 @@ import CardAdmin from '../../Components/CardAdmin/CardAdmin';
 import ChartLineAdmin from '../../Components/ChartJs/ChartLineAdmin';
 import { useSelector } from 'react-redux';
 import TextCardAdmin from '../../Components/TextCardAdmin/TextCardAdmin';
+import { Col, Row } from 'antd';
 
 const ControlPanel = () => {
   const products = useSelector((state) => state.items.allProducts);
@@ -22,20 +23,36 @@ const ControlPanel = () => {
     setMostrarGrafica1(!mostrarGrafica1);
   };
 
+// ZONA DE RENDERIZADO RESPONSIVE 
+
+const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+useEffect(() => {
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  window.addEventListener('resize', handleResize);
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
+
   return (
     <div className={Conteiner.Container}>
       <NavBarAdmin />
       <div className={Conteiner.Panel}>
         <div className={Style.SubHeader}>
           <div className={Style.InfoCards}>
-            <div className={Style.CardsInfo}>
+          <div className={Style.CardsInfo}>
               <TextCardAdmin name={"Venta mensual"} info={"$1.200.000"} to={"paymentsAdmin"} />
               <TextCardAdmin name={"Pedidos mesuales"} info={"3.454"} to={"ordersAdmin"}/>
               <TextCardAdmin name={"Productos activos"} info={"45"} to={"productsAdmin"}/>
             </div>
             <div className={Style.Grafics}>
               
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                 <h3 className={Style.h31}>Graficas</h3>
 
                 <span
@@ -57,7 +74,7 @@ const ControlPanel = () => {
               />
             </div>
           </div>
-          {window.innerWidth > 768 ? <div className={Style.BestCard}>
+          {windowWidth > 768 ? <div className={Style.BestCard}>
             <h2>Producto estrella ⭐</h2>
             <div>
               {products.slice(0, 1).map((p) => (

@@ -36,7 +36,7 @@ const Product = () => {
                 quantity: 1,
                 currency_id: 'ARS'
             });
-            console.log('response.data', response.data)
+            // console.log('response.data', response.data)
             const { id } = response.data.id;
             return id;
         } catch (error) {
@@ -54,7 +54,7 @@ const Product = () => {
 
 
     const handleAdminMail = () => {
-        console.log('init email')
+        // console.log('init email')
         const serviceId = "service_zigdlws"
         const templateAdminId = "template_8gadd5r"
         const templateClientId = "template_gs77yab"

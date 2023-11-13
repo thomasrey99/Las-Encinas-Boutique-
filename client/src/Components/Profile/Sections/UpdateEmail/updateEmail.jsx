@@ -9,30 +9,44 @@ import styles from './updateEmail.module.css'
 
 const FormUpdateEmail = () => {
 
-    const navigate = useNavigate();
-
-    const user = useSelector(state => state.user.userLog)
-    const id = user?.uid;
+    //const navigate = useNavigate();
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const currentEmail = auth.currentUser.email;
+    console.log(auth.currentUser.email);
+
+    const user = useSelector(state => state.user.userLog)
+    const id = user?.uid;
     const { data: getUserById, isLoading, refetch } = useGetUserByIdQuery(id);
     const [ updateUser ] = useUpdateUserMutation();
 
-    const [ updateEmailUser, setUpdateEmailUser ] = useState({email: '', image: '', name: '', lastName: '', address: '',  phone: ''});
+    const [ updateProfile, setUpdateProfile ] = useState({email: '', image: '', name: '', lastName: '',
+     address: '',  phone: '', is_Admin: '', is_Delete: ''});
 
     useEffect(() => {
-        if (getUserById) setUpdateEmailUser({email: currentEmail, image: getUserById?.image, 
-            name: getUserById.name, lastName: getUserById.lastName, address: user.address, phone: getUserById.phone
+        if (getUserById) setUpdateProfile({email: getUserById.email, image: getUserById?.image, 
+            name: getUserById.name, lastName: getUserById.lastName, address: user.address, phone: getUserById.phone,
+            is_Admin: getUserById.is_Admin, is_Delete: getUserById.is_Delete
         });
         refetch();
     }, [getUserById, currentEmail]);
 
     // Actualizacion estado
     const handleOnChange = (e) => {
-        setUpdateEmailUser({email: e.target.value});
+        setUpdateProfile({
+          ...updateProfile,
+          email: e.target.value,
+        });
     };
     
+    useEffect(() => {
+        const updateUserData = async () => {
+        await updateUser({ id, updateProfile });
+    };
+        updateUserData();
+    }, [updateProfile]);
+
+
     // Verificación usuario
     const promptForCredentials = () => {
         const email = prompt('Por favor, introduce tu correo electrónico');
@@ -40,18 +54,9 @@ const FormUpdateEmail = () => {
         return EmailAuthProvider.credential(email, password);
     };
 
-    useEffect(() => {
-        const updateUserData = async () => {
-        await updateUser({ id, updateEmailUser });
-      };
-    
-        updateUserData();
-        }, [currentUser.email]);
-    
-
     //Envío formulario
     const onFinish = async (values) => {
-        
+
         const newEmail = values.email;
         const credential = promptForCredentials();
 
@@ -65,11 +70,9 @@ const FormUpdateEmail = () => {
 
         try {
             await verifyBeforeUpdateEmail(currentUser, newEmail);
-            console.log('Correo electrónico actualizado exitosamente');
-
-            await updateUser({id, updateEmailUser});
+            await updateUser({id, updateProfile});
             refetch();
-            <Modal></Modal>
+            console.log('Correo electrónico actualizado exitosamente');
             // await signOut(auth);
 
         } catch (error) {
@@ -77,6 +80,7 @@ const FormUpdateEmail = () => {
         }
     }
     
+
     const validateEmail = (rule, value) => {
         if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
             return Promise.reject('El correo electrónico no es válido.');
@@ -98,8 +102,8 @@ const FormUpdateEmail = () => {
                     <Form.Item
                         name="email"
                         rules={[{ required: true, message: 'Por favor ingresa tu correo electrónico!'}, 
-                            {validator: validateEmail, message: 'Email inválido.'  }]}>
-                        <Input placeholder="Correo Electrónico" onChange={handleOnChange} value={updateEmailUser.email} />
+                            {validator: validateEmail, message: 'Email inválido.'}]}>
+                        <Input placeholder="Correo Electrónico" onChange={handleOnChange} value={updateProfile.email} />
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>

@@ -76,7 +76,7 @@ const postNewUser = async (req, res) => {
 const putUser = async(req, res) =>{
     const { id } = req.params;
     const { name, lastName, email, address, phone, is_Admin, isBlocked, image } = req.body;
-    // if (!image) image = "https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg";
+
     try {
         const data={
             name:name,

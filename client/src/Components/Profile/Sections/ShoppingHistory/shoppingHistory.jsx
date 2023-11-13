@@ -1,8 +1,10 @@
+import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 import { Card, List } from 'antd';
 const { Meta } = Card;
 import styles from './shoppingHistory.module.css'
 
 const ShoppingHistory = () => {
+
     const products = [
         {
             uid: 1,
@@ -23,6 +25,10 @@ const ShoppingHistory = () => {
             category: "Chocolate negro"
           },
     ]
+
+    const { data: userRequest, isLoading, refetch } = useGetAllRequestQuery();
+    console.log(userRequest);
+
     return (
     <div className={styles.historyContainer}>
         <List

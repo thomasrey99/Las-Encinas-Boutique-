@@ -5,40 +5,50 @@ import { useSelector } from 'react-redux'
 import { useGetUserByIdQuery, useUpdateUserMutation } from "../../../../libs/redux/services/usersApi";
 import { Form, Input, Button, Upload, Spin  } from 'antd';
 import ImgCrop from 'antd-img-crop';
+import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updateProfile.module.css'
 
 const UpdateProfile = () => {
+
+    const [isEditing, setIsEditing] = useState(false);
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
 
     const { data: getUserById, isLoading, refetch } = useGetUserByIdQuery(id);
     const [ updateUser ] = useUpdateUserMutation();
 
-    const [ updateProfile, setUpdateProfile ] = useState({ image: '', name: '', lastName: '', address: '',  phone: ''});
+    const [ updateProfile, setUpdateProfile ] = useState({ image: ''
+    , name: '', lastName: '', address: '',  phone: ''});
 
     // Cargo al estado con el usuario
     useEffect(() => {
         if (getUserById) {
             setUpdateProfile({
-                image: getUserById?.image ||'https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg', 
+                image: getUserById.image, 
                 name: getUserById.name, lastName: getUserById.lastName, address: user.address, 
                 phone: getUserById.phone,
             });
         } 
-        refetch();
-        console.log(getUserById);
     }, [getUserById]);
 
-    //Carga de imagen
-    const defaultFileList = [{ uid: '-1', name: 'image.png', status: 'done',
-          url: updateProfile.image,},];
-    
-    const [fileList, setFileList] = useState(defaultFileList);
+    useEffect(() => {
+        setFileList([{ uid: '-1', name: 'image.png', status: 'done', url: updateProfile.image }]);
+    }, [updateProfile.image]);
 
+        //Carga de imagen
+        const defaultFileList = [{ uid: '-1', name: 'image.png', status: 'done',
+        url: updateProfile.image,},];
+    
+        const [fileList, setFileList] = useState(defaultFileList);
 
     const onChange = async ({  fileList: newFileList }) => {   
-        if (newFileList.length === 0) setFileList(defaultFileList);
-        else setFileList([newFileList[newFileList.length - 1]]);
+        if (newFileList.length === 0) {
+            const defaultUrl = 'https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg';
+            setFileList(defaultFileList.map(file => ({ ...file, url: defaultUrl })));
+            setUpdateProfile({...updateProfile, image: defaultUrl});
+        } else {
+            setFileList([newFileList[newFileList.length - 1]]);
+        }
     };
     
     const onPreview = async (file) => {
@@ -55,10 +65,6 @@ const UpdateProfile = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
-
-    useEffect(() => {
-        console.log(updateProfile);
-    },[updateProfile])
 
     // Subida de imagen y actualización de la propiedad del estado
     const uploadImage = async ({ file, onSuccess, onError }) => {
@@ -92,7 +98,6 @@ const UpdateProfile = () => {
     const updateUserData = async () => {
     await updateUser({ id, updateProfile });
   };
-
     updateUserData();
     }, [updateProfile]);
 
@@ -106,6 +111,7 @@ const UpdateProfile = () => {
         refetch();
     }
     
+
     const validateName = (rule, value) => {
         if (value && !/^[A-Z][a-z]*( [A-Z][a-z]*)?$/.test(value)) {
             return Promise.reject('Nombre inválido.');
@@ -129,61 +135,71 @@ const UpdateProfile = () => {
 
     return(
         <div style={{}}>
-            <div className={styles.uploadImage}>
-                <ImgCrop rotationSlider>
-                    <Upload
-                        customRequest={uploadImage}
-                        listType="picture-card"
-                        fileList={fileList}
-                        onChange={onChange}
-                        onPreview={onPreview}>
-                            {fileList.length < 2 && 'Subir Imagen'}
-                    </Upload>
-                </ImgCrop>
+            {isLoading || !user || !getUserById
+            ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
+            :<div>
+                <div className={styles.uploadImage}>
+                    <ImgCrop rotationSlider>
+                        <Upload
+                            customRequest={uploadImage}
+                            listType="picture-card"
+                            fileList={fileList}
+                            onChange={onChange}
+                            onPreview={onPreview}>
+                                {fileList.length < 2 && 'Subir Imagen'}
+                        </Upload>
+                    </ImgCrop>
+                </div>
+                <Form
+                    name="profile"
+                    initialValues={getUserById}
+                    onFinish={onFinish}>
+                    <label>Nombre</label>
+                    <Form.Item
+                        name="name"
+                        rules={[{ required: true, message: 'Por favor ingresa tu nombre!' },
+                            { validator: validateName, message: 'Nombre inválido.' }]}>
+                        <Input placeholder="Nombre" onChange={handleOnChange} value={updateProfile.name} 
+                        readOnly={!isEditing}/>
+                    </Form.Item>
+
+                    <label>Apellido</label>
+                    <Form.Item
+                        name="lastName"
+                        rules={[{ required: true, message: 'Por favor ingresa tu apellido!'},
+                            {validator: validateName, message: 'Apellido inválido.' }]}>
+                        <Input placeholder="Apellido" onChange={handleOnChange} value={updateProfile.lastName} 
+                        readOnly={!isEditing} />
+                    </Form.Item>
+
+                    <label>Teléfono</label>
+                    <Form.Item
+                        name="phone"
+                        rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono!'},
+                            {validator: validatePhone, message: 'Número inválido.' }]}>
+                        <Input placeholder="Teléfono" onChange={handleOnChange} value={updateProfile.phone} 
+                        readOnly={!isEditing}/>
+                    </Form.Item>
+
+                    <label>Dirección</label>
+                    <Form.Item
+                        name="address"
+                        rules={[{ required: true, message: 'Por favor ingresa tu dirección!'}, 
+                            {validator:validateAddress, message: 'Dirección inválida.'}]}>
+                        <Input placeholder="Dirección" onChange={handleOnChange} value={updateProfile.address} 
+                        readOnly={!isEditing}/>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button onClick={() => setIsEditing(!isEditing)}>
+                                {isEditing?<CloseOutlined/>:<EditOutlined/>}</Button>
+                        {isEditing && <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
+                            Actualizar
+                        </Button>}
+                    </Form.Item>
+                </Form>
             </div>
-            <Form
-                name="profile"
-                initialValues={getUserById}
-                onFinish={onFinish}>
-
-                <label>Nombre</label>
-                <Form.Item
-                    name="name"
-                    rules={[{ required: true, message: 'Por favor ingresa tu nombre!' },
-                        { validator: validateName, message: 'Nombre inválido.' }]}>
-                    <Input placeholder="Nombre" onChange={handleOnChange} value={updateProfile.name} />
-                </Form.Item>
-
-                <label>Apellido</label>
-                <Form.Item
-                    name="lastName"
-                    rules={[{ required: true, message: 'Por favor ingresa tu apellido!'},
-                        {validator: validateName, message: 'Apellido inválido.' }]}>
-                    <Input placeholder="Apellido" onChange={handleOnChange} value={updateProfile.lastName} />
-                </Form.Item>
-
-                <label>Teléfono</label>
-                <Form.Item
-                    name="phone"
-                    rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono!'},
-                        {validator: validatePhone, message: 'Número inválido.' }]}>
-                    <Input placeholder="Teléfono" onChange={handleOnChange} value={updateProfile.phone} />
-                </Form.Item>
-
-                <label>Dirección</label>
-                <Form.Item
-                    name="address"
-                    rules={[{ required: true, message: 'Por favor ingresa tu dirección!'}, 
-                        {validator:validateAddress, message: 'Dirección inválida.'}]}>
-                    <Input placeholder="Dirección" onChange={handleOnChange} value={updateProfile.address} />
-                </Form.Item>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
-                        Actualizar
-                    </Button>
-                </Form.Item>
-            </Form>
+            }
         </div>
     );
 }

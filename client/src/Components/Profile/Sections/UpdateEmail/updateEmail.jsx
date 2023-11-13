@@ -14,7 +14,6 @@ const FormUpdateEmail = () => {
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const currentEmail = auth.currentUser.email;
-    console.log(auth.currentUser.email);
 
     const [isEditing, setIsEditing] = useState(false);
     const user = useSelector(state => state.user.userLog)

@@ -8,6 +8,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 2.5vw;
     
 }
 
@@ -28,7 +29,10 @@
     justify-content: space-between;
     font-size: 16px;
     padding: 10px;
-    width: 30vw;
+    width: 25vw;
+}
+.withMargin {
+  margin-right: 8%;
 }
 .cartIcon{
     width: 24px;
@@ -73,26 +77,21 @@
     margin-left: 20px;
   }
 
-.languageButtons {
-  display: flex;
-  align-items: center;
-}
-
 .languageSelect {
   display: flex;
   align-items: center;
-  margin-right: 20%; 
   width: 4rem; 
   height: auto; 
   border: none;
-
+ 
+}
+.languageSelect > div {
+  margin-right: 40%;
 }
 
 .translateLogo{
+  margin-right: -22px;
   height: auto;
   width: 2.3rem;
 }
 
-.cssSelect{
-  margin-left: 15%;
-}

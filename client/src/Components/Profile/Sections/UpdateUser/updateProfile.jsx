@@ -8,6 +8,7 @@ import ImgCrop from 'antd-img-crop';
 import styles from './updateProfile.module.css'
 
 const UpdateProfile = () => {
+
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
 
@@ -179,8 +180,8 @@ const UpdateProfile = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
-                        Actualizar
+                    <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile} >
+                    Actualizar
                     </Button>
                 </Form.Item>
             </Form>

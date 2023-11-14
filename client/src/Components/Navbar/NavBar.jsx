@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { addCart, cleanCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 import { useTranslation} from "react-i18next";
-
 import { useCreateRequestMutation } from "../../libs/redux/services/requestApi";
 
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
@@ -101,30 +100,17 @@ const NavBar = ({handleOPen, isOPen}) => {
           <NavLink to='/home'><img src={logo} className={style.img}/></NavLink>   
           <NavLink to='/home'><img src={title} className={style.brand}/></NavLink>
         </div>
-        <div className={style.navItems}>
+        <div className={`${style.navItems} ${style.withMargin}`}>
+          <div className={style.navLinks}>
+              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
+              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
+          </div>
           <NavLink to={"/cart"}>
             <div className={style.cartIconCont}>
               <img src={cartIcon} className={style.cartIcon}/>
               <p className={style.TotaItems}>{totalItemsCart}</p>
             </div>
           </NavLink>
-          <div className={style.navLinks}>
-              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
-              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
-          </div>
-          <div className={menuStyle.menuCont}>
-          <input
-            type='checkbox'
-            name="checkbox"
-            checked={isOPen}
-            id={menuStyle.checkbox}
-          />
-          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
-            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
-          </label>
-        </div>
         <div className={style.languageSelect}>
           <div>
         <img src={langLogo} className={style.translateLogo}/>
@@ -139,6 +125,19 @@ const NavBar = ({handleOPen, isOPen}) => {
           <option value="en">English</option>
         </select>
           </div>
+          <div className={menuStyle.menuCont}>
+          <input
+            type='checkbox'
+            name="checkbox"
+            checked={isOPen}
+            id={menuStyle.checkbox}
+          />
+          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
+            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
+            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
+          </label>
+        </div>
         </div>
     </div>
 

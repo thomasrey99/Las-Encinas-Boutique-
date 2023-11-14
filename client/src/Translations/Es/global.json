@@ -108,7 +108,10 @@
     "EmailReview": "Para continuar, por favor revisa tu bandeja de entrada en el nuevo correo.",
     "EmailNewSession": "Inicia sesión con tu nuevo correo electrónico y ¡listo!",
     "EmailError": "Hubo un error al actualizar el correo electrónico. Por favor intenta de nuevo."
-
+},
+"shopping": {
+    "PurchaseDetail": "Detalles de la compra",
+    "RateProduct": "Calificar producto"
 }
 
 }

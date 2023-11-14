@@ -152,33 +152,33 @@ const UpdateProfile = () => {
                 <label>{t("upProfile.Name")}</label>
                 <Form.Item
                     name="name"
-                    rules={[{ required: true, message: t("security.InsertEmail") },
-                        { validator: validateName, message: t("security.InsertEmail") }]}>
-                    <Input placeholder="Nombre" onChange={handleOnChange} value={updateProfile.name} />
+                    rules={[{ required: true, message: t("upProfile.Enter-name") },
+                        { validator: validateName, message: t("upProfile.Invalid-name") }]}>
+                    <Input placeholder={t("upProfile.Name")} onChange={handleOnChange} value={updateProfile.name} />
                 </Form.Item>
 
                 <label>{t("upProfile.LastName")}</label>
                 <Form.Item
                     name="lastName"
-                    rules={[{ required: true, message: 'Por favor ingresa tu apellido!'},
-                        {validator: validateName, message: 'Apellido inválido.' }]}>
-                    <Input placeholder="Apellido" onChange={handleOnChange} value={updateProfile.lastName} />
+                    rules={[{ required: true, message: t("upProfile.Enter-lastname")},
+                        {validator: validateName, message: t("upProfile.Invalid-lastName") }]}>
+                    <Input placeholder={t("upProfile.LastName")} onChange={handleOnChange} value={updateProfile.lastName} />
                 </Form.Item>
 
                 <label>{t("upProfile.Phone")}</label>
                 <Form.Item
                     name="phone"
-                    rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono!'},
-                        {validator: validatePhone, message: 'Número inválido.' }]}>
-                    <Input placeholder="Teléfono" onChange={handleOnChange} value={updateProfile.phone} />
+                    rules={[{ required: true, message:  t("upProfile.Enter-phone")},
+                        {validator: validatePhone, message:  t("upProfile.Invalid-phone") }]}>
+                    <Input placeholder={t("upProfile.Phone")} onChange={handleOnChange} value={updateProfile.phone} />
                 </Form.Item>
 
                 <label>{t("upProfile.Adress")}</label>
                 <Form.Item
                     name="address"
-                    rules={[{ required: true, message: 'Por favor ingresa tu dirección!'}, 
-                        {validator:validateAddress, message: 'Dirección inválida.'}]}>
-                    <Input placeholder="Dirección" onChange={handleOnChange} value={updateProfile.address} />
+                    rules={[{ required: true, message: t("upProfile.Enter-Adress")}, 
+                        {validator:validateAddress, message: t("Invalid-adress")}]}>
+                    <Input placeholder={t("upProfile.Adress")} onChange={handleOnChange} value={updateProfile.address} />
                 </Form.Item>
 
                 <Form.Item>

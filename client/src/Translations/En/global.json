@@ -106,6 +106,10 @@
     "EmailReview": "To continue, please check your inbox for the new email.",
     "EmailNewSession": "Sign in with your new email and that's it!",
     "EmailError": "There was an error updating the email. Please try again."
+},
+"shopping": {
+    "PurchaseDetail": "Purchase details",
+    "RateProduct": "Rate product"
 }
 
   

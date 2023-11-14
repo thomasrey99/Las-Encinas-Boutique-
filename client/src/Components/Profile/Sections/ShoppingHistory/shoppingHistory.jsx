@@ -1,8 +1,10 @@
 import { Card, List } from 'antd';
 const { Meta } = Card;
 import styles from './shoppingHistory.module.css'
+import { useTranslation } from 'react-i18next';
 
 const ShoppingHistory = () => {
+  const { t  } = useTranslation("global");
     const products = [
         {
             uid: 1,
@@ -34,8 +36,8 @@ const ShoppingHistory = () => {
               className={styles.productCard}
                 cover={<div className={styles.imageContainer}><img alt={item.title} src={item.image} className={styles.productImage} /></div>}>
                 <Meta title={item.name} />
-                <a className={styles.purchaseDetails}>Detalles compra</a>
-                <a className={styles.rateProduct}>Calificar producto</a>
+                <a className={styles.purchaseDetails}>{t("shopping.PurchaseDetail")}</a>
+                <a className={styles.rateProduct}>{t("shopping.RateProduct")}</a>
               </Card>
             </List.Item>
           )}

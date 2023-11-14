@@ -83,7 +83,7 @@ const OrderTable = () => {
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de Pedidos</h1>
         <Sumorder/>
-        <Search/>
+        {/* <Search/> */}
       <br></br>
       
       <Table 

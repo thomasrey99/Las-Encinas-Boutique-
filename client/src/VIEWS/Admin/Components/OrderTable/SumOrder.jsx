@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
-// import { getUserLog } from '../../../../libs/redux/features/actions/userActions';
-
+import style from './class.module.css';
+import { Row, Col } from 'antd';
 
 const Sumorder = () => {
     const order = useSelector(state => state.request.allRequest);
@@ -37,18 +37,24 @@ const Sumorder = () => {
 
     const totalOrders =  sumQuantity - OrdersPlaced
     
-    console.log( request );
+    
     return (
     
-        <div>
-            <ul>
-                <li>Pedidos realizados: {OrdersPlaced}</li>
-                <li>Pedidos pendientes: {sumPending}</li>
-                <li>Pedidos cancelados: {sumCancelled}</li>
-                <li>Stock Promocional: {PromotionalStock}</li>
+        <div className={style.div} >
+            <ul className={style.ul}>
+                <li className={style.li} >Pedidos realizados: {OrdersPlaced}</li>
+                <li className={style.li} >Pedidos pendientes: {sumPending}</li>
+                <li className={style.li} >Pedidos cancelados: {sumCancelled}</li>
+                <li className={style.li} >Stock Promocional: {PromotionalStock}</li>
             </ul>
+            
+        <div className={style.ul}>
             <h3>Total de pedidos: {totalOrders} </h3>
             <h3>Historial de pedidos: {sumQuantity} </h3>
+        </div>
+            
+
+            
         </div>
     )
 }

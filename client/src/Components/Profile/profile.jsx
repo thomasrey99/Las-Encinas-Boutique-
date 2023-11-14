@@ -1,5 +1,3 @@
-// import { useEffect } from "react";
-// import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { useGetUserByIdQuery } from "../../libs/redux/services/usersApi";
 import ShoppingHistory from "./Sections/ShoppingHistory/shoppingHistory";
@@ -9,7 +7,6 @@ import UpdateProfile from "./Sections/UpdateUser/updateProfile";
 import RequestDetail from './Sections/ShoppingHistory/RequestDetail/requestDetail';
 import { Card, Spin, Tabs } from 'antd';
 const { TabPane } = Tabs;
-//import { UserOutlined } from '@ant-design/icons';
 import styles from './profile.module.css'
 
 const Profile = () => {

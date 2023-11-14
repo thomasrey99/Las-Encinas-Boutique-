@@ -26,13 +26,13 @@ const {
 const dataBase=new Sequelize( 
   `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   {logging:false}  
-)
+) 
 
 // ACTIVAR ESTA SECCIÓN CUANDO QUIERES TRABAJAR CON LA BD DEPLOYADA
-/*const dataBase=new Sequelize( 
-  `${DB_SERVER_DEPLOY}`,
-  {logging:false, dialectOptions:{ssl:{require:true}}}
-)*/
+// const dataBase=new Sequelize(  
+//   `${DB_SERVER_DEPLOY}`,
+//   {logging:false, dialectOptions:{ssl:{require:true}}}
+// )
 
 userModel(dataBase)
 productModel(dataBase)

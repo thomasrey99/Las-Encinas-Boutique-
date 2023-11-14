@@ -29,6 +29,7 @@ import { useState } from 'react';
 import Menu from './Components/menu/Menu'; 
 import Chat from './VIEWS/Chat/Chat';
 import Landing from './VIEWS/Landing/Landing';
+import ContactUs from './VIEWS/Forms/FormContacts/ContactUs';
 
 const App = () => {
 
@@ -68,6 +69,7 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
+          <Route path="/contactUs" element={<ContactUs/>}/>
           {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
           ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />
@@ -76,10 +78,10 @@ const App = () => {
           <Route path='resetpassword' element={<FormResetPassword />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart/>}/>
-          <Route path="/chat" element={<Chat/>}/>
           <Route path='/profile' element={<Profile user={currentUser}/>}/>
+          {/* Rutas protegidas para el cliente, lo obligan a logearse */}
+          <Route path='/chat' element={<ProtectedRoute><Chat /></ProtectedRoute>} />
           {/* Rutas protegidas del admin */}
-
           {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
@@ -88,7 +90,7 @@ const App = () => {
           {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/createProduct' element={<CreateProducts />} /> : <Route path='/createProduct' element={<ErrorPage />} />}
-
+          {/* <Route path='/controlAdmin' element={currentUser?.is_Admin?<ControlPanel/>: <ErrorPage/>} /> */}
         </Routes>
         {isOPen&&<Menu handleOPen={handleOPen}/>}
         {validate && <Footer />}

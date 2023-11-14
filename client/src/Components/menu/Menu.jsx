@@ -15,6 +15,7 @@ const Menu = ({handleOPen}) => {
   const { user, logout } = useAuth();
 
   const currentUser = useSelector(state => state.user.userLog)
+  
   const handleOnClick = async () => {
     await logout();
     dispatch(addUser(null))

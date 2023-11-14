@@ -94,7 +94,7 @@ export const Cart = () => {
     }, [cart])
 
 
-console.log("usuario desde el carrito", user)
+
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>

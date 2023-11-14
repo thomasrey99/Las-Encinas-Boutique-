@@ -51,7 +51,7 @@ const NavBar = ({handleOPen, isOPen}) => {
   const cart=useSelector((state)=>state.cart)
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  console.log("user actual:",currentUser)
+  
 
 
   user && getUserByUid(user.uid)
@@ -93,8 +93,6 @@ const NavBar = ({handleOPen, isOPen}) => {
       setMadeRequest(true)
     }
   },[currentUser])
-
-  console.log("usuario registrado: ", currentUser)
 
   return (
     <nav className={style.navCont}>

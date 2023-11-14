@@ -1,8 +1,8 @@
 .navCont{
     width: 100vw;
     height: 12vh;
-    background: var(--brown);
-    color:white;
+    background: #ffffff;
+    color:black;
     font-family: var(--primary-font);
     display: flex;
     flex-direction: row;
@@ -11,10 +11,18 @@
     
 }
 
-.logCont{   
-   flex: 0 0 auto;
+.logCont{
+   height: 100%;
    display: flex;
    flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   margin-left: 2%;
+}
+.navTittle{
+  color: var(--brown);
+  text-decoration: none;
+  padding: 5px;
 }
 .img{
     width: 4vw;

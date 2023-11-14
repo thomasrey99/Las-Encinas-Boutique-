@@ -14,7 +14,7 @@ import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas q
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 import {Cart} from "./VIEWS/cart/Cart"
 import Profile from './Components/Profile/profile';
-import Profile from './Components/Profile/profile';
+
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';

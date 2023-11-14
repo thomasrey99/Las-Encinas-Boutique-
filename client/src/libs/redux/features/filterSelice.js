@@ -9,6 +9,7 @@ const initialState={
     order:"",
     type:"",
     is_Delete:"",
+    id_payment:""
 }
 
 export const filterSlice=createSlice({
@@ -37,6 +38,9 @@ export const filterSlice=createSlice({
             if(payload.name==="status"){
                 state.is_Delete=payload.value
             }
+            if(payload.name==="param"){
+                state.param=payload.value
+            }
         },
         clearFilter(state) {
             state.name = "";
@@ -46,6 +50,7 @@ export const filterSlice=createSlice({
             state.order = "";
             state.type = "";
             state.is_Delete = "";
+            state.param = "";
         },
         statusFilter(state) {
             state.is_Delete =""

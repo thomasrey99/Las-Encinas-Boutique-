@@ -9,6 +9,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2.5vw;
+    border-bottom: #eaeaea;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
     
 }
 
@@ -37,7 +41,7 @@
     justify-content: space-between;
     font-size: 16px;
     padding: 10px;
-    width: 25vw;
+    width: 30vw;
 }
 .withMargin {
   margin-right: 8%;
@@ -55,7 +59,7 @@
 .item{
     padding: 5px 10px;
     text-decoration: none;
-    color: white;
+    color: black;
 }
 .cartIconCont{
     position: relative;
@@ -68,14 +72,14 @@
 .TotaItems{
     position: absolute;
     text-decoration: none;
-    top: 0px;
+    top: -10px;
     left:10px;
     color: green;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
 }
 .brand {
-    color: white;
+    color: black;
     height: 50px;
     white-space: nowrap;
     flex-grow: 1;
@@ -102,6 +106,10 @@
   align-items: center;
   margin-right: -15px;
   height: auto;
-  width: 2.3rem;
+  width: 1.5rem;
 }
 
+.cssSelect{
+  border: none;
+  background: white;
+}

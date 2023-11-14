@@ -4,7 +4,7 @@ import Style from './Payments.module.css';
 
 import NavBarAdmin from '../../Components/NavBarAdmin/NavBarAdmin';
 
-import { Table, Space } from 'antd';
+import { Table, Space, Flex } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
 import { useDeletePaymentMutation, useGetAllPaymentsQuery } from '../../../../libs/redux/services/paymentsApi';
@@ -28,10 +28,9 @@ const Payments = () => {
     <div className={Conteiner.Container}>
       <NavBarAdmin />
       <div className={Conteiner.Panel} style={{ padding: 0 }}>
-
+          
         <div style={{ margin: "4% 5% 0 5%" }}>
-
-          <Table dataSource={data} loading={isLoading}>
+          <Table dataSource={data} loading={isLoading} style={{color: "red"}}>
             <ColumnGroup title="Usuario">
               <Column title="Nombre" dataIndex="user_name" key="user_name" />
               <Column title="Email" dataIndex="user_email" key="user_email" />

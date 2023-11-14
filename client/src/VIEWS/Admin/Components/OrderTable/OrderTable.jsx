@@ -7,7 +7,7 @@ import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/
 import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
 import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import Sumorder from './Sumorder';
+import Sumorder from './SumOrder';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 
   

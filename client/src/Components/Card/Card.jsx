@@ -3,13 +3,14 @@ import Style from './Card.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useGetAllFavProductsQuery, useGetFavProductQuery, 
   useAddFavProductMutation, useRemoveFavProductMutation } from '../../libs/redux/services/favoritesApi'
-import { Card as AndCard, Rate, Button } from 'antd';
+import { Card as AndCard, Rate, Button, Result } from 'antd';
 const { Meta } = AndCard;
 import { ShoppingCartOutlined, HeartOutlined, HeartFilled, } from '@ant-design/icons';
 import { addProductCart } from '../../libs/redux/features/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePutCartMutation } from '../../libs/redux/services/CartApi';
 import { useAuth } from '../../firebase/authContext';
+import Swal from "sweetalert2/dist/sweetalert2.js"
 
 const Card = (props) => {
 
@@ -40,26 +41,92 @@ const Card = (props) => {
     event.stopPropagation();
 
     if(user===null){
-      alert("Tienes que registrarte para agregar productos a favoritos")
-      navigate("/login")
+      Swal.fire({
+        title: "Debes loguearte para agregar productos al carrito",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      }).then((result)=>{
+        if(result.isConfirmed){
+          navigate(("/login"))
+        }
+      })
     }else{
       if (productFav) {
-        await removeFavProduct({userId, productId});
+        await removeFavProduct({userId, productId});Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Se quito de favoritos` ,
+          showConfirmButton: false,
+          timer: 1500
+        });
       } else {
         await addFavProduct({userId, productId});
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Agregado a favoritos` ,
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
       refetch(); 
       refresh();
     }
   }
+  const CartNotification=(name)=>{
+    if(user===null){
+      Swal.fire({
+        title: "Debes loguearte para agregar productos al carrito",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      }).then((result)=>{
+        if(result.isConfirmed){
+          navigate(("/login"))
+        }
+      })
 
+    }else{
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Agregado al carrito` ,
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+
+  }
   const handleProductCart=async (product)=>{
     if(user===null){
-      alert("Tienes que registrarte para agregar productos al carrito")
-      navigate("/login")
+      CartNotification(null)
     }else{
       dispatch(addProductCart(product))
       await mutate({ dataUpdate: cartData, id_cart: id_cart })
+      CartNotification(product.name)
     }
   }
 

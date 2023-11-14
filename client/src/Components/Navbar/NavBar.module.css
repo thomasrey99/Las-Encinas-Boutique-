@@ -89,8 +89,10 @@
   margin-right: 40%;
 }
 
-.translateLogo{
-  margin-right: -22px;
+.idiomas{
+  display: flex;
+  align-items: center;
+  margin-right: -15px;
   height: auto;
   width: 2.3rem;
 }

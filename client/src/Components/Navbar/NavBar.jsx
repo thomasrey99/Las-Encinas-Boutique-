@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
-import langLogo from "../../assets/translateLogo.png";
+import langLogo from "../../assets/idiomas.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
@@ -129,7 +129,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           </NavLink>
         <div className={style.languageSelect}>
           <div>
-        <img src={langLogo} className={style.translateLogo}/>
+        <img src={langLogo} className={style.idiomas}/>
           </div>
           <div>
         <select

@@ -21,14 +21,14 @@ const Card = (props) => {
   const id_cart=useSelector((state)=>state.user.userCartId)
   const currentUser= useSelector((state)=>state.user.userLog)
   const userId =  currentUser?.uid;
-  console.log(currentUser);
+  
   const productId = props.id;
   const [ addFavProduct ] = useAddFavProductMutation();
   const [ removeFavProduct ] = useRemoveFavProductMutation();
   const { data: productFav, refetch  } = useGetFavProductQuery({userId, productId});
   const { refetch: refresh  } = useGetAllFavProductsQuery(userId);
   const [mutate]=usePutCartMutation()
-  // console.log(productFav);
+  
 
   useEffect(() => {
     if (userId) {

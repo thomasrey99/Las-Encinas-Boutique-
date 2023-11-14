@@ -3,12 +3,10 @@ import { Table } from 'antd';
 import styles from "../UsersTable/UsersTable.module.css";
 import { EditOutlined, StopOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
-//import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
-//import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 //import Sumorder from './Sumorder';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
+import Search from '../SearchBarProducts/Search';
 
   
 
@@ -84,8 +82,8 @@ const OrderTable = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de Pedidos</h1>
-        {/* <Sumorder/> */}
-        {/* <SearchBarUsers/> */}
+        <Sumorder/>
+        {/* <Search/> */}
       <br></br>
       
       <Table 

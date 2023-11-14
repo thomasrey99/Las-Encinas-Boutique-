@@ -15,8 +15,8 @@ import { useEffect, useState } from "react";
 import { addCart, cleanCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 import { useTranslation} from "react-i18next";
-
 import { useCreateRequestMutation } from "../../libs/redux/services/requestApi";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
@@ -34,9 +34,11 @@ const getUserById=async(id)=>{
 
 const NavBar = ({handleOPen, isOPen}) => {
 
-  const [mutate]=useCreateRequestMutation()
+  const [mutate, {data, isLoading}]=useCreateRequestMutation()
 
   const [madeRequest, setMadeRequest]=useState(false)
+
+  const [alert, setAlert]=useState(false)
 
   const url = new URL(window.location.href);
 
@@ -51,7 +53,6 @@ const NavBar = ({handleOPen, isOPen}) => {
   const cart=useSelector((state)=>state.cart)
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  console.log("user actual:",currentUser)
 
 
   user && getUserByUid(user.uid)
@@ -60,7 +61,18 @@ const NavBar = ({handleOPen, isOPen}) => {
     await logout();
   };
 
-
+  if(madeRequest && data && !alert){
+    if(!data?.message){
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "La compra se realizo con exito",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    setAlert(true)
+  }
 
   useEffect(() => {
     const getUserData = async () => {
@@ -70,6 +82,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           const response = await getUserById(uid);
           dispatch(addUser(response.user));
           dispatch(addCart(response.cart));
+          
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }
@@ -78,6 +91,8 @@ const NavBar = ({handleOPen, isOPen}) => {
 
     getUserData();
   }, [dispatch, user]);
+
+  
 
   useEffect(()=>{
     if(status==="approved" && currentUser && cart?.products.length!==0 && !madeRequest){
@@ -91,10 +106,10 @@ const NavBar = ({handleOPen, isOPen}) => {
       })
       dispatch(cleanCart())
       setMadeRequest(true)
+      
     }
-  },[currentUser])
 
-  console.log("usuario registrado: ", currentUser)
+  },[currentUser])
 
   return (
     <nav className={style.navCont}>

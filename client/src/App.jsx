@@ -29,6 +29,7 @@ import { useState } from 'react';
 import Menu from './Components/menu/Menu'; 
 import Chat from './VIEWS/Chat/Chat';
 import Landing from './VIEWS/Landing/Landing';
+import ContactUs from './VIEWS/Forms/FormContacts/ContactUs';
 
 const App = () => {
 
@@ -68,6 +69,9 @@ const App = () => {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='registeruser' element={<FormUser />} />
           <Route path='homeblocked' element={<PageUserBlocked />} />
+          <Route path="/contactUs" element={<ContactUs/>}/>
+          {/* <Route path='about' element={<ProtectedRoute><AboutUs /></ProtectedRoute>} /> Este es un 
+          ejemplo de como obligar al usuario a logearse. */}
           <Route path='*' element={<ErrorPage/>} />
           <Route path='about' element={<AboutUs />} />
           <Route path='login' element={<Login/>} />

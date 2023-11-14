@@ -8,17 +8,20 @@ export const paymentsApi=createApi({
     reducerPath:"paymentsApi",
     endpoints:(builder)=>({
         getAllPayments:builder.query({
-            query:()=>`/payments`,
+            query:({param})=>`/payments?param=${param}`,
             providesTags:["payments"]
         }),
+        //
+        //
         getPaymentById:builder.query({
             query:(id_payment)=>`/payments/${id_payment}`,
         }),
         deletePayment:builder.mutation({
             query:(id_payment)=>({
-                url:`/payment/${id_payment}`,
+                url:`/payments/${id_payment}`,
                 method:"DELETE"
-            })
+            }),
+            invalidatesTags:["payments"]
         })
     })
 })

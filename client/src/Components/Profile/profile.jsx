@@ -10,29 +10,30 @@ import { Card, Spin, Tabs } from 'antd';
 const { TabPane } = Tabs;
 //import { UserOutlined } from '@ant-design/icons';
 import styles from './profile.module.css'
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
 
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
-
+    const { t  } = useTranslation("global");
     const { data: getUserById, isLoading, refetch } = useGetUserByIdQuery(id);
     
     return(
         <div className={styles.profileContainer}>
             {isLoading || !getUserById || !user
-            ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
+            ? <Spin tip={t("profileMain.Loading")} className={styles.loading}><div className="content"/></Spin>
             : <div>
                 <Card className={styles.userCard}>
                     <Tabs defaultActiveKey="1">
-                        <TabPane tab="Información básica" key="1">
+                        <TabPane tab={t("profileMain.Basic Information")} key="1">
                             <UpdateProfile/>
                         </TabPane>
-                        <TabPane tab="Seguridad" key="2">
+                        <TabPane tab={t("profileMain.Security")} key="2">
                             <FormUpdateEmail/>
                             <FormUpdatePassword/>
                         </TabPane>
-                        <TabPane tab="Compras" key="3">
+                        <TabPane tab={t("profileMain.Shopping")} key="3">
                             <ShoppingHistory/>
                         </TabPane>
                     </Tabs>

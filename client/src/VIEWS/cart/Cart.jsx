@@ -7,6 +7,8 @@ import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../l
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import { Alert, Flex, Spin } from 'antd';
+
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 
@@ -29,6 +31,8 @@ export const Cart = () => {
 
     const [preferenceId, setPreferenceId] = useState("")
 
+    const [loading, setLoading]=useState(false)
+
     const [cartData, setCartData] = useState({
         products:cart.products,
         product_quantity:cart.product_quantity,
@@ -48,25 +52,31 @@ export const Cart = () => {
         }
 
         try {
+            
             const response=await axios.post(`${URL_SERVER}/products/create_preference`, {
                 id_user:user.uid,
                 description: description,
                 price:cart.total_price,
                 quantity:1,
             })
+            
             const {id} = response.data
             return id;
+
         } catch (error) {
             throw new Error(error)
         }
     }
     const handleBuy = async() => {
 
+        setLoading(true)
+
         setIsBuy(true)
         
         const id =  await createPreference()
         
         if(id){
+            setLoading(false)
             setPreferenceId(id)
         }
         
@@ -76,7 +86,24 @@ export const Cart = () => {
         setPreferenceId("")
     }
     const handleDelete = async (data) => {
-        dispatch(deleteProductCart(data))
+        Swal.fire({
+            title: "¿Desea quitar este producto del carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Eliminar",
+            cancelButtonText:"Cancelar"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              dispatch(deleteProductCart(data))
+              Swal.fire({
+                title: "Producto eliminado",
+                icon: "success"
+              });
+            }
+          });
+        
     }
 
     const handleDecrement = (name) => {
@@ -141,6 +168,7 @@ console.log("usuario desde el carrito", user)
                     {isBuy===true&&<button className={style.buyButton} onClick={handleCancel}>Cancelar</button>}
                 </div>
             </div>
+            {loading && <div className={style.loaderCont}><Spin tip="Loading" size="large"></Spin></div>}
             {preferenceId && <Wallet initialization={{preferenceId}} />}
         </aside>
     </section>

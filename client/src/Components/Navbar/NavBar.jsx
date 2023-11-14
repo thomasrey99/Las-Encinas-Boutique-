@@ -38,6 +38,8 @@ const NavBar = ({handleOPen, isOPen}) => {
 
   const [madeRequest, setMadeRequest]=useState(false)
 
+  const [alert, setAlert]=useState(false)
+
   const url = new URL(window.location.href);
 
   let status=url.searchParams.get("status")
@@ -59,7 +61,7 @@ const NavBar = ({handleOPen, isOPen}) => {
     await logout();
   };
 
-  if(madeRequest && data){
+  if(madeRequest && data && !alert){
     if(!data?.message){
       Swal.fire({
         position: "center",
@@ -69,6 +71,7 @@ const NavBar = ({handleOPen, isOPen}) => {
         timer: 1500
       });
     }
+    setAlert(true)
   }
 
   useEffect(() => {
@@ -79,6 +82,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           const response = await getUserById(uid);
           dispatch(addUser(response.user));
           dispatch(addCart(response.cart));
+          
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }

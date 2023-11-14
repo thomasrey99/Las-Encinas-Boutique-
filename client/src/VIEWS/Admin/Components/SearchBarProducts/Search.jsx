@@ -8,7 +8,7 @@ const Search = () => {
     const allRequests = useSelector(state => state.request);
     const { data } = useGetAllRequestQuery();
     const [input, setInput] = useState('');
-    ;
+    
     
 
 

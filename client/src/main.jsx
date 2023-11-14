@@ -7,20 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './libs/redux/store.js';
 
 import { ConfigProvider } from 'antd';
-
-const config = {
-  theme: {
-    token: {
-      colorPrimary: '#eac696',
-      colorInfo: '#eac696',
-      fontSize: 15,
-      colorError: '#65451f',
-      colorWarning: '#65451f',
-      colorLink: '#c8ae7d',
-      colorSuccess: '#765827',
-    },
-  },
-};
+import { config } from './themeConfig.js'
 
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";

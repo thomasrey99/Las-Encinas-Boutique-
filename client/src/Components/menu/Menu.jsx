@@ -15,7 +15,6 @@ const Menu = ({handleOPen}) => {
   const { user, logout } = useAuth();
 
   const currentUser = useSelector(state => state.user.userLog)
-  console.log(currentUser);
   const handleOnClick = async () => {
     Swal.fire({
       title: "Deseas cerrar la sesion?",
@@ -49,6 +48,7 @@ const Menu = ({handleOPen}) => {
                 <li><NavLink to={"/favorites"} className={style.link} onClick={handleOPen}>{t("menu.Favorite-products")}</NavLink></li>
                 <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>{t("menu.Homepage")}</NavLink></li>
                 <li><NavLink to={"/about"} className={style.link} onClick={handleOPen}>{t("menu.Meet-us")}</NavLink></li>
+                <li><NavLink to={"/contactUs"} className={style.link} onClick={handleOPen}>{t("menu.Contact-us")}</NavLink></li>
                 {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.link}>{t("menu.Log-off")}</NavLink>:<NavLink to={"/login"} className={style.link} onClick={handleOPen}>{t("menu.Log-in")}</NavLink>}
                 <li>{((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"}  className={style.link} onClick={handleOPen}>{t("menu.Administrator-Panel")}</NavLink>}</li>
             </ul>

@@ -8,9 +8,11 @@ export const paymentsApi=createApi({
     reducerPath:"paymentsApi",
     endpoints:(builder)=>({
         getAllPayments:builder.query({
-            query:()=>`/payments`,
+            query:({param})=>`/payments?param=${param}`,
             providesTags:["payments"]
         }),
+        //
+        //
         getPaymentById:builder.query({
             query:(id_payment)=>`/payments/${id_payment}`,
         }),

@@ -1,9 +1,9 @@
 const {getAllPaymentsController, getPaymentByIdController, deletePaymentController}=require("../controllers/paymentsController")
 
 const getAllPaymentsHandler=async(req, res)=>{
-    const { name }=req.query
+    const { param }=req.query
     try {
-        const response=await getAllPaymentsController(name)
+        const response=await getAllPaymentsController(param)
 
         return res.status(200).json(response)
 

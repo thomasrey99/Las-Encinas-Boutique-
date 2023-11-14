@@ -65,7 +65,7 @@ const Card = (props) => {
     }else{
       if (productFav) {
         await removeFavProduct({userId, productId});Swal.fire({
-          position: "top-end",
+          position: "top-mid",
           icon: "success",
           title: `Se quito de favoritos` ,
           showConfirmButton: false,
@@ -74,7 +74,7 @@ const Card = (props) => {
       } else {
         await addFavProduct({userId, productId});
         Swal.fire({
-          position: "top-end",
+          position: "top-mid",
           icon: "success",
           title: `Agregado a favoritos` ,
           showConfirmButton: false,
@@ -85,7 +85,7 @@ const Card = (props) => {
       refresh();
     }
   }
-  const CartNotification=(name)=>{
+  const CartNotification=()=>{
     if(user===null){
       Swal.fire({
         title: "Debes loguearte para agregar productos al carrito",
@@ -111,7 +111,7 @@ const Card = (props) => {
 
     }else{
       Swal.fire({
-        position: "top-end",
+        position: "top-mid",
         icon: "success",
         title: `Agregado al carrito` ,
         showConfirmButton: false,

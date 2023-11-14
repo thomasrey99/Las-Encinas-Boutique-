@@ -136,7 +136,7 @@ const Card = (props) => {
         <AndCard
           className={Style.card}
           hoverable
-          style={{ width: 280, height: 400}}
+          style={{ width: 280, height: 350}}
           cover={<img alt={props.name} src={props.image} style={{height: 200}} className={Style.img} />}>
           <Meta  onClick={()=>navigate(`/detail/${productId}`)} title={<p className={Style.name}>{props.name}</p>} />
           <Meta title={<div className={Style.raiting}><Rate disabled value={props.raiting}/></div>}

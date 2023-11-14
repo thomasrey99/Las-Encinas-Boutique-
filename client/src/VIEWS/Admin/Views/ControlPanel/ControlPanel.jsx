@@ -79,6 +79,7 @@ useEffect(() => {
             <div>
               {products.slice(0, 1).map((p) => (
                 <CardAdmin
+                  key={p.name}
                   name={p.name}
                   image={p.image}
                   description={p.description}

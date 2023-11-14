@@ -42,10 +42,8 @@ export const userSlice = createSlice({
 
         }, 
         
-        updateUser:(state, action)=>{
-          
-           
-        }
+        updateUserState: (state, action) => {
+        },
     },
 })
 export const {addUser, userByUid, updateUser, getAllUsers, getUsersByName, userLog}=userSlice.actions

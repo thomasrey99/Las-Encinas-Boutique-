@@ -16,9 +16,10 @@ export const paymentsApi=createApi({
         }),
         deletePayment:builder.mutation({
             query:(id_payment)=>({
-                url:`/payment/${id_payment}`,
+                url:`/payments/${id_payment}`,
                 method:"DELETE"
-            })
+            }),
+            invalidatesTags:["payments"]
         })
     })
 })

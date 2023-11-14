@@ -1,11 +1,19 @@
 .historyContainer {
     width: 100%;
 }
+.descriptions{
+    margin-bottom: 5vh;
+}
 
 .descriptions *{
     width: 17%;
     font-size: 0.75rem;
 }
+
+.productsTitle{
+    margin-bottom: 2vh;
+}
+
 .productCard {
     display: flex;
     align-items: center;

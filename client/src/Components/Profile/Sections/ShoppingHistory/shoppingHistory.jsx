@@ -1,13 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 import { useSelector } from 'react-redux'
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 import RequestDetail from './RequestDetail/requestDetail';
-import { Button, Tag, Table, Spin, Modal } from 'antd';
+import { Button, Tag, Table, Spin, Modal, Alert } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
 import styles from './shoppingHistory.module.css'
 
 const ShoppingHistory = () => {
 
+  const navigate = useNavigate();
   const [ isModalVisible, setIsModalVisible ] = useState(false);
   const [ currentRequest, setCurrentRequest ] = useState(null);
 
@@ -86,12 +88,26 @@ const ShoppingHistory = () => {
     <div className={styles.historyContainer}>
       {isLoading || !requests || requests===undefined || requests===null?
       <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
-      :<Table columns={columns} dataSource={userRequests} pagination={{ pageSize: 4 }}/>}
-      <div className={styles.modalContainer}>
-        <Modal title="Detalles de la Compra" visible={isModalVisible} className={styles.modalDetail} width="80%" 
-          onCancel={()=>setIsModalVisible(false)}> <RequestDetail id_request={currentRequest}/>
-        </Modal>
-      </div>
+      :userRequests && userRequests.length > 0
+      ? <div>
+          <Table columns={columns} dataSource={userRequests} pagination={{ pageSize: 4 }}/>
+          <div className={styles.modalContainer}>
+            <Modal title="Detalles de la Compra" visible={isModalVisible} className={styles.modalDetail} width="80%" 
+              footer={[
+                <Button key="submit" type="primary" onClick={()=>setIsModalVisible(false)}>
+                  Cerrar
+                </Button>,]}
+                onCancel={()=>setIsModalVisible(false)}> <RequestDetail id_request={currentRequest}/>
+            </Modal>
+          </div>
+        </div>
+      :<Alert message="Aún no has realizado ninguna compra" type="info" showIcon
+      description={
+        <div>
+            <p>¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.</p>
+            <Button type="primary" onClick={()=>navigate('/home')}>Explorar Productos</Button>
+        </div>}/>
+      }
     </div>
   );
 }

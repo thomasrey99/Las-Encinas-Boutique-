@@ -15,6 +15,7 @@ const Menu = ({handleOPen}) => {
   const { user, logout } = useAuth();
 
   const currentUser = useSelector(state => state.user.userLog)
+  
   const handleOnClick = async () => {
     Swal.fire({
       title: "Deseas cerrar la sesion?",

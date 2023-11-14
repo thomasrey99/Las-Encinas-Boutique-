@@ -107,8 +107,6 @@ const NavBar = ({handleOPen, isOPen}) => {
 
   },[currentUser])
 
-  console.log("esto trae data: ",data?.message)
-
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>

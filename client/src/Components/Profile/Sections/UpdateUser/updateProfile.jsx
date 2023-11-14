@@ -26,7 +26,7 @@ const UpdateProfile = () => {
             });
         } 
         refetch();
-        console.log(getUserById);
+        
     }, [getUserById]);
 
     //Carga de imagen
@@ -57,7 +57,7 @@ const UpdateProfile = () => {
     };
 
     useEffect(() => {
-        console.log(updateProfile);
+        
     },[updateProfile])
 
     // Subida de imagen y actualización de la propiedad del estado

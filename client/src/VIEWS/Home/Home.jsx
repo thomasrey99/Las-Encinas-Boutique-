@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const { t} = useTranslation("global");
   const { user} = useAuth();
-  console.log("Este es el user del home:",user)
+  
   useEffect(()=>{
     user && dispatch(getUserLog(user.uid))
 

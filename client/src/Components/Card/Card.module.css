@@ -11,8 +11,8 @@
   .productList {
     display: flex;
     justify-content: space-between;
-    margin: 1vh;
     margin: 4vh 1vh 0 1vh;
+    
   }
   .card{
     background-color: var(--color-grey-primary);

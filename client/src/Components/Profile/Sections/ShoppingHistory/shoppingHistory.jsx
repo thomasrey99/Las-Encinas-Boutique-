@@ -1,13 +1,36 @@
+import { useState, useEffect} from 'react';
+import { useSelector } from 'react-redux'
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
-import { Button, Tag, Table, Spin } from 'antd';
+import RequestDetail from './RequestDetail/requestDetail';
+import { Button, Tag, Table, Spin, Modal } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
 import styles from './shoppingHistory.module.css'
 
 const ShoppingHistory = () => {
 
+  const [ isModalVisible, setIsModalVisible ] = useState(false);
+  const [ currentRequest, setCurrentRequest ] = useState(null);
+
   const { data: requests, isLoading, refetch } = useGetAllRequestQuery();
   console.log(requests);
-   
+
+  useEffect(() => {
+    if (!requests || requests === null || requests === undefined){
+      refetch();
+    }
+  },[requests])
+
+  const user = useSelector(state => state.user.userLog)
+  const id = user?.uid;
+  
+  const userRequests = requests?.filter(request => request.uid === id);
+
+
+  const seeDetail = (id_request) => {
+    setIsModalVisible(true);
+    setCurrentRequest(id_request);
+  }
+
   const columns = [
     {
       title: 'Fecha',
@@ -51,8 +74,8 @@ const ShoppingHistory = () => {
     {
       title: 'Detalles',
       key: 'actions',
-      render: (text, record) => (
-        <Button type="primary" onClick='{() => showPurchaseDetails(record)}'>
+      render: (text, record,) => (
+        <Button type="primary" onClick={() => seeDetail(record.id_request)}>
           <EyeOutlined/>
         </Button>
       ),
@@ -61,9 +84,14 @@ const ShoppingHistory = () => {
   
   return (
     <div className={styles.historyContainer}>
-      {isLoading ?
+      {isLoading || !requests || requests===undefined || requests===null?
       <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
-      :<Table columns={columns} dataSource={requests} pagination={{ pageSize: 4 }}/>}
+      :<Table columns={columns} dataSource={userRequests} pagination={{ pageSize: 4 }}/>}
+      <div className={styles.modalContainer}>
+        <Modal title="Detalles de la Compra" visible={isModalVisible} className={styles.modalDetail} width="80%" 
+          onCancel={()=>setIsModalVisible(false)}> <RequestDetail id_request={currentRequest}/>
+        </Modal>
+      </div>
     </div>
   );
 }

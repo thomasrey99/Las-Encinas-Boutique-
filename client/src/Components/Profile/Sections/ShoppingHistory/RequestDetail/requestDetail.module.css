@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.descriptions *{
+    width: 17%;
+    font-size: 0.75rem;
+}
 .productCard {
     display: flex;
     align-items: center;
@@ -18,11 +22,7 @@
     width: 20vh;
     object-fit: cover;
 }
-/* .purchaseDetails{
-    position: absolute;
-    right: 2%;
-    top: 5%;
-} */
+
 .rateProduct{
     position: absolute;
     right: 2%;

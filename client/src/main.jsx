@@ -11,7 +11,8 @@ import i18next from "i18next";
 import global_es from "./Translations/Es/global.json"
 import global_en from "./Translations/En/global.json"
 
-i18next.init({
+i18next
+.init({
   interpolation: { escapeValue: false },
   lng: "es",
   resources: {

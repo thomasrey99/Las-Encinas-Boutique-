@@ -57,8 +57,6 @@ const FilterAdmin = () => {
     };
   }, []);
 
-  console.log(windowWidth);
-
   return (
   
     <div >

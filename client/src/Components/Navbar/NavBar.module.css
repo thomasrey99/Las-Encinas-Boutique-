@@ -25,7 +25,8 @@
    margin-left: 2%;
 }
 .navTittle{
-  color: var(--brown);
+  color: black;
+  font-weight: bold;
   text-decoration: none;
   padding: 5px;
 }

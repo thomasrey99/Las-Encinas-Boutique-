@@ -6,6 +6,7 @@ import CardsCart from "../../Components/cardsCart/cardsCart"
 import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
 import axios from "axios";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
 
@@ -64,7 +65,7 @@ export const Cart = () => {
         setIsBuy(true)
         
         const id =  await createPreference()
-
+        
         if(id){
             setPreferenceId(id)
         }

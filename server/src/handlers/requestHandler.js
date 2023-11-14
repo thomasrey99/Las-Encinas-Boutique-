@@ -20,7 +20,10 @@ const createRequestHandler=async(req, res)=>{
             }
         })
         if(existRequest){
-            return res.status(204).json({message:"ya existe una request con este id"})
+            const dataMessage={
+                message:"ya existe una request con este id"
+            }
+            return res.status(201).json(dataMessage)
         }else{
             const date=new Date()
 

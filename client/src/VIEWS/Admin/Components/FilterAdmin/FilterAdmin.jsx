@@ -7,7 +7,7 @@ import Status from "../../../../Components/FIlters/selectStatus/Status"
 
 import { addFilter, statusFilter } from "../../../../libs/redux/features/filterSelice";
 
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Col, Row } from 'antd';
 import { useEffect, useState } from "react";

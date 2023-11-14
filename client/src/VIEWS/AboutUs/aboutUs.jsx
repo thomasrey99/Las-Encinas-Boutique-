@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 const coders = [
   {
     id: 1,
-    fullName: "Cristian Puyo",
+    fullName: "Christian Puyo",
     description:"Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
     linkAvatar: "/public/cris.jpeg",
     linkedin: " https://www.linkedin.com/in/christian-dustin-puyo-torres-b08082253/",

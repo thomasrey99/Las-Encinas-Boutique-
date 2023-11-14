@@ -6,6 +6,7 @@ import { useAuth } from "../../../firebase/authContext";
 import { GoogleCircleFilled } from "@ant-design/icons";
 import logo from "../../../assets/las_encinas_logo.png";
 import "./login.css";
+import Swal from "sweetalert2/dist/sweetalert2.js"
 const { TextArea } = Input;
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 const Login = () => {
@@ -57,14 +58,47 @@ const Login = () => {
           } else {
             try {
                 await login(form.email, form.password);
-                navigate('/home')
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                  }
+                });
+                Toast.fire({
+                  icon: "success",
+                  title: "Logueado con extio"
+                }).then(()=>{
+                  navigate('/home')
+                })
+               
             } catch (error) {
                 // console.log(error.code)
                 if(error.code === 'auth/invalid-login-credentials'){
-                    setError("La contraseña o el E-mail son incorrectos.")
+                    
+                  Swal.fire({
+                    position: "top-mid",
+                    icon: "error",
+                    title: "email o contraseña invalida",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
     
                     }if(error.code === 'auth/too-many-requests'){
-                        setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        confirmButtonText: 'Restablecer contraseña',
+                        text: "Cuenta bloqueda por limite de intentos"
+                      }).then((result)=>{
+                        if(result.isConfirmed){
+                          navigate("/resetpassword")
+                        }
+                      })
                     }
                 }  
           }

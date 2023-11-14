@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { useTranslation } from "react-i18next";
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 const Menu = ({handleOPen}) => {
 
   const { t } = useTranslation("global");
@@ -15,18 +15,30 @@ const Menu = ({handleOPen}) => {
   const { user, logout } = useAuth();
 
   const currentUser = useSelector(state => state.user.userLog)
-  console.log(currentUser);
+  
   const handleOnClick = async () => {
-    await logout();
-    dispatch(addUser(null))
-    dispatch(addCart({
-        id_Cart:"",
-        products:[],
-        product_quantity:0,
-        total_price:0
-    }))
-    handleOPen()
-    Navigate("/home")
+    Swal.fire({
+      title: "Deseas cerrar la sesion?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cerrar sesion",
+      cancelButtonText:"cancelar"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await logout();
+        dispatch(addUser(null))
+        dispatch(addCart({
+            id_Cart:"",
+            products:[],
+            product_quantity:0,
+            total_price:0
+        }))
+        handleOPen()
+        Navigate("/home")
+      }
+    });
   };
 
   return (
@@ -37,6 +49,7 @@ const Menu = ({handleOPen}) => {
                 <li><NavLink to={"/favorites"} className={style.link} onClick={handleOPen}>{t("menu.Favorite-products")}</NavLink></li>
                 <li><NavLink to={"/home"} className={style.link} onClick={handleOPen}>{t("menu.Homepage")}</NavLink></li>
                 <li><NavLink to={"/about"} className={style.link} onClick={handleOPen}>{t("menu.Meet-us")}</NavLink></li>
+                <li><NavLink to={"/contactUs"} className={style.link} onClick={handleOPen}>{t("menu.Contact-us")}</NavLink></li>
                 {user?<NavLink to={"/home"} onClick={handleOnClick} className={style.link}>{t("menu.Log-off")}</NavLink>:<NavLink to={"/login"} className={style.link} onClick={handleOPen}>{t("menu.Log-in")}</NavLink>}
                 <li>{((user) && (currentUser?.is_Admin === true)) && <NavLink to={"/controlAdmin"}  className={style.link} onClick={handleOPen}>{t("menu.Administrator-Panel")}</NavLink>}</li>
             </ul>

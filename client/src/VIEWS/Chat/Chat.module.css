@@ -1,5 +1,6 @@
 .container {
   max-width: 800px;
+  min-height: 400px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -28,6 +29,7 @@
 .messageItem {
   display: flex;
   align-items: flex-start;
+ 
 }
 
 .messageItem span {
@@ -72,4 +74,11 @@
   font-family: 'Arial', sans-serif;
   letter-spacing: 2px;
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.timestamp {
+  font-size: 0.8em;
+  color: #777;
+  margin: 8px;
 }

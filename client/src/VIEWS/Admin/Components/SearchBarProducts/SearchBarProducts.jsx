@@ -43,4 +43,4 @@ const SearchBarProducts = ({width}) => {
   </Space>
   )
 }
-export default SearchBarProducts
+export default SearchBarProducts;

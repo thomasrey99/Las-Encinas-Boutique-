@@ -39,7 +39,10 @@ const createRequestController=async(data, id_user)=>{
         
         await newPayment.setUser(user)
     }
-    return newRequest
+    return {
+        ...newRequest,
+        isBuy:true
+    }
 }
 const putRequestByIdController=async(data, id_request)=>{
 

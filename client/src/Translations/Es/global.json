@@ -36,6 +36,7 @@
     "Favorite-products": "Productos favoritos",
     "Homepage": "Pagina principal",
     "Meet-us": "Conocenos",
+    "Contact-us": "Contáctanos",
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
@@ -66,5 +67,33 @@
     "5": "Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
     "6": "Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
     "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
+},
+"profileMain": {
+    "Loading": "Cargando",
+    "Basic Information": "Información Básica",
+    "Security": "Seguridad",
+    "Shopping": "Compras"
+  },
+  "upProfile": {
+    "Upload-image": "Subir imagen",
+    "Name": "Nombre",
+    "Enter-name": "Por favor ingresa tu nombre!",
+    "Invalid-name": "Nombre inválido.",
+    "LastName": "Apellido",
+    "Enter-lastname": "Por favor ingresa tu apellido!",
+    "Invalid-lastName": "Apellido inválido.",
+    "Phone": "Teléfono",
+    "Enter-phone": "Por favor ingresa tu número de teléfono!",
+    "Invalid-phone": "Número inválido.",
+    "Adress": "Dirección",
+    "Enter-Adress": "Por favor ingresa tu dirección!",
+    "Invalid-adress": "Dirección inválida.",
+    "Update": "Actualizar"
+},
+"password": {
+    "changePassword": "cambiar contraseña",
+    "Password": "Constraseña",
+    "update": "Actualizar"
 }
+
 }

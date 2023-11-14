@@ -7,8 +7,11 @@ import ChartLineAdmin from '../../Components/ChartJs/ChartLineAdmin';
 import { useSelector } from 'react-redux';
 import TextCardAdmin from '../../Components/TextCardAdmin/TextCardAdmin';
 import { Col, Row } from 'antd';
+import { useAuth } from '../../../../firebase/authContext';
 
 const ControlPanel = () => {
+  const { user} = useAuth();
+  console.log('Userrrrrrrrrrrrr',user);
   const products = useSelector((state) => state.items.allProducts);
   const labels = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",

@@ -9,19 +9,20 @@ import RequestDetail from './Sections/ShoppingHistory/RequestDetail/requestDetai
 import { Card, Spin, Tabs, Alert, Button } from 'antd';
 const { TabPane } = Tabs;
 import styles from './profile.module.css'
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
 
     const navigate = useNavigate();
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
-
+    const { t  } = useTranslation("global");
     const { data: getUserById, isLoading, isError, refetch } = useGetUserByIdQuery(id);
     
     return(
         <div className={styles.profileContainer}>
             {isLoading 
-            ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
+            ? <Spin tip={t("profileMain.Loading")} className={styles.loading}><div className="content"/></Spin>
             : isError ?
             <Alert message="Error al cargar datos" description={<div>
                 <p>Hubo un problema al cargar los datos, por favor intenta de nuevo más tarde.</p>
@@ -37,14 +38,14 @@ const Profile = () => {
             :<div>
                 <Card className={styles.userCard}>
                     <Tabs defaultActiveKey="1">
-                        <TabPane tab="Información básica" key="1">
+                        <TabPane tab={t("profileMain.Basic Information")} key="1">
                             <UpdateProfile/>
                         </TabPane>
-                        <TabPane tab="Seguridad" key="2">
+                        <TabPane tab={t("profileMain.Security")} key="2">
                             <FormUpdateEmail/>
                             <FormUpdatePassword/>
                         </TabPane>
-                        <TabPane tab="Compras" key="3">
+                        <TabPane tab={t("profileMain.Shopping")} key="3">
                             <ShoppingHistory/>
                         </TabPane>
                         <TabPane tab="Detalle pedido" key="4">

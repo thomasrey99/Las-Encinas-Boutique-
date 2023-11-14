@@ -66,5 +66,38 @@
     "5": "Fullstack web developer with specialization in frontend. Passionate about creating pleasant and functional user experiences.",
     "6": "Decisive and passionate programmer. Always learning. Innovative, adaptive, eager to integrate latest technologies. Focused on results.",
     "7": "Full Stack developer passionate about technology in constant search of solutions based on experience, creativity and willingness to contribute to your team."
+},
+"profileMain": {
+    "Loading": "Loading",
+    "Basic Information": "Basic Information",
+    "Security": "Security",
+    "Shopping": "Shopping"
+  },
+"upProfile": {
+    "Upload-image": "Upload image",
+    "Name": "Name",
+    "Enter-name": "Please enter your name!",
+    "Invalid-name": "Invalid name.",
+    "LastName": "Last Name",
+    "Enter-lastname": "Please enter your last name!",
+    "Invalid-lastName": "Invalid last name.",
+    "Phone": "Phone",
+    "Enter-phone": "Please enter your phone number!",
+    "Invalid-phone": "Invalid number.",
+    "Adress": "Adress",
+    "Enter-Adress": "Please enter your address!",
+    "Invalid-adress": "Invalid address.",
+    "Update": "Update"
+},
+"password": {
+    "changePassword": "Change Password",
+    "Password": "Password",
+    "update": "Update"
+},
+"email": {
+    "changeEmail": "Change e-mail",
+    "E-mail": "E-mail",
+    "update": "Update"
 }
+  
 }

@@ -21,8 +21,7 @@ const order=[
 ]
 
 const Order = ({change, width}) => {
-  const { t } = useTranslation("global");
-    
+  const { t } = useTranslation("global");    
 
     return (
       <Space wrap className={style.selectCont}>

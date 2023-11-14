@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updatePassword.module.css'
+import { useTranslation } from 'react-i18next';
 
 const FormUpdatePassword = () => {
 
+    const { t  } = useTranslation("global");
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();

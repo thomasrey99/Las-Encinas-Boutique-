@@ -1,26 +1,52 @@
-const {Payment}=require("../db")
-const getAllPaymentsController=async()=>{
-    const response=await Payment.findAll()
-    return response
-}
+const { Payment} = require("../db");
+const { Sequelize, Op } = require("sequelize");
 
-const getPaymentByIdController=async(id_payment)=>{
-    const response=await Payment.findByPk(id_payment)
-    return response
-}
+const getAllPaymentsController = async (param) => {
+  if (param) {
+    const isNumeric = !isNaN(param);
+    console.log(isNumeric);
 
-const deletePaymentController=async(id_payment)=>{
+    if (isNumeric) {
+      const paymentByID = await Payment.findAll({
+        where: {
+          id_paymentMp: {
+            [Op.like]: `%${param}%`, // Búsqueda parcial para id_paymentMp
+          },
+        },
+      });
+      console.log(param);
+      return paymentByID;
 
-    const paymentDelete=await Payment.findByPk(id_payment)
+    } else {
+      const paymentByName = await Payment.findAll({
+        where: {
+          user_name: {
+            [Op.like]: `%${param}%`, // Búsqueda parcial para user_name
+          },
+        },
+      });
+      return paymentByName.length > 0 ? paymentByName : null;
+    }
+  } else {
+    return await Payment.findAll();
+  }
+};
 
-    await paymentDelete.destroy()
+const getPaymentByIdController = async (id_payment) => {
+  const response = await Payment.findByPk(id_payment);
+  return response;
+};
 
-    return paymentDelete
+const deletePaymentController = async (id_payment) => {
+  const paymentDelete = await Payment.findByPk(id_payment);
 
-}
+  await paymentDelete.destroy();
 
-module.exports={
-    getAllPaymentsController,
-    getPaymentByIdController,
-    deletePaymentController
-}
+  return paymentDelete;
+};
+
+module.exports = {
+  getAllPaymentsController,
+  getPaymentByIdController,
+  deletePaymentController
+};

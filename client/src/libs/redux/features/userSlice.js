@@ -35,7 +35,7 @@ export const userSlice = createSlice({
         },
         
         userLog: (state, action)=>{ 
-
+            localStorage.setItem('userLog', JSON.stringify(action.payload));
             state.userLog = action.payload 
             
 

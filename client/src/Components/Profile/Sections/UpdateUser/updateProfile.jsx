@@ -6,9 +6,11 @@ import { useGetUserByIdQuery, useUpdateUserMutation } from "../../../../libs/red
 import { Form, Input, Button, Upload, Spin  } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import styles from './updateProfile.module.css'
+import { useTranslation } from 'react-i18next';
 
 const UpdateProfile = () => {
 
+    const { t  } = useTranslation("global");
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
 
@@ -138,7 +140,7 @@ const UpdateProfile = () => {
                         fileList={fileList}
                         onChange={onChange}
                         onPreview={onPreview}>
-                            {fileList.length < 2 && 'Subir Imagen'}
+                            {fileList.length < 2 && t("upProfile.Upload-image")}
                     </Upload>
                 </ImgCrop>
             </div>
@@ -147,15 +149,15 @@ const UpdateProfile = () => {
                 initialValues={getUserById}
                 onFinish={onFinish}>
 
-                <label>Nombre</label>
+                <label>{t("upProfile.Name")}</label>
                 <Form.Item
                     name="name"
-                    rules={[{ required: true, message: 'Por favor ingresa tu nombre!' },
-                        { validator: validateName, message: 'Nombre inválido.' }]}>
+                    rules={[{ required: true, message: t("security.InsertEmail") },
+                        { validator: validateName, message: t("security.InsertEmail") }]}>
                     <Input placeholder="Nombre" onChange={handleOnChange} value={updateProfile.name} />
                 </Form.Item>
 
-                <label>Apellido</label>
+                <label>{t("upProfile.LastName")}</label>
                 <Form.Item
                     name="lastName"
                     rules={[{ required: true, message: 'Por favor ingresa tu apellido!'},
@@ -163,7 +165,7 @@ const UpdateProfile = () => {
                     <Input placeholder="Apellido" onChange={handleOnChange} value={updateProfile.lastName} />
                 </Form.Item>
 
-                <label>Teléfono</label>
+                <label>{t("upProfile.Phone")}</label>
                 <Form.Item
                     name="phone"
                     rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono!'},
@@ -171,7 +173,7 @@ const UpdateProfile = () => {
                     <Input placeholder="Teléfono" onChange={handleOnChange} value={updateProfile.phone} />
                 </Form.Item>
 
-                <label>Dirección</label>
+                <label>{t("upProfile.Adress")}</label>
                 <Form.Item
                     name="address"
                     rules={[{ required: true, message: 'Por favor ingresa tu dirección!'}, 
@@ -181,7 +183,7 @@ const UpdateProfile = () => {
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile} >
-                    Actualizar
+                    {t("upProfile.Update")}
                     </Button>
                 </Form.Item>
             </Form>

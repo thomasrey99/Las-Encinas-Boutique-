@@ -4,7 +4,7 @@ import styles from "../UsersTable/UsersTable.module.css";
 import { EditOutlined, StopOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Sumorder from './Sumorder';
+//import Sumorder from './Sumorder';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 import Search from '../SearchBarProducts/Search';
 

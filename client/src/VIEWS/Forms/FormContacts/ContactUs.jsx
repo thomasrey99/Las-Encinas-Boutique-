@@ -74,7 +74,6 @@ const ContactUs = () => {
     }
 
     return (
-        
             <Form
                 name="basic"
                 labelCol={{ span: 8 }}

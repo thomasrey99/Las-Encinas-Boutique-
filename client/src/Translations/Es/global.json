@@ -26,10 +26,14 @@
     "Location": "Ubicación",
     "Social-Media": "Redes Sociales",
     "Contact": "Contacto",
-    "Phone": "Teléfono"
+    "Phone": "Teléfono",
+    "Rights": "Todos los derecho reservados"
 },
 "searchBar": {
     "Search-by-name": "Buscar por nombre"
+},
+"map": {
+    "Title": "¿Donde nos encontramos?"
 },
 "menu":{
     "Profile": "Perfil",

@@ -69,7 +69,7 @@ const OrderTable = () => {
           <EditOutlined className={styles.marginIcon} />
         </Link>
         
-        <Link to={`request/${request.id_request}`}>
+        <Link to={`/editRequest/${request.id_request}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
       </div>

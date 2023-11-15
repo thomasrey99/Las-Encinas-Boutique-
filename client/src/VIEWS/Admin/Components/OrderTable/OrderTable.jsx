@@ -12,14 +12,13 @@ const OrderTable = () => {
   const { data } = useGetAllRequestQuery();
   const dispatch = useDispatch();
   const request = data ? Object.values(data) : [];
-  const [filter, setFilter] = useState([]);
+  const [filter, setFilter] = useState([])
   
   const columns = [
   {
     title: 'Pedidos',
     dataIndex: 'products',
     key: 'products',
-    width: 150,
     render: (products) => (
       <div>
         {products.map((product) => (
@@ -31,17 +30,9 @@ const OrderTable = () => {
     ),
   },
   {
-    title: 'Estado',
-    width: 100,
-    dataIndex: 'status',
-    key: 'status',
-    fixed: 'left',
-  },
-  {
     title: 'Cantidad',
     dataIndex: 'products',
     key: 'products',
-    width: 30,
     render: (products) => (
       <div>
         {products.map((product) => (
@@ -53,23 +44,31 @@ const OrderTable = () => {
     ),
   },
   {
+    title: 'Estado',
+    dataIndex: 'status',
+    key: 'status',
+    fixed: 'left',
+    render: (status, record) => (
+      <div>
+        {status}
+        <Link to={`/editRequest/${record.id_request}`}>
+          <EditOutlined className={styles.marginIcon} />
+        </Link>
+      </div>
+    ),
+  },
+  {
     title: 'Dirección',
     dataIndex: 'address',
     key: '2',
-    width: 150,
   }, 
   {
     title: 'Cliente',
     key: 'operation',
     fixed: 'right',
-    width: 100,
-    render: (record, request) => (
+    render: (record) => (
       <div>
         <Link to={`/editUserAdmin/${record.uid}`}>
-          <EditOutlined className={styles.marginIcon} />
-        </Link>
-        
-        <Link to={`/editRequest/${request.id_request}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
       </div>
@@ -78,25 +77,20 @@ const OrderTable = () => {
 ];
 
 const eventOnChange = (value) => {
-    if (value !== "all") {
-      const orderProd = request.filter((ord) => ord.status === value)
-      setFilter(orderProd)     
-    } else {
-      setFilter(request)
-    }
-
+    const orderProd = request.filter((ord) => ord.status === value)
+    setFilter(orderProd)     
 };
-console.log(request);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} >
       <h1 className={styles.titleTable}>Lista de Pedidos</h1>
         <Sumorder/>
 
-        <div className={style.selectContainer}>
+        <div className={style.selectContainer} >
           <Select 
           placeholder="Selecciona un estado"
           onChange={eventOnChange}>
-            <Option value="all">Todos</Option>
+            <Option value="">Todos</Option>
             <Option value="complete">Realizados</Option>
             <Option value="pending">Pendientes</Option>
             <Option value="cancelled">Cancelados</Option>
@@ -105,11 +99,15 @@ console.log(request);
 
       <br></br>
       
-      <Table 
+      <div style={{margin: "1% auto 5% auto"}}>
+      <Table
+      responsive
         className={styles.tableContainer}
         columns={columns}
-        dataSource = {filter.length > 0 ? filter : request}
+        dataSource = {filter.length === 0 ? request : filter}
       />
+      </div>
+      
     </div>
   )
 

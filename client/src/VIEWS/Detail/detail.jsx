@@ -166,18 +166,20 @@ const Detail = () => {
         <div>
           <Card>
             <Row>
-              <Col span={15} className={styles.span}>
+              <Col span={14} className={styles.span}>
                 <ArrowLeftOutlined
                   className={styles.back}
                   onClick={() => navigate(-1)}
                 />
-                <img
-                  alt={productDetail.name}
-                  src={productDetail.image}
-                  className={styles.image}
-                />
+                <div className={styles.imageContainer}>
+                  <img
+                    alt={productDetail.name}
+                    src={productDetail.image}
+                    className={styles.image}
+                  />
+                </div>
               </Col>
-              <Col span={9}>
+              <Col span={10}>
                 <div className={styles.productInfo}>
                   {!productFav ? (
                     <HeartOutlined
@@ -193,8 +195,8 @@ const Detail = () => {
                     />
                   )}
                   <h1>{productDetail.name}</h1>
-                  <h2>${productDetail.price}</h2>
                   <Rate disabled value={productDetail.rating} />
+                  <h2 className={styles.price}>${productDetail.price}</h2>
                   <p>{productDetail.category}</p>
                   <Meta
                     description={<p>id: {productDetail.id_product}</p>}
@@ -208,8 +210,6 @@ const Detail = () => {
                     >
                       <ShoppingCartOutlined size="large" />
                     </Button>
-                    {/* <Button type="primary" block className={styles.buttonComprar} 
-                                            onClick={()=> setIsModalVisible(true)}>Comprar</Button> */}
                   </div>
                 </div>
               </Col>
@@ -219,7 +219,7 @@ const Detail = () => {
                     <Item tab="Descripción" key="1">
                       <div
                         style={{
-                          minHeight: "50vh",
+                          minHeight: "30vh",
                           overflow: "auto",
                           textAlign: "center",
                         }}

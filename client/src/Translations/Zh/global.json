@@ -26,7 +26,8 @@
       "Location": "位置",
       "Social-Media": "社交媒体",
       "Contact": "联系",
-      "Phone": "电话"
+      "Phone": "电话",
+      "Rights": "版權所有"
     },
     "searchBar": {
       "Search-by-name": "按名称搜索"
@@ -44,6 +45,9 @@
     "home": {
       "error": "未找到产品"
     },
+    "map": {
+      "Title": "我們在哪裡見面？"
+  },
     "banner": {
       "title": "享受本地最美味的美食。",
       "titledescription1": "您喜歡的巧克力：創造、品嚐、享受！",

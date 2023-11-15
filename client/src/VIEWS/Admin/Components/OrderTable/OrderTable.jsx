@@ -63,9 +63,13 @@ const OrderTable = () => {
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: (record) => (
+    render: (record, request) => (
       <div>
         <Link to={`/editUserAdmin/${record.uid}`}>
+          <EditOutlined className={styles.marginIcon} />
+        </Link>
+        
+        <Link to={`request/${request.id_request}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
       </div>
@@ -82,7 +86,7 @@ const eventOnChange = (value) => {
     }
 
 };
-
+console.log(request);
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de Pedidos</h1>

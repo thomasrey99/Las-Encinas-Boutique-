@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Table, Select } from 'antd';
 import styles from "../UsersTable/UsersTable.module.css";
+import { EditOutlined } from '@ant-design/icons';
 import { EditOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Sumorder from './SumOrder';
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 import style from './class.module.css';
+import style from './class.module.css';
 
 const OrderTable = () => {
   const { data } = useGetAllRequestQuery();
   const dispatch = useDispatch();
+  const request = data ? Object.values(data) : [];
+  const [filter, setFilter] = useState([])
+  
   const request = data ? Object.values(data) : [];
   const [filter, setFilter] = useState([])
   

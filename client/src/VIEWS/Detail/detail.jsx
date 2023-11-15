@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import UserReview from "./userReview";
+import UserImage from './userImage';
 import {
   useGetFavProductQuery,
   useAddFavProductMutation,
@@ -15,6 +16,7 @@ import {
   useRemoveReviewMutation,
 } from "../../libs/redux/services/reviewsApi";
 import { addProductCart } from "../../libs/redux/features/CartSlice";
+import { useGetAllRequestQuery } from "../../libs/redux/services/requestApi";
 import { usePutCartMutation } from "../../libs/redux/services/CartApi";
 import {
   Spin,
@@ -30,6 +32,7 @@ import {
   Skeleton,
   Avatar,
   Input,
+  Tooltip 
 } from "antd";
 const { Meta } = Card;
 const { Item } = Tabs;
@@ -46,12 +49,12 @@ import styles from "./detail.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const productId = id;
   const user = useSelector((state) => state.user.userLog);
-  console.log(user.is_Admin);
   const userId = user?.uid;
   const id_cart = useSelector((state) => state.user.userCartId);
   const cartData = useSelector((state) => state.cart);
@@ -68,15 +71,18 @@ const Detail = () => {
     data: productDetail,
     isError,
     isLoading,
+    refetch: refreshProductDetail
   } = useGetProductByIdQuery(id);
   const { data: productFav, refetch } = useGetFavProductQuery({
     userId,
     productId,
   });
+
   const [addFavProduct] = useAddFavProductMutation();
   const [removeFavProduct] = useRemoveFavProductMutation();
   const { data: reviews, refetch: getNewReviews } =
     useGetAllReviewsQuery(productId);
+  const { data: requests } = useGetAllRequestQuery();
   const [addReview] = useAddReviewMutation();
   const [editReview] = useEditReviewMutation();
   const [removeReview] = useRemoveReviewMutation();
@@ -108,6 +114,7 @@ const Detail = () => {
         alert("Error al agregar review: " + error);
       }
       getNewReviews();
+      refreshProductDetail();
     }
   };
 
@@ -118,6 +125,7 @@ const Detail = () => {
     setIsModalVisibleRemoveReview(false);
     getNewReviews();
     setSelectedReviewId(null);
+    refreshProductDetail();
   };
 
   const handleEditReview = async (selectedReviewId, updateReview) => {
@@ -127,6 +135,7 @@ const Detail = () => {
     setIsModalVisibleEditReview(false);
     getNewReviews();
     setSelectedReviewId(null);
+    refreshProductDetail();
   };
 
   const handleOk = () => navigate("/*");
@@ -140,6 +149,13 @@ const Detail = () => {
       await mutate({ dataUpdate: cartData, id_cart: id_cart });
     }
   };
+
+  // ¿El usuario ya compró el producto?
+  const userRequests = requests?.filter(request => request.uid === userId);
+  const productPurchased = userRequests?.some(request => 
+    request.products?.some(product => product.id === productId)
+  );
+  console.log(productPurchased);
 
   return (
     <div className={styles.detailContainer}>
@@ -179,7 +195,7 @@ const Detail = () => {
                   )}
                   <h1>{productDetail.name}</h1>
                   <h2>${productDetail.price}</h2>
-                  <Rate disabled value={productDetail.raiting} />
+                  <Rate disabled value={productDetail.rating} />
                   <p>{productDetail.category}</p>
                   <Meta
                     description={<p>id: {productDetail.id_product}</p>}
@@ -201,18 +217,18 @@ const Detail = () => {
               <Col span={24}>
                 <Card>
                   <Tabs defaultActiveKey="1">
-                    <TabPane tab="Descripción" key="1">
+                    <Item tab="Descripción" key="1">
                       <div
                         style={{
-                          maxHeight: "50%",
+                          minHeight: "50vh",
                           overflow: "auto",
                           textAlign: "center",
                         }}
                       >
                         <p>{productDetail.description}</p>
                       </div>
-                    </TabPane>
-                    <TabPane tab="Comentarios" key="2">
+                    </Item>
+                    <Item tab="Comentarios" key="2">
                       <div
                         style={{
                           maxHeight: "50%",
@@ -220,41 +236,52 @@ const Detail = () => {
                           textAlign: "center",
                         }}
                       >
-                        <h2 className={styles.titleComments}>
-                          Danos tu opinión
-                        </h2>
-                        <div className={styles.contentAddReview}>
-                          <Rate
-                            onChange={(value) =>
-                              setNewReview({ ...newReview, rating: value })
-                            }
-                            value={newReview.rating}
-                            className={styles.addRating}
-                          />
-                          <div className={styles.addReview}>
-                            <Input.TextArea
-                              rows={4}
-                              onChange={(e) =>
-                                setNewReview({
-                                  ...newReview,
-                                  comment: e.target.value,
-                                })
+                      <div>
+                          <h2 className={styles.titleComments}>
+                            Danos tu opinión
+                          </h2>
+                          <div className={styles.contentAddReview}>
+                            <Rate
+                            disabled={!productPurchased}
+                              onChange={(value) =>
+                                setNewReview({ ...newReview, rating: value })
                               }
-                              value={newReview.comment}
-                              className={styles.inputToComment}
+                              value={newReview.rating}
+                              className={styles.addRating}
                             />
-                            <Button
-                              type="primary"
-                              onClick={handleAddReview}
-                              className={styles.buttonAddComment}
-                            >
-                              Agregar
-                            </Button>
+                            <div className={styles.addReview}>
+                            <Tooltip title={!productPurchased ?'Por favor, compra el producto primero para poder comentar.😊' 
+                            :''}>
+                         
+                              <Input.TextArea
+                                rows={4}
+                                onChange={(e) =>
+                                  setNewReview({
+                                    ...newReview,
+                                    comment: e.target.value,
+                                  })
+                                }
+                                disabled={!productPurchased}
+                                value={newReview.comment}
+                                className={styles.inputToComment}
+                              /> </Tooltip>
+                              
+                              <Button
+                                type="primary"
+                                onClick={handleAddReview}
+                                className={styles.buttonAddComment}
+                                disabled={!productPurchased}
+                              >
+                                Agregar
+                              </Button>
+
+                            </div>
                           </div>
-                        </div>
+
+                      </div> 
                         {reviews && reviews.length > 0 ? (
                           <div>
-                            <h1 className={styles.Comments}>Comentarios</h1>
+                            <h2 className={styles.Comments}>Comentarios</h2>
                             <List
                               className="comment-list"
                               loading={false}
@@ -363,7 +390,7 @@ const Detail = () => {
                                     active
                                   >
                                     <List.Item.Meta
-                                      avatar={<Avatar src={item.avatar} />}
+                                      avatar={<Avatar src={<UserImage id={item.uid}/>} />}
                                       title={
                                         <div className={styles.NameAndRate}>
                                           <div>
@@ -392,16 +419,22 @@ const Detail = () => {
                               )}
                             />
                           </div>
-                        ) : (
+                        ) : productPurchased ?(
                           <Alert
                             message="Sin comentarios"
                             type="info"
                             showIcon
                             description="Sé el primero en dar tu opinión"
                           />
-                        )}
+                        ):                           
+                        <Alert
+                        message="Sin comentarios"
+                        type="info"
+                        showIcon
+                        description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
+                      />}
                       </div>
-                    </TabPane>
+                    </Item>
                   </Tabs>
                 </Card>
               </Col>

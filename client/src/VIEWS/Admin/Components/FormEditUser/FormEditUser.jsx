@@ -28,9 +28,7 @@ const FormEditUser = () => {
 
   });
 
-  console.log('is_Admin:', form.is_Admin);
-  console.log('isBlocked:', form.isBlocked);
-
+  
   useEffect(() => {
     if (userByUid) {
       setForm(userByUid);
@@ -101,7 +99,7 @@ const FormEditUser = () => {
     navigate("/clientsAdmin");
   }
 
-  return (
+  return (  
     <div className={styles.container}>
       <h1 className={styles.title}>Editar usuario</h1>
       <form onSubmit={handleSubmit}>

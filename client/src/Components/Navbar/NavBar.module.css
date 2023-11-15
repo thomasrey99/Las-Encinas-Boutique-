@@ -9,10 +9,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2.5vw;
-    border-bottom: #eaeaea;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+    border-bottom: 1px solid #eaeaea;
     
 }
 

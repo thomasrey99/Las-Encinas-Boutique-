@@ -1,22 +1,21 @@
 .carouselContainer{
     position: relative;
     width: 100vw;
-    height: 100vh;
-    background-color: orange;
+    height: 88vh;
 }
 .sliceContainer{
     display: "flex";
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 88vh;
     background-size: cover; 
     background-position: center; 
     overflow: hidden; 
 }
 .images{
     width: 100%;
-    height: 100vh;
+    height: 88vh;
     object-fit: cover;
 }
 .landingCont{

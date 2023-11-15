@@ -144,6 +144,8 @@ const NavBar = ({handleOPen, isOPen}) => {
         >
           <option value="es">Español</option>
           <option value="en">English</option>
+          <option value="zh">中國人</option>
+          <option value="pt">português</option>
         </select>
           </div>
           <div className={menuStyle.menuCont}>

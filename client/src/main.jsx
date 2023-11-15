@@ -13,6 +13,8 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import global_es from "./Translations/Es/global.json"
 import global_en from "./Translations/En/global.json"
+import global_zh from "./Translations/Zh/global.json"
+import global_pt from './Translations/Pt/global.json'
 
 i18next
 .init({
@@ -24,6 +26,12 @@ i18next
     },
     en: {
       global: global_en,
+    },
+    zh: {  
+      global: global_zh,
+    },
+    pt: {
+      global: global_pt,
     },
   },
 });

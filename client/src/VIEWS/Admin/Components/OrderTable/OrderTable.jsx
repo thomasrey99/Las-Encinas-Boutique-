@@ -12,7 +12,7 @@ const OrderTable = () => {
   const { data } = useGetAllRequestQuery();
   const dispatch = useDispatch();
   const request = data ? Object.values(data) : [];
-  const [filter, setFilter] = useState([])
+  const [filter, setFilter] = useState([]);
   
   const columns = [
   {
@@ -63,9 +63,13 @@ const OrderTable = () => {
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: (record) => (
+    render: (record, request) => (
       <div>
         <Link to={`/editUserAdmin/${record.uid}`}>
+          <EditOutlined className={styles.marginIcon} />
+        </Link>
+        
+        <Link to={`/editRequest/${request.id_request}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
       </div>
@@ -74,10 +78,15 @@ const OrderTable = () => {
 ];
 
 const eventOnChange = (value) => {
-    const orderProd = request.filter((ord) => ord.status === value)
-    setFilter(orderProd)     
-};
+    if (value !== "all") {
+      const orderProd = request.filter((ord) => ord.status === value)
+      setFilter(orderProd)     
+    } else {
+      setFilter(request)
+    }
 
+};
+console.log(request);
   return (
     <div className={styles.container}>
       <h1 className={styles.titleTable}>Lista de Pedidos</h1>
@@ -87,7 +96,7 @@ const eventOnChange = (value) => {
           <Select 
           placeholder="Selecciona un estado"
           onChange={eventOnChange}>
-            <Option value="">Todos</Option>
+            <Option value="all">Todos</Option>
             <Option value="complete">Realizados</Option>
             <Option value="pending">Pendientes</Option>
             <Option value="cancelled">Cancelados</Option>
@@ -99,7 +108,7 @@ const eventOnChange = (value) => {
       <Table 
         className={styles.tableContainer}
         columns={columns}
-        dataSource = {filter.length === 0 ? request : filter}
+        dataSource = {filter.length > 0 ? filter : request}
       />
     </div>
   )

@@ -23,10 +23,10 @@ export const requestApi=createApi({
             query:(id_request)=>`request/${id_request}`,
         }),
         updateRequest:builder.mutation({
-            query:({data, id_request})=>({
+            query:({status, id_request})=>({
                 url:`request/${id_request}`,
                 method:"PUT",
-                body:data
+                body:status
             }),
             invalidatesTags:["request"]
         }),

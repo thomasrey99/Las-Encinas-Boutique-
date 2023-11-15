@@ -71,7 +71,9 @@
     "Loading": "Loading",
     "Basic Information": "Basic Information",
     "Security": "Security",
-    "Shopping": "Shopping"
+    "Shopping": "Shopping",
+    "UserInformation": "Could not load user information",
+    "PleaseLogin": "Please log in to continue."
   },
 "upProfile": {
     "Upload-image": "Upload image",

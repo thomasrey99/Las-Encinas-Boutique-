@@ -4,8 +4,8 @@
     "Hello": "Hola de nuevo"
 },
 "order":{
-    "highets-price": "Mayor precio",
-    "Lower-price": "Menor precio"
+    "Highest-price": "Mayor precio",
+    "Lowest-price": "Menor precio"
     },
 "filters":{
     "Categories": "Categorias",
@@ -18,8 +18,8 @@
 },
 "types": {
     "All": "Todos",
-    "White_chocolate": "Chocolate blanco",
-    "Chocolate_w_ milk": "Chocolate con leche",
+    "WhiteChocolate": "Chocolate blanco",
+    "Chocolate_w_milk": "Chocolate con leche",
     "Semisweet": "Chocolate semi-amargo"
   },
 "footer":{
@@ -36,7 +36,6 @@
     "Favorite-products": "Productos favoritos",
     "Homepage": "Pagina principal",
     "Meet-us": "Conocenos",
-    "Contact-us": "Contáctanos",
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
@@ -90,10 +89,31 @@
     "Invalid-adress": "Dirección inválida.",
     "Update": "Actualizar"
 },
-"password": {
-    "changePassword": "cambiar contraseña",
+"security": {
+    "changePassword": "Cambiar contraseña",
     "Password": "Constraseña",
-    "update": "Actualizar"
+    "update": "Actualizar",
+    "changeEmail": "Cambiar E-mail",
+    "E-mail": "E-mail",
+    "InsertPass": "Por favor ingresa tu nueva contraseña!",
+    "SuccefullyPass": "Contraseña actualizada exitosamente. Por favor vuelve a iniciar sesión con la nueva contraseña.",
+    "PassError": "Hubo un error al actualizar la contraseña. Por favor intenta de nuevo.",
+    "Update": "Actualizar",
+    "InsertEmail": "Por favor ingresa tu correo electrónico!",
+    "InvalidEmail": "Email inválido.",
+    "EnterCredentials": "Por favor, introduce tus credenciales",
+    "SuccefullyEmail": "Correo Actualizado con Éxito",
+    "Accept": "Aceptar",
+    "EmailReview": "Para continuar, por favor revisa tu bandeja de entrada en el nuevo correo.",
+    "EmailNewSession": "Inicia sesión con tu nuevo correo electrónico y ¡listo!",
+    "EmailError": "Hubo un error al actualizar el correo electrónico. Por favor intenta de nuevo."
+},
+"shopping": {
+    "PurchaseDetail": "Detalles de la compra",
+    "RateProduct": "Calificar producto",
+    "NoPurchase":"Aún no has realizado ninguna compra",
+    "FirstPurchase":"¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.",
+    "Explore":"Explorar productos"
 }
 
 }

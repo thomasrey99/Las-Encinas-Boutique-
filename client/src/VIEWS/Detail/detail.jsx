@@ -175,11 +175,12 @@ const Detail = () => {
     }, []);
 
   // ¿El usuario ya compró el producto?
-  //const userRequests = requests?.filter(request => request.uid === userId);
-  // const productPurchased = userRequests?.some(request => 
-  //   request.products?.some(product => product.id === productId)
-  // );
-  const productPurchased=true
+  const userRequests = requests?.filter(request => request.uid === userId);
+  const productPurchased = userRequests?.some(request => 
+    request.products?.some(product => product.id === productId)
+  );
+
+  // const productPurchased=true
   console.log(productPurchased);
 
   return (
@@ -270,6 +271,8 @@ const Detail = () => {
                           textAlign: "center",
                         }}
                       >
+                      {user?.is_Admin
+                      }
                       <div>
                           <h2 className={styles.titleComments}>
                             Danos tu opinión
@@ -311,7 +314,6 @@ const Detail = () => {
 
                             </div>
                           </div>
-
                       </div> 
                         {reviews && reviews.length > 0 ? (
                           <div>

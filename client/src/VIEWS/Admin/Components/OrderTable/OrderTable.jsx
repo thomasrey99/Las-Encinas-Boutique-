@@ -71,10 +71,6 @@ const OrderTable = () => {
         <Link to={`/editUserAdmin/${record.uid}`}>
           <EditOutlined className={styles.marginIcon} />
         </Link>
-        
-        <Link to={`/editRequest/${request.id_request}`}>
-          <EditOutlined className={styles.marginIcon} />
-        </Link>
       </div>
     ),
   },

@@ -39,7 +39,7 @@ const Validates = (form, errors, setErrors) => {
 
     if (form.phone) {
     
-        if (/^381\d{7}$/.test(form.phone)) {
+        if (/^\d{8,}$/.test(form.phone)) {
             setErrors((prev) =>({...prev, phone: ''}))
         } else {
             setErrors((prev) => ({...prev, phone: '*Número inválido'}))

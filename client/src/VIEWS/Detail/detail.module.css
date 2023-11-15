@@ -1,112 +1,168 @@
-
-.detailContainer{
-    width: 78vw;
+.detailContainer {
+    width: 100%;
     min-height: 100vh;
     margin: auto;
     margin-top: 4vh;
     margin-bottom: 2vh;
-}
-.loading{
-    margin-top: 40vh;
-}
-.back{
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 17px;
-}
-.imageContainer{
-    width: 40vw;
-    height: 70vh;
-    border-radius: 2vh;
-    background-size: cover; 
-    background-position: center; 
-    overflow: hidden; 
-}
-.image{
-    width: 100%;
-    height: 88vh;
-    object-fit: cover;
-}
-.noLikedButton, .likedButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 2rem; 
-    transition: color 0.3s ease; 
-}
-.likedButton{
-    color: darkorange;
-}
-
-.span{
-    padding: 1%;
-}
-.productInfo{
-    padding-left: 5%;
-}
-.productInfo > * {
-    margin-bottom: 10%;
-}  
-.price{
-    font-size: 2.5rem;
-    font-weight: 300;
-}
-.productButtons{
-    width: 90%;
-    position: absolute;
-    bottom: 0;
-}
-
-.contentAddReview{
-    margin-top: 2%;
-    margin-bottom: 4%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-}
-.addReview{
-    justify-content: space-between;
-    display: flex;
-    width: 100%;
-}
-.titleComments{
-    text-align: left;
-}
-.addRating{
-    margin: 1%;
-}
-.inputToComment{
-    width: 85%;
-    max-height: 10vh;
-}
-.buttonAddComment{
-    width: 14%;
-    height: 10vh;
-    right: 0;
-
-}
-.NameAndRate{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-}
-.NameAndRate > *{
-    margin-right: 5%;
-}
-.Comments{
-    margin: 5%;
-}
-.date{
-    font-size: 0.7rem;
-    text-align: right;
-    color:darkgrey;
-}
-.descriptionComment{
-    margin: 0.5% 0;
-    text-align: justify;
-    max-width: 95%;
-}
-.iconsRyE{
-    width: 5vh;
-}
+  }
+  
+  .loading {
+    margin-top: 35vh;
+  }
+@media (min-width: 1200px) {
+    .detailContainer{
+        width: 78vw;
+        min-height: 100vh;
+        margin: auto;
+        margin-top: 4vh;
+        margin-bottom: 2vh;
+    }
+    .loading{
+        margin-top: 40vh;
+    }
+    .back{
+        position: absolute;
+        color: #65451f;
+        top: 0;
+        left: 0;
+        font-size: 17px;
+    }
+    .back:hover{
+        color: #c8ae7d;
+    }
+    .imageContainer{
+        width: 40vw;
+        height: 70vh;
+        border-radius: 2vh;
+        background-size: cover; 
+        background-position: center; 
+        overflow: hidden; 
+    }
+    .image{
+        width: 100%;
+        height: 88vh;
+        object-fit: cover;
+    }
+    .noLikedButton, .likedButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2rem; 
+        transition: color 0.3s ease; 
+    }
+    .noLikedButton:hover {
+        color: darkorange;
+    }
+    .likedButton{
+        color: darkorange;
+    }
+    
+    .span{
+        padding: 1.5%;
+    }
+    
+    .imgMPContainer{
+    
+        width: 5vw;
+        height: 10vh;
+    
+    }
+    .imgMP{
+        width: 100%;
+    
+    }
+    .productInfo{
+        padding-left: 5%;
+    }
+    .productInfo > * {
+        margin-bottom: 10%;
+    }  
+    .price{
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .propsPorduct{
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    .propsPorduct *{
+        margin: 20px;
+    }
+    .productButtons{
+        width: 90%;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    .contentAddReview{
+        margin-top: 2%;
+        margin-bottom: 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+    .addReview{
+        justify-content: space-between;
+        display: flex;
+        width: 100%;
+    }
+    .titleComments{
+        text-align: left;
+    }
+    .addRating{
+        margin: 1%;
+    }
+    .inputToComment{
+        width: 85%;
+        max-height: 10vh;
+    }
+    .buttonAddComment{
+        width: 14%;
+        height: 10vh;
+        right: 0;
+    
+    }
+    .NameAndRate{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+    }
+    .NameAndRate > *{
+        margin-right: 5%;
+    }
+    .Comments{
+        margin: 5%;
+    }
+    .date{
+        font-size: 0.7rem;
+        text-align: right;
+        color:darkgrey;
+    }
+    .descriptionComment{
+        margin: 0.5% 0;
+        text-align: justify;
+        max-width: 95%;
+    }
+    .iconsRyE{
+        width: 5vh;
+    }
+    
+  }
+  
+  
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .detailContainer {
+      width: 90vw;
+      
+    }
+   
+  }
+  
+  
+  @media (max-width: 767px) {
+    .detailContainer {
+      width: 100vw;
+      
+    }
+   
+  }

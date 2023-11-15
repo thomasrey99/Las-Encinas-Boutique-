@@ -45,6 +45,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import styles from "./detail.module.css";
+import Swal from "sweetalert2/dist/sweetalert2.js"
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
@@ -124,7 +125,15 @@ const Detail = () => {
     setIsModalVisibleRemoveReview(false);
     getNewReviews();
     setSelectedReviewId(null);
-    refreshProductDetail();
+    refreshProductDetail();Swal.fire({
+      position: "top-mid",
+      icon: "success",
+      title: `Comentario eliminado exitosamente` ,
+      showConfirmButton: false,
+      timer: 9500,
+      iconColor: '##765827 !important' 
+    });
+    
   };
 
   const handleEditReview = async (selectedReviewId, updateReview) => {
@@ -145,20 +154,37 @@ const Detail = () => {
       navigate("/login");
     } else {
       dispatch(addProductCart(productDetail));
-      await mutate({ dataUpdate: cartData, id_cart: id_cart });
+      await mutate({ dataUpdate: cartData, id_cart: id_cart });Swal.fire({
+        position: "top-mid",
+        icon: "success",
+        title: `Agregado al carrito` ,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
     }
   };
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      return () => clearTimeout(timer); 
+    }, []);
+
   // ¿El usuario ya compró el producto?
-  const userRequests = requests?.filter(request => request.uid === userId);
-  const productPurchased = userRequests?.some(request => 
-    request.products?.some(product => product.id === productId)
-  );
+  //const userRequests = requests?.filter(request => request.uid === userId);
+  // const productPurchased = userRequests?.some(request => 
+  //   request.products?.some(product => product.id === productId)
+  // );
+  const productPurchased=true
   console.log(productPurchased);
 
   return (
     <div className={styles.detailContainer}>
-      {isLoading ? (
+      {isLoading || loading? (
         <Spin tip="Cargando" className={styles.loading}>
           <div className="content" />
         </Spin>
@@ -194,14 +220,23 @@ const Detail = () => {
                       onClick={handlefavClick}
                     />
                   )}
-                  <h1>{productDetail.name}</h1>
-                  <Rate disabled value={productDetail.rating} />
+                  <div>
+                    <h1>{productDetail.name}</h1>
+                    <Rate disabled value={productDetail.rating} />
+                  </div>
                   <h2 className={styles.price}>${productDetail.price}</h2>
-                  <p>{productDetail.category}</p>
-                  <Meta
-                    description={<p>id: {productDetail.id_product}</p>}
-                  />{" "}
-                  <br />
+                  <div>
+                    <p className={styles.propsPorduct}>Categoría: {productDetail.category}</p>
+                    <p className={styles.propsPorduct}>Tipo: {productDetail.type}</p>
+                    <Meta
+                      description={<p className={styles.propsPorduct}>id: {productDetail.id_product}</p>}
+                    />
+                  </div>
+                  <div className={styles.imgMPContainer}>
+                    <img src="https://res.cloudinary.com/dkgeccpz4/image/upload/v1700074726/mercadopago_goqpiu.png" 
+                      alt="MercadoPago" className={styles.imgMP}/>
+                  </div>
+
                   <div className={styles.productButtons}>
                     <Button
                       type="primary"
@@ -320,7 +355,7 @@ const Detail = () => {
                                           }}
                                         >
                                           <DeleteOutlined
-                                            style={{ color: "red" }}
+                                            style={{ color: "#65451f" }}
                                           />
                                         </a>
                                       </div>

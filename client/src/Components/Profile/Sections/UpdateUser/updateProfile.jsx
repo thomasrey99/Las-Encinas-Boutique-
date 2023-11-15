@@ -7,9 +7,11 @@ import { Form, Input, Button, Upload, Spin  } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updateProfile.module.css'
+import { useTranslation } from 'react-i18next';
 
 const UpdateProfile = () => {
 
+    const { t  } = useTranslation("global");
     const [isEditing, setIsEditing] = useState(false);
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
@@ -146,7 +148,7 @@ const UpdateProfile = () => {
                             fileList={fileList}
                             onChange={onChange}
                             onPreview={onPreview}>
-                                {fileList.length < 2 && 'Subir Imagen'}
+                                {fileList.length < 2 && t("upProfile.Upload-image")}
                         </Upload>
                     </ImgCrop>
                 </div>
@@ -154,39 +156,39 @@ const UpdateProfile = () => {
                     name="profile"
                     initialValues={getUserById}
                     onFinish={onFinish}>
-                    <label>Nombre</label>
+                    <label>{t("upProfile.Name")}</label>
                     <Form.Item
                         name="name"
-                        rules={[{ required: true, message: 'Por favor ingresa tu nombre!' },
-                            { validator: validateName, message: 'Nombre inválido.' }]}>
-                        <Input placeholder="Nombre" onChange={handleOnChange} value={updateProfile.name} 
+                        rules={[{ required: true, message: t("upProfile.Enter-name") },
+                            { validator: validateName, message: t("upProfile.Invalid-name") }]}>
+                        <Input placeholder={t("upProfile.Name")} onChange={handleOnChange} value={updateProfile.name} 
                         readOnly={!isEditing}/>
                     </Form.Item>
 
-                    <label>Apellido</label>
+                    <label>{t("upProfile.LastName")}</label>
                     <Form.Item
                         name="lastName"
-                        rules={[{ required: true, message: 'Por favor ingresa tu apellido!'},
-                            {validator: validateName, message: 'Apellido inválido.' }]}>
-                        <Input placeholder="Apellido" onChange={handleOnChange} value={updateProfile.lastName} 
+                        rules={[{ required: true, message: t("upProfile.Enter-lastname")},
+                            {validator: validateName, message: t("upProfile.Invalid-lastName") }]}>
+                        <Input placeholder={t("upProfile.LastName")} onChange={handleOnChange} value={updateProfile.lastName} 
                         readOnly={!isEditing} />
                     </Form.Item>
 
-                    <label>Teléfono</label>
+                    <label>{t("upProfile.Phone")}</label>
                     <Form.Item
                         name="phone"
-                        rules={[{ required: true, message: 'Por favor ingresa tu número de teléfono!'},
-                            {validator: validatePhone, message: 'Número inválido.' }]}>
-                        <Input placeholder="Teléfono" onChange={handleOnChange} value={updateProfile.phone} 
+                        rules={[{ required: true, message: t("upProfile.Enter-phone")},
+                            {validator: validatePhone, message: t("upProfile.Invalid-phone") }]}>
+                        <Input placeholder={t("upProfile.Phone")} onChange={handleOnChange} value={updateProfile.phone} 
                         readOnly={!isEditing}/>
                     </Form.Item>
 
-                    <label>Dirección</label>
+                    <label>{t("upProfile.Adress")}</label>
                     <Form.Item
                         name="address"
-                        rules={[{ required: true, message: 'Por favor ingresa tu dirección!'}, 
-                            {validator:validateAddress, message: 'Dirección inválida.'}]}>
-                        <Input placeholder="Dirección" onChange={handleOnChange} value={updateProfile.address} 
+                        rules={[{ required: true, message: t("upProfile.Enter-Adress")}, 
+                            {validator:validateAddress, message: t("Invalid-adress")}]}>
+                        <Input placeholder={t("upProfile.Adress")} onChange={handleOnChange} value={updateProfile.address} 
                         readOnly={!isEditing}/>
                     </Form.Item>
 
@@ -194,7 +196,7 @@ const UpdateProfile = () => {
                         <Button onClick={() => setIsEditing(!isEditing)}>
                                 {isEditing?<CloseOutlined/>:<EditOutlined/>}</Button>
                         {isEditing && <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
-                            Actualizar
+                        {t("upProfile.Update")}
                         </Button>}
                     </Form.Item>
                 </Form>

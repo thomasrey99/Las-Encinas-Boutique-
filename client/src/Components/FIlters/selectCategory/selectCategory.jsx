@@ -7,14 +7,15 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const SelectCategory = ({change, width}) => {
+
+  const { t } = useTranslation("global");
   
   const dispatch=useDispatch()
 
   const categories=useSelector((state)=>state.categories.allCategories)
 
-  const {data}=useGetAllCategoriesQuery()
+  const {data}=useGetAllCategoriesQuery()  
 
-  const { t } = useTranslation("global");
   useEffect(()=>{
     if(data && data.length>0){
       dispatch(addCategories(data))
@@ -28,7 +29,7 @@ const SelectCategory = ({change, width}) => {
         <Select
           onChange={change}
           name="category"
-          defaultValue={"Todas"}
+          value={t("types.All")}
           style={{
             width: width,
           }}

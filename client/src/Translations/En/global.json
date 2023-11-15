@@ -109,7 +109,10 @@
 },
 "shopping": {
     "PurchaseDetail": "Purchase details",
-    "RateProduct": "Rate product"
+    "RateProduct": "Rate product",
+    "NoPurchase": "You have not made any purchases yet",
+    "FirstPurchase":"Your first purchase is waiting for you! Discover the variety of products we have for you!",
+    "Explore":"Explore products"
 }
 
   

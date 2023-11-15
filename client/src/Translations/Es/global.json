@@ -110,7 +110,10 @@
 },
 "shopping": {
     "PurchaseDetail": "Detalles de la compra",
-    "RateProduct": "Calificar producto"
+    "RateProduct": "Calificar producto",
+    "NoPurchase":"Aún no has realizado ninguna compra",
+    "FirstPurchase":"¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.",
+    "Explore":"Explorar productos"
 }
 
 }

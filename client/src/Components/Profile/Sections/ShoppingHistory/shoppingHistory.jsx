@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const ShoppingHistory = () => {
 
+  const { t  } = useTranslation("global");
   const navigate = useNavigate();
   const [ isModalVisible, setIsModalVisible ] = useState(false);
   const [ currentRequest, setCurrentRequest ] = useState(null);
@@ -102,11 +103,11 @@ const ShoppingHistory = () => {
             </Modal>
           </div>
         </div>
-      :<Alert message="Aún no has realizado ninguna compra" type="info" showIcon
+      :<Alert message={t("shopping.NoPurchase")} type="info" showIcon
       description={
         <div>
-            <p>¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.</p>
-            <Button type="primary" onClick={()=>navigate('/home')}>Explorar Productos</Button>
+            <p>{t("shopping.FirstPurchase")}</p>
+            <Button type="primary" onClick={()=>navigate('/home')}>{t("shopping.Explore")}</Button>
         </div>}/>
       }
     </div>

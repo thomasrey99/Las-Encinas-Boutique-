@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGetRequestByIdQuery } from '../../../../../libs/redux/services/requestApi';
 import { Card, List, Descriptions, Spin } from 'antd';
 const { Meta } = Card;
@@ -6,16 +7,15 @@ import styles from './requestDetail.module.css';
 
 const RequestDetail = ({id_request}) => {
 
-    console.log(id_request);
+    const navigate = useNavigate();
     const { data: requestById, isLoading, refetch } = useGetRequestByIdQuery(id_request);
-    console.log(requestById);
 
     useEffect(()=> {
         if (!requestById || requestById == null || requestById === undefined) {
             refetch();
         }
     },[requestById]);
-
+console.log(requestById);
 
     return(
         <div className={styles.historyContainer}>
@@ -42,9 +42,10 @@ const RequestDetail = ({id_request}) => {
                             cover={<div className={styles.imageContainer}><img alt={item.title} src={item.image} className={styles.productImage} /></div>}
                             >
                             <Meta title={item.name} />
-                            <p>Precio: ${item.price}</p>
+                            <p>Precio (unidad): ${item.price}</p>
                             <p>Cantidad: {item.quantity}</p>
-                            <p>Total: ${item.total_price}</p>
+                            <h4>Total: ${item.total_price}</h4>
+                            <a className={styles.doReview} onClick={()=>navigate(`/detail/${item.id}`)}>Calificar</a>
                         </Card>
                     </List.Item>
                      )}

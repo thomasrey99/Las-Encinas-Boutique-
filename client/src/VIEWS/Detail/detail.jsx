@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import UserReview from "./userReview";
@@ -71,11 +71,13 @@ const Detail = () => {
     data: productDetail,
     isError,
     isLoading,
+    refetch: refreshProductDetail
   } = useGetProductByIdQuery(id);
   const { data: productFav, refetch } = useGetFavProductQuery({
     userId,
     productId,
   });
+
   const [addFavProduct] = useAddFavProductMutation();
   const [removeFavProduct] = useRemoveFavProductMutation();
   const { data: reviews, refetch: getNewReviews } =
@@ -112,6 +114,7 @@ const Detail = () => {
         alert("Error al agregar review: " + error);
       }
       getNewReviews();
+      refreshProductDetail();
     }
   };
 
@@ -122,6 +125,7 @@ const Detail = () => {
     setIsModalVisibleRemoveReview(false);
     getNewReviews();
     setSelectedReviewId(null);
+    refreshProductDetail();
   };
 
   const handleEditReview = async (selectedReviewId, updateReview) => {
@@ -131,6 +135,7 @@ const Detail = () => {
     setIsModalVisibleEditReview(false);
     getNewReviews();
     setSelectedReviewId(null);
+    refreshProductDetail();
   };
 
   const handleOk = () => navigate("/*");
@@ -145,6 +150,7 @@ const Detail = () => {
     }
   };
 
+  // ¿El usuario ya compró el producto?
   const userRequests = requests?.filter(request => request.uid === userId);
   const productPurchased = userRequests?.some(request => 
     request.products?.some(product => product.id === productId)
@@ -189,7 +195,7 @@ const Detail = () => {
                   )}
                   <h1>{productDetail.name}</h1>
                   <h2>${productDetail.price}</h2>
-                  <Rate disabled value={productDetail.raiting} />
+                  <Rate disabled value={productDetail.rating} />
                   <p>{productDetail.category}</p>
                   <Meta
                     description={<p>id: {productDetail.id_product}</p>}
@@ -211,18 +217,18 @@ const Detail = () => {
               <Col span={24}>
                 <Card>
                   <Tabs defaultActiveKey="1">
-                    <TabPane tab="Descripción" key="1">
+                    <Item tab="Descripción" key="1">
                       <div
                         style={{
-                          maxHeight: "50%",
+                          minHeight: "50vh",
                           overflow: "auto",
                           textAlign: "center",
                         }}
                       >
                         <p>{productDetail.description}</p>
                       </div>
-                    </TabPane>
-                    <TabPane tab="Comentarios" key="2">
+                    </Item>
+                    <Item tab="Comentarios" key="2">
                       <div
                         style={{
                           maxHeight: "50%",
@@ -428,7 +434,7 @@ const Detail = () => {
                         description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
                       />}
                       </div>
-                    </TabPane>
+                    </Item>
                   </Tabs>
                 </Card>
               </Col>

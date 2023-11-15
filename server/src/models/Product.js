@@ -29,9 +29,13 @@ module.exports = (dataBase) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    raiting: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    rating: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    reviewsCount: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
     category: {
       type: DataTypes.STRING,

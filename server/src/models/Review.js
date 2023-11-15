@@ -20,11 +20,6 @@ module.exports = (dataBase) => {
             type: DataTypes.DATEONLY,
             defaultValue: DataTypes.NOW
         },
-        avatar: {
-            type: DataTypes.STRING,
-            defaultValue: "https://img.freepik.com/vector-premium/cacao-come-mascota-chocolate-vector-dibujos-animados_193274-12227.jpg",
-            allowNull: true,
-        }
     },
     {
         freezeTableName: true,
@@ -33,4 +28,5 @@ module.exports = (dataBase) => {
         updatedAt:false
     }
     )
+    
 }

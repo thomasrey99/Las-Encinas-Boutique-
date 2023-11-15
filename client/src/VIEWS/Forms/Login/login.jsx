@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Form, Input, Checkbox, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import Password from "antd/es/input/Password";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
 import { GoogleCircleFilled } from "@ant-design/icons";
 import logo from "../../../assets/las_encinas_logo.png";
 import "./login.css";
+import Swal from "sweetalert2/dist/sweetalert2.js"
 const { TextArea } = Input;
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 const Login = () => {
@@ -57,14 +58,47 @@ const Login = () => {
           } else {
             try {
                 await login(form.email, form.password);
-                navigate('/home')
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                  }
+                });
+                Toast.fire({
+                  icon: "success",
+                  title: "Logueado con extio"
+                }).then(()=>{
+                  navigate('/home')
+                })
+               
             } catch (error) {
                 // console.log(error.code)
                 if(error.code === 'auth/invalid-login-credentials'){
-                    setError("La contraseña o el E-mail son incorrectos.")
+                    
+                  Swal.fire({
+                    position: "top-mid",
+                    icon: "error",
+                    title: "email o contraseña invalida",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
     
                     }if(error.code === 'auth/too-many-requests'){
-                        setError("Su cuenta esta temporalmente bloqueada por multiples intententos fallidos, restaure su contraseña.")
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        confirmButtonText: 'Restablecer contraseña',
+                        text: "Cuenta bloqueda por limite de intentos"
+                      }).then((result)=>{
+                        if(result.isConfirmed){
+                          navigate("/resetpassword")
+                        }
+                      })
                     }
                 }  
           }
@@ -78,7 +112,7 @@ const Login = () => {
             await loginWithGoogle()
             navigate('/home')
         } catch (error) {
-            setError("Ha Ocurrido un error, inténtelo nuevamente.")
+            setError("Ha ocurrido un error, inténtelo nuevamente.")
         }
         
     }
@@ -106,16 +140,16 @@ const Login = () => {
 
   return (
     <div className="formPage">
-      {error && <p>{error}</p>}
+      {error && <p className="errorLogin">{error}</p>}
             {/* {console.log("Contenido del error")} */}
       <form onSubmit={handleSubmit} className="form">
-        <img src={logo} className="logoImg" />
+
         <Form.Item
           label="E-mail"
           name="email"
           {...formItemLayout}
           rules={[
-            { marginTop: "5%", required: true, message: "Ingrese el nombre" },
+            { marginTop: "5%", required: true, message: "Ingrese su email" },
           ]}
         >
           <Input
@@ -130,7 +164,7 @@ const Login = () => {
           label="Contraseña"
           name="password"
           {...formItemLayout}
-          rules={[{ required: true, message: "Ingrese el precio" }]}
+          rules={[{ marginTop: "5%", required: true, message: "Ingrese su contraseña" }]}
         >
           <Password
             name="password"

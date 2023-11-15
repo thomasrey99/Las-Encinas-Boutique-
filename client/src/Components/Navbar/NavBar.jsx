@@ -6,8 +6,7 @@ import { NavLink } from "react-router-dom";
 import cartIcon from "../../assets/carrito.png";
 import logo from "../../assets/Las_encinas_Logo.png";
 import title from "../../assets/las_encinas_letras.png";
-import flagUsa from "../../assets/Usa.png";
-import flagArg from "../../assets/Arg.png";
+import langLogo from "../../assets/idiomas.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser } from "../../libs/redux/features/userSlice";
@@ -15,8 +14,8 @@ import { useEffect, useState } from "react";
 import { addCart, cleanCart } from "../../libs/redux/features/CartSlice";
 import { getUserByUid } from "../../libs/redux/features/actions/userActions";
 import { useTranslation} from "react-i18next";
-
 import { useCreateRequestMutation } from "../../libs/redux/services/requestApi";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
@@ -34,9 +33,11 @@ const getUserById=async(id)=>{
 
 const NavBar = ({handleOPen, isOPen}) => {
 
-  const [mutate]=useCreateRequestMutation()
+  const [mutate, {data, isLoading}]=useCreateRequestMutation()
 
   const [madeRequest, setMadeRequest]=useState(false)
+
+  const [alert, setAlert]=useState(false)
 
   const url = new URL(window.location.href);
 
@@ -51,7 +52,6 @@ const NavBar = ({handleOPen, isOPen}) => {
   const cart=useSelector((state)=>state.cart)
   const totalItemsCart=useSelector((state)=>state.cart.product_quantity)
   const currentUser = useSelector(state => state.user.userLog)
-  console.log("user actual:",currentUser)
 
 
   user && getUserByUid(user.uid)
@@ -60,7 +60,18 @@ const NavBar = ({handleOPen, isOPen}) => {
     await logout();
   };
 
-
+  if(madeRequest && data && !alert){
+    if(!data?.message){
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "La compra se realizo con exito",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    setAlert(true)
+  }
 
   useEffect(() => {
     const getUserData = async () => {
@@ -70,6 +81,7 @@ const NavBar = ({handleOPen, isOPen}) => {
           const response = await getUserById(uid);
           dispatch(addUser(response.user));
           dispatch(addCart(response.cart));
+          
         } catch (error) {
           console.error("Error al obtener datos del usuario", error);
         }
@@ -78,6 +90,8 @@ const NavBar = ({handleOPen, isOPen}) => {
 
     getUserData();
   }, [dispatch, user]);
+
+  
 
   useEffect(()=>{
     if(status==="approved" && currentUser && cart?.products.length!==0 && !madeRequest){
@@ -91,27 +105,46 @@ const NavBar = ({handleOPen, isOPen}) => {
       })
       dispatch(cleanCart())
       setMadeRequest(true)
+      
     }
+
   },[currentUser])
-
-  console.log("usuario registrado: ", currentUser)
-
+  console.log("datos del usuario", currentUser)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
-          <NavLink to='/home'><img src={logo} className={style.img}/></NavLink>   
-          <NavLink to='/home'><img src={title} className={style.brand}/></NavLink>
+          <NavLink to='/home' className={style.navTittle}><h1>Las Encinas Boutique</h1></NavLink>   
         </div>
-        <div className={style.navItems}>
+        <div className={`${style.navItems} ${style.withMargin}`}>
+          <div className={style.navLinks}>
+              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
+              {user
+              &&
+              <div className={style.userCont}>
+                <img src={currentUser?.image} className={style.imgUser}/>
+                <p className={style.name}>{currentUser?.name}</p>
+              </div>
+              }
+          </div>
           <NavLink to={"/cart"}>
             <div className={style.cartIconCont}>
               <img src={cartIcon} className={style.cartIcon}/>
               <p className={style.TotaItems}>{totalItemsCart}</p>
             </div>
           </NavLink>
-          <div className={style.navLinks}>
-              {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
-              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
+        <div className={style.languageSelect}>
+          <div>
+        <img src={langLogo} className={style.idiomas}/>
+          </div>
+          <div>
+        <select
+          className={style.cssSelect}
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
           </div>
           <div className={menuStyle.menuCont}>
           <input
@@ -126,38 +159,7 @@ const NavBar = ({handleOPen, isOPen}) => {
             <div className={menuStyle.bars} id={menuStyle.bar3}></div>
           </label>
         </div>
-        <div className={style.languageButtons}>
-        <button onClick={() => i18n.changeLanguage("es")}><img src={flagArg} alt="Argentina Flag" /></button>
-          <button onClick={() => i18n.changeLanguage("en")}><img src={flagUsa} alt="US Flag" /></button>
         </div>
-      {/* <div className={style.wrapper}>
-      <div className={style.option}>
-        <input
-          checked={i18n.language === 'es'}
-          onChange={() => i18n.changeLanguage('es')}
-          type="radio"
-          name="language"
-          id="es"
-          className={style.input}
-        />
-        <label htmlFor="es" className={style.btn}>
-          <span className={style.span}>es</span>
-        </label>
-      </div>
-      <div className={style.option}>
-        <input
-          checked={i18n.language === 'en'}
-          onChange={() => i18n.changeLanguage('en')}
-          type="radio"
-          name="language"
-          id="en"
-          className={style.input}
-        />
-        <label htmlFor="en" className={style.btn}>
-          <span className={style.span}>en</span>
-        </label>
-      </div>
-        </div>          */}
     </div>
 
           

@@ -4,7 +4,8 @@
 :root {
     --primary-font: "Rowton Sans FY W03 Regular";
     --secondary-font: 'Montserrat', sans-serif;
-    --brown: #FC8E28;
+    --brown: #65451F;
+    --ligth-brown:#EAC696
 }
 body{
     width: 100vw;
@@ -14,5 +15,5 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+ 
 }

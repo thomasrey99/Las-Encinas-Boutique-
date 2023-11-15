@@ -4,8 +4,8 @@
     "Hello": "Hola de nuevo"
 },
 "order":{
-    "highets-price": "Mayor precio",
-    "Lower-price": "Menor precio"
+    "Highest-price": "Mayor precio",
+    "Lowest-price": "Menor precio"
     },
 "filters":{
     "Categories": "Categorias",
@@ -18,8 +18,8 @@
 },
 "types": {
     "All": "Todos",
-    "White_chocolate": "Chocolate blanco",
-    "Chocolate_w_ milk": "Chocolate con leche",
+    "WhiteChocolate": "Chocolate blanco",
+    "Chocolate_w_milk": "Chocolate con leche",
     "Semisweet": "Chocolate semi-amargo"
   },
 "footer":{
@@ -67,5 +67,54 @@
     "5": "Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
     "6": "Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
     "7": "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo."
+},
+"profileMain": {
+    "Loading": "Cargando",
+    "Basic Information": "Información Básica",
+    "Security": "Seguridad",
+    "Shopping": "Compras"
+  },
+  "upProfile": {
+    "Upload-image": "Subir imagen",
+    "Name": "Nombre",
+    "Enter-name": "Por favor ingresa tu nombre!",
+    "Invalid-name": "Nombre inválido.",
+    "LastName": "Apellido",
+    "Enter-lastname": "Por favor ingresa tu apellido!",
+    "Invalid-lastName": "Apellido inválido.",
+    "Phone": "Teléfono",
+    "Enter-phone": "Por favor ingresa tu número de teléfono!",
+    "Invalid-phone": "Número inválido.",
+    "Adress": "Dirección",
+    "Enter-Adress": "Por favor ingresa tu dirección!",
+    "Invalid-adress": "Dirección inválida.",
+    "Update": "Actualizar"
+},
+"security": {
+    "changePassword": "Cambiar contraseña",
+    "Password": "Constraseña",
+    "update": "Actualizar",
+    "changeEmail": "Cambiar E-mail",
+    "E-mail": "E-mail",
+    "InsertPass": "Por favor ingresa tu nueva contraseña!",
+    "SuccefullyPass": "Contraseña actualizada exitosamente. Por favor vuelve a iniciar sesión con la nueva contraseña.",
+    "PassError": "Hubo un error al actualizar la contraseña. Por favor intenta de nuevo.",
+    "Update": "Actualizar",
+    "InsertEmail": "Por favor ingresa tu correo electrónico!",
+    "InvalidEmail": "Email inválido.",
+    "EnterCredentials": "Por favor, introduce tus credenciales",
+    "SuccefullyEmail": "Correo Actualizado con Éxito",
+    "Accept": "Aceptar",
+    "EmailReview": "Para continuar, por favor revisa tu bandeja de entrada en el nuevo correo.",
+    "EmailNewSession": "Inicia sesión con tu nuevo correo electrónico y ¡listo!",
+    "EmailError": "Hubo un error al actualizar el correo electrónico. Por favor intenta de nuevo."
+},
+"shopping": {
+    "PurchaseDetail": "Detalles de la compra",
+    "RateProduct": "Calificar producto",
+    "NoPurchase":"Aún no has realizado ninguna compra",
+    "FirstPurchase":"¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.",
+    "Explore":"Explorar productos"
 }
+
 }

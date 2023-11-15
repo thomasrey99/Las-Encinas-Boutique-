@@ -57,8 +57,6 @@ const FilterAdmin = () => {
     };
   }, []);
 
-  console.log(windowWidth);
-
   return (
   
     <div >
@@ -66,7 +64,7 @@ const FilterAdmin = () => {
       <div>
         <br/>
       <Row>
-        <Col span={12}><SearchBarProducts width={"30vh"}/></Col>
+        <Col span={12}><SearchBarProducts/></Col>
         <Col span={12}><Status change={handleChangeStatus} width={"30vh"}/></Col>
       </Row>
         <br/>

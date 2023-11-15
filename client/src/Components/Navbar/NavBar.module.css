@@ -1,20 +1,45 @@
 .navCont{
+    z-index: 100;
     width: 100vw;
     height: 12vh;
-    background: var(--brown);
-    color:white;
+    background: #ffffff;
+    color:black;
     font-family: var(--primary-font);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 2.5vw;
+    border-bottom: 1px solid #eaeaea;
     
 }
 
-.logCont{   
-   flex: 0 0 auto;
+.logCont{
+   height: 12vh;
    display: flex;
    flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   margin-left: 2%;
+}
+
+.navTittle{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 12vh;
+}
+
+.navTittle h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 12vh;
 }
 .img{
     width: 4vw;
@@ -30,6 +55,9 @@
     padding: 10px;
     width: 30vw;
 }
+.withMargin {
+  margin-right: 8%;
+}
 .cartIcon{
     width: 24px;
     height: 24px;
@@ -43,7 +71,7 @@
 .item{
     padding: 5px 10px;
     text-decoration: none;
-    color: white;
+    color: black;
 }
 .cartIconCont{
     position: relative;
@@ -57,13 +85,17 @@
     position: absolute;
     text-decoration: none;
     top: 0px;
+    width: 16px;
     left:10px;
-    color: green;
+    color: white;
+    text-align: center;
     font-size: 12px;
     font-weight: bold;
+    border-radius: 50%;
+    background: black;
 }
 .brand {
-    color: white;
+    color: black;
     height: 50px;
     white-space: nowrap;
     flex-grow: 1;
@@ -73,80 +105,40 @@
     margin-left: 20px;
   }
 
-.languageButtons {
+.languageSelect {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 5px;
-}
-
-.languageButtons button {
-  margin-right: 30px; 
-  background-color: transparent;
-  border-color: transparent;
-  border: none;
-}
-
-.languageButtons img {
-  width: 3rem; 
+  width: 4rem; 
   height: auto; 
+  border: none;
+ 
+}
+.languageSelect > div {
+  margin-right: 40%;
 }
 
-/*   
-  .wrapper {
-    --font-color-dark: #fefefe;
-    --font-color-light: #111;
-    --bg-color: #111;
-    --main-color: #fefefe;
-    position: relative;
-    width: 170px;
-    height: 36px;
-    background-color: var(--bg-color);
-    border: 2px solid var(--main-color);
-    border-radius: 34px;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 4px 4px var(--main-color);
-  }
-  
-  .option {
-    width: 80.5px;
-    height: 28px;
-    position: relative;
-    top: 2px;
-    left: 2px;
-  }
-  
-  .input {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    appearance: none;
-    cursor: pointer;
-  }
-  
-  .btn {
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-color);
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .span {
-    color: var(--font-color-dark);
-  }
-  
-  .input:checked + .btn {
-    background-color: var(--main-color);
-  }
-  
-  .input:checked + .btn .span {
-    color: var(--font-color-light);
-  }
-   */
+.idiomas{
+  display: flex;
+  align-items: center;
+  margin-right: -15px;
+  height: auto;
+  width: 1.5rem;
+}
 
+.cssSelect{
+  border: none;
+  background: white;
+}
+
+.userCont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px
+}
+.imgUser{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

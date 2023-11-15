@@ -36,7 +36,11 @@
     "Favorite-products": "Productos favoritos",
     "Homepage": "Pagina principal",
     "Meet-us": "Conocenos",
+<<<<<<< HEAD
     "Contact-us": "Contáctanos",
+=======
+    "Contact-Us": "Contáctanos",
+>>>>>>> develop
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
@@ -46,14 +50,18 @@
 },
 "banner": {
     "title": "Disfrute de las mejores delicias de la región.",
-    "description1": "Ideales para agasajar con un regalo para alguien especial.",
-    "description2": "* Pedidos personalizados",
-    "description3": "* Tarjetas que expresan nuestros mejores deseos.",
-    "description4": "* Elaboración con materia prima de la más alta calidad.",
-    "description5": "* Atención en horario comercial de 9 a 13hs y de 16 a 21hs."
+    "titledescription1": "Chocolates a tu Gusto: ¡Crea, Saborea, Disfruta!",
+    "description1": "Haz tus momentos dulces aún más especiales! Descubre nuestra gama de chocolates artesanales y crea tu propio paraíso de sabor con pedidos personalizados. ¡Convierte tus ideas en exquisitas realidades chocolatosas y haz tu pedido hoy mismo!",
+    "titledescription2": "Combos Chocolatosos: ¡Encuentra Tu Dulce Equilibrio!",
+    "description2": "¡Descubre la perfección en cada combinación! Nuestras cajoneras de chocolates artesanales te ofrecen una experiencia única. Deléitate con nuestra selección cuidadosamente elaborada, ¡donde cada mordisco es una explosión de sabor! Encuentra tu combo ideal y sumérgete en un mundo de dulces sensaciones.",
+    "titledescription3": "Delicias Tentadoras: Bombones y Barras Artesanales para el Placer Absoluto",
+    "description3": "¡Dulces placeres en cada bocado! Explora nuestra variedad de bombones y barras de chocolate artesanales. Desde la indulgencia de nuestros exquisitos bombones hasta la satisfacción crujiente de nuestras barras, cada producto está creado para deleitar tus sentidos. Sumérgete en un mundo de tentaciones irresistibles y déjate seducir por la calidad de nuestros chocolates.",
+    "titledescription4": "¡Experimenta la Magia del Chocolate en Cada Bocado! Haz tu Pedido y Endúlzate con Nuestros Deliciosos Huevos Artesanales.",
+    "description4": "¿Qué estás esperando para deleitar tu paladar con nuestros exquisitos huevos de chocolate? Haz que cada momento sea más dulce y especial con nuestros productos artesanales. ¡Haz tu pedido ahora y deja que la magia del chocolate conquiste tu día!"
 },
 "carousel":{
-    "slogan": "El arte de endulzar tus momentos!"
+    "slogan": "El arte de endulzar tus momentos!",
+    "Start": "Comenzar"
 },
 "about":{
     "title": "Soluciones a tus Proyectos",
@@ -72,7 +80,9 @@
     "Loading": "Cargando",
     "Basic Information": "Información Básica",
     "Security": "Seguridad",
-    "Shopping": "Compras"
+    "Shopping": "Compras",
+    "UserInformation": "No se pudo cargar la información del usuario.",
+    "PleaseLogin": "Por favor, inicia sesión para continuar."
   },
   "upProfile": {
     "Upload-image": "Subir imagen",
@@ -115,6 +125,19 @@
     "NoPurchase":"Aún no has realizado ninguna compra",
     "FirstPurchase":"¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.",
     "Explore":"Explorar productos"
+},
+"contactUS": {
+    "Name": "Nombre:",
+    "NameHolder": "Ingrese su nombre aquí...",
+    "E-mail": "E-mail:",
+    "E-mailHolder": "Ingrese su email aquí...",
+    "Message": "Mensaje:",
+    "MessageHolder": "Ingrese aquí su consulta...",
+    "SendMessage": "Enviar",
+    "Description1": "Quieres obtener nuestros productos en tu tienda?",
+    "Description2": "Contáctanos para brindarte más información acerca de nuestros productos y servicios especiales disponibles."
+},
+"Products": {
+    "ProductsTitle": "Productos"
 }
-
 }

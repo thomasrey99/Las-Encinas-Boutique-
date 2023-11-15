@@ -113,8 +113,7 @@ const NavBar = ({handleOPen, isOPen}) => {
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
-          <NavLink to='/home'><img src={logo} className={style.img}/></NavLink>   
-          <NavLink to='/home'><img src={title} className={style.brand}/></NavLink>
+          <NavLink to='/home' className={style.navTittle}><h1>Las Encinas Boutique</h1></NavLink>   
         </div>
         <div className={`${style.navItems} ${style.withMargin}`}>
           <div className={style.navLinks}>

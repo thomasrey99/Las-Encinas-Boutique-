@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import styles from "./Carousel.module.css"
 import { Spin, Alert, Carousel } from 'antd';
-
+import logo from "../../assets/las_encinas_logo.png"
 const CarouselImg = () => {
     const { t  } = useTranslation("global");
   return (
@@ -21,8 +21,9 @@ const CarouselImg = () => {
             </div>
             </Carousel>
             <div className={styles.landingCont}>
+                <img src={logo} className={styles.logoImg}/>
                 <h1 className={styles.title}>{t("carousel.slogan")}</h1>
-                {/* <a href="#" className={styles.enter}>Comenzar</a> */}
+                <a href="#" className={styles.enter}>Comenzar</a>
             </div>
         </div>
   )

@@ -7,7 +7,7 @@ import { useLocalStorage } from "../../../../Hooks/useLocalStorage"
 
 import { Input , Space } from 'antd';
 
-const SearchBarProducts = ({width}) => {
+const SearchBarProducts = ({width, state, inputname}) => {
 
   const dispatch=useDispatch()
 
@@ -22,7 +22,7 @@ const SearchBarProducts = ({width}) => {
 
   useEffect(() => {
     dispatch(addFilter({
-        name:"name",
+        name:state,
         value:name
       }))
       setSearch(name)
@@ -30,9 +30,9 @@ const SearchBarProducts = ({width}) => {
 
   return (
     <Space wrap className={style.selectCont}>
-    <label htmlFor='searchProduct'>Buscar por nombre</label>
+    <label htmlFor='searchProduct'>{`Buscar por ${inputname}`}</label>
         <Input
-        placeholder='Buscar por nombre...' 
+        placeholder={`Buscar por ${inputname}...`}
         name="search" 
         value={name} 
         onChange={handleChange}

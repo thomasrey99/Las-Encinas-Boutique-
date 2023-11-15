@@ -29,9 +29,9 @@ const Profile = () => {
             </div>} type="error" 
             showIcon className={styles.alert}/> 
             : !getUserById || !user?
-            <Alert message="No se pudo cargar la información del usuario" description={<div>
-                <p>Por favor, inicia sesión para continuar.</p>
-                <Button type='primary' onClick={()=>navigate('/login')}>Iniciar Sesión</Button>
+            <Alert message={t("profileMain.UserInformation")} description={<div>
+                <p>{t("profileMain.PleaseLogin")}</p>
+                <Button type='primary' onClick={()=>navigate('/login')}>{t("menu.Log-in")}</Button>
             </div>} type="info" 
             showIcon className={styles.alert}/> 
             :<div>

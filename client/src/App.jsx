@@ -31,6 +31,7 @@ import Menu from './Components/menu/Menu';
 import Chat from './VIEWS/Chat/Chat';
 import Landing from './VIEWS/Landing/Landing';
 import ContactUs from './VIEWS/Forms/FormContacts/ContactUs';
+import EditRequest from './VIEWS/Admin/Components/FormEditRequest/FormEditRequest';
 
 const App = () => {
 
@@ -54,6 +55,7 @@ const App = () => {
   location.pathname !== '/ordersAdmin' &&
   location.pathname !== '/createProduct' &&
   !location.pathname.startsWith('/editProductAdmin/') &&
+  !location.pathname.startsWith('/editRequest/') &&
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
   
@@ -91,6 +93,7 @@ const App = () => {
           {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
           {currentUser?.is_Admin === true ? <Route path='/createProduct' element={<CreateProducts />} /> : <Route path='/createProduct' element={<ErrorPage />} />}
+          {currentUser?.is_Admin === true ? <Route path='/editRequest/:id' element={<EditRequest />} /> : <Route path='/editRequest/:id' element={<ErrorPage />} />}
           {/* <Route path='/controlAdmin' element={currentUser?.is_Admin?<ControlPanel/>: <ErrorPage/>} /> */}
         </Routes>
         {isOPen&&<Menu handleOPen={handleOPen}/>}

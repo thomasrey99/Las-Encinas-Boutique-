@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import style from "./Maps.module.css"
 function IniciarMap() {
   useEffect(() => {
     const coord = { lat: -26.830462224358953, lng: -65.20385131873294 };
@@ -14,7 +14,12 @@ function IniciarMap() {
     });
   }, []);
 
-  return <div id="map" style={{ height: "500px", width: "100%" }}></div>;
+  return (
+    <div className={style.mapCont}>
+      <h2 className={style.ubicationTitle}>¿Donde nos encontramos?</h2>
+      <div id="map"className={style.map}></div>
+    </div>
+  )
 }
 
 export default IniciarMap;

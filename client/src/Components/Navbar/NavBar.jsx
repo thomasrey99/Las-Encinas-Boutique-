@@ -109,7 +109,7 @@ const NavBar = ({handleOPen, isOPen}) => {
     }
 
   },[currentUser])
-
+  console.log("datos del usuario", currentUser)
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
@@ -118,7 +118,13 @@ const NavBar = ({handleOPen, isOPen}) => {
         <div className={`${style.navItems} ${style.withMargin}`}>
           <div className={style.navLinks}>
               {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
-              {user&&<p>{`${t("navBar.Hello")} ${currentUser?.name}`}</p>}
+              {user
+              &&
+              <div className={style.userCont}>
+                <img src={currentUser?.image} className={style.imgUser}/>
+                <p className={style.name}>{currentUser?.name}</p>
+              </div>
+              }
           </div>
           <NavLink to={"/cart"}>
             <div className={style.cartIconCont}>

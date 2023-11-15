@@ -173,8 +173,8 @@ const Chat = () => {
   
 
   return (
-    <div>
-      <h2 className={styles.titleChat}>Sala de Chat en Vivo</h2>
+    <div className={styles.chatCont}>
+      <h2 className={styles.titleChat}>Chatea con nosotros</h2>
       <div className={styles.container}>
         <ul ref={messageListRef} className={styles.messageList}>
           {messages.map((msg, index) => (

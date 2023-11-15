@@ -36,7 +36,6 @@ import {
 } from "antd";
 const { Meta } = Card;
 const { Item } = Tabs;
-const { TabPane } = Tabs;
 import {
   ShoppingCartOutlined,
   HeartOutlined,
@@ -250,7 +249,7 @@ const Detail = () => {
                               className={styles.addRating}
                             />
                             <div className={styles.addReview}>
-                            <Tooltip title={!productPurchased ?'Por favor, compra el producto primero para poder comentar.😊' 
+                            <Tooltip title={!productPurchased ?'Por favor, compra el producto para poder comentar😊' 
                             :''}>
                          
                               <Input.TextArea

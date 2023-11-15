@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import UserReview from "./userReview";
+import UserImage from './userImage';
 import {
   useGetFavProductQuery,
   useAddFavProductMutation,
@@ -15,6 +16,7 @@ import {
   useRemoveReviewMutation,
 } from "../../libs/redux/services/reviewsApi";
 import { addProductCart } from "../../libs/redux/features/CartSlice";
+import { useGetAllRequestQuery } from "../../libs/redux/services/requestApi";
 import { usePutCartMutation } from "../../libs/redux/services/CartApi";
 import {
   Spin,
@@ -46,12 +48,12 @@ import styles from "./detail.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const Detail = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const productId = id;
   const user = useSelector((state) => state.user.userLog);
-  console.log(user.is_Admin);
   const userId = user?.uid;
   const id_cart = useSelector((state) => state.user.userCartId);
   const cartData = useSelector((state) => state.cart);
@@ -77,6 +79,7 @@ const Detail = () => {
   const [removeFavProduct] = useRemoveFavProductMutation();
   const { data: reviews, refetch: getNewReviews } =
     useGetAllReviewsQuery(productId);
+  const { data: requests } = useGetAllRequestQuery();
   const [addReview] = useAddReviewMutation();
   const [editReview] = useEditReviewMutation();
   const [removeReview] = useRemoveReviewMutation();
@@ -140,6 +143,14 @@ const Detail = () => {
       await mutate({ dataUpdate: cartData, id_cart: id_cart });
     }
   };
+
+  const canDoReview = () => {
+    
+  }
+  const userRequests = requests?.filter(request => request.uid === userId);
+  console.log(userRequests);
+  // const productsRequests = userRequests.products;
+
 
   return (
     <div className={styles.detailContainer}>
@@ -363,7 +374,7 @@ const Detail = () => {
                                     active
                                   >
                                     <List.Item.Meta
-                                      avatar={<Avatar src={item.avatar} />}
+                                      avatar={<Avatar src={<UserImage id={item.uid}/>} />}
                                       title={
                                         <div className={styles.NameAndRate}>
                                           <div>

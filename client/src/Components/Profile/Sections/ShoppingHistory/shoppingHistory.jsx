@@ -14,7 +14,6 @@ const ShoppingHistory = () => {
   const [ currentRequest, setCurrentRequest ] = useState(null);
 
   const { data: requests, isLoading, refetch } = useGetAllRequestQuery();
-  console.log(requests);
 
   useEffect(() => {
     if (!requests || requests === null || requests === undefined){
@@ -86,9 +85,12 @@ const ShoppingHistory = () => {
   
   return (
     <div className={styles.historyContainer}>
-      {isLoading || !requests || requests===undefined || requests===null?
-      <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
-      :userRequests && userRequests.length > 0
+      {isLoading || !requests || requests===undefined || requests===null
+      ? <Spin tip="Cargando" 
+          className={styles.loading}>
+            <div className="content"/>
+        </Spin>
+      : userRequests && userRequests.length > 0
       ? <div>
           <Table columns={columns} dataSource={userRequests} pagination={{ pageSize: 4 }}/>
           <div className={styles.modalContainer}>

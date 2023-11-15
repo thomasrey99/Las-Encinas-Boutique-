@@ -1,24 +1,20 @@
 .profileContainer{
-    min-height: 100vh;
-    margin: 5vh 0;
+  min-height: 100vh;
+  margin: 5vh 0;
 }
 .userCard{
-    width: 130vh;
-    height: 80vh;
+  width: 130vh;
+  height: 80vh;
+}
+.loading .ant-spin-dot i {
+  background-color: #EAC696 !important;
+}
 
+.loading{
+  margin-top: 25vh;
+  background-color: #EAC696 !important;
 }
-.uploadImage {
-    display: flex;
-    justify-content: center;
-    margin-top: 2vh; 
+.alert{
+  width: 80vh;
+  margin-top: 25vh;
 }
-  
-  /* .centerContainer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  } */
-  
-  .butonUpdateProfile {
-    margin: auto auto; 
-  }

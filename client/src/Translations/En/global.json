@@ -36,6 +36,7 @@
     "Favorite-products": "Favorite products",
     "Homepage": "Homepage",
     "Meet-us": "Meet us",
+    "Contact-Us": "Constact us",
     "Log-off": "Log off",
     "Log-in": "Log in",
     "Administrator-Panel": "Administrator Panel"
@@ -45,14 +46,18 @@
 },
 "banner": {
     "title": "Enjoy the best delicacies of the region.",
-    "description1": "Ideal to entertain with a gift for someone special.",
-    "description2": "* Custom orders",
-    "description3": "* Cards that express our best wishes.",
-    "description4": "* Preparation with raw materials of the highest quality.",
-    "description5": "* Attention during business hours from 9 a.m. to 1 p.m. and from 4 p.m. to 9 p.m."
+    "titledescription1": "Chocolates to your liking: Create, Savor, Enjoy!",
+    "description1": "Make your sweet moments even more special! Discover our range of artisanal chocolates and create your own flavor paradise with custom orders. Turn your ideas into exquisite chocolate realities and place your order today!",
+    "titledescription2": "Chocolate Combos: Find Your Sweet Balance!",
+    "description2": "Discover perfection in every combination! Our artisan chocolate drawers offer you a unique experience. Delight yourself with our carefully prepared selection, where each bite is an explosion of flavor! Find your ideal combo and immerse yourself in a world of sweet sensations.",
+    "titledescription3": "Tempting Delights: Artisanal Chocolates and Bars for Absolute Pleasure",
+    "description3": "Sweet delights in every bite! Explore our variety of artisanal chocolates and chocolate bars. From the indulgence of our exquisite chocolates to the crunchy satisfaction of our bars, each product is created to delight your senses. Immerse yourself in a world of irresistible temptations and let yourself be seduced by the quality of our chocolates.",
+    "titledescription4": "Experience the Magic of Chocolate in Every Bite! Place your Order and Sweeten Yourself with Our Delicious Artisan Eggs.",
+    "description4": "What are you waiting for to delight your palate with our exquisite chocolate eggs? Make every moment sweeter and more special with our handmade products. Place your order now and let the magic of chocolate conquer your day!"
 },
 "carousel":{
-    "slogan": "The art of sweetening your moments!"
+    "slogan": "The art of sweetening your moments!",
+    "Start": "Start"
 },
 "about":{
     "title": "Solutions to your Projects",
@@ -71,7 +76,9 @@
     "Loading": "Loading",
     "Basic Information": "Basic Information",
     "Security": "Security",
-    "Shopping": "Shopping"
+    "Shopping": "Shopping",
+    "UserInformation": "Could not load user information",
+    "PleaseLogin": "Please log in to continue."
   },
 "upProfile": {
     "Upload-image": "Upload image",
@@ -113,6 +120,22 @@
     "NoPurchase": "You have not made any purchases yet",
     "FirstPurchase":"Your first purchase is waiting for you! Discover the variety of products we have for you!",
     "Explore":"Explore products"
+},
+"contactUS": {
+    "Name": "Name:",
+    "NameHolder": "Enter your name here...",
+    "E-mail": "E-mail",
+    "E-mailHolder": "Enter your email here...",
+    "Message": "Message:",
+    "MessageHolder": "Enter your query here...",
+    "SendMessage": "Send",
+    "Description1": "Do you want to get our products in your store?",
+    "Description2": "Contact us for more information about our special products and services available."   
+    
+},
+"Products": {
+    "ProductsTitle": "Products"
+
 }
 
   

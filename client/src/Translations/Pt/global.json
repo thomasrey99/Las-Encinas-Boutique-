@@ -46,11 +46,14 @@
   },
   "banner": {
     "title": "Desfrute das melhores delícias da região.",
-    "description1": "Ideais para presentear alguém especial.",
-    "description2": "* Pedidos personalizados",
-    "description3": "* Cartões que expressam nossos melhores desejos.",
-    "description4": "* Elaboração com matéria-prima da mais alta qualidade.",
-    "description5": "* Atendimento em horário comercial das 9h às 13h e das 16h às 21h."
+    "titledescription1": "Chocolates ao seu gosto: Crie, Saboreie, Aproveite!",
+    "description1": "Torne seus doces momentos ainda mais especiais! Descubra a nossa gama de chocolates artesanais e crie o seu próprio paraíso de sabores com encomendas personalizadas. Transforme suas ideias em requintadas realidades de chocolate e faça seu pedido hoje mesmo!",
+    "titledescription2": "Combos de chocolate: encontre seu doce equilíbrio!",
+    "description2": "Descubra a perfeição em cada combinação! Nossas gavetas artesanais de chocolate oferecem uma experiência única. Delicie-se com a nossa selecção cuidadosamente preparada, onde cada dentada é uma explosão de sabor! Encontre a sua combinação ideal e mergulhe num mundo de doces sensações.",
+    "titledescription3": "Delícias tentadoras: chocolates e barras artesanais para prazer absoluto",
+    "description3": "Doces delícias em cada mordida! Explore nossa variedade de chocolates artesanais e barras de chocolate. Da indulgência dos nossos chocolates requintados à satisfação crocante das nossas barras, cada produto é criado para deliciar os seus sentidos. Mergulhe num mundo de tentações irresistíveis e deixe-se seduzir pela qualidade dos nossos chocolates.",
+    "titledescription4": "Experimente a magia do chocolate em cada mordida! Faça seu Pedido e Adoce-se com Nossos Deliciosos Ovos Artesanais.",
+    "description4": "Do que você está esperando para deliciar seu paladar com nossos deliciosos ovos de chocolate? Torne cada momento mais doce e especial com nossos produtos artesanais. Faça já o seu pedido e deixe a magia do chocolate conquistar o seu dia!"
   },
   "carousel": {
     "slogan": "A arte de adoçar seus momentos!",

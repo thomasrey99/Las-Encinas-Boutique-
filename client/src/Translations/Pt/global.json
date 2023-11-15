@@ -36,6 +36,7 @@
     "Favorite-products": "Produtos favoritos",
     "Homepage": "Página principal",
     "Meet-us": "Conheça-nos",
+    "Contact-Us": "Contate-nos",
     "Log-off": "Sair",
     "Log-in": "Entrar",
     "Administrator-Panel": "Painel de Administrador"
@@ -52,7 +53,8 @@
     "description5": "* Atendimento em horário comercial das 9h às 13h e das 16h às 21h."
   },
   "carousel": {
-    "slogan": "A arte de adoçar seus momentos!"
+    "slogan": "A arte de adoçar seus momentos!",
+    "Start": "Começar"
   },
   "about": {
     "title": "Soluções para seus Projetos",
@@ -116,5 +118,16 @@
     "NoPurchase": "Você ainda não fez nenhuma compra",
     "FirstPurchase": "Sua primeira compra está te esperando! Descubra a variedade de produtos que temos para você.",
     "Explore": "Explorar produtos"
-  }
+  },
+  "contactUS": {
+      "Name": "Nome:",
+      "NameHolder": "Escreva o seu nome aqui...",
+      "E-mail": "E-mail:",  
+      "E-mailHolder": "Digite seu email aqui...",  
+      "Message": "Mensagem:",
+      "MessageHolder": "Digite sua consulta aqui...",
+      "SendMessage": "Enviar",
+      "Description1": "Quer receber nossos produtos em sua loja?",
+      "Description2": "Contate-nos para mais informações sobre nossos produtos e serviços especiais disponíveis."
+}
 }

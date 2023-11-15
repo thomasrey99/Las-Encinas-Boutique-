@@ -43,6 +43,10 @@
     background: white;
     font-family: var(--primary-font);
     margin-top: 10vh ;
+    width:7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .logoImg{
     width: 150px;

@@ -36,6 +36,7 @@
     "Favorite-products": "Productos favoritos",
     "Homepage": "Pagina principal",
     "Meet-us": "Conocenos",
+    "Contact-Us": "Contáctanos",
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"
@@ -52,7 +53,8 @@
     "description5": "* Atención en horario comercial de 9 a 13hs y de 16 a 21hs."
 },
 "carousel":{
-    "slogan": "El arte de endulzar tus momentos!"
+    "slogan": "El arte de endulzar tus momentos!",
+    "Start": "Comenzar"
 },
 "about":{
     "title": "Soluciones a tus Proyectos",
@@ -116,6 +118,16 @@
     "NoPurchase":"Aún no has realizado ninguna compra",
     "FirstPurchase":"¡Tu primera compra te está esperando! Descubre la variedad de productos que tenemos para ti.",
     "Explore":"Explorar productos"
+},
+"contactUS": {
+    "Name": "Nombre:",
+    "NameHolder": "Ingrese su nombre aquí...",
+    "E-mail": "E-mail:",
+    "E-mailHolder": "Ingrese su email aquí...",
+    "Message": "Mensaje:",
+    "MessageHolder": "Ingrese aquí su consulta...",
+    "SendMessage": "Enviar",
+    "Description1": "Quieres obtener nuestros productos en tu tienda?",
+    "Description2": "Contáctanos para brindarte más información acerca de nuestros productos y servicios especiales disponibles."
 }
-
 }

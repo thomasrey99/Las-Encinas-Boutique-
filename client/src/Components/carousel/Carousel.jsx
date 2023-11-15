@@ -23,7 +23,7 @@ const CarouselImg = () => {
             <div className={styles.landingCont}>
                 <img src={logo} className={styles.logoImg}/>
                 <h1 className={styles.title}>{t("carousel.slogan")}</h1>
-                <a href="#" className={styles.enter}>Comenzar</a>
+                <a href="#" className={styles.enter}>{t("carousel.Start")}</a>
             </div>
         </div>
   )

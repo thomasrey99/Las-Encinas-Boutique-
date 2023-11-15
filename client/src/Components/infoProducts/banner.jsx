@@ -1,8 +1,8 @@
 import style from "./banner.module.css"
-import bombones from "../../../public/bombones.png"
-import combo from "../../../public/combo.png"
-import huevos from "../../../public/huevos.png"
-import pedido from "../../../public/pedido.png"
+import bombones from "/bombones.png?url"
+import combo from "/combo.png?url"
+import huevos from "/huevos.png?url"
+import pedido from "/pedido.png?url"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import { useTranslation } from "react-i18next";

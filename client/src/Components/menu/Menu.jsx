@@ -6,6 +6,7 @@ import { addUser } from "../../libs/redux/features/userSlice";
 import { addCart } from "../../libs/redux/features/CartSlice";
 import { useTranslation } from "react-i18next";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+
 const Menu = ({handleOPen}) => {
 
   const { t } = useTranslation("global");

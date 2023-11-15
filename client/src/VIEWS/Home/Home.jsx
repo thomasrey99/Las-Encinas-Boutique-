@@ -2,7 +2,7 @@ import { useAuth } from "../../firebase/authContext.jsx"; //Esto sirve para la a
 import Map from "../../Components/Maps/Maps.jsx";
 import Carousel from "../../Components/carousel/Carousel.jsx";
 import styles from "./home.module.css";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { WhatsAppOutlined, WechatOutlined } from "@ant-design/icons";
 import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
 import { useEffect} from "react";
@@ -21,12 +21,11 @@ const Home = () => {
   const dispatch = useDispatch();
 
   //Esto es para EmailJS
-  const refTemplate = useRef();
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const status = searchParams.get('status')
   const userMail = useSelector((state) => state.user.userLog)
-  //_____________________________________________________________
+ //_____________________________________________________________
 
   useEffect(()=>{
 
@@ -46,25 +45,20 @@ const Home = () => {
   }, [status])
   
   const handleAdminMail = () => {
-    const serviceId = "service_zigdlws"
-    const templateAdminId = "template_8gadd5r"
-    const templateClientId = "template_gs77yab"
+    const serviceId = "service_60nkcfm"
+    const templateAdminId = "template_6phdrdu"
     
-    const apikey = "jYr3TGnr-3SdDMbpq"
+    const apikey = "dBJQmjxYxc4nbUFm2"
     
     emailjs.send(serviceId, templateAdminId, {
-      admin_name: "Admin encinas boutique",
+      admin_name: "Admin",
+      user_name:"",
+      
+      
     }, apikey)
     .then(response => { console.log('SUCCESS!', response.status, response.text); })
     .catch(err => { console.log('FAILED...', err); })
     
-    emailjs.send(serviceId, templateClientId, {
-      user_name: `${user.name}`,
-      address: `${user.address}`,
-      reply_to: `${user.email}`,
-    }, "jYr3TGnr-3SdDMbpq")
-    .then(response => { console.log('SUCCESS!', response.status, response.text); })
-    .catch(err => { console.log('FAILED...', err); })
   }
   /*----------------------------------------- */
   

@@ -23,13 +23,13 @@ const Products = () => {
       };
 
   return (
-    <div className={style.products_cont}>
+    <div className={style.products_cont} id="products">
       <h2 className={style.sectionTitle}>Productos</h2>
       <div className={style.search_filter_cont}>
         <Searchbar/>
         <Filters/>
       </div>
-      <div>
+      <div className={style.productsSection}>
         <Paginate productsFilter={productsFilter} currentPage={currentPage} itemsPerPage={itemsPerPage} paginate={paginate}/>
         <CardsProducts productsToDisplay={productsToDisplay} name={name}/>
       </div>

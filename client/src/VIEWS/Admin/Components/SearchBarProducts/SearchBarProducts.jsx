@@ -7,7 +7,7 @@ import { useLocalStorage } from "../../../../Hooks/useLocalStorage"
 
 import { Input , Space } from 'antd';
 
-const SearchBarProducts = ({width, state, inputname}) => {
+const SearchBarProducts = ({width = "30vh", state = "name", inputname = "producto"}) => {
 
   const dispatch=useDispatch()
 
@@ -27,6 +27,8 @@ const SearchBarProducts = ({width, state, inputname}) => {
       }))
       setSearch(name)
   }, [name])
+
+  console.log(inputname, state);
 
   return (
     <Space wrap className={style.selectCont}>

@@ -7,7 +7,7 @@ import styles from './updatePassword.module.css'
 import { useTranslation } from 'react-i18next';
 
 const FormUpdatePassword = () => {
-
+    
     const { t  } = useTranslation("global");
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();

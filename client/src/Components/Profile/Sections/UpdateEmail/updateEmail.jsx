@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { useGetUserByIdQuery ,useUpdateUserMutation } from "../../../../libs/redux/services/usersApi";
-import { Form, Input, Button, Spin, Modal } from 'antd';
+import { Form, Input, Button, Spin, Modal, Alert } from 'antd';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updateEmail.module.css'
 
@@ -14,12 +14,11 @@ const FormUpdateEmail = () => {
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const currentEmail = auth.currentUser.email;
-    
 
     const [isEditing, setIsEditing] = useState(false);
     const user = useSelector(state => state.user.userLog)
     const id = user?.uid;
-    const { data: getUserById, isLoading, refetch } = useGetUserByIdQuery(id);
+    const { data: getUserById, isLoading, isError, refetch } = useGetUserByIdQuery(id);
     const [ updateUser ] = useUpdateUserMutation();
 
     const [ updateProfile, setUpdateProfile ] = useState({email: '', image: '', name: '', lastName: '',
@@ -117,9 +116,13 @@ const FormUpdateEmail = () => {
     
     return(
         <div>
-            {isLoading || !user || !getUserById
+            {isLoading 
             ? <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
-            : <div>
+            : isError || !user || !getUserById 
+            ? <Alert message="info" description="Por favor, intente de nuevo más tarde." type="error" 
+            showIcon className={styles}/>
+            : 
+            <div>
                 <Form                 
                     name="UpdateEmail"
                     initialValues={getUserById}

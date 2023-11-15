@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form, Input, Checkbox, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import Password from "antd/es/input/Password";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../firebase/authContext";
@@ -112,7 +112,7 @@ const Login = () => {
             await loginWithGoogle()
             navigate('/home')
         } catch (error) {
-            setError("Ha Ocurrido un error, inténtelo nuevamente.")
+            setError("Ha ocurrido un error, inténtelo nuevamente.")
         }
         
     }
@@ -140,16 +140,16 @@ const Login = () => {
 
   return (
     <div className="formPage">
-      {error && <p>{error}</p>}
+      {error && <p className="errorLogin">{error}</p>}
             {/* {console.log("Contenido del error")} */}
       <form onSubmit={handleSubmit} className="form">
-        <img src={logo} className="logoImg" />
+
         <Form.Item
           label="E-mail"
           name="email"
           {...formItemLayout}
           rules={[
-            { marginTop: "5%", required: true, message: "Ingrese el nombre" },
+            { marginTop: "5%", required: true, message: "Ingrese su email" },
           ]}
         >
           <Input
@@ -164,7 +164,7 @@ const Login = () => {
           label="Contraseña"
           name="password"
           {...formItemLayout}
-          rules={[{ required: true, message: "Ingrese el precio" }]}
+          rules={[{ marginTop: "5%", required: true, message: "Ingrese su contraseña" }]}
         >
           <Password
             name="password"

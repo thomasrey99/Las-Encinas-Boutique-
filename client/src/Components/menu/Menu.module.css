@@ -1,5 +1,5 @@
 .menuCont{
-    position: fixed;
+    position: absolute;
     top: 12vh;
     width: 100vw;
     height: 88vh;
@@ -9,7 +9,8 @@
     align-items: center;
     justify-content: end;
     background: rgb(255, 255, 255, 0.5);
-    font-family: var(--primary-font)
+    font-family: var(--primary-font);
+    
 }
 .itemsCont{
     background: white;
@@ -19,6 +20,7 @@
     flex-direction: column;
     align-items:center;
     justify-content: center;
+    border-left: 1px solid #eaeaea;
 }
 .itemsList{
     list-style: none;

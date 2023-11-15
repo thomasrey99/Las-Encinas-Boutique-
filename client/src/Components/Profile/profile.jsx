@@ -22,18 +22,18 @@ const Profile = () => {
         <div className={styles.profileContainer}>
             {isLoading 
             ? <Spin tip={t("profileMain.Loading")} className={styles.loading}><div className="content"/></Spin>
-            : isError ?
-            <Alert message="Error al cargar datos" description={<div>
-                <p>Hubo un problema al cargar los datos, por favor intenta de nuevo más tarde.</p>
-                <Button type='primary' onClick={()=>navigate('/home')}>Página principal</Button>
-            </div>} type="error" 
-            showIcon className={styles.alert}/> 
             : !getUserById || !user?
             <Alert message="No se pudo cargar la información del usuario" description={<div>
                 <p>Por favor, inicia sesión para continuar.</p>
                 <Button type='primary' onClick={()=>navigate('/login')}>Iniciar Sesión</Button>
             </div>} type="info" 
-            showIcon className={styles.alert}/> 
+            showIcon className={styles.alert}/>
+            : isError ?
+            <Alert message="Error al cargar datos" description={<div>
+                <p>Hubo un problema al cargar los datos, por favor intenta de nuevo más tarde.</p>
+                <Button type='primary' onClick={()=>navigate('/home')}>Página principal</Button>
+            </div>} type="error" 
+            showIcon className={styles.alert}/>  
             :<div>
                 <Card className={styles.userCard}>
                     <Tabs defaultActiveKey="1">

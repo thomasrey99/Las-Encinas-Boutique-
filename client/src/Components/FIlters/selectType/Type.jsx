@@ -23,7 +23,7 @@ const Type = ({change, width}) => {
         <label htmlFor='type'>{t("filters.Chocolate type")}</label>
         <Select
           name="type"
-          defaultValue={"Todos"}
+          value={t("types.All")}
           style={{
             width: width,
           }}

@@ -4,8 +4,8 @@
     "Hello": "Hola de nuevo"
 },
 "order":{
-    "highets-price": "Mayor precio",
-    "Lower-price": "Menor precio"
+    "Highest-price": "Mayor precio",
+    "Lowest-price": "Menor precio"
     },
 "filters":{
     "Categories": "Categorias",
@@ -18,8 +18,8 @@
 },
 "types": {
     "All": "Todos",
-    "White_chocolate": "Chocolate blanco",
-    "Chocolate_w_ milk": "Chocolate con leche",
+    "WhiteChocolate": "Chocolate blanco",
+    "Chocolate_w_milk": "Chocolate con leche",
     "Semisweet": "Chocolate semi-amargo"
   },
 "footer":{
@@ -36,7 +36,6 @@
     "Favorite-products": "Productos favoritos",
     "Homepage": "Pagina principal",
     "Meet-us": "Conocenos",
-    "Contact-us": "Contáctanos",
     "Log-off": "Cerrar sesión",
     "Log-in": "Iniciar sesión",
     "Administrator-Panel": "Panel de Administrador"

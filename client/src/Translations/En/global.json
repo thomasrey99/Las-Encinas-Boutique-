@@ -4,8 +4,8 @@
     "Hello": "Welcome back"
 },
 "order":{
-    "highest-price": "highest price",
-    "Lowest-price": "Lowest-price"
+    "Highest-price": "Highest price",
+    "Lowest-price": "Lowest price"
 },
 "filters":{
     "Categories": "Categories",
@@ -18,8 +18,8 @@
 },
 "types": {
     "All": "All",
-    "White_chocolate": "White Chocolate",
-    "Chocolate_w_ milk": "Chocolate with Milk",
+    "WhiteChocolate": "White Chocolate",
+    "Chocolate_w_milk": "Chocolate with Milk",
     "Semisweet": "Semisweet Chocolate"
   },
 "footer":{

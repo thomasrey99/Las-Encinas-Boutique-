@@ -61,7 +61,6 @@ const Filters = () => {
       }))
     }
   }
-  // console.log(filters)
   
   return (
         <div className={style.filterCont}>

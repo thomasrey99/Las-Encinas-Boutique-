@@ -24,10 +24,6 @@ const Products = () => {
   }
   const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
   return (
     <div className={Conteiner.Container}>
       <NavBarAdmin />

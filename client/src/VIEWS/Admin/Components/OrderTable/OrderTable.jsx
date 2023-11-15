@@ -3,16 +3,8 @@ import { Table, Select } from 'antd';
 import styles from "../UsersTable/UsersTable.module.css";
 import { EditOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< HEAD
-//import { getUserByUid, getUsers } from '../../../../libs/redux/features/actions/userActions';
-//import SearchBarUsers from '../SearchBarUsers/SearchBarUsers';
-//import {CheckOutlined, CloseOutlined} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-//import Sumorder from './Sumorder';
-=======
 import { Link } from 'react-router-dom';
 import Sumorder from './SumOrder';
->>>>>>> develop
 import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 import style from './class.module.css';
 

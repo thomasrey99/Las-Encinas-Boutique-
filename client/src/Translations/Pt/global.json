@@ -129,5 +129,8 @@
       "SendMessage": "Enviar",
       "Description1": "Quer receber nossos produtos em sua loja?",
       "Description2": "Contate-nos para mais informações sobre nossos produtos e serviços especiais disponíveis."
+},
+"Products": {
+  "ProductsTitle": "Produtos"
 }
 }

@@ -129,5 +129,8 @@
         "SendMessage": "傳送",
         "Description1": "您想在您的商店購買我們的產品嗎？",
         "Description2": "聯絡我們，以了解有關我們提供的特殊產品和服務的更多信息"
-    }
+    },
+    "Products": {
+      "ProductsTitle": "產品"
+  }
 }

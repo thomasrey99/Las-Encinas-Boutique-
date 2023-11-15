@@ -55,6 +55,7 @@ const App = () => {
   location.pathname !== '/ordersAdmin' &&
   location.pathname !== '/createProduct' &&
   !location.pathname.startsWith('/editProductAdmin/') &&
+  !location.pathname.startsWith('/editRequest/') &&
   location.pathname !== '/ordersAdmin' &&
   !location.pathname.startsWith('/editUserAdmin/')
   

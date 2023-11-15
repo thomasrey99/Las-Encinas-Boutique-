@@ -148,7 +148,7 @@ const UpdateProfile = () => {
                             fileList={fileList}
                             onChange={onChange}
                             onPreview={onPreview}>
-                                {fileList.length < 2 && t("upProfile.Upload-image")}
+                                {fileList.length < 2  && isEditing && t("upProfile.Upload-image")}
                         </Upload>
                     </ImgCrop>
                 </div>

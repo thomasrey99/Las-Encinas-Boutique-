@@ -32,8 +32,8 @@ const Payments = () => {
     <div className={Conteiner.Container}>
       <NavBarAdmin />
       <div className={Conteiner.Panel} style={{ padding: 0 }}>
-          
-        <SearchBarProducts width={"30vh"} state={"param"} inputname={"nombre o pedido"}/>
+        <br/>
+        <SearchBarProducts width={"30vh"} state={"param"} inputname={"nombre o id de pago"}/>
 
         <div style={{ margin: "4% 5% 0 5%" }}>
           <Table dataSource={data} loading={isLoading} style={{color: "red"}}>

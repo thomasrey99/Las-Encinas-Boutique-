@@ -7,9 +7,11 @@ import { useGetUserByIdQuery ,useUpdateUserMutation } from "../../../../libs/red
 import { Form, Input, Button, Spin, Modal, Alert } from 'antd';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updateEmail.module.css'
+import { useTranslation } from 'react-i18next';
 
 const FormUpdateEmail = () => {
 
+    const { t  } = useTranslation("global");
     const navigate = useNavigate();
     const auth = getAuth();
     const currentUser = auth.currentUser;
@@ -128,41 +130,41 @@ const FormUpdateEmail = () => {
                     initialValues={getUserById}
                     onFinish={onFinish}>
 
-                    <label>{isEditing ?'Cambiar correo':'Correo'}</label>
+                    <label>{isEditing ? t("security.changeEmail"):t("security.E-mail")}</label>
                     <Form.Item
                         name="email"
-                        rules={[{ required: true, message: 'Por favor ingresa tu correo electrónico!'}, 
-                            {validator: validateEmail, message: 'Email inválido.'}]}>
+                        rules={[{ required: true, message: t("security.InsertEmail")}, 
+                            {validator: validateEmail, message: t("security.InvalidEmail")}]}>
                         <div className={styles.inputGroup}>
-                            <Input placeholder="Correo Electrónico" onChange={handleOnChange} readOnly={!isEditing}
+                            <Input placeholder={t("security.E-mail")} onChange={handleOnChange} readOnly={!isEditing}
                             value={updateProfile.email} />
                             <Button onClick={() => setIsEditing(!isEditing)}>
                                 {isEditing?<CloseOutlined/>:<EditOutlined/>}</Button>
                             {isEditing && 
                             <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
-                                Actualizar
+                                {t("security.Update")}
                             </Button>}
                         </div>
                     </Form.Item>
                 </Form>
-                <Modal title="Por favor, introduce tus credenciales" visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <Input placeholder="Correo Electrónico" onChange={(e) => setEmail(e.target.value)} />
-                    <Input placeholder="Contraseña" type="password" onChange={(e) => setPassword(e.target.value)} />
+                <Modal title={t("security.EnterCredentials")} visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <Input placeholder={t("security.E-mail")} onChange={(e) => setEmail(e.target.value)} />
+                    <Input placeholder={t("security.Password")} type="password" onChange={(e) => setPassword(e.target.value)} />
                 </Modal>
-                <Modal title="Correo Actualizado con Éxito" visible={successVisible} onOk={handleSuccessOk} closable={false}
+                <Modal title={t("security.SuccefullyEmail")} visible={successVisible} onOk={handleSuccessOk} closable={false}
                   footer={[
                     <Button key="submit" type="primary" onClick={handleSuccessOk}>
-                      Aceptar
+                      {t("security.Accept")}
                     </Button>,]}>
-                    <p>Para continuar, por favor revisa tu bandeja de entrada en el nuevo correo.</p>
-                    <p>Inicia sesión con tu nuevo correo electrónico y ¡listo!</p>
+                    <p>{t("security.EmailReview")}</p>
+                    <p>{t("security.EmailNewSession")}</p>
                 </Modal>
                 <Modal title="Error" visible={errorVisible} onOk={handleErrorOk} closable={false}
                     footer={[
                         <Button key="submit" type="primary" onClick={handleErrorOk}>
-                            Aceptar
+                            {t("security.Accept")}
                         </Button>,]}>
-                    <p>Hubo un error al actualizar el correo electrónico. Por favor intenta de nuevo.</p>
+                    <p>{t("security.EmailError")}</p>
                 </Modal>
             </div>}
         </div>

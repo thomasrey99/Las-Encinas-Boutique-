@@ -4,8 +4,8 @@
     "Hello": "Welcome back"
 },
 "order":{
-    "highest-price": "highest price",
-    "Lowest-price": "Lowest-price"
+    "Highest-price": "Highest price",
+    "Lowest-price": "Lowest price"
 },
 "filters":{
     "Categories": "Categories",
@@ -18,8 +18,8 @@
 },
 "types": {
     "All": "All",
-    "White_chocolate": "White Chocolate",
-    "Chocolate_w_ milk": "Chocolate with Milk",
+    "WhiteChocolate": "White Chocolate",
+    "Chocolate_w_milk": "Chocolate with Milk",
     "Semisweet": "Semisweet Chocolate"
   },
 "footer":{
@@ -89,15 +89,31 @@
     "Invalid-adress": "Invalid address.",
     "Update": "Update"
 },
-"password": {
+"security": {
     "changePassword": "Change Password",
     "Password": "Password",
-    "update": "Update"
-},
-"email": {
-    "changeEmail": "Change e-mail",
+    "changeEmail": "Change E-mail",
     "E-mail": "E-mail",
-    "update": "Update"
+    "SuccefullyPass": "Password updated successfully. Please log in again with the new password.",
+    "PassError": "There was an error updating the password. Please try again.",
+    "Update": "Update",
+    "InsertEmail": "Please enter a new your E-mail!",
+    "InsertPass": "Please enter a new password!",
+    "InvalidEmail": "Invalid E-mail.",
+    "EnterCredentials": "Please enter your credentials",
+    "SuccefullyEmail": "E-mail Successfully Updated",
+    "Accept": "Accept",
+    "EmailReview": "To continue, please check your inbox for the new email.",
+    "EmailNewSession": "Sign in with your new email and that's it!",
+    "EmailError": "There was an error updating the email. Please try again."
+},
+"shopping": {
+    "PurchaseDetail": "Purchase details",
+    "RateProduct": "Rate product",
+    "NoPurchase": "You have not made any purchases yet",
+    "FirstPurchase":"Your first purchase is waiting for you! Discover the variety of products we have for you!",
+    "Explore":"Explore products"
 }
+
   
 }

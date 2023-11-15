@@ -77,42 +77,42 @@ const FormUpdatePassword = () => {
                     name="UpdatePassword"
                     onFinish={handleSubmit}>
 
-                    <label htmlFor="">Cambiar contraseña</label>
+                    <label htmlFor="">{t("security.Password")}</label>
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Ingresa tu nueva contraseña!'}]}>
+                        rules={[{ required: true, message: t("security.InsertPass")}]}>
                         <div className={styles.inputGroup}>
-                            <Input placeholder="Contraseña" type="password" onChange={handleChange} readOnly={!isEditing}
+                            <Input placeholder={t("security.Password")} type="password" onChange={handleChange} readOnly={!isEditing}
                                 value={newPassword} />
                             <Button onClick={() => setIsEditing(!isEditing)}>
                                 {isEditing?<CloseOutlined/>:<EditOutlined/>}
                             </Button>
                             {isEditing &&
                             <Button type="primary" htmlType="submit" className={styles.butonUpdateProfile}>
-                                Actualizar
+                                {t("security.Update")}
                             </Button>}
                         </div>
                     </Form.Item>
                 </Form>
-                <Modal title="Por favor, introduce tus credenciales" visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <Input placeholder="Correo Electrónico" onChange={(e) => setEmail(e.target.value)} />
-                    <Input placeholder="Contraseña" type="password" onChange={(e) => setPassword(e.target.value)} />
+                <Modal title={t("security.EnterCredentials")} visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
+                    <Input placeholder={t("security.E-mail")} onChange={(e) => setEmail(e.target.value)} />
+                    <Input placeholder={t("security.Password")} type="password" onChange={(e) => setPassword(e.target.value)} />
                 </Modal>
                 <Modal title="Éxito" visible={successVisible} onOk={handleSuccessOk} closable={false}
                     footer={[
                         <Button key="submit" type="primary" onClick={handleSuccessOk}>
-                            Aceptar
+                            {t("security.Accept")}
                         </Button>,
                     ]}>
-                    <p>Contraseña actualizada exitosamente. Por favor vuelve a iniciar sesión con la nueva contraseña.</p>
+                    <p>{t("security.SuccefullyPass")}</p>
                 </Modal>
                 <Modal title="Error" visible={errorVisible} onOk={handleErrorOk} closable={false}
                     footer={[
                         <Button key="submit" type="primary" onClick={handleErrorOk}>
-                            Aceptar
+                            {t("security.Accept")}
                         </Button>,
                     ]}>
-                    <p>Hubo un error al actualizar la contraseña. Por favor intenta de nuevo.</p>
+                    <p>{t("security.PassError")}</p>
                 </Modal>
             </div>
         </div>

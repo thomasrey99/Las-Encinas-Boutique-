@@ -65,7 +65,8 @@ const putRequestByIdHandler=async(req, res)=>{
     const {id_request}=req.params
 
     const {status}=req.body
-
+    console.log('esto trae status', status);
+    console.log('esto trae id', id_request);
     try {
         
         const data={

@@ -32,6 +32,7 @@ import {
   Skeleton,
   Avatar,
   Input,
+  Tooltip 
 } from "antd";
 const { Meta } = Card;
 const { Item } = Tabs;
@@ -144,13 +145,11 @@ const Detail = () => {
     }
   };
 
-  const canDoReview = () => {
-    
-  }
   const userRequests = requests?.filter(request => request.uid === userId);
-  console.log(userRequests);
-  // const productsRequests = userRequests.products;
-
+  const productPurchased = userRequests?.some(request => 
+    request.products?.some(product => product.id === productId)
+  );
+  console.log(productPurchased);
 
   return (
     <div className={styles.detailContainer}>
@@ -231,41 +230,52 @@ const Detail = () => {
                           textAlign: "center",
                         }}
                       >
-                        <h2 className={styles.titleComments}>
-                          Danos tu opinión
-                        </h2>
-                        <div className={styles.contentAddReview}>
-                          <Rate
-                            onChange={(value) =>
-                              setNewReview({ ...newReview, rating: value })
-                            }
-                            value={newReview.rating}
-                            className={styles.addRating}
-                          />
-                          <div className={styles.addReview}>
-                            <Input.TextArea
-                              rows={4}
-                              onChange={(e) =>
-                                setNewReview({
-                                  ...newReview,
-                                  comment: e.target.value,
-                                })
+                      <div>
+                          <h2 className={styles.titleComments}>
+                            Danos tu opinión
+                          </h2>
+                          <div className={styles.contentAddReview}>
+                            <Rate
+                            disabled={!productPurchased}
+                              onChange={(value) =>
+                                setNewReview({ ...newReview, rating: value })
                               }
-                              value={newReview.comment}
-                              className={styles.inputToComment}
+                              value={newReview.rating}
+                              className={styles.addRating}
                             />
-                            <Button
-                              type="primary"
-                              onClick={handleAddReview}
-                              className={styles.buttonAddComment}
-                            >
-                              Agregar
-                            </Button>
+                            <div className={styles.addReview}>
+                            <Tooltip title={!productPurchased ?'Por favor, compra el producto primero para poder comentar.😊' 
+                            :''}>
+                         
+                              <Input.TextArea
+                                rows={4}
+                                onChange={(e) =>
+                                  setNewReview({
+                                    ...newReview,
+                                    comment: e.target.value,
+                                  })
+                                }
+                                disabled={!productPurchased}
+                                value={newReview.comment}
+                                className={styles.inputToComment}
+                              /> </Tooltip>
+                              
+                              <Button
+                                type="primary"
+                                onClick={handleAddReview}
+                                className={styles.buttonAddComment}
+                                disabled={!productPurchased}
+                              >
+                                Agregar
+                              </Button>
+
+                            </div>
                           </div>
-                        </div>
+
+                      </div> 
                         {reviews && reviews.length > 0 ? (
                           <div>
-                            <h1 className={styles.Comments}>Comentarios</h1>
+                            <h2 className={styles.Comments}>Comentarios</h2>
                             <List
                               className="comment-list"
                               loading={false}
@@ -403,14 +413,20 @@ const Detail = () => {
                               )}
                             />
                           </div>
-                        ) : (
+                        ) : productPurchased ?(
                           <Alert
                             message="Sin comentarios"
                             type="info"
                             showIcon
                             description="Sé el primero en dar tu opinión"
                           />
-                        )}
+                        ):                           
+                        <Alert
+                        message="Sin comentarios"
+                        type="info"
+                        showIcon
+                        description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
+                      />}
                       </div>
                     </TabPane>
                   </Tabs>

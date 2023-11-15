@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from "react-redux"
 import CardsCart from "../../Components/cardsCart/cardsCart"
 import { deleteProductCart, decrementQuantity, incrementQuantity } from "../../libs/redux/features/CartSlice"
 import { usePutCartMutation } from "../../libs/redux/services/CartApi"
+
 import axios from "axios";
 const URL_SERVER = import.meta.env.VITE_URL_SERVER; 
 
@@ -20,9 +21,9 @@ export const Cart = () => {
     const cart = useSelector((state) => state.cart)
 
     const user=useSelector((state)=>state.user.userLog)
+    console.log(user)
 
     const id_cart = useSelector((state) => state.user.userCartId)
-
 
     const [mutate] = usePutCartMutation()
 
@@ -70,6 +71,7 @@ export const Cart = () => {
         }
         
     }
+   
     const handleCancel = () => {
         setIsBuy(false)
         setPreferenceId("")
@@ -93,8 +95,6 @@ export const Cart = () => {
         }
     }, [cart])
 
-
-console.log("usuario desde el carrito", user)
   return (
     <section className={style.CartCon}>
         <div className={style.productsCont}>
@@ -140,7 +140,7 @@ console.log("usuario desde el carrito", user)
                     {isBuy===true&&<button className={style.buyButton} onClick={handleCancel}>Cancelar</button>}
                 </div>
             </div>
-            {preferenceId && <Wallet initialization={{preferenceId}} />}
+            {preferenceId && <Wallet initialization={{preferenceId}}/>}
         </aside>
     </section>
   )

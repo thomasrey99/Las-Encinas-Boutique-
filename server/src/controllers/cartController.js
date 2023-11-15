@@ -16,9 +16,6 @@ const getCartByIdController=async (id_cart)=>{
 
 const updateCartController=async(data, id_cart)=>{
 
-    console.log("id desde el controller", id_cart)
-
-    console.log("informacion de actualizacion", data)
     const cart=await Cart.findByPk(id_cart)
 
     await cart.update(data)

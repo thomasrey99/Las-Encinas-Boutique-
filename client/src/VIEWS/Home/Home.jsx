@@ -13,38 +13,79 @@ import cajonera1 from "./image/cajonera1.jpg";
 import cajonerra2 from "./image/cajonerra2.jpg";
 import { useTranslation } from "react-i18next";
 import { getUserLog } from "../../libs/redux/features/actions/userActions.js";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import emailjs from '@emailjs/browser'
+import { useLocation } from 'react-router-dom';
 
 
 
 const Home = () => {
-  const { t} = useTranslation("global");
-  const { user} = useAuth();
-  console.log("Este es el user del home:",user)
-  useEffect(()=>{
+  const { t } = useTranslation("global");
+  const { user } = useAuth();
+  console.log("Este es el user del home:", user)
+  useEffect(() => {
     user && dispatch(getUserLog(user.uid))
 
-  },[])
-  const whatsappLink = `https://wa.me/+5493816771213?text=Hola! Cómo te va? Me pasarías info por favor?`;  
-  const {Title, Text} = Typography;
+  }, [])
+
+  /*It is for handleAdminMail */
+  const refTemplate = useRef();
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const status = searchParams.get('status')
+
+  console.log('disparando el efecto')
+  const userMail = useSelector((state) => state.user.userLog)
+  console.log(userMail)
+  useEffect(() => {
+    if (status === 'approved') {
+      handleAdminMail()
+    }
+  }, [status])
+  /*----------------------------------------- */
+
+  const whatsappLink = `https://wa.me/+5493816771213?text=Hola! Cómo te va? Me pasarías info por favor?`;
+  const { Title, Text } = Typography;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.items.allProducts);
-  const productsFilter=products?.filter((product) => product.is_Delete ===false)
+  const productsFilter = products?.filter((product) => product.is_Delete === false)
   const currentPage = useSelector((state) => state.items.currentPage);
   const itemsPerPage = useSelector((state) => state.items.itemsPerPage);
 
-  const {name}=useSelector((state)=>state.filters)
+  const { name } = useSelector((state) => state.filters)
 
-  const startIndex = (currentPage-1) * itemsPerPage;
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const productsToDisplay = productsFilter.slice(startIndex, endIndex);
-  
+
 
   const paginate = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
   };
- 
+
+  const handleAdminMail = () => {
+    const serviceId = "service_zigdlws"
+    const templateAdminId = "template_8gadd5r"
+    const templateClientId = "template_gs77yab"
+
+    const apikey = "jYr3TGnr-3SdDMbpq"
+
+    emailjs.send(serviceId, templateAdminId, {
+      admin_name: "Admin encinas boutique",
+    }, apikey)
+      .then(response => { console.log('SUCCESS!', response.status, response.text); })
+      .catch(err => { console.log('FAILED...', err); })
+
+    emailjs.send(serviceId, templateClientId, {
+      user_name: `${user.name}`,
+      address: `${user.address}`,
+      reply_to: `${user.email}`,
+    }, "jYr3TGnr-3SdDMbpq")
+      .then(response => { console.log('SUCCESS!', response.status, response.text); })
+      .catch(err => { console.log('FAILED...', err); })
+  }
+
   return (
     <div className={styles.homeContainer}>
       <Carousel />
@@ -86,15 +127,15 @@ const Home = () => {
         <img className={styles.contentImg} src={cajonera1} alt="ChocoImagen" />
 
         <div className={styles.contentBanner}>
-            <Title className={styles.h1} level={1}>{t("banner.title")}</Title>
-            <Title className={styles.h3} level={3}>{t("banner.description1")}</Title>
-            <Space direction='vertical'>
-                <Text className={styles.text} type='secondary' >{t("banner.description2")}</Text>
-                <Text className={styles.text} type='secondary' >{t("banner.description3")}</Text>
-                <Text className={styles.text} type='secondary' >{t("banner.description4")}</Text> 
-                <Text className={styles.text} type='secondary' >{t("banner.description5")}</Text>
+          <Title className={styles.h1} level={1}>{t("banner.title")}</Title>
+          <Title className={styles.h3} level={3}>{t("banner.description1")}</Title>
+          <Space direction='vertical'>
+            <Text className={styles.text} type='secondary' >{t("banner.description2")}</Text>
+            <Text className={styles.text} type='secondary' >{t("banner.description3")}</Text>
+            <Text className={styles.text} type='secondary' >{t("banner.description4")}</Text>
+            <Text className={styles.text} type='secondary' >{t("banner.description5")}</Text>
 
-            </Space>
+          </Space>
         </div>
 
         <img className={styles.contentImg} src={cajonerra2} alt="ChocoImagen" />

@@ -14,6 +14,7 @@ import { ProtectedRoute } from './firebase/ProtectedRoute'; //Envuelve a rutas q
 import FormResetPassword from './VIEWS/Forms/FormResetPassword/FormResetPassword';
 import {Cart} from "./VIEWS/cart/Cart"
 import Profile from './Components/Profile/profile';
+
 //Admin
 import ControlPanel from './VIEWS/Admin/Views/ControlPanel/ControlPanel';
 import Products from './VIEWS/Admin/Views/Products/Products';
@@ -82,14 +83,14 @@ const App = () => {
           {/* Rutas protegidas para el cliente, lo obligan a logearse */}
           <Route path='/chat' element={<ProtectedRoute><Chat /></ProtectedRoute>} />
           {/* Rutas protegidas del admin */}
-          {currentUser?.is_Admin === true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
-          {currentUser?.is_Admin === true ? <Route path='/createProduct' element={<CreateProducts />} /> : <Route path='/createProduct' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/controlAdmin' element={<ControlPanel />} /> : <Route path='/controlAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/productsAdmin' element={<Products />} /> : <Route path='/productsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/paymentsAdmin' element={<Payments />} /> : <Route path='/paymentsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/ordersAdmin' element={<Orders />} /> : <Route path='/ordersAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/clientsAdmin' element={<Clients />} /> : <Route path='/clientsAdmin' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/editUserAdmin/:id' element={<EditUsers />} /> : <Route path='/editUserAdmin/:id' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/editProductAdmin/:id' element={<EditProducts />} /> : <Route path='editProductAdmin/:id' element={<ErrorPage />} />}
+          {currentUser?.is_Admin != true ? <Route path='/createProduct' element={<CreateProducts />} /> : <Route path='/createProduct' element={<ErrorPage />} />}
           {/* <Route path='/controlAdmin' element={currentUser?.is_Admin?<ControlPanel/>: <ErrorPage/>} /> */}
         </Routes>
         {isOPen&&<Menu handleOPen={handleOPen}/>}

@@ -1,5 +1,5 @@
 .menuCont{
-    position: absolute;
+    position: fixed;
     top: 12vh;
     width: 100vw;
     height: 88vh;
@@ -8,11 +8,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    background: rgb(200, 174, 125, 0.5);
+    background: rgb(255, 255, 255, 0.5);
     font-family: var(--primary-font)
 }
 .itemsCont{
-    background: var(--brown);
+    background: white;
     height: 88vh;
     width: 30vw;
     display: flex;
@@ -31,5 +31,5 @@
 }
 .link{
     text-decoration: none;
-    color: white;
+    color: black;
 }

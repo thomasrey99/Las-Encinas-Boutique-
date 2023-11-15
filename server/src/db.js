@@ -34,7 +34,7 @@ const dataBase=new Sequelize(
   {logging:false, dialectOptions:{ssl:{require:true}}}
 )*/
 
-userModel(dataBase)
+userModel(dataBase) 
 productModel(dataBase)
 categoryModel(dataBase)
 typeModel(dataBase)

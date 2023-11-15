@@ -6,9 +6,11 @@ import CardAdmin from '../../Components/CardAdmin/CardAdmin';
 import ChartLineAdmin from '../../Components/ChartJs/ChartLineAdmin';
 import { useSelector } from 'react-redux';
 import TextCardAdmin from '../../Components/TextCardAdmin/TextCardAdmin';
-import { Col, Row } from 'antd';
+import { useAuth } from '../../../../firebase/authContext';
+import { useGetAllRequestQuery } from '../../../../libs/redux/services/requestApi';
 
 const ControlPanel = () => {
+  const { user} = useAuth();
   const products = useSelector((state) => state.items.allProducts);
   const labels = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -39,6 +41,20 @@ useEffect(() => {
   };
 }, []);
 
+const { data } = useGetAllRequestQuery();
+const request = data ? Object.values(data) : [];
+
+const sumQuantity = request.reduce((total, sol) => 
+  total + (sol.products ? sol.products.reduce((suma, producto) => suma + producto.quantity, 0) : 0), 0);
+
+const sumPending = request.reduce((total, sol) => 
+  total + (sol.products ? sol.products.reduce((suma, prod) => (sol.status === "pending" ? suma + prod.quantity : suma), 0) : 0), 0);
+
+const sumCancelled = request.reduce((total, sol) => 
+  total + (sol.products ? sol.products.reduce((suma, prod) => (sol.status === "cancelled" ? suma + prod.quantity : suma), 0) : 0), 0);
+
+const totalOrders = sumQuantity - ((sumPending + sumCancelled));
+
   return (
     <div className={Conteiner.Container}>
       <NavBarAdmin />
@@ -47,7 +63,7 @@ useEffect(() => {
           <div className={Style.InfoCards}>
           <div className={Style.CardsInfo}>
               <TextCardAdmin name={"Venta mensual"} info={"$1.200.000"} to={"paymentsAdmin"} />
-              <TextCardAdmin name={"Pedidos mesuales"} info={"3.454"} to={"ordersAdmin"}/>
+              <TextCardAdmin name={"Pedidos mesuales"} info={totalOrders} to={"ordersAdmin"}/>
               <TextCardAdmin name={"Productos activos"} info={"45"} to={"productsAdmin"}/>
             </div>
             <div className={Style.Grafics}>
@@ -79,6 +95,7 @@ useEffect(() => {
             <div>
               {products.slice(0, 1).map((p) => (
                 <CardAdmin
+                  key={p.name}
                   name={p.name}
                   image={p.image}
                   description={p.description}

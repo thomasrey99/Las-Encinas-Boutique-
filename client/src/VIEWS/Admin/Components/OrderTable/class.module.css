@@ -1,6 +1,7 @@
-.div {
-    padding: 20px
+.container {
+    display: flex;
 }
+
 .ul{
     display: flex;
     flex-wrap: wrap;
@@ -8,3 +9,7 @@
     padding-top: 25px;
 }
 
+.selectContainer{
+    display: flex;
+    justify-content: center;
+}

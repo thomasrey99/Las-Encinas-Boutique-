@@ -8,17 +8,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    background: rgb(200, 174, 125, 0.5);
-    font-family: var(--primary-font)
+    background: rgb(255, 255, 255, 0.5);
+    font-family: var(--primary-font);
+    
 }
 .itemsCont{
-    background: var(--brown);
+    background: white;
     height: 88vh;
     width: 30vw;
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content: center;
+    border-left: 1px solid #eaeaea;
 }
 .itemsList{
     list-style: none;
@@ -31,5 +33,5 @@
 }
 .link{
     text-decoration: none;
-    color: white;
+    color: black;
 }

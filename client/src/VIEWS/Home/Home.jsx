@@ -43,7 +43,6 @@ const Home = () => {
                 <Text className={styles.text} type='secondary' >{t("banner.description3")}</Text>
                 <Text className={styles.text} type='secondary' >{t("banner.description4")}</Text> 
                 <Text className={styles.text} type='secondary' >{t("banner.description5")}</Text>
-
             </Space>
         </div>
 

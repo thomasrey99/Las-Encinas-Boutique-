@@ -17,6 +17,7 @@
 
 @media (max-width: 768px) {
   .Panel {
+    width: 100vw;
     margin-left: 11.5vh;
   }
 }

@@ -11,7 +11,6 @@ import { config } from './themeConfig.js'
 
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
-
 import global_es from "./Translations/Es/global.json"
 import global_en from "./Translations/En/global.json"
 

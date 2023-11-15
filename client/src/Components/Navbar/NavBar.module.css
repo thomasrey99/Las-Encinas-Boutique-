@@ -129,3 +129,16 @@
   border: none;
   background: white;
 }
+
+.userCont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px
+}
+.imgUser{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

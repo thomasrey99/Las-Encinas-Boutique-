@@ -91,7 +91,7 @@ const ShoppingHistory = () => {
       {isLoading || !requests || requests===undefined || requests===null?
       <Spin tip="Cargando" className={styles.loading}><div className="content"/></Spin>
       :userRequests && userRequests.length > 0
-      ? <div>
+      ? <div className={styles.contPayments}>
           <Table columns={columns} dataSource={userRequests} pagination={{ pageSize: 4 }}/>
           <div className={styles.modalContainer}>
             <Modal title="Detalles de la Compra" visible={isModalVisible} className={styles.modalDetail} width="80%" 

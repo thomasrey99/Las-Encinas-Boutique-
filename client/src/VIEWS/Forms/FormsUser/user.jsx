@@ -6,6 +6,7 @@ import { Form, Input, Button, message } from 'antd';
 import style from './user.module.css';
 import { useAuth } from "../../../firebase/authContext";
 import Validates from './validates';
+import { sendEmailVerification, getAuth } from 'firebase/auth';
 
 
 
@@ -87,6 +88,11 @@ const FormUser = () => {
            setError('')
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
+                const auth = getAuth();
+            sendEmailVerification(auth.currentUser)
+                .then(() => {
+                    //console.log("Email enviado!!!!")
+                });
                 navigate('/home')
                 } catch (error) {
                 // console.log(error.code)

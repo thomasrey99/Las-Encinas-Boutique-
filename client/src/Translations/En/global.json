@@ -26,10 +26,14 @@
     "Location": "Location",
     "Social-Media": "Social media",
     "Contact": "Contact",
-    "Phone": "Phone"
+    "Phone": "Phone",
+    "Rights": "All rights reserved"
 },
 "searchBar": {
     "Search-by-name": "Search by name"
+},
+"map": {
+    "Title": "Where do we meet?"
 },
 "menu":{
     "Profile": "Profile",
@@ -135,6 +139,7 @@
 },
 "Products": {
     "ProductsTitle": "Products"
+
 }
 
   

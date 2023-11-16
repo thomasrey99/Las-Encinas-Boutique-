@@ -18,6 +18,7 @@ const Payments = () => {
   const filters = useSelector((state)=>state.filters)
 
   const { data, isLoading } = useGetAllPaymentsQuery(filters);
+  
   const [mutate] = useDeletePaymentMutation();
 
   const handleDelete = async (id_payment) => {

@@ -29,7 +29,7 @@ const SelectCategory = ({change, width}) => {
         <Select
           onChange={change}
           name="category"
-          defaultValue="Todos"
+          defaultValue={"Todas"}
           style={{
             width: width,
           }}

@@ -45,6 +45,7 @@ const NavBar = ({handleOPen, isOPen}) => {
 
   const { user, logout } = useAuth();
   const { t, i18n } = useTranslation("global");
+  console.log("Este es el user cuando te logueas con google:", user)
 
  
   const dispatch = useDispatch();
@@ -118,12 +119,14 @@ const NavBar = ({handleOPen, isOPen}) => {
         <div className={`${style.navItems} ${style.withMargin}`}>
           <div className={style.navLinks}>
               {!user&&<p>{t("navBar.not-costumer-yet?")} <NavLink to={"/registeruser"} onClick={handleOnClick} className={style.item}>{t("navBar.Register")}</NavLink></p>}
-              {user
+              {(
+                user
               &&
               <div className={style.userCont}>
                 <img src={!user?.photoURL?currentUser?.image:user?.photoURL} className={style.imgUser}/>
                 <p className={style.name}>{currentUser?.name || user?.displayName}</p>
               </div>
+              )
               }
           </div>
           <NavLink to={"/cart"}>

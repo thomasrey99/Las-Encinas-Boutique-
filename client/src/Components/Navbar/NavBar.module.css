@@ -11,7 +11,9 @@
     justify-content: space-between;
     padding: 0 2.5vw;
     border-bottom: 1px solid #eaeaea;
-    
+    /* position: fixed;
+    top: 0.0001px; 
+    left: 0.0001px;  */
 }
 
 .logCont{

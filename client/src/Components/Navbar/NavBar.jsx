@@ -110,7 +110,7 @@ const NavBar = ({handleOPen, isOPen}) => {
     }
 
   },[currentUser])
-  console.log("datos del usuario", currentUser)
+
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>
@@ -123,7 +123,7 @@ const NavBar = ({handleOPen, isOPen}) => {
                 user
               &&
               <div className={style.userCont}>
-                <img src={currentUser?.image || user?.photoURL} className={style.imgUser}/>
+                <img src={!user?.photoURL?currentUser?.image:user?.photoURL} className={style.imgUser}/>
                 <p className={style.name}>{currentUser?.name || user?.displayName}</p>
               </div>
               )

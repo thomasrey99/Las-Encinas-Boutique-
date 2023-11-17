@@ -2,11 +2,10 @@ import axios from "axios"
 import  { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import styles from '../../Views/Style/Forms.module.css'
 import Swal from 'sweetalert2';
 
 import {useUpdateRequestMutation, useGetAllRequestQuery} from '../../../../libs/redux/services/requestApi'
-import style from '../FormEditUser/FormEditUser.module.css';
+import styles from './FormEditRequest.module.css';
 
 import { Select } from 'antd';
 const { Option } = Select;
@@ -30,10 +29,23 @@ const EditRequest = () => {
       e.preventDefault();
       try {
         await mutate({ status: state, id_request: id });
-        console.log(state);
-        navigate("/ordersAdmin")
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Estado de pedido actualizado",
+          showConfirmButton: false,
+          timer: 1500
+        }).then(()=>{
+          navigate("/ordersAdmin")
+        })
       } catch (error) {
-        alert(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error al cambiar de estado",
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     };
   
@@ -45,8 +57,9 @@ const EditRequest = () => {
   
     return (
       <div className={styles.container}>
+        <Link to={"/ordersAdmin"} className={styles.backLink}>Back</Link>
         <h1 className={styles.title}>Editar Estado</h1>
-        <form>
+        <form className={styles.formCont}>
           <Select
             placeholder="Selecciona un estado"
             onChange={eventOnChange}
@@ -57,19 +70,21 @@ const EditRequest = () => {
             <Option value="pending">Pendientes</Option>
             <Option value="cancelled">Cancelados</Option>
           </Select>
-          <button
-            className={styles.buttonCancel}
-            onClick={handleCancel}
-          >
-            Cancelar
-          </button>
-          <button
-            className={styles.button}
-            onClick={handleSubmit}
-            type="submit"
-          >
-            Guardar
-          </button>
+          <div className={styles.buttonsCont}>
+            <button
+              className={styles.buttonCancel}
+              onClick={handleCancel}
+            >
+              Cancelar
+            </button>
+            <button
+              className={styles.buttonSave}
+              onClick={handleSubmit}
+              type="submit"
+            >
+              Guardar
+            </button>
+          </div>
         </form>
       </div>
     );

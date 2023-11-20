@@ -21,7 +21,7 @@ const Type = ({change, width}) => {
   return (
     <Space wrap className={style.selectCont}>
         <label htmlFor='type'>{t("filters.Chocolate type")}</label>
-        <Select
+        <Select className={style.lengthInput}
           name="type"
           defaultValue="Todos"
           style={{

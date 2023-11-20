@@ -7,7 +7,7 @@ import style from './user.module.css';
 import { useAuth } from "../../../firebase/authContext";
 import Validates from './validates';
 import { sendEmailVerification, getAuth } from 'firebase/auth';
-
+import Swal from 'sweetalert2'
 
 
 const FormUser = () => {
@@ -79,7 +79,7 @@ const FormUser = () => {
             !form.phone ||
             !form.password 
         ) {
-            alert('Por favor complete todos los campos')
+            Swal.fire("Completa todos los campos");
             return;
         }
         
@@ -93,14 +93,33 @@ const FormUser = () => {
                 .then(() => {
                     //console.log("Email enviado!!!!")
                 });
-                navigate('/home')
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: "Usuario registrado con exito con extio"
+                  }).then(()=>{
+                    navigate('/home')
+                  })
                 } catch (error) {
                 // console.log(error.code)
                 if(error.code === 'auth/invalid-email'){
                     setError("Correo electrónico inválido")
+                    Swal.fire("Correo invalido");
                 } else if(error.code === 'auth/weak-password'){
-                    setError("La constraseña debe tener al menos 6 caracteres")
+                    Swal.fire("La contraseña debe tener al menos 8 caracteres");
+                    setError("La constraseña debe tener al menos 8 caracteres")
                 }else if(error.code === 'auth/email-already-in-use'){
+                    Swal.fire("El correo electrónico ya está registrado!!!");
                     setError("El correo electrónico ya está registrado!!!")
                 }
                 
@@ -162,7 +181,6 @@ const formItemLayout = {
                 </Form.Item>
                 {errors.password !== '' ? <span>{errors.password}</span> : ''}
                 
-                    
                 <Button type="primary" htmlType="submit" className={style.buttonSubmit} >Registrar</Button>
                 <div className={style.divButtons}>
                 </div>

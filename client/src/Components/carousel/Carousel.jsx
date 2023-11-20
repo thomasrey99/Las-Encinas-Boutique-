@@ -37,6 +37,7 @@ const CarouselImg = () => {
                 <img src={logo} className={styles.logoImg}/>
                 <h1 className={styles.title}>{t("carousel.slogan")}</h1>
                 <button className={styles.enter} onClick={scrollToProducts}>{t("carousel.Start")}</button>
+
             </div>
         </div>
   )

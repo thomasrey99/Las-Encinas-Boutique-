@@ -56,10 +56,6 @@
 } */
 
 
-
-
-
-
 /* Estilos generales para el contenedor del carrusel */
 .carouselContainer {
     position: relative;
@@ -128,3 +124,4 @@
 .enter:hover {
     transform: scale(1.05);
 }
+

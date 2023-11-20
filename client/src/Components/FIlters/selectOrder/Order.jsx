@@ -28,6 +28,7 @@ const Order = ({ change, width }) => {
   return (
     <Space wrap className={style.selectCont}>
       <label htmlFor="order">{t("filters.Order")}</label>
+
       <Select className={style.lengthInput}
         onChange={change}
         name="order"

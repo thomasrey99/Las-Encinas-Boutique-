@@ -1,4 +1,6 @@
+
 /* .bannerCont{
+
     width: 100vw;
     height: auto;
     background: var(--brown);
@@ -132,3 +134,4 @@
         font-size: 28px; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
     }
 }
+

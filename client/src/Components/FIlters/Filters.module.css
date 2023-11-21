@@ -1,31 +1,46 @@
-.filterCont{
-    width: 100vw;
-    /* height: 120px; */
+/* Estilos para el contenedor de filtros */
+.filterCont {
+    width: 100%;
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
-    /* flex-direction: row; */
-    align-items: end;
+    grid-template-columns: 1fr; /* Cambiado a una sola columna en pantallas pequeñas */
+    align-items: center;
     justify-content: center;
     padding: 20px;
     gap: 20px;
     background-color: var(--ligth-brown);
-}
-.selectCont{
-    display:flex;
+    box-sizing: border-box; /* Añadido para incluir el padding en el tamaño total */
+  }
+  
+  /* Estilos para el contenedor de selectores */
+  .selectCont {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: var(--primary-font);
     gap: 10px;
-    /* grid-template-columns: auto auto auto auto auto; */
-}
-
-.col1 {
-    display: flex !important;
-    width: 100%;
-}
-.col2{
-    display: flex !important;
-    align-items: flex-end !important;
-}
-
+    
+  }
+  
+  /* Estilos para la primera columna */
+  .col1 {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna en pantallas pequeñas */
+    align-items: center; /* Centrado en pantallas pequeñas */
+    margin-top: 10px;
+    
+  }
+  
+  /* Estilos para la segunda columna */
+  .col2 {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna en pantallas pequeñas */
+    align-items: center; /* Centrado en pantallas pequeñas */
+    margin-top: 10px; /* Añadido margen superior en pantallas pequeñas */
+  }
+  
+  .lengthInput{
+    min-width: 150px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }

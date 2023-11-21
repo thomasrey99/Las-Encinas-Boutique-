@@ -26,7 +26,7 @@ const SelectCategory = ({change, width}) => {
     return (
       <Space wrap className={style.selectCont}>
         <label htmlFor='category'>{t("filters.Categories")}</label>
-        <Select
+        <Select className={style.lengthInput}
           onChange={change}
           name="category"
           defaultValue="Todos"

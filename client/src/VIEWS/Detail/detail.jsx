@@ -46,7 +46,7 @@ import {
 } from "@ant-design/icons";
 import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+
 
 const Detail = () => {
 

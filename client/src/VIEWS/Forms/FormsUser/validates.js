@@ -1,60 +1,83 @@
-const Validates = (form, errors, setErrors) => {
+const Validates = (data) => {
 
-    if (form.name) {
-        
-        if (/^[A-Z][a-z]*$/.test(form.name)) {
-            setErrors((prev) =>({...prev, name: ''}))
-        } else {
-            setErrors((prev) => ({...prev, name: '*Nombre inválido'}))
-        }        
-    }; 
+    const {name, lastName, address, email, phone, password}=data
+
+    let errors={}
+
+    const regex=/^[A-Za-z\s]+$/u
+
+    const regexEmail = /.*@.*\.com$/
+
+    const regexPhone = /^[0-9+()]+$/
+
+    //!validaciones de Name
+
+    if(name.length===0){
+        errors.emptyName="Coloque su nombre"
+    }
+
+    if(name.length!==0 && !regex.test(name)){
+        errors.invalidName="El nombre no puede contener caracteres especiales"
+    }
+
+    if(name.length>30){
+        errors.longName="El nombre no puede contener mas de 30 caracteres"
+    }
+
+    //!validaciones del lastName
+    if(lastName.length===0){
+        errors.emptyLastName="Coloque su apellido"
+    }
+
+    if(lastName.length!==0 && !regex.test(lastName)){
+        errors.invalidLastName="El apellido no puede contener caracteres especiales"
+    }
+
+    if(lastName.length>20){
+        errors.longLastName="El apellido no puede contener mas de 20 caracteres"
+    }
 
 
-    if (form.lastName) {
+    //!validaciones de address
+    if(address.length===0){
+        errors.emptyAddress="Coloque su direccion"
+    }
+
+    if(address.length>50){
+        errors.longAddress="El apellido no puede contener mas de 50 caracteres"
+    }
+
+    //!validaciones de email
+
+    if(email.length===0){
+        errors.emptyEmail="Coloque su email"
+    }
+
+    if(email.length!==0 && !regexEmail.test(email)){
+        errors.invalidEmail="El formato de email es invalido"
+    }
+
+    //!validaciones de Phone
+
+    if (phone.length === 0) {
+        errors.emptyPhone = "Coloque su numero de telefono";
+      } else if (phone.length > 0 && phone.length < 15 && !regexPhone.test(phone)) {
+        errors.invalidPhone = "El numero de telefono es invalido";
+      } else if (phone.length > 15) {
+        errors.longPhone = "El numero es demasiado largo";
+      }
     
-        if (/^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$/.test(form.lastName)) {
-            setErrors((prev) =>({...prev, lastName: ''}))
-        } else {
-            setErrors((prev) => ({...prev, lastName: '*Apellido inválido'}))
-        };   
-    };
+    //!validaciones de Password
 
-    if (form.address) {
-    
-        if (/^[A-Z][A-Za-z0-9\s]*$/.test(form.address)) {
-        setErrors((prev) =>({...prev, address: ''}))
-        } else {
-            setErrors((prev) => ({...prev, address: '*Dirección inválida'}))
-        };   
-    };
+    if(password.length===0){
+        errors.emptyPassword="Coloque una contraseña"
+    }
 
-    if (form.email) {
-    
-        if (/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(form.email)) {
-            setErrors((prev) =>({...prev, email: ''}))
-        } else {
-            setErrors((prev) => ({...prev, email: '*Email inválido'}))
-        };   
-    };
+    if(password.length!==0 && password.length<8){
+        errors.smallPassword="La contraseña debe contener al menos 8 caracteres"
+    }
 
-    if (form.phone) {
-    
-        if (/^\d{8,}$/.test(form.phone)) {
-            setErrors((prev) =>({...prev, phone: ''}))
-        } else {
-            setErrors((prev) => ({...prev, phone: '*Número inválido'}))
-        };   
-    };
-
-    if (form.password) {
-    
-        if (/^[a-zA-Z0-9]+$/.test(form.password)) {
-            setErrors((prev) =>({...prev, password: ''}))
-        } else {
-            setErrors((prev) => ({...prev, password: '*Contraseña inválida'}))
-        };   
-    };
-
+    return errors
 };
 
 export default Validates;

@@ -1,18 +1,9 @@
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 350px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    position: relative;
-  }
+
   .infoIcon{
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 7.5%;
+    top:5%;
     left: 88%;
     cursor: pointer;
     color: var(--brown);
@@ -35,6 +26,17 @@
   .infoIcon span{
     animation: scaleAnimation 0.5s infinite alternate ease-in-out;
   }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+  
   .title {
     font-size: 28px;
     color: var(--brown);
@@ -44,7 +46,6 @@
     display: flex;
     align-items: center;
     padding-left: 30px;
-    margin: 10px 0 10px 0;
   }
   
   .title::before,.title::after {
@@ -82,10 +83,6 @@
     color: royalblue;
   }
   
-  .signin a:hover {
-    text-decoration: underline royalblue;
-  }
-  
   .flex {
     display: flex;
     width: 100%;
@@ -94,7 +91,6 @@
   
   .form label {
     position: relative;
-
   }
   
   .form label .input {
@@ -108,6 +104,7 @@
   .form label .input + span {
     position: absolute;
     left: 10px;
+    top: 15px;
     color: grey;
     font-size: 0.9em;
     cursor: text;
@@ -120,19 +117,19 @@
   }
   
   .form label .input:focus + span,.form label .input:valid + span {
-    top: 0px;
+    top: 30px;
     font-size: 0.7em;
     font-weight: 600;
   }
   
   .form label .input:valid + span {
-    color: gray;
+    color: green;
   }
   
   .submit {
     border: none;
     outline: none;
-    background-color:var(--brown);
+    background-color: var(--brown);
     padding: 10px;
     border-radius: 10px;
     color: #fff;
@@ -141,12 +138,9 @@
   }
   
   .submit:hover {
-    background-color:var(--ligth-brown);
-    cursor: pointer;
+    background-color: var(--ligth-brown);
   }
-  .submit:disabled{
-    background-color: rgba(101,69, 31, 0.7);
-  }
+  
   @keyframes pulse {
     from {
       transform: scale(0.9);

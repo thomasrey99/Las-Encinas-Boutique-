@@ -53,14 +53,14 @@ const RegisterUserForm = ({change, submit, errors, isSeting, errorsNotification,
             isSeting && (errors.emptyEmail || errors.invalidEmail) ?
             (
                 <label className={style.errorValidationInput}>
-                    <input className={style.input} value={info.email} name="email" type="email" placeholder="" required="" onChange={change}/>
+                    <input className={style.input} value={info.email} name="email" type="text" placeholder="" required="" onChange={change}/>
                     <span>Email</span>
                 </label>
             )
             :
             (
                 <label>
-                    <input className={style.input} value={info.email} name="email" type="email" placeholder="" required="" onChange={change}/>
+                    <input className={style.input} value={info.email} name="email" type="text" placeholder="" required="" onChange={change}/>
                     <span>Email</span>
                 </label>
             )
@@ -114,7 +114,7 @@ const RegisterUserForm = ({change, submit, errors, isSeting, errorsNotification,
             )
         }
         <button className={style.submit} onClick={submit}>Registrar</button>
-        <p className={style.signin}>Ya tienes una cuenta? <NavLink>Login</NavLink> </p>
+        <p className={style.signin}>Ya tienes una cuenta? <NavLink className={style.signin}>Login</NavLink> </p>
     </form>
   )
 }

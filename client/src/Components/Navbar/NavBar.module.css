@@ -1,29 +1,32 @@
-.navCont{
-    z-index: 100;
-    width: 100vw;
-    height: 12vh;
-    background: #ffffff;
-    color:black;
-    font-family: var(--primary-font);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2.5vw;
-    border-bottom: 1px solid #eaeaea;
-    
+/* Estilos generales para la barra de navegación */
+.navCont {
+  z-index: 100;
+  width: 100%;
+  height: 12vh; /* Ajusta esto según sea necesario para pantallas grandes */
+  background: #ffffff;
+  color: black;
+  font-family: var(--primary-font);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5vw;
+  border-bottom: 1px solid #eaeaea;
+  transition: height 0.3s; /* Agregamos una transición suave para la altura */
 }
 
-.logCont{
-   height: 12vh;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: center;
-   margin-left: 2%;
+/* Estilos para el logo y título */
+.logCont {
+  height: 12vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2%;
+
 }
 
-.navTittle{
+.navTittle {
   color: black;
   font-weight: bold;
   text-decoration: none;
@@ -31,93 +34,97 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 12vh;
+  height: 100%;
 }
 
-.navTittle h1 {
+.img {
+  width: 4vw;
+  height: 4vw;
+  margin-left: 1vw;
+}
+
+/* Estilos para los elementos de navegación */
+.navItems {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: 12vh;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 10px;
+  width: 30vw;
 }
-.img{
-    width: 4vw;
-    height: 4vw;
-    margin-left: 1vw;
-}
-.navItems{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    padding: 10px;
-    width: 30vw;
-}
+
 .withMargin {
   margin-right: 8%;
 }
-.cartIcon{
-    width: 24px;
-    height: 24px;
+
+.cartIcon {
+  width: 24px;
+  height: 24px;
 }
-.navLinks{
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: center;
+
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
-.item{
-    padding: 5px 10px;
-    text-decoration: none;
-    color: black;
+
+.item {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
 }
-.cartIconCont{
-    position: relative;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.cartIconCont {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
 }
-.TotaItems{
-    position: absolute;
-    text-decoration: none;
-    top: 0px;
-    width: 16px;
-    left:10px;
-    color: white;
-    text-align: center;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 50%;
-    background: black;
+
+.TotaItems {
+  position: absolute;
+  text-decoration: none;
+  top: 0px;
+  width: 16px;
+  left: 10px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  background: black;
 }
+
 .brand {
-    color: black;
-    height: 50px;
-    white-space: nowrap;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 20px;
-  }
+  color: black;
+  height: 50px;
+  white-space: nowrap;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
 
 .languageSelect {
   display: flex;
   align-items: center;
-  width: 4rem; 
-  height: auto; 
+  width: 4rem;
+  height: auto;
   border: none;
- 
 }
+
 .languageSelect > div {
   margin-right: 40%;
 }
 
-.idiomas{
+.idiomas {
   display: flex;
   align-items: center;
   margin-right: -15px;
@@ -125,20 +132,170 @@
   width: 1.5rem;
 }
 
-.cssSelect{
+.cssSelect {
   border: none;
   background: white;
 }
 
-.userCont{
+.userCont {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 5px
+  gap: 5px;
 }
-.imgUser{
+
+.imgUser {
   width: 30px;
   height: 30px;
   border-radius: 50%;
 }
+
+/* Estilos para el menú desplegable y toggle */
+.languageSelect,
+.menuCont {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.languageSelect > div {
+  margin-right: 40%;
+}
+
+.idiomas {
+  display: flex;
+  align-items: center;
+  margin-right: -15px;
+  height: auto;
+  width: 1.5rem;
+}
+
+.cssSelect {
+  border: none;
+  background: white;
+}
+
+/* Estilos para el menú desplegable */
+#checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition-duration: 0.5s;
+}
+
+.bars {
+  width: 100%;
+  height: 4px;
+  background-color: black;
+  border-radius: 4px;
+}
+
+#bar2 {
+  transition-duration: 0.8s;
+}
+
+#bar1,
+#bar3 {
+  width: 70%;
+}
+
+#checkbox:checked + .toggle .bars {
+  position: absolute;
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+  transform: scaleX(0);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar1 {
+  width: 100%;
+  transform: rotate(45deg);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle #bar3 {
+  width: 100%;
+  transform: rotate(-45deg);
+  transition-duration: 0.5s;
+}
+
+#checkbox:checked + .toggle {
+  transition-duration: 0.5s;
+  transform: rotate(180deg);
+}
+
+.menuCont {
+  margin-right: 2vw;
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (max-width: 768px) {
+  .navItems {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 60px;
+  }
+
+  .navItems.show {
+    display: flex;
+  }
+
+  .item {
+    padding: 15px;
+  }
+
+  #checkbox {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 101;
+    cursor: pointer;
+  }
+
+  .toggle {
+    margin-top: 10px;
+  }
+
+  .navCont {
+    height: auto; /* Ajusta esto para aumentar la altura en pantallas medianas */
+  }
+
+  .navItems {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .withMargin {
+    margin-right: 0;
+  }
+
+  .userCont p {
+    display: none; /* Oculta el texto "aun no sos cliente?" y "registrate" en pantallas pequeñas */
+  }
+
+  .cartIconCont {
+    margin-top: 10px;
+  }
+}
+
+ 

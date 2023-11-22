@@ -10,7 +10,7 @@
 
 /* Establece un ancho fijo para la tabla */
 .tableContainer {
-    width: 1100px; /* Puedes ajustar el valor según tus necesidades */
+    width: 70vw; /* Puedes ajustar el valor según tus necesidades */
     
     height: 500px;  
 }

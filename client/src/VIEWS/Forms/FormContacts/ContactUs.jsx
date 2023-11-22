@@ -1,4 +1,4 @@
-import "../FormContacts/ContactUs.css"
+import style from "./ContactUs.module.css"
 import { Form, Input, Button, Image, Col, Row } from 'antd'
 const { TextArea } = Input;
 import { useTranslation } from "react-i18next";
@@ -13,13 +13,14 @@ const ContactUs = () => {
         }
     }
     return (
-        <Form className="FormContactUs">
-            <div>
+        <Form className={style.formCont}>
+            <div className={style.leftSection}>
                 <h2>{t("contactUS.Description1")}</h2>
-                <h3>{t("contactUS.Description2")}</h3>
-                <Image className="ImageContact" src='.././public/Contact.avif' width={380} height={280} />
+                <p>{t("contactUS.Description2")}</p>
+                <Image src='.././public/Contact.avif' width={380} height={280} />
             </div>
-            <div className="FormInto">
+            <div className={style.rigthSection}>
+                <h2>Contactanos!</h2>
                 <label >{t("contactUS.Name")}</label>
                 <Input name="name"
                     placeholder={t("contactUS.NameHolder")}

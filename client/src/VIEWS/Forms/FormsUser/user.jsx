@@ -89,7 +89,7 @@ const FormUser = () => {
 
                 await signup(form.email, form.password, form.name, form.lastName, form.phone, form.address);
                 const auth = getAuth();
-            sendEmailVerification(auth.currentUser)
+                sendEmailVerification(auth.currentUser)
                 .then(() => {
                     //console.log("Email enviado!!!!")
                 });

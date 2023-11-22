@@ -1,6 +1,4 @@
 import style from "./NavBar.module.css";
-// import style from "./menu.module.css";
-import menuStyle from "./menu.module.css"
 import { useAuth } from "../../firebase/authContext";
 import { NavLink } from "react-router-dom";
 import cartIcon from "../../assets/carrito.png";
@@ -151,17 +149,17 @@ const NavBar = ({handleOPen, isOPen}) => {
           <option value="pt">português</option>
         </select>
           </div>
-          <div className={menuStyle.menuCont}>
+          <div className={style.menuCont}>
           <input
             type='checkbox'
             name="checkbox"
             checked={isOPen}
-            id={menuStyle.checkbox}
+            id={style.checkbox}
           />
-          <label htmlFor='checkbox' className={menuStyle.toggle} onClick={handleOPen}>
-            <div className={menuStyle.bars} id={menuStyle.bar1}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar2}></div>
-            <div className={menuStyle.bars} id={menuStyle.bar3}></div>
+          <label htmlFor='checkbox' className={style.toggle} onClick={handleOPen}>
+            <div className={style.bars} id={style.bar1}></div>
+            <div className={style.bars} id={style.bar2}></div>
+            <div className={style.bars} id={style.bar3}></div>
           </label>
         </div>
         </div>

@@ -48,7 +48,7 @@ module.exports = (dataBase) => {
         },
         image: {
             type: DataTypes.STRING,
-            defaultValue: "https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg",
+            // defaultValue: "https://res.cloudinary.com/dkgeccpz4/image/upload/v1699475288/profileDefault_haxmxb.jpg",
             allowNull: true,
         }
     },

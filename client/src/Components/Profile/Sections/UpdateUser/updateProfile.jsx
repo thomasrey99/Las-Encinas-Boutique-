@@ -8,6 +8,7 @@ import ImgCrop from 'antd-img-crop';
 import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from './updateProfile.module.css'
 import { useTranslation } from 'react-i18next';
+import Swal from "sweetalert2/dist/sweetalert2.js"
 
 const UpdateProfile = () => {
 
@@ -108,9 +109,14 @@ const UpdateProfile = () => {
         
         const newProfile={ ...updateProfile, ...values };
         setUpdateProfile(newProfile);
-
         await updateUser({id, updateProfile});
-        refetch();
+        refetch();Swal.fire({
+            position: "top-mid",
+            icon: "success",
+            title: `Información actualizada con éxito` ,
+            showConfirmButton: true,
+            timer: 1500
+          });
     }
     
 
@@ -148,7 +154,7 @@ const UpdateProfile = () => {
                             fileList={fileList}
                             onChange={onChange}
                             onPreview={onPreview}>
-                                {fileList.length < 2 && t("upProfile.Upload-image")}
+                                {fileList.length < 2  && isEditing && t("upProfile.Upload-image")}
                         </Upload>
                     </ImgCrop>
                 </div>

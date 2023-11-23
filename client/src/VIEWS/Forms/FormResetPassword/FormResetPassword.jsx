@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../../firebase/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Checkbox, Button } from 'antd';
-import "../Login/login.css"
+import "../Login/login.module.css"
 
 
 const FormResetPassword = ()=>{

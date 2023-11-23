@@ -1,49 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import UserReview from "./userReview";
 import UserImage from './userImage';
-import {
-  useGetFavProductQuery,
-  useAddFavProductMutation,
-  useRemoveFavProductMutation,
-} from "../../libs/redux/services/favoritesApi";
 import { useGetProductByIdQuery } from "../../libs/redux/services/productsApi";
-import {
-  useGetAllReviewsQuery,
-  useAddReviewMutation,
-  useEditReviewMutation,
-  useRemoveReviewMutation,
-} from "../../libs/redux/services/reviewsApi";
-import { addProductCart } from "../../libs/redux/features/CartSlice";
+import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, useRemoveReviewMutation,} from "../../libs/redux/services/reviewsApi";
 import { useGetAllRequestQuery } from "../../libs/redux/services/requestApi";
-import { usePutCartMutation } from "../../libs/redux/services/CartApi";
-import {
-  Spin,
-  Alert,
-  Card,
-  Col,
-  Row,
-  Rate,
-  Button,
-  Tabs,
-  Modal,
-  List,
-  Skeleton,
-  Avatar,
-  Input,
-  Tooltip 
-} from "antd";
-const { Meta } = Card;
-const { Item } = Tabs;
-import {
-  ShoppingCartOutlined,
-  HeartOutlined,
-  HeartFilled,
-  ArrowLeftOutlined,
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { Spin, Alert, Rate, Button, Modal, List, Skeleton, Avatar, Input, Tooltip } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
 
@@ -57,7 +21,6 @@ const Detail = () => {
   const user = useSelector((state) => state.user.userLog);
   const userId = user?.uid;
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisibleRemoveReview, setIsModalVisibleRemoveReview] =
     useState(false);
   const [isModalVisibleEditReview, setIsModalVisibleEditReview] =
@@ -117,7 +80,7 @@ const Detail = () => {
     setSelectedReviewId(null);
   };
 
-  const handleOk = () => navigate("/*");
+  //const handleOk = () => navigate("/*");
 
   const [loading, setLoading] = useState(true);
 
@@ -320,20 +283,19 @@ if (isError || !user) {
       )}
     />
   </div>
-) : productPurchased ?(
+  ) : productPurchased ? (
   <Alert
     message="Sin comentarios"
     type="info"
     showIcon
-    description="Sé el primero en dar tu opinión"
-  />
-):                           
-<Alert
-message="Sin comentarios"
-type="info"
-showIcon
-description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
-/>}
+    description="Sé el primero en dar tu opinión"/>
+  ):                           
+  <Alert
+  message="Sin comentarios"
+  type="info"
+  showIcon
+  description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
+  />}
 </div>
   );
 };

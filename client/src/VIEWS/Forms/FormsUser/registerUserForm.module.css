@@ -123,7 +123,8 @@
   }
   
   .form label .input:valid + span {
-    color: green;
+
+    color: gray;
   }
   
   .submit {

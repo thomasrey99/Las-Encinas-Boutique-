@@ -114,7 +114,8 @@ const RegisterUserForm = ({change, submit, errors, isSeting, errorsNotification,
             )
         }
         <button className={style.submit} onClick={submit}>Registrar</button>
-        <p className={style.signin}>Ya tienes una cuenta? <NavLink className={style.signin}>Login</NavLink> </p>
+        <p className={style.signin}>Ya tienes una cuenta? <NavLink to={"/login"} className={style.signin}>Login</NavLink> </p>
+
     </form>
   )
 }

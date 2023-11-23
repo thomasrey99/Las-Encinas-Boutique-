@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useGetUserByIdQuery } from "../../libs/redux/services/usersApi";
@@ -17,23 +18,32 @@ const Profile = () => {
     const id = user?.uid;
     const { t  } = useTranslation("global");
     const { data: getUserById, isLoading, isError, refetch } = useGetUserByIdQuery(id);
-    
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer); 
+      }, []);
+      
     return(
         <div className={styles.profileContainer}>
-            {isLoading 
-            ? <Spin tip={t("profileMain.Loading")} className={styles.loading}><div className="content"/></Spin>
-            : isError ?
-            <Alert message="Error al cargar datos" description={<div>
-                <p>Hubo un problema al cargar los datos, por favor intenta de nuevo más tarde.</p>
-                <Button type='primary' onClick={()=>navigate('/home')}>Página principal</Button>
-            </div>} type="error" 
-            showIcon className={styles.alert}/> 
+            {isLoading || loading
+            ? <Spin tip={t("profileMain.Loading")} className={styles.loading} spinning={loading}><div className="content"/></Spin>
             : !getUserById || !user?
             <Alert message={t("profileMain.UserInformation")} description={<div>
                 <p>{t("profileMain.PleaseLogin")}</p>
                 <Button type='primary' onClick={()=>navigate('/login')}>{t("menu.Log-in")}</Button>
             </div>} type="info" 
-            showIcon className={styles.alert}/> 
+            showIcon className={styles.alert}/>
+            : isError ?
+            <Alert message="Error al cargar datos" description={<div>
+                <p>Hubo un problema al cargar los datos, por favor intenta de nuevo más tarde.</p>
+                <Button type='primary' onClick={()=>navigate('/home')}>Página principal</Button>
+            </div>} type="error" 
+            showIcon className={styles.alert}/>  
             :<div>
                 <Card className={styles.userCard}>
                     <Tabs defaultActiveKey="1">

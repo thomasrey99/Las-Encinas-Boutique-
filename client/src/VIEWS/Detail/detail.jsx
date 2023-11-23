@@ -1,53 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import UserReview from "./userReview";
-import UserImage from './userImage';
 import ProductReviews from './reviews';
-import {
-  useGetFavProductQuery,
-  useAddFavProductMutation,
-  useRemoveFavProductMutation,
-} from "../../libs/redux/services/favoritesApi";
+import { useGetFavProductQuery, useAddFavProductMutation, useRemoveFavProductMutation } from "../../libs/redux/services/favoritesApi";
 import { useGetProductByIdQuery } from "../../libs/redux/services/productsApi";
-import {
-  useGetAllReviewsQuery,
-  useAddReviewMutation,
-  useEditReviewMutation,
-  useRemoveReviewMutation,
-} from "../../libs/redux/services/reviewsApi";
 import { addProductCart } from "../../libs/redux/features/CartSlice";
-import { useGetAllRequestQuery } from "../../libs/redux/services/requestApi";
 import { usePutCartMutation } from "../../libs/redux/services/CartApi";
-import {
-  Spin,
-  Alert,
-  Card,
-  Col,
-  Row,
-  Rate,
-  Button,
-  Tabs,
-  Modal,
-  List,
-  Skeleton,
-  Avatar,
-  Input,
-  Tooltip 
-} from "antd";
+import { Spin, Alert, Card, Col, Row, Rate, Button, Tabs } from "antd";
 const { Meta } = Card;
 const { Item } = Tabs;
-import {
-  ShoppingCartOutlined,
-  HeartOutlined,
-  HeartFilled,
-  ArrowLeftOutlined,
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined, HeartOutlined, HeartFilled, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
-
 
 const Detail = () => {
 
@@ -60,33 +24,11 @@ const Detail = () => {
   const id_cart = useSelector((state) => state.user.userCartId);
   const cartData = useSelector((state) => state.cart);
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isModalVisibleRemoveReview, setIsModalVisibleRemoveReview] =
-    useState(false);
-  const [isModalVisibleEditReview, setIsModalVisibleEditReview] =
-    useState(false);
-  const [selectedReviewId, setSelectedReviewId] = useState(null);
-  const [updateReview, setUpdatedReview] = useState({ comment: "", rating: 0 });
-
-  const {
-    data: productDetail,
-    isError,
-    isLoading,
-    refetch: refreshProductDetail
-  } = useGetProductByIdQuery(id);
-  const { data: productFav, refetch } = useGetFavProductQuery({
-    userId,
-    productId,
-  });
+  const { data: productDetail, isError, isLoading } = useGetProductByIdQuery(id);
+  const { data: productFav, refetch } = useGetFavProductQuery({ userId, productId, });
 
   const [addFavProduct] = useAddFavProductMutation();
   const [removeFavProduct] = useRemoveFavProductMutation();
-  const { data: reviews, refetch: getNewReviews } =
-    useGetAllReviewsQuery(productId);
-  const { data: requests } = useGetAllRequestQuery();
-  const [addReview] = useAddReviewMutation();
-  const [editReview] = useEditReviewMutation();
-  const [removeReview] = useRemoveReviewMutation();
   const [mutate] = usePutCartMutation();
 
   const handlefavClick = async () => {
@@ -97,57 +39,6 @@ const Detail = () => {
     }
     refetch();
   };
-
-  const [newReview, setNewReview] = useState({ comment: "", rating: 0 });
-
-  const cleanReview = () => {
-    setNewReview({ comment: "", rating: 0 });
-  };
-
-  const handleAddReview = async (e) => {
-    e.preventDefault();
-    if (newReview.comment !== "") {
-      try {
-        await addReview({ productId, userId, newReview });
-        cleanReview();
-      } catch (error) {
-        console.log({ error: error.message, details: error.details });
-        alert("Error al agregar review: " + error);
-      }
-      getNewReviews();
-      refreshProductDetail();
-    }
-  };
-
-  const handleRemoveReview = async (selectedReviewId) => {
-    const idReview = selectedReviewId;
-    await removeReview({ productId, idReview });
-
-    setIsModalVisibleRemoveReview(false);
-    getNewReviews();
-    setSelectedReviewId(null);
-    refreshProductDetail();Swal.fire({
-      position: "top-mid",
-      icon: "success",
-      title: `Comentario eliminado exitosamente` ,
-      showConfirmButton: false,
-      timer: 9500,
-      iconColor: '##765827 !important' 
-    });
-    
-  };
-
-  const handleEditReview = async (selectedReviewId, updateReview) => {
-    const idReview = selectedReviewId;
-    await editReview({ productId, idReview, updateReview });
-
-    setIsModalVisibleEditReview(false);
-    getNewReviews();
-    setSelectedReviewId(null);
-    refreshProductDetail();
-  };
-
-  const handleOk = () => navigate("/*");
 
   const handleProductCart = async (productDetail) => {
     if (user === null) {
@@ -173,335 +64,109 @@ const Detail = () => {
         setLoading(false);
       }, 2000);
       return () => clearTimeout(timer); 
-    }, []);
+  }, []);
 
-  // ¿El usuario ya compró el producto?
-  // ¿El usuario ya compró el producto?
-  // const userRequests = requests?.filter(request => request.uid === userId);
-  // const productPurchased = userRequests?.some(request => 
-  //   request.products?.some(product => product.id === productId)
-  // );
-  const productPurchased = true;
-
-  // const productPurchased=true
-  console.log(productPurchased);
 
   return (
     <div className={styles.detailContainer}>
-      {isLoading || loading? (
-        <Spin tip="Cargando" className={styles.loading}>
-          <div className="content" />
-        </Spin>
-      ) : productDetail !== undefined ? (
-        <div>
-          <Card>
-            <Row>
-              <Col span={14} className={styles.span}>
-                <ArrowLeftOutlined
-                  className={styles.back}
-                  onClick={() => navigate(-1)}
-                />
-                <div className={styles.imageContainer}>
-                  <img
-                    alt={productDetail.name}
-                    src={productDetail.image}
-                    className={styles.image}
-                  />
-                </div>
-              </Col>
-              <Col span={10}>
-                <div className={styles.productInfo}>
-                  {!productFav ? (
-                    <HeartOutlined
-                      size="large"
-                      className={styles.noLikedButton}
-                      onClick={handlefavClick}
-                    />
-                  ) : (
-                    <HeartFilled
-                      size="large"
-                      className={styles.likedButton}
-                      onClick={handlefavClick}
-                    />
-                  )}
-                  <div>
-                    <h1>{productDetail.name}</h1>
-                    <Rate disabled value={productDetail.rating} />
+      {
+        isLoading || loading
+        ? (
+          <Spin tip="Cargando" className={styles.loading}>
+            <div className="content" />
+          </Spin> ) 
+        : productDetail !== undefined 
+        ? (
+          <div>
+            <Card>
+              <Row>
+                <Col span={14} className={styles.span}>
+                  <ArrowLeftOutlined
+                    className={styles.back}
+                    onClick={() => navigate(-1)}/>
+                  <div className={styles.imageContainer}>
+                    <img
+                      alt={productDetail.name}
+                      src={productDetail.image}
+                      className={styles.image}/>
                   </div>
-                  <h2 className={styles.price}>${productDetail.price}</h2>
-                  <div>
-                    <p className={styles.propsPorduct}>Categoría: {productDetail.category}</p>
-                    <p className={styles.propsPorduct}>Tipo: {productDetail.type}</p>
-                    <Meta
-                      description={<p className={styles.propsPorduct}>id: {productDetail.id_product}</p>}
-                    />
-                  </div>
-                  <div className={styles.imgMPContainer}>
-                    <img src="https://res.cloudinary.com/dkgeccpz4/image/upload/v1700074726/mercadopago_goqpiu.png" 
-                      alt="MercadoPago" className={styles.imgMP}/>
-                  </div>
+                </Col>
+                <Col span={10}>
+                  <div className={styles.productInfo}>
+                    { !productFav ? (
+                      <HeartOutlined
+                        size="large"
+                        className={styles.noLikedButton}
+                        onClick={handlefavClick}
+                      />
+                    ) : (
+                      <HeartFilled
+                        size="large"
+                        className={styles.likedButton}
+                        onClick={handlefavClick}
+                      />
+                    )}
+                    <div>
+                      <h1>{productDetail.name}</h1>
+                      <Rate disabled value={productDetail.rating} />
+                    </div>
+                    <h2 className={styles.price}>${productDetail.price}</h2>
+                    <div>
+                      <p className={styles.propsPorduct}>Categoría: {productDetail.category}</p>
+                      <p className={styles.propsPorduct}>Tipo: {productDetail.type}</p>
+                      <Meta
+                        description={<p className={styles.propsPorduct}>id: {productDetail.id_product}</p>}
+                      />
+                    </div>
+                    <div className={styles.imgMPContainer}>
+                      <img src="https://res.cloudinary.com/dkgeccpz4/image/upload/v1700074726/mercadopago_goqpiu.png" 
+                        alt="MercadoPago" className={styles.imgMP}/>
+                    </div>
 
-                  <div className={styles.productButtons}>
-                    <Button
-                      type="primary"
-                      block
-                      onClick={() => handleProductCart(productDetail)}
-                    >
-                      <ShoppingCartOutlined size="large" />
-                    </Button>
+                    <div className={styles.productButtons}>
+                      <Button
+                        type="primary"
+                        block
+                        onClick={() => handleProductCart(productDetail)}
+                      >
+                        <ShoppingCartOutlined size="large" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </Col>
-              <Col span={24}>
-                <Card>
-                  <Tabs defaultActiveKey="1">
-                    <Item tab="Descripción" key="1">
-                      <div
-                        style={{
-                          minHeight: "30vh",
-                          overflow: "auto",
-                          textAlign: "center",
-                        }}
-                      >
-                        <p>{productDetail.description}</p>
-                      </div>
-                    </Item>
-                    <Item tab="Comentarios New" key="3">
-                      <ProductReviews/>
-                    </Item>
-                    <Item tab="Comentarios" key="2">
-                      <div
-                        style={{
-                          maxHeight: "50%",
-                          overflow: "auto",
-                          textAlign: "center",
-                        }}
-                      >
-                      {user?.is_Admin
-                      }
-                      <div>
-                          <h2 className={styles.titleComments}>
-                            Danos tu opinión
-                          </h2>
-                          <div className={styles.contentAddReview}>
-                            <Rate
-                            disabled={!productPurchased}
-                              onChange={(value) =>
-                                setNewReview({ ...newReview, rating: value })
-                              }
-                              value={newReview.rating}
-                              className={styles.addRating}
-                            />
-                            <div className={styles.addReview}>
-                            <Tooltip title={!productPurchased ?'Por favor, compra el producto para poder comentar😊' 
-                            :''}>
-                         
-                              <Input.TextArea
-                                rows={4}
-                                onChange={(e) =>
-                                  setNewReview({
-                                    ...newReview,
-                                    comment: e.target.value,
-                                  })
-                                }
-                                disabled={!productPurchased}
-                                value={newReview.comment}
-                                className={styles.inputToComment}
-                              /> </Tooltip>
-                              
-                              <Button
-                                type="primary"
-                                onClick={handleAddReview}
-                                className={styles.buttonAddComment}
-                                disabled={!productPurchased}
-                              >
-                                Agregar
-                              </Button>
-
-                            </div>
-                          </div>
-                      </div> 
-                        {reviews && reviews.length > 0 ? (
-                          <div>
-                            <h2 className={styles.Comments}>Comentarios</h2>
-                            <List
-                              className="comment-list"
-                              loading={false}
-                              itemLayout="horizontal"
-                              loadMore=""
-                              dataSource={reviews}
-                              renderItem={(item) => (
-                                <List.Item
-                                  actions={[
-                                    userId === item.uid ? (
-                                      <div className={styles.iconsRyE}>
-                                        <a
-                                          key="comment-edit"
-                                          onClick={() => {
-                                            setIsModalVisibleEditReview(true);
-                                            setSelectedReviewId(item.id_review);
-                                            setUpdatedReview({
-                                              ...updateReview,
-                                              comment: item.comment,
-                                              rating: item.rating,
-                                            });
-                                          }}
-                                        >
-                                          <EditOutlined />
-                                        </a>
-                                      </div>
-                                    ) : (
-                                      <div className={styles.iconsRyE}></div>
-                                    ),
-                                    userId === item.uid || user.is_Admin ? (
-                                      <div className={styles.iconsRyE}>
-                                        <a
-                                          key="comment-delete"
-                                          onClick={() => {
-                                            setIsModalVisibleRemoveReview(true);
-                                            setSelectedReviewId(item.id_review);
-                                          }}
-                                        >
-                                          <DeleteOutlined
-                                            style={{ color: "#65451f" }}
-                                          />
-                                        </a>
-                                      </div>
-                                    ) : (
-                                      <div className={styles.iconsRyE}></div>
-                                    ),
-                                  ]}
-                                >
-                                  {/* Eliminar comentario */}
-                                  <Modal
-                                    title="Eliminar comentario"
-                                    visible={isModalVisibleRemoveReview}
-                                    onOk={() =>
-                                      handleRemoveReview(selectedReviewId)
-                                    }
-                                    onCancel={() =>
-                                      setIsModalVisibleRemoveReview(false)
-                                    }
-                                  >
-                                    <p>
-                                      ¿Estás seguro de que quieres eliminar este
-                                      comentario?
-                                    </p>
-                                  </Modal>
-                                  {/* Editar comentario */}
-                                  <Modal
-                                    title="Editar comentario"
-                                    visible={isModalVisibleEditReview}
-                                    onOk={() =>
-                                      handleEditReview(
-                                        selectedReviewId,
-                                        updateReview
-                                      )
-                                    }
-                                    onCancel={() => {
-                                      setIsModalVisibleEditReview(false);
-                                      setUpdatedReview({
-                                        comment: "",
-                                        rating: 0,
-                                      });
-                                    }}
-                                  >
-                                    <Rate
-                                      onChange={(value) =>
-                                        setUpdatedReview({
-                                          ...updateReview,
-                                          rating: value,
-                                        })
-                                      }
-                                      value={updateReview.rating}
-                                    />
-                                    <Input
-                                      value={updateReview.comment}
-                                      onChange={(e) =>
-                                        setUpdatedReview({
-                                          ...updateReview,
-                                          comment: e.target.value,
-                                        })
-                                      }
-                                    />
-                                  </Modal>
-                                  <Skeleton
-                                    avatar
-                                    title={false}
-                                    loading={item.loading}
-                                    active
-                                  >
-                                    <List.Item.Meta
-                                      avatar={<Avatar src={<UserImage id={item.uid}/>} />}
-                                      title={
-                                        <div className={styles.NameAndRate}>
-                                          <div>
-                                            <UserReview id={item.uid} />
-                                          </div>
-                                          <div>
-                                            <Rate
-                                              disabled
-                                              value={item.rating}
-                                              style={{ fontSize: "15px" }}
-                                            />
-                                          </div>
-                                        </div>
-                                      }
-                                      description={
-                                        <div
-                                          className={styles.descriptionComment}
-                                        >
-                                          {item.comment}
-                                        </div>
-                                      }
-                                    />
-                                    <p className={styles.date}>{item.date}</p>
-                                  </Skeleton>
-                                </List.Item>
-                              )}
-                            />
-                          </div>
-                        ) : productPurchased ?(
-                          <Alert
-                            message="Sin comentarios"
-                            type="info"
-                            showIcon
-                            description="Sé el primero en dar tu opinión"
-                          />
-                        ):                           
-                        <Alert
-                        message="Sin comentarios"
-                        type="info"
-                        showIcon
-                        description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
-                      />}
-                      </div>
-                    </Item>
-                  </Tabs>
-                </Card>
-              </Col>
-            </Row>
-          </Card>
-          <Modal
-            title="Confirmar compra"
-            visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={() => setIsModalVisible(false)}
-          >
-            <p>¿Estás seguro de que quieres comprar este producto?</p>
-          </Modal>
-        </div>
-      ) : (
-        isError && (
-          <Alert
-            message="Error"
-            description="Por favor, intente de nuevo más tarde."
-            type="error"
-            showIcon
-            className={styles}
-          />
-        )
-      )}
+                </Col>
+                <Col span={24}>
+                  <Card>
+                    <Tabs defaultActiveKey="1">
+                      <Item tab="Descripción" key="1">
+                        <div
+                          style={{
+                            minHeight: "30vh",
+                            overflow: "auto",
+                            textAlign: "center",
+                          }}>
+                          <p>{productDetail.description}</p>
+                        </div>
+                      </Item>
+                      <Item tab="Comentarios" key="2">
+                        <ProductReviews user={user} productId={productId}/>
+                      </Item>
+                    </Tabs>
+                  </Card>
+                </Col>
+              </Row>
+            </Card>
+          </div> ) 
+        : (
+          isError && (
+            <Alert
+              message="Error"
+              description="Por favor, intente de nuevo más tarde."
+              type="error"
+              showIcon
+              className={styles}
+            />
+          )
+        )}
     </div>
   );
 };

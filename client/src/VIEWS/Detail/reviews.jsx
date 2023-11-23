@@ -12,23 +12,19 @@ import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
 
 
-const ProductReviews = () => {
+const ProductReviews = ({ productId, user }) => {
 
-  //const navigate = useNavigate();
   const { data: requests } = useGetAllRequestQuery();
   const { id } = useParams();
-  const productId = id;
-  const user = useSelector((state) => state.user.userLog);
   const userId = user?.uid;
 
-  const [isModalVisibleRemoveReview, setIsModalVisibleRemoveReview] =
-    useState(false);
-  const [isModalVisibleEditReview, setIsModalVisibleEditReview] =
-    useState(false);
+  const [isModalVisibleRemoveReview, setIsModalVisibleRemoveReview] = useState(false);
+  const [isModalVisibleEditReview, setIsModalVisibleEditReview] = useState(false);
   const [selectedReviewId, setSelectedReviewId] = useState(null);
   const [updateReview, setUpdatedReview] = useState({ comment: "", rating: 0 });
-  const { data: reviews, refetch: getNewReviews, isLoading, isError } =
-    useGetAllReviewsQuery(productId);
+
+  const { data: reviews, refetch: getNewReviews, isLoading, isError } = useGetAllReviewsQuery(productId);
+  const { refetch: refreshProductDetail } = useGetProductByIdQuery(id);
 
   const [addReview] = useAddReviewMutation();
   const [editReview] = useEditReviewMutation();
@@ -51,6 +47,7 @@ const ProductReviews = () => {
         alert("Error al agregar review: " + error);
       }
       getNewReviews();
+      refreshProductDetail();
     }
   };
 
@@ -60,6 +57,7 @@ const ProductReviews = () => {
 
     setIsModalVisibleRemoveReview(false);
     getNewReviews();
+    refreshProductDetail();
     setSelectedReviewId(null);Swal.fire({
       position: "top-mid",
       icon: "success",
@@ -76,10 +74,9 @@ const ProductReviews = () => {
 
     setIsModalVisibleEditReview(false);
     getNewReviews();
+    refreshProductDetail();
     setSelectedReviewId(null);
   };
-
-  //const handleOk = () => navigate("/*");
 
   const [loading, setLoading] = useState(true);
 
@@ -107,197 +104,192 @@ if (isError || !user) {
 
   return (
     <div
-        style={{
+      style={{
         maxHeight: "50%",
         overflow: "auto",
         textAlign: "center",
-        }}>
-
-        {user?.is_Admin
-        }
-        <div>
-            <h2 className={styles.titleComments}>
-                Danos tu opinión
-            </h2>
-            <div className={styles.contentAddReview}>
-                <Rate
-                disabled={!productPurchased}
-                onChange={(value) =>
-                    setNewReview({ ...newReview, rating: value })
-                }
-                value={newReview.rating}
-                className={styles.addRating}/>
-                <div className={styles.addReview}>
-                <Tooltip title={!productPurchased ?'Por favor, compra el producto para poder comentar😊' 
-                    :''}>
-        
-                    <Input.TextArea
-                        rows={4}
-                        onChange={(e) =>
-                            setNewReview({
-                            ...newReview,
-                            comment: e.target.value,
-                        })}
-                    disabled={!productPurchased}
-                    value={newReview.comment}
-                    className={styles.inputToComment}/> 
-                </Tooltip>
-            
-                <Button
-                    type="primary"
-                    onClick={handleAddReview}
-                    className={styles.buttonAddComment}
-                    disabled={!productPurchased}>
-                    Agregar
-                </Button>
+      }}>
+      <div>
+          <h2 className={styles.titleComments}>
+            Danos tu opinión
+          </h2>
+          <div className={styles.contentAddReview}>
+            <Rate
+              disabled={!productPurchased}
+              onChange={(value) =>
+                  setNewReview({ ...newReview, rating: value })
+              }
+              value={newReview.rating}
+              className={styles.addRating}/>
+            <div className={styles.addReview}>
+              <Tooltip title={!productPurchased ?'Por favor, compra el producto para poder comentar😊' 
+                :''}>
+                <Input.TextArea
+                  rows={4}
+                  onChange={(e) =>
+                      setNewReview({
+                      ...newReview,
+                      comment: e.target.value,
+                  })}
+                  disabled={!productPurchased}
+                  value={newReview.comment}
+                  className={styles.inputToComment}/> 
+              </Tooltip>
+              <Button
+                type="primary"
+                onClick={handleAddReview}
+                className={styles.buttonAddComment}
+                disabled={!productPurchased}>
+                  Agregar
+              </Button>
             </div>
-        </div>
-    </div> 
-    {reviews && reviews.length > 0 ? (
-    <div>
-        <h2 className={styles.Comments}>Comentarios</h2>
-        <List
-            className="comment-list"
-            loading={false}
-            itemLayout="horizontal"
-            loadMore=""
-            dataSource={reviews}
-            renderItem={(item) => (
+          </div>
+      </div> 
+      {reviews && reviews.length > 0 
+      ? (
+        <div>
+          <h2 className={styles.Comments}>Comentarios</h2>
+            <List
+              className="comment-list"
+              loading={false}
+              itemLayout="horizontal"
+              loadMore=""
+              dataSource={reviews}
+              renderItem={(item) => (
                 <List.Item
                     actions={[
-                        userId === item.uid ? (
-                            <div className={styles.iconsRyE}>
+                      userId === item.uid 
+                      ? (
+                        <div className={styles.iconsRyE}>
+                          <a
+                            key="comment-edit"
+                            onClick={() => {
+                                setIsModalVisibleEditReview(true);
+                                setSelectedReviewId(item.id_review);
+                                setUpdatedReview({
+                                  ...updateReview,
+                                  comment: item.comment,
+                                  rating: item.rating,
+                                });
+                            }}>
+                              <EditOutlined />
+                          </a>
+                        </div> ) 
+                      : (
+                        <div className={styles.iconsRyE}></div> ),
+                          userId === item.uid || user.is_Admin 
+                          ? (
+                              <div className={styles.iconsRyE}>
                                 <a
-                                    key="comment-edit"
-                                    onClick={() => {
-                                        setIsModalVisibleEditReview(true);
-                                        setSelectedReviewId(item.id_review);
-                                        setUpdatedReview({
-                                        ...updateReview,
-                                        comment: item.comment,
-                                        rating: item.rating,
-                                        });
-                                    }}>
-                                    <EditOutlined />
+                                  key="comment-delete"
+                                  onClick={() => {
+                                    setIsModalVisibleRemoveReview(true);
+                                    setSelectedReviewId(item.id_review);
+                                  }}>
+                                    <DeleteOutlined
+                                  style={{ color: "#65451f" }}/>
                                 </a>
-                            </div>
-                        ) : (
-                            <div className={styles.iconsRyE}></div>
-                            ),
-                            userId === item.uid || user.is_Admin ? (
-                                <div className={styles.iconsRyE}>
-                                    <a
-                                        key="comment-delete"
-                                        onClick={() => {
-                                            setIsModalVisibleRemoveReview(true);
-                                            setSelectedReviewId(item.id_review);
-                                        }}>
-                                        <DeleteOutlined
-                                        style={{ color: "#65451f" }}/>
-                                    </a>
-                                </div>
-                        ) : (
-                            <div className={styles.iconsRyE}></div>
-                            ),
+                              </div>) 
+                          : (
+                            <div className={styles.iconsRyE}></div> ),
                     ]}
                 >
-            {/* Eliminar comentario */}
-            <Modal
-                title="Eliminar comentario"
-                visible={isModalVisibleRemoveReview}
-                onOk={() =>
-                handleRemoveReview(selectedReviewId)
-                }
-                onCancel={() =>
-                setIsModalVisibleRemoveReview(false)
-                }>
-                <p>
-                    ¿Estás seguro de que quieres eliminar este
-                    comentario?
-                </p>
-            </Modal>
-            {/* Editar comentario */}
-            <Modal
-                title="Editar comentario"
-                visible={isModalVisibleEditReview}
-                onOk={() =>
-                handleEditReview(
-                    selectedReviewId,
-                    updateReview)
-                }
-                onCancel={() => {
-                setIsModalVisibleEditReview(false);
-                setUpdatedReview({
-                    comment: "",
-                    rating: 0,
-                });
-                }}>
-                <Rate
-                    onChange={(value) =>
+                  {/* Eliminar comentario */}
+                  <Modal
+                    title="Eliminar comentario"
+                    visible={isModalVisibleRemoveReview}
+                    onOk={() =>
+                    handleRemoveReview(selectedReviewId)
+                    }
+                    onCancel={() =>
+                    setIsModalVisibleRemoveReview(false)
+                    }>
+                      <p>
+                        ¿Estás seguro de que quieres eliminar este comentario?
+                      </p>
+                  </Modal>
+                  {/* Editar comentario */}
+                  <Modal
+                    title="Editar comentario"
+                    visible={isModalVisibleEditReview}
+                    onOk={() =>
+                    handleEditReview(
+                        selectedReviewId,
+                        updateReview)
+                    }
+                    onCancel={() => {
+                    setIsModalVisibleEditReview(false);
                     setUpdatedReview({
+                        comment: "",
+                        rating: 0,
+                    });
+                    }}>
+                      <Rate
+                        onChange={(value) =>
+                        setUpdatedReview({
+                            ...updateReview,
+                            rating: value,
+                        })}
+                        value={updateReview.rating}/>
+                      <Input
+                        value={updateReview.comment}
+                        onChange={(e) =>
+                        setUpdatedReview({
                         ...updateReview,
-                        rating: value,
-                    })}
-                    value={updateReview.rating}/>
-                <Input
-                    value={updateReview.comment}
-                    onChange={(e) =>
-                    setUpdatedReview({
-                    ...updateReview,
-                    comment: e.target.value,
-                    })}
-                />
-            </Modal>
-            <Skeleton
-                avatar
-                title={false}
-                loading={item.loading}
-                active>
-            <List.Item.Meta
-              avatar={<Avatar src={<UserImage id={item.uid}/>} />}
-              title={
-                <div className={styles.NameAndRate}>
-                  <div>
-                    <UserReview id={item.uid} />
-                  </div>
-                  <div>
-                    <Rate
-                      disabled
-                      value={item.rating}
-                      style={{ fontSize: "15px" }}
-                    />
-                  </div>
-                </div>
-              }
-              description={
-                <div
-                  className={styles.descriptionComment}
-                >
-                  {item.comment}
-                </div>
-              }
+                        comment: e.target.value,
+                        })}/>
+                  </Modal>
+                  <Skeleton
+                    avatar
+                    title={false}
+                    loading={item.loading}
+                    active>
+                      <List.Item.Meta
+                        avatar={<Avatar src={<UserImage id={item.uid}/>} />}
+                        title={
+                          <div className={styles.NameAndRate}>
+                            <div>
+                              <UserReview id={item.uid} />
+                            </div>
+                            <div>
+                              <Rate
+                              disabled
+                              value={item.rating}
+                              style={{ fontSize: "15px" }}/>
+                            </div>
+                          </div>
+                        }
+                        description={
+                          <div
+                            className={styles.descriptionComment}>
+                              {item.comment}
+                          </div>
+                        }
+                      />
+                        <p className={styles.date}>{item.date}</p>
+                  </Skeleton>
+                </List.Item>
+              )}
             />
-            <p className={styles.date}>{item.date}</p>
-          </Skeleton>
-        </List.Item>
-      )}
-    />
+        </div> ) 
+      : productPurchased 
+      ? (
+        <Alert
+          message="Sin comentarios"
+          type="info"
+          showIcon
+          description="Sé el primero en dar tu opinión"/> )
+      :                           
+        <Alert
+          message="Sin comentarios"
+          type="info"
+          showIcon
+          description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
+        />
+      }
   </div>
-  ) : productPurchased ? (
-  <Alert
-    message="Sin comentarios"
-    type="info"
-    showIcon
-    description="Sé el primero en dar tu opinión"/>
-  ):                           
-  <Alert
-  message="Sin comentarios"
-  type="info"
-  showIcon
-  description='¿Quieres ser el primero en comentar? ¡Compra nuestro producto y comparte tu opinión!'
-  />}
-</div>
-  );
+);
+
 };
 
 export default ProductReviews;

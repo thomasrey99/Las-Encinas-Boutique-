@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserReview from "./userReview";
 import UserImage from './userImage';
 import { useGetProductByIdQuery } from "../../libs/redux/services/productsApi";
 import { useGetAllReviewsQuery, useAddReviewMutation, useEditReviewMutation, useRemoveReviewMutation,} from "../../libs/redux/services/reviewsApi";
 import { useGetAllRequestQuery } from "../../libs/redux/services/requestApi";
 import { Spin, Alert, Rate, Button, Modal, List, Skeleton, Avatar, Input, Tooltip } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, CloseCircleOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
 
@@ -105,14 +104,13 @@ if (isError || !user) {
   return (
     <div
       style={{
-        maxHeight: "50%",
+        maxHeight: "100vh",
         overflow: "auto",
         textAlign: "center",
+        paddingLeft: "5px",
+        paddingRight: "5px"
       }}>
       <div>
-          <h2 className={styles.titleComments}>
-            Danos tu opinión
-          </h2>
           <div className={styles.contentAddReview}>
             <Rate
               disabled={!productPurchased}
@@ -125,6 +123,7 @@ if (isError || !user) {
               <Tooltip title={!productPurchased ?'Por favor, compra el producto para poder comentar😊' 
                 :''}>
                 <Input.TextArea
+                  autoSize
                   rows={4}
                   onChange={(e) =>
                       setNewReview({
@@ -132,23 +131,41 @@ if (isError || !user) {
                       comment: e.target.value,
                   })}
                   disabled={!productPurchased}
+                  placeholder="Agregar comentario..."
+                  maxLength="250"
                   value={newReview.comment}
                   className={styles.inputToComment}/> 
               </Tooltip>
-              <Button
-                type="primary"
-                onClick={handleAddReview}
-                className={styles.buttonAddComment}
-                disabled={!productPurchased}>
-                  Agregar
-              </Button>
             </div>
+            <div className={styles.buttonsContainer}>
+                {
+                  newReview.comment.trim().length > 0 
+                  ?
+                    <div>
+                      <Button
+                        type="default"
+                        onClick={cleanReview}
+                        className={styles.buttonAddComment}
+                        disabled={!productPurchased}>
+                          <CloseCircleOutlined />
+                      </Button>
+                      <Button
+                        type="primary"
+                        onClick={handleAddReview}
+                        className={styles.buttonAddComment}
+                        disabled={!productPurchased}>
+                          <CheckCircleOutlined />
+                      </Button>
+                    </div>
+                  :<div ></div>
+                }
+              </div>
           </div>
       </div> 
       {reviews && reviews.length > 0 
       ? (
         <div>
-          <h2 className={styles.Comments}>Comentarios</h2>
+          <h2 className={styles.Comments}>{`${reviews.length} comentarios`}</h2>
             <List
               className="comment-list"
               loading={false}

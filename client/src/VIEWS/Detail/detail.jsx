@@ -68,7 +68,8 @@ const Detail = () => {
 
 
   return (
-    <div className={styles.detailContainer}>
+    <div className={styles.pageContainer}>
+      <div className={styles.detailContainer}>
       {
         isLoading || loading
         ? (
@@ -140,7 +141,7 @@ const Detail = () => {
                       <Item tab="Descripción" key="1">
                         <div
                           style={{
-                            minHeight: "30vh",
+                            maxHeight: "100vh",
                             overflow: "auto",
                             textAlign: "center",
                           }}>
@@ -167,6 +168,7 @@ const Detail = () => {
             />
           )
         )}
+    </div>
     </div>
   );
 };

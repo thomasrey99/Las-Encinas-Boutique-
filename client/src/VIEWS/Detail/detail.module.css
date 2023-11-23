@@ -1,10 +1,15 @@
-
+.pageContainer{
+    background-color: #EDE0D4;
+    height: 100%;
+    width: 100%;
+}
 .detailContainer{
     width: 78vw;
     min-height: 100vh;
     margin: auto;
     margin-top: 4vh;
     margin-bottom: 2vh;
+    min-height: 200vh;
 }
 .loading{
     margin-top: 40vh;
@@ -82,6 +87,10 @@
     bottom: 0;
 }
 
+
+
+/* REVIEWS */
+
 .contentAddReview{
     margin-top: 2%;
     margin-bottom: 4%;
@@ -89,27 +98,44 @@
     flex-direction: column;
     align-items: flex-start; 
 }
-.addReview{
-    justify-content: space-between;
+.addReview {
     display: flex;
+    align-items: center;
     width: 100%;
+  }
+
+  .buttonsContainer{
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-end;
+    width: 100%; 
+    justify-content: flex-end;
+    height: 5vh; 
 }
+
+
 .titleComments{
     text-align: left;
 }
 .addRating{
-    margin: 1%;
+    margin: 0.5%;
 }
 .inputToComment{
-    width: 85%;
-    max-height: 10vh;
+    width: 100%;
+    max-height: 15vh;
+    margin-bottom: 0.5%;
 }
-.buttonAddComment{
-    width: 14%;
-    height: 10vh;
-    right: 0;
+.buttonsContainer{
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-end;
+    width: 100%; 
+    justify-content: flex-end;
+}
+  
+  .buttonAddComment {
 
-}
+  }
 .NameAndRate{
     display: flex;
     flex-direction: column;
@@ -119,7 +145,8 @@
     margin-right: 5%;
 }
 .Comments{
-    margin: 5%;
+    text-align: left;
+    margin-bottom: 0.5% ;
 }
 .date{
     font-size: 0.7rem;

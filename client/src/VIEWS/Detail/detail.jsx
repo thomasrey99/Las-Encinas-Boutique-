@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import UserReview from "./userReview";
 import UserImage from './userImage';
+import ProductReviews from './reviews';
 import {
   useGetFavProductQuery,
   useAddFavProductMutation,
@@ -175,10 +176,12 @@ const Detail = () => {
     }, []);
 
   // ¿El usuario ya compró el producto?
-  const userRequests = requests?.filter(request => request.uid === userId);
-  const productPurchased = userRequests?.some(request => 
-    request.products?.some(product => product.id === productId)
-  );
+  // ¿El usuario ya compró el producto?
+  // const userRequests = requests?.filter(request => request.uid === userId);
+  // const productPurchased = userRequests?.some(request => 
+  //   request.products?.some(product => product.id === productId)
+  // );
+  const productPurchased = true;
 
   // const productPurchased=true
   console.log(productPurchased);
@@ -262,6 +265,9 @@ const Detail = () => {
                       >
                         <p>{productDetail.description}</p>
                       </div>
+                    </Item>
+                    <Item tab="Comentarios New" key="3">
+                      <ProductReviews/>
                     </Item>
                     <Item tab="Comentarios" key="2">
                       <div

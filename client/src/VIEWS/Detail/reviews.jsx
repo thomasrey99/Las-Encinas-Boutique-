@@ -12,9 +12,9 @@ import styles from "./detail.module.css";
 import Swal from "sweetalert2/dist/sweetalert2.js"
 
 
-const Detail = () => {
+const ProductReviews = () => {
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const { data: requests } = useGetAllRequestQuery();
   const { id } = useParams();
   const productId = id;
@@ -66,7 +66,6 @@ const Detail = () => {
       title: `Comentario eliminado exitosamente` ,
       showConfirmButton: false,
       timer: 9500,
-      iconColor: '##765827 !important' 
     });
     
   };
@@ -87,15 +86,16 @@ const Detail = () => {
   useEffect(() => {
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timer); 
     }, []);
 
   // ¿El usuario ya compró el producto?
-  const userRequests = requests?.filter(request => request.uid === userId);
-  const productPurchased = userRequests?.some(request => 
-    request.products?.some(product => product.id === productId)
-  );
+  // const userRequests = requests?.filter(request => request.uid === userId);
+  // const productPurchased = userRequests?.some(request => 
+  //   request.products?.some(product => product.id === productId)
+  // );
+  const productPurchased = true;
 
   if (isLoading || loading ) {
     return <Spin><div className="content"/></Spin>;
@@ -300,4 +300,4 @@ if (isError || !user) {
   );
 };
 
-export default Detail;
+export default ProductReviews;

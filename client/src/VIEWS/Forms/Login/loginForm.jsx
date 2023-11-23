@@ -43,7 +43,7 @@ const LoginForm = ({loginGoogle, submit, change, data, validates, isSeting, numb
           </label>
         )
       }
-          
+      <p className={style.signin}>¿Olvidaste tu contraseña? <NavLink to={"/registeruser"} className={style.signin}>Recuperar</NavLink></p>   
       
       <button className={style.submit} type="submit">Submit</button>
       <p className={style.signin}>¿No tienes una cuenta? <NavLink to={"/registeruser"} className={style.signin}>Registrate</NavLink></p>

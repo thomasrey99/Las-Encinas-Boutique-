@@ -35,7 +35,8 @@
   .col2 {
     display: flex;
     flex-direction: column; /* Cambiado a columna en pantallas pequeñas */
-    align-items: center; /* Centrado en pantallas pequeñas */
+    align-items: start; /* Centrado en pantallas pequeñas */
+    justify-content: end;
     margin-top: 10px; /* Añadido margen superior en pantallas pequeñas */
   }
   

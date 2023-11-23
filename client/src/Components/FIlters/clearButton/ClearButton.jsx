@@ -10,7 +10,6 @@ const ClearButton = () => {
   const dispatch=useDispatch()
   const clearAction=()=>{
     dispatch(clearFilter())
-
   }
   
   return (

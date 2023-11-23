@@ -60,6 +60,10 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
       const timer = setTimeout(() => {
         setLoading(false);
       }, 2000);

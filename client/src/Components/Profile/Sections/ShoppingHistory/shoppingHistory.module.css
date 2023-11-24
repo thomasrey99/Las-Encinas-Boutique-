@@ -4,3 +4,7 @@
 .modalDetail{
     width: 100%;
 }
+.contPayments{
+    height: 80vh;
+    overflow-y: scroll;
+}

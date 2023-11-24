@@ -13,7 +13,7 @@ const coders = [
     id: 1,
     fullName: "Christian Puyo",
     description:"Desarrollador web full stack con una sólida formación en React, Redux, Nodejs, JavaScript.",
-    linkAvatar: "/cris.jpeg",
+    linkAvatar: "https://i.postimg.cc/PpLk95vb/cris.jpg",
     linkedin: " https://www.linkedin.com/in/christian-dustin-puyo-torres-b08082253/",
     github: "https://github.com/ChristianPuyo",
     email: "christianpuyotorres@gmail.com"
@@ -21,8 +21,8 @@ const coders = [
   {
     id: 2,
     fullName: "Liliana Rosada",
-    description:"Analítica con alto nivel de persistencia, dedicada, responsable y comprometida a nivel profesional con matemáticas y Desarrollo Web Full Stack",
-    linkAvatar: "/lil.jpeg",
+    description:"Analítica con alto nivel de persistencia, dedicada, responsable y comprometida para las relaciones interpersonales.",
+    linkAvatar: "https://i.postimg.cc/2qMtqF3v/lil.jpg",
     linkedin: "https://www.linkedin.com/in/liliana-rosada-46114516a",
     github: "https://github.com/LILYCERON",
     email: "lilyceron00@gmail.com"
@@ -31,7 +31,7 @@ const coders = [
     id: 3,
     fullName: "Javier Sosa",
     description:"Desarrollador Web Full Stack, orientado a Front-end con React, en proyectos e-commerce estructurados a las tendencias de mercado en base a la demanda.",
-    linkAvatar: "/Javi.jpg",
+    linkAvatar: "https://i.postimg.cc/hX46NtHJ/Javi.jpg",
     linkedin: "https://www.linkedin.com/in/pablo-javier-sosa-179a31195/",
     github: "https://github.com/JavierSosaAdm",
     email: "javier.sosa.1911@mail.com"
@@ -40,7 +40,7 @@ const coders = [
     id: 4,
     fullName: "Nahim Mora",
     description:"Experiencia en el desarrollo de aplicaciones web interactivas y escalables. Especializado en JavaScript, React, Node.js, Express.js, Sequelize y PostgreSQL.",
-    linkAvatar: "/Nahim.jpg",
+    linkAvatar: "https://i.postimg.cc/Tp6Zq90J/Nahim.jpg",
     linkedin: "https://www.linkedin.com/in/fernando-nahim-mora-developer",
     github: "https://github.com/NahimMora",
     email: "nahimprogramming@gmail.com"
@@ -49,7 +49,7 @@ const coders = [
     id: 5,
     fullName: "Mateo Leon",
     description:"Desarrollador web fullstack con especialización en frontend. Apasionado por crear experiencias de usuario agradables y funcionales.",
-    linkAvatar: "/Matty.jpg",
+    linkAvatar: "https://i.postimg.cc/18W2SZQv/Matty.jpg",
     linkedin: " https://www.linkedin.com/in/mateo-le%C3%B3n-097b57268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", 
     github: "https://github.com/MateoLeon505",
     email: "mateolt505@gmail.com "
@@ -57,8 +57,8 @@ const coders = [
   {
     id: 6,
     fullName: "Thomas Rey",
-    description:"Programador resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
-    linkAvatar: "/Thomy.jpg",
+    description:"Desarrollador Full Stack resolutivo y apasionado. Siempre aprendiendo. Innovador, adaptativo, ansioso por integrar últimas tecnologías. Enfocado en resultados.",
+    linkAvatar: "https://i.postimg.cc/Y4DHdW0q/thomi.jpg",
     linkedin: "https://www.linkedin.com/in/thomas-rey-39099021b/",
     github: "https://github.com/thomasrey99",
     email: "thomas_rey1999@outlook.com"
@@ -67,7 +67,7 @@ const coders = [
     id: 7,
     fullName: "Mariano Masondo",
     description: "Desarrollador Full Stack apasionado por la tecnología en busca constante de soluciones en base a la experiencia, creatividad y disposición para aportar a tu equipo.",
-    linkAvatar: "/Mariano.jpg",
+    linkAvatar: "https://i.postimg.cc/GT1SKLFm/Mariano.jpg",
     linkedin: "https://www.linkedin.com/in/mariano-masondo-7026b0254",
     github: "https://github.com/MarianoMasondo",
     email: "nanomason@gmail.com"

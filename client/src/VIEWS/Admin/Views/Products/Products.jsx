@@ -23,7 +23,6 @@ const Products = () => {
     setShowAll(!showAll);
   }
   const seeMoreText = showAll ? 'Ver menos...' : 'Ver más...';
-
   return (
     <div className={Conteiner.Container}>
       <NavBarAdmin />

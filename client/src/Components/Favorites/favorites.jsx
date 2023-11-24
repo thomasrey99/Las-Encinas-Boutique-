@@ -10,7 +10,7 @@ const Favorites = () => {
 
     const navigate = useNavigate();
     const user = useSelector(state => state.user.userLog)
-    const userId = user.uid;
+    const userId = user?.uid;
     const { data: getAllFavProducts, isError, isLoading, refetch } = useGetAllFavProductsQuery(userId);
 
     useEffect(() => {
@@ -21,7 +21,9 @@ const Favorites = () => {
 
     return(
         <div className={styles.container}>
-            { !userId? <Alert message="Por favor, inicie sesión para ver sus favoritos."
+            {isLoading? <Spin tip="Cargando" className={styles.alert}><div className="content"/></Spin>  
+                :!userId? 
+                <Alert message="Por favor, inicie sesión para ver sus favoritos."
                 type="info"
                 description={
                     <div>
@@ -31,9 +33,9 @@ const Favorites = () => {
                 }
                 showIcon
                 className={styles.alert}/>
-            : isLoading? <Spin tip="Cargando" className={styles.alert}><div className="content"/></Spin>  
+            
             : isError ? <Alert message="Error" description="Por favor, intente de nuevo más tarde." type="error" showIcon className={styles.alert}/>
-            :Array.isArray(getAllFavProducts) && getAllFavProducts.length > 0 ?
+            : getAllFavProducts && getAllFavProducts.length > 0 ?
                 getAllFavProducts.map(props => (
                             <div key={props.id_product}>
                               <Card key={props.id_product}

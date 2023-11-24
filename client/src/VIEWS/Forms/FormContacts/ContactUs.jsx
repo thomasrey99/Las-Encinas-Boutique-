@@ -1,6 +1,5 @@
-import "../FormContacts/ContactUs.css"
-import { useState } from "react";
-import { Form, Input, Button, Image, Flex } from 'antd'
+import style from "./ContactUs.module.css"
+import { Form, Input, Button, Image, Col, Row } from 'antd'
 const { TextArea } = Input;
 
 
@@ -74,44 +73,27 @@ const ContactUs = () => {
     }
 
     return (
-            <Form
-                name="basic"
-                labelCol={{ span: 8 }}
-                style={{ maxWidth: 600 }}
-                initialValues={{ remember: true }}
-                autoComplete="off"
-                onFinish={onClickMail}>
-                <div>
-                    <h2>Quieres obtener nuestros productos en tu tienda?</h2>
-                    <h3> contáctanos para brindarte más información acerca de nuestros productos y servicios especiales disponibles </h3>
-                    <Image className="ImageContact" src='/Contact.avif' width={380} height={280} />
-                </div>
-                <Form.Item
-                    label="Nombre"
-                    placeholder="Nombre completo"
-                    name="name"
-                    hasFeedback
-                    validateFirst
-                    rules={[{ validator: handleInputChange }]}>
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="E-mail"
-                    placeholder="Correo electronico"
-                    name="mail"
-                    rules={[{ required: true, message: 'Ingrese un correo electronico!' }]}>
-                    <Input />
-                    {errors && errors.message}
-                </Form.Item>
-                <TextArea
-                    label="message"
-                    name="message"
-                    placeholder="Ingresa aquí tus dudas o solicitud de información"
-                    onChange={(e) => handleInputChange("message", e.target.value)}
-                    style={{ width: 380, height: 75 }} />
-                {errors && errors.message}
-                <Button className="btnGoogleContact " htmlType="submit">Enviar mensaje</Button>
-            </Form>
+        <Form className={style.formCont}>
+            <div className={style.leftSection}>
+                <h2>{t("contactUS.Description1")}</h2>
+                <p>{t("contactUS.Description2")}</p>
+                <Image src='.././public/Contact.avif' width={380} height={280} />
+            </div>
+            <div className={style.rigthSection}>
+                <h2>Contactanos!</h2>
+                <label >{t("contactUS.Name")}</label>
+                <Input name="name"
+                    placeholder={t("contactUS.NameHolder")}
+                    style={{ width: 200, height: 35 }} />
+                <label>{t("contactUS.E-mail")}</label>
+                <Input placeholder={t("contactUS.E-mailHolder")}
+                    style={{ width: 200, height: 35 }} />
+                <label>{t("contactUS.Message")}</label>
+                <TextArea placeholder={t("contactUS.MessageHolder")}
+                    style={{ width: 200, height: 35 }} />
+                <Button className="btnGoogleContact ">{t("contactUS.SendMessage")}</Button>
+            </div>
+        </Form>
 
     )
 }

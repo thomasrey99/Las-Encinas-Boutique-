@@ -6,7 +6,7 @@ const initialState={
     category:"",
     minPrice:"",
     maxPrice:"",
-    order:"",
+    order:"name_asc",
     type:"",
     is_Delete:"",
     id_payment:""
@@ -47,7 +47,7 @@ export const filterSlice=createSlice({
             state.category = "";
             state.minPrice = "";
             state.maxPrice = "";
-            state.order = "";
+            state.order = "name_asc";
             state.type = "";
             state.is_Delete = "";
             state.param = "";

@@ -4,7 +4,7 @@
 }
 .userCard{
   width: 130vh;
-  height: 80vh;
+  min-height: 80vh;
 }
 .loading .ant-spin-dot i {
   background-color: #EAC696 !important;

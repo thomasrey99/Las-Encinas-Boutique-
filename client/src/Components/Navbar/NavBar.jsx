@@ -108,7 +108,7 @@ const NavBar = ({handleOPen, isOPen}) => {
     }
 
   },[currentUser])
-  console.log("datos del usuario", currentUser)
+
   return (
     <nav className={style.navCont}>
         <div className={style.logCont}>

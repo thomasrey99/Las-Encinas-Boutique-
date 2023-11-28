@@ -56,7 +56,7 @@ const postNewUser = async (req, res) => {
             name:name,
             lastName:lastName,
             email:email,
-            phone:phone,
+            phone:Number(phone),
             address:address,
             is_Admin:is_Admin,
             isBlocked: isBlocked,

@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 const Type = ({change, width}) => {
   const dispatch=useDispatch()
   const types=useSelector((state)=>state.types.allTypes)
+  const typeSelected=useSelector((state)=>state.filters.type)
   const {data}=useGetAllTypesQuery()  
   const { t } = useTranslation("global");
 
@@ -23,7 +24,7 @@ const Type = ({change, width}) => {
         <label htmlFor='type'>{t("filters.Chocolate type")}</label>
         <Select className={style.lengthInput}
           name="type"
-          defaultValue="Todos"
+          value={typeSelected}
           style={{
             width: width,
           }}

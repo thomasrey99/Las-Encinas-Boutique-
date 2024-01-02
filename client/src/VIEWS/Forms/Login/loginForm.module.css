@@ -77,14 +77,11 @@
 
 .signin {
   text-align: center;
+  text-decoration: none;
 }
 
 .signin a {
   color: royalblue;
-}
-
-.signin a:hover {
-  text-decoration: underline royalblue;
 }
 
 .flex {

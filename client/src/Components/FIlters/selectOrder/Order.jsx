@@ -1,10 +1,13 @@
 import { Select, Space } from "antd";
 import style from "../Filters.module.css";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const Order = ({ change, width }) => {
   
   const { t } = useTranslation("global");
+
+  const orderSelected=useSelector((state)=>state.filters.order)
 
   const order = [
     {
@@ -32,7 +35,7 @@ const Order = ({ change, width }) => {
       <Select className={style.lengthInput}
         onChange={change}
         name="order"
-        defaultValue={"a-z"}
+        value={orderSelected}
         style={{
           width: width,
         }}

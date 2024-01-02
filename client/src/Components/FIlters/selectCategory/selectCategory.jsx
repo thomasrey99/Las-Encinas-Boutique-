@@ -14,6 +14,8 @@ const SelectCategory = ({change, width}) => {
 
   const categories=useSelector((state)=>state.categories.allCategories)
 
+  const category=useSelector((state)=>state.filters.category)
+
   const {data}=useGetAllCategoriesQuery()  
 
   useEffect(()=>{
@@ -29,7 +31,7 @@ const SelectCategory = ({change, width}) => {
         <Select className={style.lengthInput}
           onChange={change}
           name="category"
-          defaultValue="Todos"
+          value={category}
           style={{
             width: width,
           }}
